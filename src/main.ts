@@ -13,6 +13,7 @@ import CoverageReportPage from "./features/coverage-report/CoverageReportPage.vu
 import SettingsPage from "./features/settings/SettingsPage.vue";
 import TrainerPage from "./features/trainer/TrainerPage.vue";
 import CollectionPage from "./features/collection/CollectionPage.vue";
+import EditInstancePage from "./features/collection/EditInstancePage.vue";
 import LogCatchPage from "./features/log-catch/LogCatchPage.vue";
 import StatsPage from "./features/stats/StatsPage.vue";
 import { mountVueRoute, unmountCurrentVueRoute } from "./app-shell/mount-vue";
@@ -22,7 +23,8 @@ import { createOverlayPanel, bindEscapeToClose } from "./ui/overlay-panel";
 import { el } from "./ui/dom";
 
 // Plain-title header content for every "none"-mode route (data-entry-grid/
-// data-entry-detail build their own header via kind "filter"/"jump" instead).
+// data-entry-detail build their own header via kind "filter"/"jump" instead;
+// edit-instance also builds its own so its title can show the species name).
 const ROUTE_TITLES: Partial<Record<import("./app-shell/router").Route["name"], string>> = {
   stats: "Stats",
   "search-tools": "Search Tools",
@@ -202,6 +204,10 @@ function bootstrap(repo: Repository) {
           location.hash = "/data-entry";
         },
       });
+    } else if (route.name === "edit-instance") {
+      const loaded = repo.getPokemonInstance(route.instanceId);
+      renderHeader(headerEl, { kind: "none", title: loaded ? `Edit ${loaded.species.name}` : "Edit specimen" });
+      mountVueRoute(contentEl, EditInstancePage, { repo, instanceId: route.instanceId });
     } else {
       renderHeader(headerEl, { kind: "none", title: ROUTE_TITLES[route.name] });
       switch (route.name) {

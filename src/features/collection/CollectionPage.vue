@@ -14,6 +14,7 @@ import { ref, watch } from "vue";
 import type { PokemonInstanceSort, Repository } from "../../data/repository";
 import type { PokemonInstanceStatus } from "../../db/types";
 import { formSpritePath } from "../../ui/sprites";
+import { editInstancePath, navigate } from "../../app-shell/router";
 
 const props = defineProps<{ repo: Repository }>();
 
@@ -56,6 +57,10 @@ async function setStatus(id: number, next: PokemonInstanceStatus) {
   await props.repo.setPokemonInstanceStatus(id, next);
   reload();
   openActionsFor.value = null;
+}
+
+function editInstance(id: number) {
+  navigate(editInstancePath(id));
 }
 </script>
 
@@ -104,6 +109,7 @@ async function setStatus(id: number, next: PokemonInstanceStatus) {
         <button type="button" @click="setStatus(row.instance.id, 'traded')">Mark traded</button>
         <button type="button" @click="setStatus(row.instance.id, 'released')">Release</button>
         <button type="button" @click="setStatus(row.instance.id, 'evolved')">Mark evolved</button>
+        <button type="button" @click="editInstance(row.instance.id)">Edit details</button>
       </div>
     </li>
   </ul>

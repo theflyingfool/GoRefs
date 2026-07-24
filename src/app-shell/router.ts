@@ -10,7 +10,8 @@ export type Route =
   | { name: "xp-assistant" }
   | { name: "trainer" }
   | { name: "collection" }
-  | { name: "log-catch"; prefillSpeciesSlug?: string };
+  | { name: "log-catch"; prefillSpeciesSlug?: string }
+  | { name: "edit-instance"; instanceId: number };
 
 export function parseRoute(hash: string): Route {
   const rawPath = hash.replace(/^#/, "") || "/data-entry";
@@ -20,6 +21,9 @@ export function parseRoute(hash: string): Route {
   const [path, queryString] = rawPath.split("?");
   const detailMatch = path.match(/^\/data-entry\/species\/(.+)$/);
   if (detailMatch) return { name: "data-entry-detail", speciesSlug: decodeURIComponent(detailMatch[1]) };
+
+  const editInstanceMatch = path.match(/^\/collection\/(\d+)\/edit$/);
+  if (editInstanceMatch) return { name: "edit-instance", instanceId: Number(editInstanceMatch[1]) };
 
   switch (path) {
     // "/bulk-edit" no longer has its own route — Bulk Edit was merged into
@@ -61,4 +65,8 @@ export function navigate(path: string) {
 
 export function speciesDetailPath(speciesSlug: string): string {
   return `/data-entry/species/${encodeURIComponent(speciesSlug)}`;
+}
+
+export function editInstancePath(instanceId: number): string {
+  return `/collection/${instanceId}/edit`;
 }
