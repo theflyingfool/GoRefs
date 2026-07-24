@@ -342,6 +342,8 @@ export interface NewPokemonInstanceBatch {
   lucky?: boolean;
   shadow?: boolean;
   purified?: boolean;
+  dynamax?: boolean;
+  receivedViaTrade?: boolean;
   cp?: number | null;
   ivAttack?: number | null;
   ivDefense?: number | null;

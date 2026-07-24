@@ -33,6 +33,7 @@ import {
 } from "../db/types";
 import { getDb, persistDb } from "../db/sqlite-client";
 import { runPersonalMigrations } from "../db/migrations";
+import { resolveInstanceAchievementField } from "../db/cascades";
 import { syncReferenceData } from "../db/reference-sync";
 import { getCompletionStatsSql } from "./completion-stats-sql";
 import referenceDataJson from "./reference.json";
@@ -140,6 +141,8 @@ async function loadPersonalState(db: Awaited<ReturnType<typeof getDb>>): Promise
       lucky: !!row.lucky,
       shadow: !!row.shadow,
       purified: !!row.purified,
+      dynamax: !!row.dynamax,
+      receivedViaTrade: !!row.received_via_trade,
       heartsEarned: row.hearts_earned ?? null,
       currentMegaLevel: row.current_mega_level ?? null,
       nickname: row.nickname ?? null,
@@ -432,8 +435,8 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
         await db.beginTransaction();
         for (let i = 0; i < batch.count; i++) {
           await db.run(
-            `INSERT INTO pokemon_instance (form_slug, profile_id, status, recorded_at, caught_at, updated_at, cp, iv_attack, iv_defense, iv_stamina, shiny, lucky, shadow, purified, nickname, background_slug)
-             VALUES (?, ?, 'kept', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            `INSERT INTO pokemon_instance (form_slug, profile_id, status, recorded_at, caught_at, updated_at, cp, iv_attack, iv_defense, iv_stamina, shiny, lucky, shadow, purified, dynamax, received_via_trade, nickname, background_slug)
+             VALUES (?, ?, 'kept', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
               batch.formSlug,
               state.profile.id,
@@ -448,6 +451,8 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
               batch.lucky ? 1 : 0,
               batch.shadow ? 1 : 0,
               batch.purified ? 1 : 0,
+              batch.dynamax ? 1 : 0,
+              batch.receivedViaTrade ? 1 : 0,
               batch.nickname ?? null,
               batch.backgroundSlug ?? null,
             ],
@@ -472,6 +477,8 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
             lucky: !!batch.lucky,
             shadow: !!batch.shadow,
             purified: !!batch.purified,
+            dynamax: !!batch.dynamax,
+            receivedViaTrade: !!batch.receivedViaTrade,
             heartsEarned: null,
             currentMegaLevel: null,
             nickname: batch.nickname ?? null,
@@ -492,6 +499,9 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
       // never shows rows the real DB doesn't have.
       state.pokemonInstances.push(...created);
       state.pokemonInstanceTags.push(...tagLinks);
+      for (const instance of created) {
+        repo.setFormPersonalField(instance.formSlug, resolveInstanceAchievementField(instance), true);
+      }
       return created;
     },
     async createTag(name: string): Promise<Tag> {
