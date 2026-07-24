@@ -275,6 +275,26 @@ Known rough edges, not release blockers. Recovered from the pre-restructure
     `src/app-shell/header.ts`) isn't debounced (unlike the grid's filter
     input in the same file), has no "no matches" empty state, and no
     truncation indicator past its 8-result cap.
+- **Delete a specimen from Collection**: there's no way to permanently remove
+  a `pokemon_instance` row — only status changes (kept/traded/released/evolved)
+  exist (`repo.setPokemonInstanceStatus`, `CollectionPage.vue`'s action menu).
+  "Release" changes status but doesn't delete the row; there's no
+  `deletePokemonInstance` repository method at all. Owner-reported
+  2026-07-24, explicitly deferred (not urgent) alongside the evolution item
+  below.
+- **Evolving a specimen doesn't change its species/form**: marking a
+  specimen "Evolved" via Collection's action menu only flips
+  `pokemon_instance.status` to `'evolved'` — the row's `form_slug` is never
+  updated to the evolved species/form, so an evolved specimen still shows as
+  its pre-evolution species everywhere (Collection, Edit details, tags).
+  Needs its own scoping: which evolution target (species can have multiple
+  evolution paths — `species_evolution` reference table already models
+  `from_species_slug`/`to_species_slug`/candy or item requirements, but not
+  a specific *form* target when the destination has multiple forms/costumes),
+  whether IVs/shiny/lucky/shadow/tags/nickname carry over to the new row
+  (real Pokémon GO behavior: they do, for the same individual), and whether
+  this is an in-place `form_slug` update or a new row replacing the old one.
+  Owner-reported 2026-07-24, explicitly deferred (not urgent).
 - **`form.imageRef` cross-referencing**: the reserved `form.imageRef` column
   is still not wired up into `build-reference.ts`'s ingestion output — the
   sprite-slug manifest (`src/data/form-sprite-slugs.json`) currently serves
