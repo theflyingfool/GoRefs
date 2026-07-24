@@ -65,3 +65,58 @@ test("tags-page: create a tag while logging a catch, then rename and delete it f
 
   expect(await findTagRow(page, renamedName), "tag row should be gone after delete").toBeUndefined();
 });
+
+// Creates a tag via Log a catch's inline tag creator (same mechanism as the
+// test above) and logs a catch for it, so a fresh, deterministic tag exists
+// to rename in the Tags page test below.
+async function createTagViaLogCatch(page: Page, tagName: string): Promise<void> {
+  await page.goto("/#/log-catch");
+  await page.waitForLoadState("networkidle");
+
+  // Species selection is skipped if a species is already selected from a
+  // prior catch logged earlier in the same test (the page retains it).
+  const searchbox = page.getByRole("searchbox");
+  if (await searchbox.isVisible().catch(() => false)) {
+    await searchbox.fill("bulbasaur");
+    await page.getByText("Bulbasaur", { exact: false }).first().click();
+  }
+
+  await page.getByRole("button", { name: "Full details" }).click();
+
+  await page.getByPlaceholder("New tag…").fill(tagName);
+  await page.getByRole("button", { name: "+ Add tag" }).click();
+
+  await page.getByRole("button", { name: /^save$/i }).click();
+  await page.waitForTimeout(500);
+}
+
+test("tags-page: renaming a tag to a name that already exists shows an inline error and does not persist", async ({ page }) => {
+  await page.setViewportSize({ width: 400, height: 800 });
+
+  const nameA = `E2E Collide A ${Date.now()}`;
+  const nameB = `E2E Collide B ${Date.now()}`;
+
+  await createTagViaLogCatch(page, nameA);
+  await createTagViaLogCatch(page, nameB);
+
+  await page.goto("/#/tags");
+  await page.waitForLoadState("networkidle");
+
+  const rowB = await findTagRow(page, nameB);
+  expect(rowB, `expected a tag row for "${nameB}"`).toBeDefined();
+
+  const nameInput = rowB!.locator("input[type='text']");
+  await nameInput.fill(nameA);
+  await nameInput.dispatchEvent("change");
+  await page.waitForTimeout(300);
+
+  await expect(rowB!.getByText(`A tag named "${nameA}" already exists.`)).toBeVisible();
+
+  await page.reload();
+  await page.waitForLoadState("networkidle");
+
+  // The rejected rename must never have reached the DB: "B" is still "B",
+  // and "A" is still present and untouched (no silent overwrite/loss).
+  expect(await findTagRow(page, nameB), `expected "${nameB}" to still exist after reload`).toBeDefined();
+  expect(await findTagRow(page, nameA), `expected "${nameA}" to still exist unchanged after reload`).toBeDefined();
+});
