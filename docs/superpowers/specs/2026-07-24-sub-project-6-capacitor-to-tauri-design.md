@@ -150,13 +150,25 @@ an assumption.
 - Fixing the three Collection/Dex/Tags gaps (Sub-project 5) — unrelated to
   the platform, sequenced first per the roadmap.
 
-## Open questions to resolve at implementation time
+## Open questions — resolved 2026-07-24
 
-1. Exact Android share/export mechanism (`plugin-fs` + what, for the
-   share-sheet equivalent).
-2. Whether a Tauri-less `npm run dev` fast path survives, and if so what
-   backs its SQLite access.
-3. Desktop packaging/distribution format.
-4. Whether the 16KB page-size linker flag is still needed by the time
-   implementation starts, or already defaulted by a newer Tauri/AGP
-   version.
+Resolved before writing the [implementation plan](../plans/2026-07-24-sub-project-6-capacitor-to-tauri.md):
+
+1. **Android share/export mechanism**: `@tauri-apps/plugin-dialog`'s `save()`
+   (SAF-backed on Android, so "Save to Drive" works as one of the picker's
+   destinations) + `@tauri-apps/plugin-fs`'s `writeTextFile()`. No official
+   Tauri share-sheet plugin exists (confirmed against the full plugin list)
+   and none is needed — this one mechanism covers desktop and Android both,
+   simpler than the split originally sketched above.
+2. **`npm run dev` fast path**: does not survive. Owner call: accept the e2e
+   gap and cut over immediately rather than keep a dev-only sql.js path
+   alive. `npm run dev` becomes `cargo tauri dev`; the Playwright suite is
+   retired (can't drive a Tauri-hosted webview) and rebuilding e2e coverage
+   on `tauri-driver` is logged as its own future roadmap item, not part of
+   this sub-project.
+3. **Desktop packaging**: just get a working `cargo tauri build` for the
+   host platform. Installer/signing/distribution format stays an explicit
+   non-goal, logged as a roadmap follow-up.
+4. **16KB linker flag**: add it now rather than deferring the check —
+   cheaper to apply than to keep re-verifying whether a newer toolchain
+   made it moot.
