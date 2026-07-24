@@ -34,6 +34,7 @@ import {
 import { getDb, persistDb } from "../db/sqlite-client";
 import { runPersonalMigrations } from "../db/migrations";
 import { resolveInstanceAchievementField } from "../db/cascades";
+import { applyDexAchievementBackfillIfNeeded, DEX_ACHIEVEMENT_BACKFILL_KEY } from "./dex-achievement-backfill";
 import { syncReferenceData } from "../db/reference-sync";
 import { getCompletionStatsSql } from "./completion-stats-sql";
 import referenceDataJson from "./reference.json";
@@ -386,19 +387,19 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
     await writeQueue;
   }
 
-  // One-time backfill: devices that logged catches before Task 3's live-catch
-  // cascade wiring have pokemon_instance rows whose corresponding
-  // form_personal achievement flag was never set, leaving the Dex grid
-  // showing them as not-caught. Gated by an app_settings marker so it only
-  // ever runs once per device; a fresh install has zero pokemon_instance rows
-  // so this is a no-op there but still marks the key complete.
-  const DEX_ACHIEVEMENT_BACKFILL_KEY = "dexAchievementBackfillV9Complete";
+  // One-time backfill (see applyDexAchievementBackfillIfNeeded above for the
+  // gating/loop logic itself, extracted for direct testability). Wrapped in
+  // runBulk here so the SQL side lands as one transaction + one persist
+  // flush instead of N. NOTE: the authoritative marker check lives inside
+  // applyDexAchievementBackfillIfNeeded (and is covered by
+  // test/dex-achievement-backfill.test.ts) -- this outer check is only a
+  // boot-time optimization to skip opening an empty transaction on every
+  // startup after the first. Do not remove the inner check; this outer one
+  // is not itself under test (it's part of createSqliteRepository, which
+  // needs a live getDb() no test suite provides).
   if (state.appSettings[DEX_ACHIEVEMENT_BACKFILL_KEY] !== "1") {
     await runBulk(async () => {
-      for (const instance of state.pokemonInstances) {
-        repo.setFormPersonalField(instance.formSlug, resolveInstanceAchievementField(instance), true);
-      }
-      repo.setAppSetting(DEX_ACHIEVEMENT_BACKFILL_KEY, "1");
+      applyDexAchievementBackfillIfNeeded(state, repo);
     });
   }
 
