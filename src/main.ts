@@ -1,7 +1,7 @@
 import { renderBootFailureRescue } from "./app-shell/boot-failure-rescue";
 import { renderHeader, updateFilterBadge } from "./app-shell/header";
 import { renderMoreList, renderSidebar, renderTabBar } from "./app-shell/nav-drawer";
-import { parseRoute, speciesDetailPath } from "./app-shell/router";
+import { parseRoute, speciesDetailPath, navigate } from "./app-shell/router";
 import { applyTheme, getThemePreference } from "./app-shell/theme";
 import { mountWriteFailureBanner, reportWriteFailure } from "./app-shell/write-failure-banner";
 import { createSqliteRepository } from "./data/sqlite-repository";
@@ -206,7 +206,11 @@ function bootstrap(repo: Repository) {
       });
     } else if (route.name === "edit-instance") {
       const loaded = repo.getPokemonInstance(route.instanceId);
-      renderHeader(headerEl, { kind: "none", title: loaded ? `Edit ${loaded.species.name}` : "Edit specimen" });
+      if (!loaded) {
+        navigate("/collection");
+        return;
+      }
+      renderHeader(headerEl, { kind: "none", title: `Edit ${loaded.species.name}` });
       mountVueRoute(contentEl, EditInstancePage, { repo, instanceId: route.instanceId });
     } else {
       renderHeader(headerEl, { kind: "none", title: ROUTE_TITLES[route.name] });

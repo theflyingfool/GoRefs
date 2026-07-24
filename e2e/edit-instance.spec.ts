@@ -42,3 +42,17 @@ test("edit-instance: Collection's action menu edits a logged specimen's nickname
   await page.waitForLoadState("networkidle");
   await expect(page.getByText("Bulby Renamed", { exact: false })).toBeVisible();
 });
+
+test("edit-instance: a stale/nonexistent instance id redirects to Collection without crashing", async ({ page }) => {
+  const consoleErrors: string[] = [];
+  page.on("console", (msg) => {
+    if (msg.type() === "error") consoleErrors.push(msg.text());
+  });
+  page.on("pageerror", (err) => consoleErrors.push(err.message));
+
+  await page.goto("/#/collection/999999/edit");
+  await page.waitForLoadState("networkidle");
+
+  await expect(page).toHaveURL(/#\/collection$/);
+  expect(consoleErrors).toEqual([]);
+});

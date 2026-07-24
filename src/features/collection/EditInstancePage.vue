@@ -13,32 +13,39 @@ import IvComponentInput from "../log-catch/IvComponentInput.vue";
 
 const props = defineProps<{ repo: Repository; instanceId: number }>();
 
+// Defense in depth: main.ts already checks getPokemonInstance() before ever
+// mounting this component and redirects to /collection if the instance is
+// missing, so `loaded` should always be defined here. But <script setup>
+// can't early-return the way a plain function can, so if this component is
+// ever reached with a stale/missing instanceId anyway (e.g. future callers
+// that skip main.ts's guard), fall back to placeholder values instead of
+// dereferencing `loaded` and crashing.
 const loaded = props.repo.getPokemonInstance(props.instanceId);
 if (!loaded) {
   navigate("/collection");
 }
 
-const instance = loaded!.instance;
+const instance = loaded?.instance ?? null;
 
-const nickname = ref(instance.nickname ?? "");
-const cp = ref<number | null>(instance.cp);
-const ivAttack = ref<number | null>(instance.ivAttack);
-const ivDefense = ref<number | null>(instance.ivDefense);
-const ivStamina = ref<number | null>(instance.ivStamina);
-const shiny = ref(instance.shiny);
-const lucky = ref(instance.lucky);
-const shadow = ref(instance.shadow);
-const purified = ref(instance.purified);
-const dynamax = ref(instance.dynamax);
-const receivedViaTrade = ref(instance.receivedViaTrade);
-const heartsEarned = ref<number | null>(instance.heartsEarned);
-const currentMegaLevel = ref<number | null>(instance.currentMegaLevel);
-const backgroundSlug = ref<string | null>(instance.backgroundSlug);
+const nickname = ref(instance?.nickname ?? "");
+const cp = ref<number | null>(instance?.cp ?? null);
+const ivAttack = ref<number | null>(instance?.ivAttack ?? null);
+const ivDefense = ref<number | null>(instance?.ivDefense ?? null);
+const ivStamina = ref<number | null>(instance?.ivStamina ?? null);
+const shiny = ref(instance?.shiny ?? false);
+const lucky = ref(instance?.lucky ?? false);
+const shadow = ref(instance?.shadow ?? false);
+const purified = ref(instance?.purified ?? false);
+const dynamax = ref(instance?.dynamax ?? false);
+const receivedViaTrade = ref(instance?.receivedViaTrade ?? false);
+const heartsEarned = ref<number | null>(instance?.heartsEarned ?? null);
+const currentMegaLevel = ref<number | null>(instance?.currentMegaLevel ?? null);
+const backgroundSlug = ref<string | null>(instance?.backgroundSlug ?? null);
 
 const backgrounds = props.repo.listBackgrounds();
 
 const tags = ref(props.repo.listTags());
-const selectedTagIds = ref<Set<number>>(new Set(loaded!.tags.map((t) => t.id)));
+const selectedTagIds = ref<Set<number>>(new Set(loaded?.tags.map((t) => t.id) ?? []));
 const newTagName = ref("");
 
 function toggleTag(id: number) {
@@ -60,6 +67,7 @@ const saving = ref(false);
 const saveError = ref("");
 
 async function save() {
+  if (!loaded) return;
   saving.value = true;
   saveError.value = "";
   try {
@@ -148,5 +156,5 @@ async function save() {
   </fieldset>
 
   <p class="gap-note" v-if="saveError" style="color: var(--negative, crimson);">{{ saveError }}</p>
-  <button type="button" class="save-button" :disabled="saving" @click="save">Save</button>
+  <button type="button" class="save-button" :disabled="saving || !loaded" @click="save">Save</button>
 </template>
