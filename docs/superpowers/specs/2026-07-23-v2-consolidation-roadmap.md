@@ -7,64 +7,34 @@ bugs, repo hygiene) so the app reaches a coherent, feature-frozen state
 tagged `v2.0.0`. V1 (`v1.0.0` tag) is treated as a proof-of-concept
 reference point going forward, not the live baseline.
 
-This is a decomposition, not a single design — five independent
-sub-projects, each gets its own brainstorm → spec → plan → implementation
-cycle when its turn comes. This document fixes the *scope boundary* and
-*sequence* for all five; it is not itself a build plan for any of them.
+This is a decomposition, not a single design — six independent
+sub-projects (Tauri inserted 2026-07-24, see below), each gets its own
+brainstorm → spec → plan → implementation cycle when its turn comes. This
+document fixes the *scope boundary* and *sequence*; it is not itself a
+build plan for any of them.
 
 ## Sequence
 
 Sub-projects run **strictly in order**, one at a time.
 
-1. Git restructure (operational, not a build task)
-2. Bug fixes + repo cleanup + reference-data hash optimization
-3. Vue migration completion + visual fidelity
-4. IV-entry rework (Attack/Defense/Stamina instead of typed IV%)
-5. Full multi-account (roadmap.md §3 Phase 2, cross-device merge included)
+1. Git restructure (operational, not a build task) — done
+2. Bug fixes + repo cleanup + reference-data hash optimization — done
+3. Vue migration completion + visual fidelity — done
+4. IV-entry rework (Attack/Defense/Stamina instead of typed IV%) — done
+5. Capacitor → Tauri migration (inserted 2026-07-24 — owner decision:
+   do this as its own sub-project before multi-account, not split
+   alongside it, so multi-account's storage design starts with real
+   per-platform file access already in hand rather than designing around
+   a constraint that's about to disappear)
+6. Full multi-account (roadmap.md §3 Phase 2, cross-device merge included)
 
 Rationale: small/independent items first (fast wins, nothing else depends
 on them), then the biggest UI surface (Vue completion), then a small
-focused data-entry change, then the largest and most novel piece
-(multi-account) last, since it benefits from the Vue migration already
-being finished and from every other loose end being tied off first.
-
-## Open, not-yet-sequenced: Capacitor → Tauri
-
-Owner decision (2026-07-23, not yet brainstormed/spec'd): move the app's
-native shell from Capacitor to Tauri — real desktop builds, a genuine
-on-disk SQLite file on every platform (enabling Drizzle Studio access to
-real data, not just `dummy.sqlite`), while still building for Android.
-Where this lands in the sequence above is explicitly undecided; noting the
-interaction that matters most rather than guessing a slot:
-
-- **Sub-project 5 (multi-account) is the most storage-sensitive piece.**
-  Today's web storage (`jeep-sqlite`/sql.js writing into IndexedDB, no real
-  filesystem access) is exactly why the "reference/personal DB file split"
-  and "DB-file-per-profile vs. single-file-with-profile_id" questions
-  (`docs/roadmap.md` §4 V2 Watchlist, §3 Phase 2 "Not yet committed") were
-  left open rather than decided — a real on-disk file on every platform
-  (Tauri's model) removes that constraint and could make a
-  file-per-profile design the obviously simpler answer instead of a
-  deferred-as-too-hard one. Deciding Sub-project 5's storage design before
-  knowing whether Tauri lands first would risk designing around a
-  constraint that's about to disappear.
-- Everything else in this doc (bug fixes, Vue/visual work, IV-entry rework)
-  is UI/data-layer work that doesn't depend on which native shell hosts it,
-  so there's no strong reason to block those sub-projects on this decision.
-
-This needs its own brainstorm (migration scope, Android build-path parity
-checks, what happens to the existing `@capacitor-community/sqlite`/
-`jeep-sqlite` code paths, timing relative to Sub-project 5) before it gets
-a real slot in the sequence — flagging the dependency now so Sub-project
-5's design isn't started blind to it.
-
-**Recommendation:** land Tauri before Sub-project 5, specifically before
-its *storage/file-layout* half (file-per-profile vs. single-file). Split
-Sub-project 5 into two independent halves when its turn comes: the
-*identity scheme* (stable UUIDs for `pokemon_instance`/`tag`, replacing
-local autoincrement ids) is shell-independent and can be designed/built
-regardless of Tauri's status; only the file-layout decision genuinely
-benefits from waiting on real per-platform filesystem access.
+focused data-entry change, then the platform migration, then the largest
+and most novel piece (multi-account) last, since it benefits from the Vue
+migration already being finished, from Tauri's real on-disk file removing
+today's browser-sandbox storage constraint, and from every other loose end
+being tied off first.
 
 ## Carried forward from Sub-project 2 (not yet closed out)
 
@@ -80,11 +50,11 @@ benefits from waiting on real per-platform filesystem access.
   rows still carry `profile_id=1` (backfilled by the old hand-rolled
   migration's `ALTER TABLE ... DEFAULT 1`, before `DEFAULT_PROFILE_ID` as a
   concept existed) — harmless today since no read path filters by
-  `profile_id`, but **Sub-project 5 introduces profile_id-scoped reads**,
+  `profile_id`, but **Sub-project 6 introduces profile_id-scoped reads**,
   at which point any row with a stale/wrong `profile_id` would silently
   vanish from view. A one-time `profile_id` reconciliation pass (bring
   every personal-table row in line with the real profile id) needs to be a
-  required step inside Sub-project 5, not an afterthought.
+  required step inside Sub-project 6, not an afterthought.
 - **Unused-files sweep**: covered opportunistically during Sub-project 1's
   git restructure (`Refs/`, `Reports/`, `verify-gobuddy.mjs`, stale
   branches/worktrees) rather than as an exhaustive standalone pass.
@@ -271,7 +241,35 @@ computed from IVs+level here or stay a separate manual field.
 
 ---
 
-## 5. Full multi-account (roadmap.md §3 Phase 2)
+## 5. Capacitor → Tauri
+
+Owner decision (2026-07-23): move the app's native shell from Capacitor to
+Tauri — real desktop builds, a genuine on-disk SQLite file on every
+platform (enabling Drizzle Studio access to real data, not just
+`dummy.sqlite`), while still building for Android.
+
+**Sequencing decision (2026-07-24):** rather than splitting Sub-project 6
+(multi-account) into an identity-scheme half that could proceed regardless
+and a storage half that waits on Tauri, the owner chose to do the full
+Tauri migration as its own complete sub-project first. Reasoning this
+still serves: today's web storage (`jeep-sqlite`/sql.js writing into
+IndexedDB, no real filesystem access) is exactly why the "reference/
+personal DB file split" and "DB-file-per-profile vs.
+single-file-with-profile_id" questions (`docs/roadmap.md` §4 V2 Watchlist,
+§3 Phase 2 "Not yet committed") were left open rather than decided — a
+real on-disk file on every platform removes that constraint. Doing the
+full migration first (not just enough of it to unblock storage) means
+Sub-project 6's design starts with the real platform already in hand, not
+a partial one.
+
+Needs its own full brainstorm: migration scope, Android build-path parity
+checks, what happens to the existing `@capacitor-community/sqlite`/
+`jeep-sqlite` code paths, and how `src/db/sqlite-client.ts`'s
+platform-dispatch (`Capacitor.getPlatform()`) changes shape.
+
+---
+
+## 6. Full multi-account (roadmap.md §3 Phase 2)
 
 Confirmed in scope per explicit owner decision: local profile
 create/switch/rename (fixing the SQL bug from Sub-project 2 is a
