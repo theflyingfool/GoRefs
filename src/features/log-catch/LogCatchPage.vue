@@ -52,6 +52,8 @@ const shiny = ref(false);
 const lucky = ref(false);
 const shadow = ref(false);
 const purified = ref(false);
+const dynamax = ref(false);
+const receivedViaTrade = ref(false);
 
 const quantity = ref(1);
 function setQuantity(n: number) {
@@ -128,6 +130,8 @@ async function save() {
       lucky: lucky.value,
       shadow: shadow.value,
       purified: purified.value,
+      dynamax: dynamax.value,
+      receivedViaTrade: receivedViaTrade.value,
       cp: mode.value === "full" ? cp.value : null,
       ivAttack: mode.value === "full" ? ivAttack.value : null,
       ivDefense: mode.value === "full" ? ivDefense.value : null,
@@ -195,6 +199,8 @@ async function quickAction(id: number, status: "traded" | "evolved" | "released"
     <label class="toggle-row"><input type="checkbox" v-model="lucky" /><span>Lucky</span></label>
     <label class="toggle-row"><input type="checkbox" v-model="shadow" /><span>Shadow</span></label>
     <label class="toggle-row"><input type="checkbox" v-model="purified" /><span>Purified</span></label>
+    <label class="toggle-row"><input type="checkbox" v-model="dynamax" /><span>Dynamax</span></label>
+    <label class="toggle-row"><input type="checkbox" v-model="receivedViaTrade" /><span>Received via trade</span></label>
   </fieldset>
 
   <fieldset v-if="mode === 'quick'">
