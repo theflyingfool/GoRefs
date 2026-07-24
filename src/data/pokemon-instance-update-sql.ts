@@ -6,11 +6,33 @@
 // environment. This file deliberately imports nothing from sqlite-client.ts
 // (or anything else Capacitor/jeep-sqlite-related) so it stays
 // test-importable in isolation.
+import type { PokemonInstance } from "../db/types";
+import { computeIvPercent } from "../db/types";
 import type { UpdatePokemonInstanceFields } from "./repository";
 
 export interface SqlStatement {
   sql: string;
   params: unknown[];
+}
+
+/**
+ * Merges a scalar edit into the in-memory cache's copy of an instance the
+ * same way sqlite-repository.ts's updatePokemonInstance does, extracted so
+ * the merge-then-recompute logic can be exercised directly in a plain
+ * node:test file (no jeep-sqlite import chain).
+ *
+ * ivPercent is a SQL GENERATED column -- SQLite recomputes it on disk from
+ * iv_attack/iv_defense/iv_stamina automatically when the scalar UPDATE
+ * lands, but the in-memory cache has no such mechanism. If `fields` only
+ * touches one (or zero) of the three IV components, the merged instance's
+ * OTHER IV values -- not just the ones present in `fields` -- are what
+ * `computeIvPercent` must be given, or the recomputed ivPercent silently
+ * uses the wrong inputs.
+ */
+export function mergeUpdatedInstance(existing: PokemonInstance, fields: UpdatePokemonInstanceFields, now: number): PokemonInstance {
+  const merged = { ...existing, ...fields, updatedAt: now } as PokemonInstance;
+  merged.ivPercent = computeIvPercent(merged.ivAttack, merged.ivDefense, merged.ivStamina);
+  return merged;
 }
 
 // Column name each scalar UpdatePokemonInstanceFields key writes to.

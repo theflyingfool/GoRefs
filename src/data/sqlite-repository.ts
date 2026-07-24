@@ -35,7 +35,7 @@ import { getDb, persistDb } from "../db/sqlite-client";
 import { runPersonalMigrations } from "../db/migrations";
 import { resolveInstanceAchievementField } from "../db/cascades";
 import { applyDexAchievementBackfillIfNeeded, DEX_ACHIEVEMENT_BACKFILL_KEY } from "./dex-achievement-backfill";
-import { buildScalarUpdateStatement, buildTagDiffStatements } from "./pokemon-instance-update-sql";
+import { buildScalarUpdateStatement, buildTagDiffStatements, mergeUpdatedInstance } from "./pokemon-instance-update-sql";
 import { buildRenameTagStatement, buildDeleteTagStatements, computeTagUsageCounts } from "./tag-management-sql";
 import { syncReferenceData } from "../db/reference-sync";
 import { getCompletionStatsSql } from "./completion-stats-sql";
@@ -588,6 +588,15 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
     // this is a dynamic-column-list UPDATE against real SQL, which the
     // in-memory engine has no equivalent for; the dummy backend mutates
     // state.pokemonInstances directly instead (see in-memory-store.ts).
+    //
+    // Known asymmetry (not a bug, undecided): createPokemonInstances runs
+    // resolveInstanceAchievementField -> setFormPersonalField after logging
+    // a catch, so a newly-caught shiny/lucky/100%-IV specimen immediately
+    // updates the Dex achievement flags. Editing an existing specimen here
+    // to *become* shiny, or editing its IVs up to 100%, does NOT re-run
+    // that cascade. Whether edits should also trigger it is a product
+    // decision outside this fix's scope -- flagging so a future reader
+    // isn't surprised by the gap.
     async updatePokemonInstance(id: number, fields: UpdatePokemonInstanceFields): Promise<void> {
       const now = Date.now();
       const scalarUpdate = buildScalarUpdateStatement(id, fields, now);
@@ -613,7 +622,10 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
       if (scalarUpdate) {
         const idx = state.pokemonInstances.findIndex((i) => i.id === id);
         if (idx !== -1) {
-          state.pokemonInstances[idx] = { ...state.pokemonInstances[idx], ...fields, updatedAt: now } as PokemonInstance;
+          // See mergeUpdatedInstance's own doc comment (pokemon-instance-
+          // update-sql.ts) for why ivPercent needs a manual recompute here
+          // from the merged IV values, not just the ones present in `fields`.
+          state.pokemonInstances[idx] = mergeUpdatedInstance(state.pokemonInstances[idx], fields, now);
         }
       } else {
         const idx = state.pokemonInstances.findIndex((i) => i.id === id);

@@ -3,7 +3,9 @@ import assert from "node:assert/strict";
 import { DatabaseSync } from "node:sqlite";
 import { runPersonalMigrations } from "../src/db/migrations";
 import { nodeSqliteConnection } from "./node-sqlite-connection";
-import { buildScalarUpdateStatement, buildTagDiffStatements } from "../src/data/pokemon-instance-update-sql";
+import { buildScalarUpdateStatement, buildTagDiffStatements, mergeUpdatedInstance } from "../src/data/pokemon-instance-update-sql";
+import { computeIvPercent } from "../src/db/types";
+import type { PokemonInstance } from "../src/db/types";
 
 function freshDb(): DatabaseSync {
   const db = new DatabaseSync(":memory:");
@@ -75,6 +77,72 @@ test("buildTagDiffStatements clears all tags when tagIds is empty, without a NOT
 
   const links = db.prepare("SELECT tag_id FROM pokemon_instance_tag WHERE pokemon_instance_id = ?").all(instanceId);
   assert.deepEqual(links, []);
+});
+
+function fixtureInstance(overrides: Partial<PokemonInstance> = {}): PokemonInstance {
+  return {
+    id: 1,
+    formSlug: "bulbasaur-standard",
+    profileId: 1,
+    status: "kept",
+    recordedAt: 0,
+    caughtAt: null,
+    updatedAt: 0,
+    cp: null,
+    ivAttack: 10,
+    ivDefense: 10,
+    ivStamina: 10,
+    ivPercent: computeIvPercent(10, 10, 10),
+    shiny: false,
+    lucky: false,
+    shadow: false,
+    purified: false,
+    dynamax: false,
+    receivedViaTrade: false,
+    heartsEarned: null,
+    currentMegaLevel: null,
+    nickname: null,
+    backgroundSlug: null,
+    ...overrides,
+  };
+}
+
+test("mergeUpdatedInstance recomputes ivPercent from the MERGED IVs when only one component changes, matching the real generated column", async () => {
+  // Seed a real row with the same starting IVs as the in-memory fixture,
+  // and apply the exact SQL updatePokemonInstance would run for an edit
+  // that only changes ivDefense -- proving the fix against the real
+  // GENERATED column, not just computeIvPercent's own formula.
+  const db = await seededDb();
+  const id = insertInstance(db);
+  db.prepare("UPDATE pokemon_instance SET iv_attack = 10, iv_defense = 10, iv_stamina = 10 WHERE id = ?").run(id);
+
+  const fields = { ivDefense: 15 };
+  const statement = buildScalarUpdateStatement(id, fields, 99999);
+  assert.ok(statement);
+  db.prepare(statement.sql).run(...(statement.params as never[]));
+
+  const row = db.prepare("SELECT iv_percent FROM pokemon_instance WHERE id = ?").get(id) as { iv_percent: number };
+
+  const existing = fixtureInstance({ id, ivAttack: 10, ivDefense: 10, ivStamina: 10 });
+  const merged = mergeUpdatedInstance(existing, fields, 99999);
+
+  // The bug this guards against: before the fix, ivPercent would have been
+  // left at computeIvPercent(10, 10, 10) (the stale pre-edit value) instead
+  // of being recomputed from the merged ivDefense: 15.
+  assert.equal(merged.ivPercent, computeIvPercent(10, 15, 10));
+  assert.notEqual(merged.ivPercent, computeIvPercent(10, 10, 10));
+  assert.equal(merged.ivAttack, 10);
+  assert.equal(merged.ivDefense, 15);
+  assert.equal(merged.ivStamina, 10);
+  // And it must match what SQLite's real GENERATED column computed on disk.
+  assert.equal(merged.ivPercent, row.iv_percent);
+});
+
+test("mergeUpdatedInstance leaves ivPercent unchanged when the edit doesn't touch any IV field", () => {
+  const existing = fixtureInstance({ nickname: "Bulby", ivAttack: 10, ivDefense: 10, ivStamina: 10 });
+  const merged = mergeUpdatedInstance(existing, { nickname: "Bulbers" }, 12345);
+  assert.equal(merged.nickname, "Bulbers");
+  assert.equal(merged.ivPercent, computeIvPercent(10, 10, 10));
 });
 
 test("buildTagDiffStatements replaces a non-empty tag set: removes, adds, and keeps as appropriate", async () => {
