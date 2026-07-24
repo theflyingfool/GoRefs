@@ -78,11 +78,11 @@ test("readPersonalDataFile converts a pre-v7 (ISO-string) export's timestamps to
   assert.equal(data.playerProgressLog![0].recordedAt, new Date("2026-06-15T00:00:00.000Z").getTime());
 });
 
-test("readPersonalDataFile leaves a current (v8+) export's epoch-ms timestamps untouched", async () => {
+test("readPersonalDataFile leaves a current (v9+) export's epoch-ms timestamps untouched", async () => {
   const now = Date.now();
   const current = {
     exportedAt: new Date().toISOString(),
-    schemaVersion: 8,
+    schemaVersion: 9,
     speciesPersonal: {
       bulbasaur: { speciesSlug: "bulbasaur", registered: true, xxl: false, xxs: false, purified: false, updatedAt: now },
     },

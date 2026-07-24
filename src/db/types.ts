@@ -388,6 +388,8 @@ export interface PokemonInstance {
   lucky: boolean;
   shadow: boolean;
   purified: boolean;
+  dynamax: boolean;
+  receivedViaTrade: boolean;
   heartsEarned: number | null;
   /** Mega Level is per-individual, not species-wide — confirmed directly (two caught Charizard can sit at different Mega Levels), so this lives here rather than on MegaPersonal. Only meaningful once this individual has actually been Mega Evolved. */
   currentMegaLevel: number | null;

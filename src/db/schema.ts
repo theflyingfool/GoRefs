@@ -241,7 +241,13 @@ CREATE TABLE IF NOT EXISTS community_day_event_move (
 // A pre-8 export's ivPercent field is not carried forward on import -- the
 // imported instance's IV fields land null until re-entered, since the
 // export never had real component data to derive from either.
-export const CURRENT_PERSONAL_SCHEMA_VERSION = 8;
+// Bumped 8 -> 9: pokemon_instance gains two new instance-level catch-source
+// flags -- dynamax (this specimen came from a Max Battle, independent of
+// form_personal.dynamax's "have I ever caught a Dynamaxed one of this form"
+// achievement -- same relationship shiny already has to form_personal.shiny)
+// and received_via_trade (this specimen's origin). See
+// docs/superpowers/specs/2026-07-24-sub-project-5-collection-dex-tags-design.md.
+export const CURRENT_PERSONAL_SCHEMA_VERSION = 9;
 
 // id=1 is the implicit single profile every table's profile_id column
 // defaults to today — every fresh install and every migrated existing
