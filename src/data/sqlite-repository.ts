@@ -36,6 +36,7 @@ import { runPersonalMigrations } from "../db/migrations";
 import { resolveInstanceAchievementField } from "../db/cascades";
 import { applyDexAchievementBackfillIfNeeded, DEX_ACHIEVEMENT_BACKFILL_KEY } from "./dex-achievement-backfill";
 import { buildScalarUpdateStatement, buildTagDiffStatements } from "./pokemon-instance-update-sql";
+import { buildRenameTagStatement, buildDeleteTagStatements, computeTagUsageCounts } from "./tag-management-sql";
 import { syncReferenceData } from "../db/reference-sync";
 import { getCompletionStatsSql } from "./completion-stats-sql";
 import referenceDataJson from "./reference.json";
@@ -45,6 +46,7 @@ import {
   type ImportResult,
   type NewPokemonInstanceBatch,
   type Repository,
+  type TagCount,
   type UpdatePokemonInstanceFields,
 } from "./repository";
 
@@ -541,6 +543,46 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
       await writeQueue;
       state.tags.push(created!);
       return created!;
+    },
+    // Not part of createInMemoryRepository's shared object (see its Omit<>) —
+    // pure in-memory computation over already-loaded state, but excluded
+    // from the dummy backend's shared implementation to keep all three tag-
+    // management methods (this one, renameTag, deleteTag) together. Logic
+    // lives in the extracted computeTagUsageCounts (see tag-management-sql.ts)
+    // so it's directly unit-testable.
+    getTagUsageCounts(): TagCount[] {
+      return computeTagUsageCounts(state.tags, state.pokemonInstanceTags);
+    },
+    // Not part of createInMemoryRepository's shared object (see its Omit<>) —
+    // uses the extracted buildRenameTagStatement (see tag-management-sql.ts)
+    // so the exact SQL is coverable by a real-SQLite test.
+    async renameTag(id: number, name: string): Promise<void> {
+      const statement = buildRenameTagStatement(id, name);
+      enqueueWrite(async () => {
+        await db.run(statement.sql, statement.params, true);
+        await persistDb();
+      });
+      await writeQueue;
+      const idx = state.tags.findIndex((t) => t.id === id);
+      if (idx !== -1) state.tags[idx] = { ...state.tags[idx], name };
+    },
+    // Not part of createInMemoryRepository's shared object (see its Omit<>) —
+    // uses the extracted buildDeleteTagStatements (see tag-management-sql.ts),
+    // which orders the DELETEs so pokemon_instance_tag's links are removed
+    // before the tag row itself (no ON DELETE CASCADE on that FK).
+    async deleteTag(id: number): Promise<void> {
+      const statements = buildDeleteTagStatements(id);
+      enqueueWrite(async () => {
+        await db.beginTransaction();
+        for (const statement of statements) {
+          await db.run(statement.sql, statement.params, false);
+        }
+        await db.commitTransaction();
+        await persistDb();
+      });
+      await writeQueue;
+      state.tags = state.tags.filter((t) => t.id !== id);
+      state.pokemonInstanceTags = state.pokemonInstanceTags.filter((l) => l.tagId !== id);
     },
     // Not part of createInMemoryRepository's shared object (see its Omit<>) —
     // this is a dynamic-column-list UPDATE against real SQL, which the

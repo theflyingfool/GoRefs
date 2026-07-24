@@ -283,6 +283,9 @@ export interface Repository {
 
   listTags(): Tag[];
   createTag(name: string): Promise<Tag>;
+  getTagUsageCounts(): TagCount[];
+  renameTag(id: number, name: string): Promise<void>;
+  deleteTag(id: number): Promise<void>;
 
   // ---- Trainer/Profile page ----
   /**
