@@ -386,6 +386,22 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
     await writeQueue;
   }
 
+  // One-time backfill: devices that logged catches before Task 3's live-catch
+  // cascade wiring have pokemon_instance rows whose corresponding
+  // form_personal achievement flag was never set, leaving the Dex grid
+  // showing them as not-caught. Gated by an app_settings marker so it only
+  // ever runs once per device; a fresh install has zero pokemon_instance rows
+  // so this is a no-op there but still marks the key complete.
+  const DEX_ACHIEVEMENT_BACKFILL_KEY = "dexAchievementBackfillV9Complete";
+  if (state.appSettings[DEX_ACHIEVEMENT_BACKFILL_KEY] !== "1") {
+    await runBulk(async () => {
+      for (const instance of state.pokemonInstances) {
+        repo.setFormPersonalField(instance.formSlug, resolveInstanceAchievementField(instance), true);
+      }
+      repo.setAppSetting(DEX_ACHIEVEMENT_BACKFILL_KEY, "1");
+    });
+  }
+
   return {
     ...repo,
     // Overrides the in-memory-store default with real parameterized SQL
