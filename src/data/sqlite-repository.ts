@@ -39,7 +39,13 @@ import { syncReferenceData } from "../db/reference-sync";
 import { getCompletionStatsSql } from "./completion-stats-sql";
 import referenceDataJson from "./reference.json";
 import { createInMemoryRepository, type PersonalState } from "./in-memory-store";
-import { EXCLUDE_REGIONAL_SETTING_KEY, type ImportResult, type NewPokemonInstanceBatch, type Repository } from "./repository";
+import {
+  EXCLUDE_REGIONAL_SETTING_KEY,
+  type ImportResult,
+  type NewPokemonInstanceBatch,
+  type Repository,
+  type UpdatePokemonInstanceFields,
+} from "./repository";
 
 const referenceData = referenceDataJson as unknown as ReferenceData;
 
@@ -534,6 +540,76 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
       await writeQueue;
       state.tags.push(created!);
       return created!;
+    },
+    // Not part of createInMemoryRepository's shared object (see its Omit<>) —
+    // this is a dynamic-column-list UPDATE against real SQL, which the
+    // in-memory engine has no equivalent for; the dummy backend mutates
+    // state.pokemonInstances directly instead (see in-memory-store.ts).
+    async updatePokemonInstance(id: number, fields: UpdatePokemonInstanceFields): Promise<void> {
+      const sets: string[] = [];
+      const values: unknown[] = [];
+      const columnByField: Record<string, string> = {
+        nickname: "nickname",
+        cp: "cp",
+        ivAttack: "iv_attack",
+        ivDefense: "iv_defense",
+        ivStamina: "iv_stamina",
+        shiny: "shiny",
+        lucky: "lucky",
+        shadow: "shadow",
+        purified: "purified",
+        dynamax: "dynamax",
+        receivedViaTrade: "received_via_trade",
+        heartsEarned: "hearts_earned",
+        currentMegaLevel: "current_mega_level",
+        backgroundSlug: "background_slug",
+      };
+      for (const [field, column] of Object.entries(columnByField)) {
+        if (!(field in fields)) continue;
+        const raw = (fields as Record<string, unknown>)[field];
+        sets.push(`${column} = ?`);
+        values.push(typeof raw === "boolean" ? (raw ? 1 : 0) : raw);
+      }
+
+      enqueueWrite(async () => {
+        await db.beginTransaction();
+        if (sets.length > 0) {
+          await db.run(`UPDATE pokemon_instance SET ${sets.join(", ")}, updated_at = ? WHERE id = ?`, [...values, Date.now(), id], false);
+        }
+        if (fields.tagIds !== undefined) {
+          if (fields.tagIds.length === 0) {
+            await db.run("DELETE FROM pokemon_instance_tag WHERE pokemon_instance_id = ?", [id], false);
+          } else {
+            const placeholders = fields.tagIds.map(() => "?").join(",");
+            await db.run(
+              `DELETE FROM pokemon_instance_tag WHERE pokemon_instance_id = ? AND tag_id NOT IN (${placeholders})`,
+              [id, ...fields.tagIds],
+              false,
+            );
+            for (const tagId of fields.tagIds) {
+              await db.run("INSERT OR IGNORE INTO pokemon_instance_tag (pokemon_instance_id, tag_id) VALUES (?, ?)", [id, tagId], false);
+            }
+          }
+        }
+        await db.commitTransaction();
+        await persistDb();
+      });
+      await writeQueue;
+
+      const idx = state.pokemonInstances.findIndex((i) => i.id === id);
+      if (idx !== -1) {
+        state.pokemonInstances[idx] = { ...state.pokemonInstances[idx], ...fields, updatedAt: Date.now() } as PokemonInstance;
+      }
+      if (fields.tagIds !== undefined) {
+        state.pokemonInstanceTags = state.pokemonInstanceTags.filter((t) => t.pokemonInstanceId !== id);
+        state.pokemonInstanceTags.push(...fields.tagIds.map((tagId) => ({ pokemonInstanceId: id, tagId })));
+      }
+    },
+    // Reads straight from the module-level reference.json import, same
+    // pattern species/forms/types use elsewhere in this file — backgrounds
+    // are read-only reference data, no personal-data table involved.
+    listBackgrounds() {
+      return referenceData.backgrounds.map((b) => ({ slug: b.slug, name: b.name }));
     },
   };
 }

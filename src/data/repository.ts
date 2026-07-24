@@ -278,6 +278,8 @@ export interface Repository {
   /** Quick-log bulk insert: writes `batch.count` identical rows in one go (see NewPokemonInstanceBatch). Returns the created rows. */
   createPokemonInstances(batch: NewPokemonInstanceBatch): Promise<PokemonInstance[]>;
   setPokemonInstanceStatus(id: number, status: PokemonInstanceStatus): Promise<void>;
+  updatePokemonInstance(id: number, fields: UpdatePokemonInstanceFields): Promise<void>;
+  listBackgrounds(): { slug: string; name: string }[];
 
   listTags(): Tag[];
   createTag(name: string): Promise<Tag>;
@@ -352,6 +354,26 @@ export interface NewPokemonInstanceBatch {
   /** Epoch milliseconds, matching PokemonInstance.caughtAt — see LogCatchPage.vue for the date-input-string -> epoch-ms conversion. */
   caughtAt?: number | null;
   backgroundSlug?: string | null;
+  tagIds?: number[];
+}
+
+export interface UpdatePokemonInstanceFields {
+  nickname?: string | null;
+  cp?: number | null;
+  ivAttack?: number | null;
+  ivDefense?: number | null;
+  ivStamina?: number | null;
+  shiny?: boolean;
+  lucky?: boolean;
+  shadow?: boolean;
+  purified?: boolean;
+  dynamax?: boolean;
+  receivedViaTrade?: boolean;
+  heartsEarned?: number | null;
+  currentMegaLevel?: number | null;
+  backgroundSlug?: string | null;
+  /** Full replacement of this instance's tag set -- diffed against current
+   * pokemon_instance_tag rows (insert new links, delete removed ones). */
   tagIds?: number[];
 }
 

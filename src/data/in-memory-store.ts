@@ -96,7 +96,7 @@ export function createInMemoryRepository(
   referenceData: ReferenceData,
   state: PersonalState,
   hooks: InMemoryStoreHooks,
-): Omit<Repository, "getCompletionStats" | "createPokemonInstances" | "createTag"> {
+): Omit<Repository, "getCompletionStats" | "createPokemonInstances" | "createTag" | "updatePokemonInstance" | "listBackgrounds"> {
   const speciesBySlug = new Map<string, Species>(referenceData.species.map((s) => [s.slug, s]));
   const speciesByDexOrder = [...referenceData.species].sort((a, b) => a.dexNumber - b.dexNumber);
   const formsBySpecies = new Map<string, Form[]>();
