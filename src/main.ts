@@ -12,6 +12,7 @@ import DexGridPage from "./features/data-entry/DexGridPage.vue";
 import CoverageReportPage from "./features/coverage-report/CoverageReportPage.vue";
 import SettingsPage from "./features/settings/SettingsPage.vue";
 import TrainerPage from "./features/trainer/TrainerPage.vue";
+import TagsPage from "./features/tags/TagsPage.vue";
 import CollectionPage from "./features/collection/CollectionPage.vue";
 import EditInstancePage from "./features/collection/EditInstancePage.vue";
 import LogCatchPage from "./features/log-catch/LogCatchPage.vue";
@@ -31,6 +32,7 @@ const ROUTE_TITLES: Partial<Record<import("./app-shell/router").Route["name"], s
   "coverage-report": "Coverage Report",
   settings: "Settings",
   trainer: "Trainer",
+  tags: "Tags",
   collection: "Collection",
   "log-catch": "Log a Catch",
   help: "Help",
@@ -229,6 +231,9 @@ function bootstrap(repo: Repository) {
           break;
         case "trainer":
           mountVueRoute(contentEl, TrainerPage, { repo });
+          break;
+        case "tags":
+          mountVueRoute(contentEl, TagsPage, { repo });
           break;
         case "collection":
           mountVueRoute(contentEl, CollectionPage, { repo });

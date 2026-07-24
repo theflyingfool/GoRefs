@@ -9,6 +9,7 @@ export type Route =
   | { name: "achievements" }
   | { name: "xp-assistant" }
   | { name: "trainer" }
+  | { name: "tags" }
   | { name: "collection" }
   | { name: "log-catch"; prefillSpeciesSlug?: string }
   | { name: "edit-instance"; instanceId: number };
@@ -46,6 +47,8 @@ export function parseRoute(hash: string): Route {
       return { name: "xp-assistant" };
     case "/trainer":
       return { name: "trainer" };
+    case "/tags":
+      return { name: "tags" };
     case "/collection":
       return { name: "collection" };
     case "/log-catch": {

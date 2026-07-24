@@ -18,6 +18,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Log a Catch", path: "/log-catch", routeName: "log-catch", icon: "＋", primary: true },
   { label: "Stats", path: "/stats", routeName: "stats", icon: "📊", primary: true },
   { label: "Trainer", path: "/trainer", routeName: "trainer", icon: "🧢" },
+  { label: "Tags", path: "/tags", routeName: "tags", icon: "🏷" },
   { label: "Settings", path: "/settings", routeName: "settings", icon: "⚙" },
   { label: "Search Tools", path: "/search-tools", routeName: "search-tools", icon: "🔍" },
   { label: "Coverage Report", path: "/coverage-report", routeName: "coverage-report", icon: "📋" },
