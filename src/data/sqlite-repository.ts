@@ -35,6 +35,7 @@ import { getDb, persistDb } from "../db/sqlite-client";
 import { runPersonalMigrations } from "../db/migrations";
 import { resolveInstanceAchievementField } from "../db/cascades";
 import { applyDexAchievementBackfillIfNeeded, DEX_ACHIEVEMENT_BACKFILL_KEY } from "./dex-achievement-backfill";
+import { buildScalarUpdateStatement, buildTagDiffStatements } from "./pokemon-instance-update-sql";
 import { syncReferenceData } from "../db/reference-sync";
 import { getCompletionStatsSql } from "./completion-stats-sql";
 import referenceDataJson from "./reference.json";
@@ -546,59 +547,37 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
     // in-memory engine has no equivalent for; the dummy backend mutates
     // state.pokemonInstances directly instead (see in-memory-store.ts).
     async updatePokemonInstance(id: number, fields: UpdatePokemonInstanceFields): Promise<void> {
-      const sets: string[] = [];
-      const values: unknown[] = [];
-      const columnByField: Record<string, string> = {
-        nickname: "nickname",
-        cp: "cp",
-        ivAttack: "iv_attack",
-        ivDefense: "iv_defense",
-        ivStamina: "iv_stamina",
-        shiny: "shiny",
-        lucky: "lucky",
-        shadow: "shadow",
-        purified: "purified",
-        dynamax: "dynamax",
-        receivedViaTrade: "received_via_trade",
-        heartsEarned: "hearts_earned",
-        currentMegaLevel: "current_mega_level",
-        backgroundSlug: "background_slug",
-      };
-      for (const [field, column] of Object.entries(columnByField)) {
-        if (!(field in fields)) continue;
-        const raw = (fields as Record<string, unknown>)[field];
-        sets.push(`${column} = ?`);
-        values.push(typeof raw === "boolean" ? (raw ? 1 : 0) : raw);
-      }
+      const now = Date.now();
+      const scalarUpdate = buildScalarUpdateStatement(id, fields, now);
+      const tagStatements = fields.tagIds !== undefined ? buildTagDiffStatements(id, fields.tagIds) : [];
 
       enqueueWrite(async () => {
         await db.beginTransaction();
-        if (sets.length > 0) {
-          await db.run(`UPDATE pokemon_instance SET ${sets.join(", ")}, updated_at = ? WHERE id = ?`, [...values, Date.now(), id], false);
+        if (scalarUpdate) {
+          await db.run(scalarUpdate.sql, scalarUpdate.params, false);
         }
-        if (fields.tagIds !== undefined) {
-          if (fields.tagIds.length === 0) {
-            await db.run("DELETE FROM pokemon_instance_tag WHERE pokemon_instance_id = ?", [id], false);
-          } else {
-            const placeholders = fields.tagIds.map(() => "?").join(",");
-            await db.run(
-              `DELETE FROM pokemon_instance_tag WHERE pokemon_instance_id = ? AND tag_id NOT IN (${placeholders})`,
-              [id, ...fields.tagIds],
-              false,
-            );
-            for (const tagId of fields.tagIds) {
-              await db.run("INSERT OR IGNORE INTO pokemon_instance_tag (pokemon_instance_id, tag_id) VALUES (?, ?)", [id, tagId], false);
-            }
-          }
+        for (const statement of tagStatements) {
+          await db.run(statement.sql, statement.params, false);
         }
         await db.commitTransaction();
         await persistDb();
       });
       await writeQueue;
 
-      const idx = state.pokemonInstances.findIndex((i) => i.id === id);
-      if (idx !== -1) {
-        state.pokemonInstances[idx] = { ...state.pokemonInstances[idx], ...fields, updatedAt: Date.now() } as PokemonInstance;
+      // Cache's updatedAt only bumps when the DB's updated_at column did --
+      // i.e. when there was at least one scalar field to write. A tags-only
+      // edit never touches pokemon_instance's updated_at, so the cache
+      // shouldn't claim it did either.
+      if (scalarUpdate) {
+        const idx = state.pokemonInstances.findIndex((i) => i.id === id);
+        if (idx !== -1) {
+          state.pokemonInstances[idx] = { ...state.pokemonInstances[idx], ...fields, updatedAt: now } as PokemonInstance;
+        }
+      } else {
+        const idx = state.pokemonInstances.findIndex((i) => i.id === id);
+        if (idx !== -1) {
+          state.pokemonInstances[idx] = { ...state.pokemonInstances[idx], ...fields } as PokemonInstance;
+        }
       }
       if (fields.tagIds !== undefined) {
         state.pokemonInstanceTags = state.pokemonInstanceTags.filter((t) => t.pokemonInstanceId !== id);
