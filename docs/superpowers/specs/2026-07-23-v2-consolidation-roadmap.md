@@ -25,7 +25,7 @@ Sub-projects run **strictly in order**, one at a time.
    during real-device use while Sub-project 6's spike was running, and
    asked that they be fixed before Tauri migration *work* proceeds, since
    they're app-level correctness/UX gaps unrelated to the platform and
-   there's no reason to carry them into a new shell)
+   there's no reason to carry them into a new shell) — done
 6. Capacitor → Tauri migration (inserted 2026-07-24 — owner decision:
    do this as its own sub-project before multi-account, not split
    alongside it, so multi-account's storage design starts with real
