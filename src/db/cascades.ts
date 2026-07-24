@@ -101,3 +101,65 @@ export function resolveFormFieldCascade(field: FormPersonalBooleanField): FormPe
   }
   return [...resolved];
 }
+
+export interface InstanceAchievementSource {
+  shiny: boolean;
+  lucky: boolean;
+  shadow: boolean;
+  dynamax: boolean;
+  ivPercent: number | null;
+}
+
+/**
+ * The single most-specific form_personal field implied by one logged
+ * specimen's own recorded attributes. Feed the result into
+ * setFormPersonalField/applyFormPersonalField -- resolveFormFieldCascade
+ * (above) fills in every less-specific implied field (shiny/fourStar/base)
+ * plus the species_personal.registered cascade, so callers only ever need
+ * to set this one field per specimen, not a whole derivation table.
+ *
+ * Lucky+Shadow is not a real combination in Pokemon GO (owner-confirmed,
+ * 2026-07-24) -- dynamax/shadow/lucky are checked in this order only as a
+ * tie-break for callers that pass an invalid combination; it never matters
+ * for a real specimen since the two flags can't both be true.
+ */
+export function resolveInstanceAchievementField(instance: InstanceAchievementSource): FormPersonalBooleanField {
+  const fourStar = instance.ivPercent === 100;
+
+  let base: FormPersonalBooleanField;
+  let shinyField: FormPersonalBooleanField;
+  let fourStarField: FormPersonalBooleanField;
+  let shundoField: FormPersonalBooleanField;
+
+  if (instance.lucky && instance.dynamax) {
+    base = "luckyDynamax";
+    shinyField = "luckyDynamaxShiny";
+    fourStarField = "luckyDynamaxFourStar";
+    shundoField = "luckyDynamaxShundo";
+  } else if (instance.dynamax) {
+    base = "dynamax";
+    shinyField = "dynamaxShiny";
+    fourStarField = "dynamaxFourStar";
+    shundoField = "dynamaxShundo";
+  } else if (instance.shadow) {
+    base = "shadow";
+    shinyField = "shadowShiny";
+    fourStarField = "shadowFourStar";
+    shundoField = "shadowShundo";
+  } else if (instance.lucky) {
+    base = "lucky";
+    shinyField = "luckyShiny";
+    fourStarField = "luckyFourStar";
+    shundoField = "luckyShundo";
+  } else {
+    base = "caught";
+    shinyField = "shiny";
+    fourStarField = "fourStar";
+    shundoField = "shundo";
+  }
+
+  if (instance.shiny && fourStar) return shundoField;
+  if (instance.shiny) return shinyField;
+  if (fourStar) return fourStarField;
+  return base;
+}
