@@ -7,11 +7,11 @@ bugs, repo hygiene) so the app reaches a coherent, feature-frozen state
 tagged `v2.0.0`. V1 (`v1.0.0` tag) is treated as a proof-of-concept
 reference point going forward, not the live baseline.
 
-This is a decomposition, not a single design — six independent
-sub-projects (Tauri inserted 2026-07-24, see below), each gets its own
-brainstorm → spec → plan → implementation cycle when its turn comes. This
-document fixes the *scope boundary* and *sequence*; it is not itself a
-build plan for any of them.
+This is a decomposition, not a single design — seven independent
+sub-projects (Tauri inserted 2026-07-24; collection/dex/tags gaps inserted
+2026-07-24, see below), each gets its own brainstorm → spec → plan →
+implementation cycle when its turn comes. This document fixes the *scope
+boundary* and *sequence*; it is not itself a build plan for any of them.
 
 ## Sequence
 
@@ -21,20 +21,28 @@ Sub-projects run **strictly in order**, one at a time.
 2. Bug fixes + repo cleanup + reference-data hash optimization — done
 3. Vue migration completion + visual fidelity — done
 4. IV-entry rework (Attack/Defense/Stamina instead of typed IV%) — done
-5. Capacitor → Tauri migration (inserted 2026-07-24 — owner decision:
+5. Collection/Dex/Tags gaps (inserted 2026-07-24 — owner found these
+   during real-device use while Sub-project 6's spike was running, and
+   asked that they be fixed before Tauri migration *work* proceeds, since
+   they're app-level correctness/UX gaps unrelated to the platform and
+   there's no reason to carry them into a new shell)
+6. Capacitor → Tauri migration (inserted 2026-07-24 — owner decision:
    do this as its own sub-project before multi-account, not split
    alongside it, so multi-account's storage design starts with real
    per-platform file access already in hand rather than designing around
-   a constraint that's about to disappear)
-6. Full multi-account (roadmap.md §3 Phase 2, cross-device merge included)
+   a constraint that's about to disappear). **Design doc may proceed in
+   parallel with Sub-project 5** (owner call, 2026-07-24) — it's the
+   *implementation* that waits, not the design work.
+7. Full multi-account (roadmap.md §3 Phase 2, cross-device merge included)
 
 Rationale: small/independent items first (fast wins, nothing else depends
 on them), then the biggest UI surface (Vue completion), then a small
-focused data-entry change, then the platform migration, then the largest
-and most novel piece (multi-account) last, since it benefits from the Vue
-migration already being finished, from Tauri's real on-disk file removing
-today's browser-sandbox storage constraint, and from every other loose end
-being tied off first.
+focused data-entry change, then a second small correctness/UX pass caught
+during real use, then the platform migration, then the largest and most
+novel piece (multi-account) last, since it benefits from the Vue migration
+already being finished, from Tauri's real on-disk file removing today's
+browser-sandbox storage constraint, and from every other loose end being
+tied off first.
 
 ## Carried forward from Sub-project 2 (not yet closed out)
 
@@ -50,11 +58,11 @@ being tied off first.
   rows still carry `profile_id=1` (backfilled by the old hand-rolled
   migration's `ALTER TABLE ... DEFAULT 1`, before `DEFAULT_PROFILE_ID` as a
   concept existed) — harmless today since no read path filters by
-  `profile_id`, but **Sub-project 6 introduces profile_id-scoped reads**,
+  `profile_id`, but **Sub-project 7 introduces profile_id-scoped reads**,
   at which point any row with a stale/wrong `profile_id` would silently
   vanish from view. A one-time `profile_id` reconciliation pass (bring
   every personal-table row in line with the real profile id) needs to be a
-  required step inside Sub-project 6, not an afterthought.
+  required step inside Sub-project 7, not an afterthought.
 - **Unused-files sweep**: covered opportunistically during Sub-project 1's
   git restructure (`Refs/`, `Reports/`, `verify-gobuddy.mjs`, stale
   branches/worktrees) rather than as an exhaustive standalone pass.
@@ -241,14 +249,60 @@ computed from IVs+level here or stay a separate manual field.
 
 ---
 
-## 5. Capacitor → Tauri
+## 5. Collection/Dex/Tags gaps
+
+Three issues the owner found using the app on a real device, reported
+2026-07-24. Scoped by direct code investigation before this sub-project's
+turn comes (full brainstorm/plan still needed then):
+
+**5a. Can't open an individual Pokémon from Collection to edit it.**
+`CollectionPage.vue`'s row click (`toggleActions`) only expands a small
+action menu (Mark kept / Mark traded / Release / Mark evolved) — no
+navigation to an editor. `router.ts` has no "edit instance" route at all;
+`SpeciesDetailPage.vue` shows all instances of a species but is read-only
+display, not an editor. **Missing feature, not a regression** — per-instance
+editing (nickname/CP/IVs/tags after the fact) was never built.
+Fix size: medium — new route + edit form/modal bound to an update-by-id
+repository method (confirm whether one exists beyond
+`setPokemonInstanceStatus`).
+
+**5b. Adding to collection doesn't update the Dex.**
+`LogCatchPage.vue` → `repo.createPokemonInstances(batch)` only inserts
+`pokemon_instance` rows; it never touches `species_personal.registered`.
+`DexGridPage.vue`'s `caught` flag reads `personal.registered` exclusively,
+which is only ever written by the Dex grid's own checkbox cascade
+(`setSpeciesPersonalField`/`setFormPersonalField`). **Genuine bug, not a
+reactivity/staleness issue** — the grid's computed data would reflect a
+fresh value if one were written; none is. Fix size: small/localized —
+`createPokemonInstances` needs to also flip `registered` (mirroring the
+existing cascade logic) for the newly-created instance's species/form.
+
+**5c. No list of tags.**
+`createTag`/`listTags` exist and are used in three places (Collection's
+filter dropdown, Log-a-catch's picker/creator, Stats' "Top tags" chart) —
+but none is a browse/manage view, and there's no dedicated tags route.
+**Missing feature** — tag creation was built into other flows, but there's
+no standalone list (with rename/delete) afterward. Fix size:
+small-to-medium — new page/route over the already-existing `repo.listTags()`;
+no new repository work needed for a read-only list.
+
+**Sequencing note:** this sub-project must complete (or be explicitly
+deferred by the owner) before Sub-project 6 (Tauri) *implementation*
+begins — see Sequence section above. Needs its own brainstorm when its
+turn comes, primarily to settle 5a's edit-form scope (which fields are
+editable, modal vs. dedicated page) and 5c's page placement/navigation
+entry point.
+
+---
+
+## 6. Capacitor → Tauri
 
 Owner decision (2026-07-23): move the app's native shell from Capacitor to
 Tauri — real desktop builds, a genuine on-disk SQLite file on every
 platform (enabling Drizzle Studio access to real data, not just
 `dummy.sqlite`), while still building for Android.
 
-**Sequencing decision (2026-07-24):** rather than splitting Sub-project 6
+**Sequencing decision (2026-07-24):** rather than splitting Sub-project 7
 (multi-account) into an identity-scheme half that could proceed regardless
 and a storage half that waits on Tauri, the owner chose to do the full
 Tauri migration as its own complete sub-project first. Reasoning this
@@ -259,7 +313,7 @@ single-file-with-profile_id" questions (`docs/roadmap.md` §4 V2 Watchlist,
 §3 Phase 2 "Not yet committed") were left open rather than decided — a
 real on-disk file on every platform removes that constraint. Doing the
 full migration first (not just enough of it to unblock storage) means
-Sub-project 6's design starts with the real platform already in hand, not
+Sub-project 7's design starts with the real platform already in hand, not
 a partial one.
 
 Needs its own full brainstorm: migration scope, Android build-path parity
@@ -269,7 +323,7 @@ platform-dispatch (`Capacitor.getPlatform()`) changes shape.
 
 ---
 
-## 6. Full multi-account (roadmap.md §3 Phase 2)
+## 7. Full multi-account (roadmap.md §3 Phase 2)
 
 Confirmed in scope per explicit owner decision: local profile
 create/switch/rename (fixing the SQL bug from Sub-project 2 is a
