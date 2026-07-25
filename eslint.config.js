@@ -19,6 +19,11 @@ export default defineConfig([
       // src-tauri/.gitignore and the root .gitignore's src-tauri/ entries.
       "src-tauri/target/**",
       "src-tauri/gen/**",
+      // Vendored local fork of tauri-plugin-sql (see
+      // src-tauri/vendor/tauri-plugin-sql/GOBUDDY_PATCH.md) — third-party
+      // crate source, including its shipped JS artifact/guest-js, not ours to
+      // lint. Only its one-line Rust change is ours.
+      "src-tauri/vendor/**",
       // Scratch working state for the subagent-driven-development skill
       // (task briefs, implementer reports, review packages) — not project
       // source, not meant to be linted.
