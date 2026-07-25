@@ -16,7 +16,6 @@ src-tauri/target/
 # ~/.android-keystores/, and the build only ever reads them from there.
 # These patterns are just a backstop against one ending up in a working
 # tree by accident.
-android/keystore.properties
 *.jks
 *.keystore
 playwright-report/
@@ -45,9 +44,7 @@ Refs from Obsidian/
 .claude/
 
 # IDE project files (Android Studio/IntelliJ) — machine-local, not shared
-# config. Matches both a root .idea/ (opening the whole repo) and
-# android/.idea/ (opening just the native project) since this pattern has no
-# leading slash.
+# config.
 .idea/
 
 # Obsidian vault config — machine-local, not shared config.
