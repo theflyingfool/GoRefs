@@ -24,8 +24,8 @@
     "ingest:csv:import": "tsx scripts/ingest/csv-authoring.ts import",
     "ingest:check-slugs": "tsx scripts/ingest/check-slug-stability.ts",
     "ingest:all": "npm run ingest:fetch && npm run ingest:fetch-sprites && npm run ingest:build && npm run ingest:build-sprites && npm run ingest:check-slugs",
-    "android:build": "cargo tauri android build",
-    "android:release": "cargo tauri android build --release"
+    "android:build": "cargo tauri android build --debug",
+    "android:release": "cargo tauri android build"
   },
   "devDependencies": {
     "@eslint/css": "^1.4.0",
