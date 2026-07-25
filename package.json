@@ -25,10 +25,8 @@
     "ingest:csv:import": "tsx scripts/ingest/csv-authoring.ts import",
     "ingest:check-slugs": "tsx scripts/ingest/check-slug-stability.ts",
     "ingest:all": "npm run ingest:fetch && npm run ingest:fetch-sprites && npm run ingest:build && npm run ingest:build-sprites && npm run ingest:check-slugs",
-    "android:sync": "vite build && npx cap sync android",
-    "android:build": "npm run android:sync && cd android && ./gradlew assembleDebug",
-    "android:release": "npm run android:sync && cd android && ./gradlew assembleRelease",
-    "android:export": "export JAVA_HOME=/opt/android-studio/jbr && export ANDROID_HOME=$HOME/Android/Sdk"
+    "android:build": "cargo tauri android build",
+    "android:release": "cargo tauri android build --release"
   },
   "devDependencies": {
     "@capacitor/assets": "^3.0.5",

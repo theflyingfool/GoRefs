@@ -3,7 +3,14 @@ dist/
 *.apk
 tsconfig.tsbuildinfo
 src-tauri/target/
-src-tauri/gen/
+
+# Tauri's Android/iOS "gen" projects (src-tauri/gen/android, src-tauri/gen/ios)
+# are meant to be committed, like a React Native app's native android/ios
+# dirs — they contain the real native project including files a developer
+# may hand-edit. Their generated build outputs are excluded by the nested
+# .gitignore files that `cargo tauri android/ios init` scaffolds inside them
+# (e.g. src-tauri/gen/android/app/.gitignore ignores `build`, `.gradle`,
+# `local.properties`, etc.), so no blanket ignore is needed here.
 
 # Release-signing secrets — these live outside the repo entirely, at
 # ~/.android-keystores/, and the build only ever reads them from there.
