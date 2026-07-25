@@ -1,5 +1,14 @@
 # GoBuddy Source Code Comments Audit
 
+> [!WARNING]
+> **Stale as of the Capacitor → Tauri migration (Sub-project 6).** This is a
+> point-in-time audit snapshot, not a living document. Its descriptions of
+> `sqlite-client.ts` (native vs. web/jeep-sqlite+sql.js split) and
+> `file-download.ts` (Capacitor Android share-sheet path) refer to code that
+> has since been rewritten for Tauri, and the jeep-sqlite/sql.js layers it
+> describes were deleted entirely. Read this file for historical context
+> only; it was not updated to match the current source.
+
 > [!NOTE]
 > This audit reviews all source code comments in the `GoBuddy` codebase across `src`, `test`, `e2e`, and `scripts` directories. Out of **320 total comments**, **303 comments** represent critical design rationale and are recommended to be kept. **17 comments** contain historical git-level tracking context (PRs, dates, resolved issues) or references to since-deleted components and are recommended for updates.
 

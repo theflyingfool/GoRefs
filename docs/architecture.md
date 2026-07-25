@@ -90,7 +90,7 @@ For details on scripts and command execution, see
   order to run the reference-data ingestion scripts in, and known pitfalls.
 - **[docs/install-guide.md](docs/install-guide.md)** — install/update
   instructions for friends running the app, both Android (sideload) and
-  desktop/browser.
+  desktop.
 - **[docs/release-checklist.md](docs/release-checklist.md)** — step-by-step checklist
   for releasing a new version of the app.
 - **[README.md](../README.md)** — running/building the app, ingestion commands.

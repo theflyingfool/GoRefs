@@ -28,13 +28,13 @@ Developer commands for running, building, testing, and managing data in PoGo Bud
 
 ## Native Builds (Android)
 
-- Build debug APK (runs `cargo tauri android build` under the hood, not Gradle-via-Capacitor):
+- Build debug APK (runs `cargo tauri android build --debug` under the hood, not Gradle-via-Capacitor):
 
   ```sh
   npm run android:build
   ```
 
-- Build release APK (runs `cargo tauri android build --release` under the hood, not Gradle-via-Capacitor):
+- Build release APK (runs `cargo tauri android build` under the hood, not Gradle-via-Capacitor; release is the tauri-cli's default build mode — there is no `--release` flag):
 
   ```sh
   npm run android:release

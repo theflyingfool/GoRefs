@@ -45,9 +45,15 @@ Always bump the app version on master.
 
 ## 3. Generate Release Build
 
-The production APK must be release-signed with the stable key to support in-place upgrades.
+The production APK **is not signed automatically**. `npm run android:release`
+(`cargo tauri android build`) produces an unsigned APK — Tauri's generated
+`src-tauri/gen/android/app/build.gradle.kts` has no `signingConfigs` block
+wired to a keystore (unlike the old Capacitor-era Gradle setup, which read
+`~/.android-keystores/keystore.properties` automatically). This is a known
+gap tracked in [docs/roadmap.md](roadmap.md)'s "Android release APK is
+unsigned" entry — wiring up an automatic Gradle signing config is the
+long-term fix; manual signing below is the interim process.
 
-* Ensure `~/.android-keystores/keystore.properties` is present on the build machine.
 * Set the environment variables:
   ```sh
   export JAVA_HOME=/opt/android-studio/jbr   # or wherever JDK 21+ lives
@@ -57,8 +63,19 @@ The production APK must be release-signed with the stable key to support in-plac
   ```sh
   npm run android:release
   ```
-  The production APK will be generated at:
-  `android/app/build/outputs/apk/release/app-release.apk` (or similar signed name).
+  This produces an **unsigned** APK at:
+  `src-tauri/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk`
+* Manually sign it with the existing stable key before distributing (needed
+  for in-place upgrades to work) using `zipalign` + `apksigner` from the
+  Android SDK build-tools, against the keystore at
+  `~/.android-keystores/pogobuddy-release.jks`:
+  ```sh
+  zipalign -p 4 app-universal-release-unsigned.apk app-universal-release-aligned.apk
+  apksigner sign --ks ~/.android-keystores/pogobuddy-release.jks app-universal-release-aligned.apk
+  ```
+  Adjust the keystore alias/password flags for your actual keystore setup —
+  see `~/.android-keystores/` for the exact key details. The signed output
+  (`app-universal-release-aligned.apk`) is the file to distribute.
 
 ---
 

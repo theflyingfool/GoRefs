@@ -1,17 +1,17 @@
 // The real backend: everything reads from/writes through a genuine
-// on-device @capacitor-community/sqlite database — real native SQLite on
-// the shipped Android APK, jeep-sqlite (sql.js + IndexedDB) when running in
-// a browser via `npm run dev` (see src/db/sqlite-client.ts; same SQL either
-// way, `Capacitor.getPlatform()` picks the backend).
+// on-device SQLite database via @tauri-apps/plugin-sql — real native SQLite
+// on both Android and desktop, same connection object either way, no
+// platform dispatch (see src/db/sqlite-client.ts).
 //
 // Reads are served from an in-memory cache (src/data/in-memory-store.ts)
 // loaded once at startup. This keeps the Repository interface synchronous
 // (no ripple of async/loading-state
 // changes through every UI call site) at the cost of one async boot step in
 // main.ts before the first render. Writes update the cache immediately (so
-// the UI reflects them synchronously) and queue a SQL write-through plus a
-// saveToStore() call (required on Web for IndexedDB persistence) behind the
-// scenes.
+// the UI reflects them synchronously) and queue a SQL write-through behind
+// the scenes; the persistDb() call alongside it is a no-op today (plugin-sql
+// writes straight to disk on every call — kept only so call sites don't need
+// to change).
 
 import type { ReferenceData } from "../db/reference-data";
 import { DEFAULT_APP_SETTINGS } from "../db/defaults";
@@ -260,9 +260,11 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
   // if inside a bulk, (a) skips its own per-statement transaction (runBulk
   // wraps the whole batch in ONE explicit transaction instead — and the
   // plugin's default per-statement BEGIN would error nested inside that) and
-  // (b) skips its per-row persistDb, leaving runBulk to do a single flush at
-  // the end. Outside a bulk, behavior is unchanged: per-statement transaction
-  // + a persist flush per edit.
+  // (b) skips its per-row persistDb call — a no-op today (there's no more
+  // IndexedDB; Tauri's SQLite plugin writes straight to disk on every call),
+  // kept only so runBulk's transaction batching (one SQL transaction instead
+  // of N) still reads as a single logical unit. Outside a bulk, behavior is
+  // unchanged: per-statement transaction + a persistDb() call per edit.
   let bulkDepth = 0;
 
   const repo = createInMemoryRepository(referenceData, state, {
@@ -376,9 +378,12 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
 
   // Runs a batched in-memory apply (which fires N onXChanged hooks
   // synchronously, each enqueuing a transaction-less row write with persist
-  // suppressed — see bulkDepth above) wrapped in a single SQL transaction and
-  // followed by exactly ONE persistDb() IndexedDB flush, instead of N. Awaits
-  // the queue so callers can rely on the writes having landed.
+  // suppressed — see bulkDepth above) wrapped in a single SQL transaction,
+  // followed by one persistDb() call (a no-op today — there's no more
+  // IndexedDB — kept as a marker of "the batch is done" rather than for any
+  // flush it performs). The real win is still real: one SQL transaction
+  // instead of N. Awaits the queue so callers can rely on the writes having
+  // landed.
   async function runBulk(applyBatch: () => Promise<void>): Promise<void> {
     bulkDepth++;
     enqueueWrite(async () => {
@@ -426,9 +431,9 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
     // Overrides the in-memory-store default to (a) run the whole merge as
     // one SQL transaction via runBulk, so a failure partway through can't
     // leave some rows merged and others not, and (b) wait for the writes it
-    // just queued to actually land in SQLite + IndexedDB — callers that
-    // reload the page right after importing need the real backing store
-    // updated first, not just the in-memory cache.
+    // just queued to actually land in SQLite — callers that reload the page
+    // right after importing need the real backing store updated first, not
+    // just the in-memory cache.
     async importPersonalData(data) {
       let result: ImportResult | undefined;
       await runBulk(async () => {
@@ -437,8 +442,8 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
       return result!;
     },
     // Bulk overrides: run the shared in-memory cascade path (repo.bulkSet*)
-    // but collapse its N per-row IndexedDB flushes into one transaction + one
-    // persist via runBulk.
+    // but collapse its N per-row writes into one SQL transaction via runBulk,
+    // instead of N separate ones.
     async bulkSetFormPersonalField(formSlugs, field, value) {
       await runBulk(() => repo.bulkSetFormPersonalField(formSlugs, field, value));
     },
@@ -449,10 +454,10 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
     // both need a real AUTOINCREMENT id back from SQLite before the
     // in-memory cache can be updated, which the shared hook-fires-after
     // in-memory-mutation pattern the rest of this file uses can't provide.
-    // last_insert_rowid() is the portable way to get it back across all
-    // three SQLite bindings this app runs on (native Capacitor, jeep-sqlite
-    // web, node:sqlite in tests) — plugin-specific `run()` result shapes
-    // aren't consistent enough to rely on directly.
+    // last_insert_rowid() is the portable way to get it back across both
+    // SQLite bindings this app runs on (@tauri-apps/plugin-sql on-device,
+    // node:sqlite in tests) — plugin-specific `run()` result shapes aren't
+    // consistent enough to rely on directly.
     async createPokemonInstances(batch: NewPokemonInstanceBatch): Promise<PokemonInstance[]> {
       const now = Date.now();
       const created: PokemonInstance[] = [];

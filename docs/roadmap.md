@@ -366,16 +366,20 @@ Known rough edges, not release blockers. Recovered from the pre-restructure
 These are explicitly *not* bucketed as V1 or V2 yet — flagging them here so
 they get a deliberate decision instead of silently defaulting to either.
 
-- **Desktop packaging story**: a launcher script, calling
-  `navigator.storage.persist()` on the web platform path, pinning the dev
-  server port (browser storage is keyed by origin, so a drifting port
-  silently "loses" data under another origin), and a minimal PWA manifest.
-  This was v1-roadmap Theme 6 / task D3 and was still unresolved as of the
-  last recovered status.
+- **Desktop packaging story**: this was originally scoped (v1-roadmap Theme 6
+  / task D3) against an old web/PWA deployment model — a launcher script,
+  `navigator.storage.persist()`, dev-server port pinning against
+  origin-keyed browser storage, and a PWA manifest. None of that applies
+  anymore: the app is a real Tauri desktop build with native SQLite
+  storage, not a browser-hosted PWA. The actual open question now is
+  installer/distribution format (how a desktop build reaches a user, vs.
+  Android's sideload-an-APK flow) — already tracked as its own item, see
+  §5's "Desktop packaging/distribution format" entry; not duplicated here.
 - **Rotating Android auto-export**: a once-daily auto-export, keeping the
-  last 3 snapshots, via the already-integrated `@capacitor/filesystem`
-  plugin. Scaffolding-adjacent work exists (manual Export/Import), but the
-  automatic rotating version was never built.
+  last 3 snapshots, via `@tauri-apps/plugin-fs` (not currently integrated for
+  this purpose — only used today for the manual Export/Import file I/O, see
+  `src/shared/file-download.ts`). Scaffolding-adjacent work exists (manual
+  Export/Import), but the automatic rotating version was never built.
 - **On-device restore test**: an actual uninstall/reinstall test of
   Android's `allowBackup` auto-backup restore path has never been run on
   real hardware (only doable on a real device, not in this environment).
