@@ -4,7 +4,7 @@
 // unable to run under a plain Node fixture for testing). See boot-rescue.ts
 // for how this is actually wired up against the real on-device connection.
 
-import type { SQLiteDBConnection } from "@capacitor-community/sqlite";
+import type { SQLiteDBConnection } from "../db/sqlite-connection";
 import { CURRENT_PERSONAL_SCHEMA_VERSION } from "../db/schema";
 import { NEVER_UPDATED } from "../db/defaults";
 import { FORM_PERSONAL_BOOLEAN_FIELDS, FORM_PERSONAL_FIELD_COLUMNS, type FormBackgroundPersonal, type FormPersonal, type MegaPersonal, type SpeciesPersonal } from "../db/types";

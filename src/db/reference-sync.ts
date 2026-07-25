@@ -14,7 +14,7 @@
 // on every single boot even when nothing had changed, purely to answer a
 // question the build already knows the answer to.
 
-import type { SQLiteDBConnection } from "@capacitor-community/sqlite";
+import type { SQLiteDBConnection } from "./sqlite-connection";
 import { REFERENCE_SCHEMA_SQL } from "./schema";
 import type { ReferenceData } from "./reference-data";
 import { SLUG_RENAMES } from "./slug-renames";

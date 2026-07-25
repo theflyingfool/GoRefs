@@ -11,7 +11,7 @@
 // subset.
 
 import type { DatabaseSync } from "node:sqlite";
-import type { SQLiteDBConnection } from "@capacitor-community/sqlite";
+import type { SQLiteDBConnection } from "../src/db/sqlite-connection";
 
 export function nodeSqliteConnection(db: DatabaseSync): SQLiteDBConnection {
   const conn = {

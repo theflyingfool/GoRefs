@@ -20,7 +20,7 @@
 
 import { drizzle } from "drizzle-orm/sqlite-proxy";
 import type { SqliteRemoteDatabase } from "drizzle-orm/sqlite-proxy";
-import type { SQLiteDBConnection } from "@capacitor-community/sqlite";
+import type { SQLiteDBConnection } from "./sqlite-connection";
 
 export function getDrizzleDb(conn: SQLiteDBConnection): SqliteRemoteDatabase {
   return drizzle(async (sqlText, params, method) => {

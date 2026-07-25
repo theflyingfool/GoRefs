@@ -48,7 +48,7 @@
 // The old `schema_version` table is left in place afterward — unread,
 // harmless.
 
-import type { SQLiteDBConnection } from "@capacitor-community/sqlite";
+import type { SQLiteDBConnection } from "./sqlite-connection";
 import { DEFAULT_PROFILE_ID, DEFAULT_PROFILE_USERNAME } from "./schema";
 import { MIGRATION_SQL_BY_TAG } from "./migrations-data";
 import journal from "./migrations/meta/_journal.json" with { type: "json" };

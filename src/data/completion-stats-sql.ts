@@ -6,7 +6,7 @@
 // feature — this is the only implementation.
 
 import { and, eq, exists, isNull, ne, notExists, notLike, or, sql } from "drizzle-orm";
-import type { SQLiteDBConnection } from "@capacitor-community/sqlite";
+import type { SQLiteDBConnection } from "../db/sqlite-connection";
 import { getDrizzleDb } from "../db/drizzle-client";
 import { form, megaVariant, species } from "../db/schema/reference";
 import { formPersonal, megaPersonal, speciesPersonal } from "../db/schema/personal";
