@@ -2,12 +2,12 @@
 
 A local-only, fully offline Pokémon GO living-dex tracker. No accounts, no
 back-end, no network calls at runtime — all personal data stays on the
-device. Ships as a Tauri-wrapped Android APK, plus a desktop build (side-loaded, not Play
-Store); the same TypeScript/Vite web app also runs standalone in a desktop
-browser for editing on a computer (see "Cross-device data" below).
+device. Ships as a Tauri-wrapped Android APK, plus a native Tauri desktop build
+(side-loaded, not Play Store) built from the same TypeScript/Vite codebase,
+for editing on a computer (see "Cross-device data" below).
 
 **Installing it?** See [docs/install-guide.md](./docs/install-guide.md) —
-covers both the Android app and the desktop/browser version, updating, and
+covers both the Android app and the desktop version, updating, and
 troubleshooting.
 
 See [docs/data-model.md](./docs/data-model.md) (schema/storage),
@@ -25,8 +25,10 @@ full design; [CLAUDE.md](./CLAUDE.md) for the working invariants; and
 ## Prerequisites
 
 - Node.js — Vite 6 requires `^18.19.0` or `>=20.0.0`.
-- Nothing else to install for the desktop web app; native builds have their
-  own prerequisites (see "Building the Android app" below).
+- The Rust toolchain and platform build dependencies Tauri requires, since
+  `npm run dev` now runs the full Tauri desktop app; native Android builds
+  have their own additional prerequisites (see "Building the Android app"
+  below).
 
 ## Running it
 
@@ -37,10 +39,11 @@ npm install
 npm run dev
 ```
 
-Opens the app at `http://localhost:5173` (or whatever port Vite picks). All
-data is stored locally (IndexedDB via `sql.js`/`jeep-sqlite` in this mode) —
-nothing leaves the browser. See
-[docs/install-guide.md](./docs/install-guide.md#desktop--browser) for the
+Runs the full Tauri desktop app (`cargo tauri dev` under the hood); the app
+opens in its own native window automatically — there's no URL to open in a
+browser. All data is stored locally on disk in a real SQLite file, backed by
+`@tauri-apps/plugin-sql` — nothing leaves your computer. See
+[docs/install-guide.md](./docs/install-guide.md#desktop) for the
 friend-facing version of these steps, including the ZIP-download caveat and
 update instructions.
 
@@ -88,9 +91,10 @@ the Settings page has manual **Export** / **Import** buttons for personal
 data (your catch/achievement state, not reference data):
 
 - **Export** writes a JSON snapshot, stamped with the current personal
-  schema version. On Android it's handed to the native share sheet (save to
-  Drive, Files, email, etc. — the app never talks to any cloud service
-  directly); on desktop it downloads via the browser.
+  schema version. On both Android and desktop it's handed to the native
+  save/share dialog (via `@tauri-apps/plugin-dialog` and
+  `@tauri-apps/plugin-fs`) — save to Drive, Files, email, a folder on disk,
+  etc.; the app never talks to any cloud service directly.
 - **Import** reads a previously-exported JSON file back in, overwriting any
   matching entries (anything not present in the file is left alone). If the
   file's schema version doesn't match the running app's, you'll get a
