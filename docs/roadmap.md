@@ -328,6 +328,36 @@ Known rough edges, not release blockers. Recovered from the pre-restructure
   reach a user (vs. Android's existing sideload-an-APK flow) are
   undecided. Deferred 2026-07-24 (explicit non-goal of Sub-project 6,
   owner call).
+- **Android release APK is unsigned**: `npm run android:release` (`cargo
+  tauri android build`) produces `app-universal-release-unsigned.apk` —
+  Tauri's generated `src-tauri/gen/android/app/build.gradle.kts` has no
+  `signingConfigs` block at all, unlike the old Capacitor-era Gradle setup
+  which read `~/.android-keystores/keystore.properties` automatically.
+  Verified during Sub-project 6's final build check by signing the APK
+  out-of-band with `zipalign`/`apksigner` for verification purposes only —
+  that manual step isn't a real release process. Needs either a Gradle
+  `signingConfigs` block wired to `keystore.properties` (matching the old
+  setup) added to the Tauri-generated file (note: `cargo tauri android
+  init` regenerates this file, so the fix needs to survive re-init, e.g.
+  via a documented post-init step or a Tauri hook), or the manual
+  `apksigner` step documented as the interim release process in
+  `docs/release-checklist.md`. Found 2026-07-25, not urgent (no release
+  has shipped since the migration; blocks only actual distribution, not
+  development).
+- **Desktop catch-logging UI never click-tested end-to-end**: Sub-project
+  6's final verification confirmed the desktop build's SQLite/transaction
+  layer (reference-sync succeeding, surviving process restarts) via direct
+  database inspection, and confirmed a real user-driven "log a catch, see
+  it persist" flow on Android — but never combined both (real UI clicks on
+  desktop specifically) because this dev machine has no `xdotool`/
+  `ydotool`/`wmctrl` and KDE's Wayland input-consent dialog blocks the one
+  workaround found. The underlying IPC/DB code path is identical to
+  Android's (same vendored plugin, same `tauri-sqlite-connection.ts`), so
+  this is a low-risk gap, not an unverified core mechanism — but a
+  desktop-specific frontend regression in the catch-logging UI wouldn't
+  have been caught by this migration's verification. Worth a manual
+  smoke-test next time a desktop build is available to click through.
+  Found 2026-07-25, not urgent.
 
 ---
 
