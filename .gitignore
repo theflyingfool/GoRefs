@@ -2,6 +2,8 @@ node_modules/
 dist/
 *.apk
 tsconfig.tsbuildinfo
+src-tauri/target/
+src-tauri/gen/
 
 # Release-signing secrets — these live outside the repo entirely, at
 # ~/.android-keystores/, and the build only ever reads them from there.

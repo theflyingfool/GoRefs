@@ -14,6 +14,11 @@ export default defineConfig([
       "android/**",
       "node_modules/**",
       ".claude/**",
+      // Rust build artifacts (Cargo target dir + Tauri's generated mobile
+      // project) — not project source, not meant to be linted. Mirrors
+      // src-tauri/.gitignore and the root .gitignore's src-tauri/ entries.
+      "src-tauri/target/**",
+      "src-tauri/gen/**",
       // Scratch working state for the subagent-driven-development skill
       // (task briefs, implementer reports, review packages) — not project
       // source, not meant to be linted.

@@ -6,6 +6,7 @@
   "scripts": {
     "prepare": "git config core.hooksPath .githooks",
     "dev": "vite",
+    "dev:vite": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
@@ -37,6 +38,7 @@
     "@eslint/json": "^2.0.1",
     "@eslint/markdown": "^8.0.3",
     "@playwright/test": "^1.61.1",
+    "@tauri-apps/cli": "^2.11.4",
     "@types/node": "^22.10.0",
     "@vitejs/plugin-vue": "^6.0.8",
     "drizzle-kit": "^0.31.10",
@@ -55,6 +57,7 @@
     "@capacitor/core": "^8.4.1",
     "@capacitor/filesystem": "^8.1.2",
     "@capacitor/share": "^8.0.1",
+    "@tauri-apps/api": "^2.11.1",
     "drizzle-orm": "^0.44.6",
     "jeep-sqlite": "^2.8.0",
     "sql.js": "1.11.0",
