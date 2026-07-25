@@ -12,7 +12,7 @@ rationale in its comments.
 
 ## Storage
 
-- **SQLite on-device** via `capacitor-community/sqlite`. No IndexedDB, no
+- **SQLite on-device** via `@tauri-apps/plugin-sql`. No IndexedDB, no
   browser storage — this is a native-wrapped app, so there's no reason to
   target browser-only APIs.
 - Two logical groups of tables, separated so that app updates can never
@@ -253,8 +253,11 @@ and runs at *authoring* time (`npm run ingest:build`). A further step —
 pre-baking an actual on-device SQLite file at *app build* time, instead of
 the app performing ~8,100 sequential inserts on first boot/reference-data
 update — is a separate, deferred optimization.
-`@capacitor-community/sqlite` already exposes `executeSet`/`importFromJson`/
-`copyFromAssets`, and `scripts/build-dummy-db.ts` already proves the
+`@tauri-apps/plugin-sql` has no equivalent to `@capacitor-community/sqlite`'s
+former `executeSet`/`importFromJson`/`copyFromAssets` bulk-import helpers —
+any pre-baked-database approach here would need to go through `plugin-fs` to
+stage a file and `plugin-sql`'s regular `execute` for statements, which is a
+different shape than what this section originally proposed. `scripts/build-dummy-db.ts` already proves the
 prepared-statement bulk-insert pattern works in this codebase; it's just not
 wired into the app's boot path yet. **Deferred**, pending real-device timing
 data — see [features.md](features.md#planned-deferred-features) for the bulk edit pagination and optimization details.

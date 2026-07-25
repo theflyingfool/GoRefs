@@ -46,7 +46,7 @@ instead, linked from here.*
 | `slug-renames.ts` | Hand-maintained registry mapping old→new slugs, so a display-name correction in the ingestion pipeline doesn't orphan personal data already keyed to the old slug. |
 | `cascades.ts` | Forward-only cascade rules (e.g. checking Shundo auto-checks Shiny/4★/Caught), built programmatically from `field-groups.ts`. |
 | `defaults.ts` | Default `app_settings` values seeded on a fresh install. |
-| `sqlite-client.ts` | Bootstraps the real `@capacitor-community/sqlite` connection — native on Android, `jeep-sqlite`+`sql.js`+IndexedDB on web. |
+| `sqlite-client.ts` | Bootstraps the on-device SQLite connection via `@tauri-apps/plugin-sql` — same connection object on desktop and Android, no platform dispatch. |
 
 ## Data/repository layer (`src/data/`)
 
@@ -66,7 +66,7 @@ instead, linked from here.*
 |---|---|
 | `ui/dom.ts` | Minimal DOM-builder helpers (`el`, `clear`) — no framework, by project decision. |
 | `ui/sprites.ts` | Sprite path convention (`public/sprites/<dex-number>.webp`); also `formSpritePath()`/`megaSpritePath()` for per-form/costume/Mega art, falling back to the species sprite — see [features.md#4-sprite-asset-pipeline](features.md#4-sprite-asset-pipeline). |
-| `shared/file-download.ts` | Cross-platform "save this file for the user" helper (File System Access API → Blob fallback → Capacitor native share), used by Settings export and Coverage Report's CSV export. |
+| `shared/file-download.ts` | "Save this file for the user" helper via `@tauri-apps/plugin-dialog`'s save dialog + `@tauri-apps/plugin-fs`'s `writeTextFile` — one mechanism on desktop and Android, used by Settings export and Coverage Report's CSV export. |
 
 ## Scripts (`scripts/`)
 
@@ -102,7 +102,7 @@ Unit tests via Node's built-in test runner (`npm run test`, `node:test` +
 `node:assert/strict` run through `tsx --test` — no test-framework dependency).
 `node-sqlite-connection.ts` is a thin adapter exposing just the
 `SQLiteDBConnection` surface `src/db/migrations.ts`/`src/db/reference-sync.ts`
-call, backed by `node:sqlite` instead of the real Capacitor plugin, so those
+call, backed by `node:sqlite` instead of the real Tauri plugin, so those
 two modules run unmodified against disposable in-memory fixture databases.
 `migrations.test.ts` and `reference-sync.test.ts` use it;
 `export-import-round-trip.test.ts` tests `in-memory-store.ts`'s

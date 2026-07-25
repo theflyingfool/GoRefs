@@ -1,7 +1,7 @@
 # Installing PoGo Buddy
 
-There are two ways to run PoGo Buddy: sideloaded on Android, or in a desktop
-browser. Both are fully local — no accounts, no cloud sync, nothing leaves
+There are two ways to run PoGo Buddy: sideloaded on Android, or as a native
+desktop app. Both are fully local — no accounts, no cloud sync, nothing leaves
 your device either way. Pick whichever fits you; you can use both and move
 data between them (see "Moving data between phone and desktop" below).
 
@@ -50,14 +50,29 @@ before doing anything else**, since uninstalling erases the app's data
 permanently. This is exactly why exporting regularly matters more than it
 might seem.
 
-## Desktop / browser
+## Desktop
 
-The same app also runs standalone in a desktop browser — no phone required.
+The same app also runs as a native desktop app, built with Tauri — no phone
+required.
+
+> **Heads up:** running this from source now requires more than just
+> Node.js. `npm run dev` launches the full Tauri desktop app (`cargo tauri
+> dev` under the hood), which needs the same Rust/native toolchain as
+> building the Android app — this is a materially heavier setup than the
+> old plain-Vite dev server this guide used to describe, and this guide
+> doesn't currently walk through installing that toolchain. A packaged,
+> ready-to-run desktop build (no toolchain needed) is planned but not yet
+> decided/built — see docs/roadmap.md's "Desktop packaging/distribution
+> format" entry. Until then, running from source is a developer-level task;
+> ask the owner if you just want to try the desktop version.
 
 ### First run
 
 1. Install [Node.js](https://nodejs.org) if you don't already have it
-   (v18.19+ or v20+ — nothing else to install).
+   (v18.19+ or v20+), plus the Rust toolchain and platform build
+   dependencies Tauri requires (see
+   [docs/commands.md](./commands.md) and
+   [docs/architecture.md](./architecture.md)).
 2. In a terminal:
    ```sh
    git clone <this repo>
@@ -69,18 +84,18 @@ The same app also runs standalone in a desktop browser — no phone required.
    install` will print a git error (from a setup step that needs a `.git`
    folder) — that's safe to ignore, `npm run dev` still works fine without
    it.
-3. Open the URL it prints (usually `http://localhost:5173`) in your
-   browser.
+3. The app opens in its own native window automatically — there's no URL
+   to open in a browser.
 
-All data is stored locally in the browser (IndexedDB) — nothing leaves your
-computer, same guarantee as the phone app.
+All data is stored locally on disk in a real SQLite file — nothing leaves
+your computer, same guarantee as the phone app.
 
 ### Updating
 
 Pull the latest code (`git pull`, or re-download and replace if you're on a
 ZIP) and run `npm install` again in case dependencies changed, then
 `npm run dev` as before. **Export from Settings before updating**, same
-habit as the Android side — a browser-side migration issue is just as
+habit as the Android side — a desktop-side migration issue is just as
 capable of needing a fallback as an Android one.
 
 ## Back up your data
@@ -99,9 +114,8 @@ There's no sync between the two — by design, per the no-network-calls
 constraint. Instead:
 
 - **Export** on one (phone or desktop) writes a JSON snapshot of your
-  personal data (catch/achievement state, not reference data). On Android
-  it's handed to the native share sheet; on desktop it downloads via the
-  browser.
+  personal data (catch/achievement state, not reference data). On both
+  Android and desktop it's handed to the native save/share dialog.
 - **Import** on the other reads that file back in, overwriting matching
   entries (anything not in the file is left alone). A schema-version
   mismatch between the file and the running app triggers a warning before

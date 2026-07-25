@@ -12,10 +12,6 @@ Ensure the app is fully functional and regression-free before initiating a relea
   ```sh
   npm run test
   ```
-* Run E2E Playwright smoke tests (boot, settings, stats, export/import):
-  ```sh
-  npm run test:e2e
-  ```
 * Run static analysis and lint checks:
   ```sh
   npm run lint

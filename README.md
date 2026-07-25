@@ -2,7 +2,7 @@
 
 A local-only, fully offline Pokémon GO living-dex tracker. No accounts, no
 back-end, no network calls at runtime — all personal data stays on the
-device. Ships as a Capacitor-wrapped Android APK (side-loaded, not Play
+device. Ships as a Tauri-wrapped Android APK, plus a desktop build (side-loaded, not Play
 Store); the same TypeScript/Vite web app also runs standalone in a desktop
 browser for editing on a computer (see "Cross-device data" below).
 
@@ -19,7 +19,7 @@ full design; [CLAUDE.md](./CLAUDE.md) for the working invariants; and
 ## Stack
 
 - **Frontend**: TypeScript + Vite, vanilla JS (no framework).
-- **Database**: SQLite. On-device SQLite is backed by `@capacitor-community/sqlite` (Android) and IndexedDB-backed `sql.js` (web).
+- **Database**: SQLite. On-device SQLite is backed by `@tauri-apps/plugin-sql` — a real on-disk SQLite file on every platform this app ships on (desktop, Android).
 - **Data Architecture**: The database split, schema design, and sync model are documented in the canonical [docs/data-model.md](docs/data-model.md).
 
 ## Prerequisites

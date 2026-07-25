@@ -309,6 +309,25 @@ Known rough edges, not release blockers. Recovered from the pre-restructure
   Settings page (up to `MAX_GRID_INDICATORS` pickable rows) and currently
   pushes everything below it down by default. Should be collapsible and
   start collapsed.
+- **Rebuild e2e coverage on `tauri-driver`**: Sub-project 6 (Capacitor →
+  Tauri) retired the Playwright suite (`e2e/*.spec.ts`, 10 spec files
+  covering boot, Dex grid, log-catch, edit-instance, persistence, settings
+  export, species detail, tags) because Playwright can't drive a
+  Tauri-hosted webview (it speaks CDP; Tauri's own testing story is
+  `tauri-driver`, a WebDriver-protocol tool needing a different test
+  runner — `webdriverio` or `selenium-webdriver`, not Playwright). No
+  WebDriver spike has been run yet. Needs its own brainstorm: which
+  runner, whether all 10 specs get 1:1 ports or the coverage gets
+  re-scoped, and whether `webkit2gtk` (the Linux Tauri webview's engine)
+  behaves differently from the Chromium the old suite drove for any of
+  the ported specs. Deferred 2026-07-24 (accepted as an e2e gap during
+  the Tauri migration, owner call).
+- **Desktop packaging/distribution format**: Sub-project 6 only verified
+  `cargo tauri build` produces a working host-platform (Linux) bundle.
+  Installer format, code signing, and how a desktop build would actually
+  reach a user (vs. Android's existing sideload-an-APK flow) are
+  undecided. Deferred 2026-07-24 (explicit non-goal of Sub-project 6,
+  owner call).
 
 ---
 

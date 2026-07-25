@@ -6,7 +6,7 @@ Developer commands for running, building, testing, and managing data in PoGo Bud
 
 ## Development & Verification
 
-- Run development server (Vite):
+- Run development server (launches the Tauri desktop app via `cargo tauri dev`; `npm run dev:vite` remains available for a plain Vite dev server without the native shell):
 
   ```sh
   npm run dev
@@ -24,23 +24,17 @@ Developer commands for running, building, testing, and managing data in PoGo Bud
   npm run test
   ```
 
-- Run Playwright E2E integration tests:
-
-  ```sh
-  npm run test:e2e
-  ```
-
 ---
 
 ## Native Builds (Android)
 
-- Build debug APK:
+- Build debug APK (runs `cargo tauri android build` under the hood, not Gradle-via-Capacitor):
 
   ```sh
   npm run android:build
   ```
 
-- Build release APK:
+- Build release APK (runs `cargo tauri android build --release` under the hood, not Gradle-via-Capacitor):
 
   ```sh
   npm run android:release
