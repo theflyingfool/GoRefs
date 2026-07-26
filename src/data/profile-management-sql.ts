@@ -39,3 +39,29 @@ export function buildProfileDeleteStatements(profileId: string): SqlStatement[] 
     { sql: "DELETE FROM profile WHERE id = ?", params: [profileId] },
   ];
 }
+
+// The FULL statement sequence for deleting a profile as ONE atomic unit. When
+// `switchToProfileId` is non-null (i.e. the profile being deleted is the current
+// one), the is_current flip to the survivor is prepended to the SAME statement
+// list as the cascade delete, so a caller that runs them in a single transaction
+// gets all-or-nothing semantics: if any statement fails and the transaction rolls
+// back, the is_current flip rolls back too. This is what prevents the
+// "flip succeeds, cascade deletes the old is_current row, zero profiles current"
+// invariant break that a two-separate-transactions approach is vulnerable to.
+//
+// FK-safety (deferred) is the caller's responsibility: run these inside a
+// transaction with `PRAGMA defer_foreign_keys = true` already set, same as
+// buildProfileDeleteStatements. The flip statements are FK-neutral (they only
+// touch profile.is_current), so their position at the front doesn't matter for FK
+// ordering — only for atomicity.
+export function buildDeleteProfileStatements(profileId: string, switchToProfileId: string | null): SqlStatement[] {
+  const statements: SqlStatement[] = [];
+  if (switchToProfileId !== null) {
+    statements.push(
+      { sql: "UPDATE profile SET is_current = 0 WHERE is_current = 1", params: [] },
+      { sql: "UPDATE profile SET is_current = 1 WHERE id = ?", params: [switchToProfileId] },
+    );
+  }
+  statements.push(...buildProfileDeleteStatements(profileId));
+  return statements;
+}

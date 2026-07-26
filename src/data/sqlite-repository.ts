@@ -38,7 +38,7 @@ import { resolveInstanceAchievementField } from "../db/cascades";
 import { applyDexAchievementBackfillIfNeeded, DEX_ACHIEVEMENT_BACKFILL_KEY } from "./dex-achievement-backfill";
 import { buildScalarUpdateStatement, buildTagDiffStatements, mergeUpdatedInstance } from "./pokemon-instance-update-sql";
 import { buildRenameTagStatement, buildDeleteTagStatements, computeTagUsageCounts } from "./tag-management-sql";
-import { buildProfileDeleteStatements } from "./profile-management-sql";
+import { buildDeleteProfileStatements } from "./profile-management-sql";
 import { syncReferenceData } from "../db/reference-sync";
 import { getCompletionStatsSql } from "./completion-stats-sql";
 import referenceDataJson from "./reference.json";
@@ -490,12 +490,12 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
     return newProfile;
   }
 
-  function switchProfile(profileId: string): void {
-    const bucket = profileBuckets.get(profileId);
-    if (!bucket) throw new Error(`Unknown profile: ${profileId}`);
-    // Reassign EVERY field of PersonalState (keep this exhaustive against
-    // in-memory-store.ts's PersonalState interface — a missed field would leak
-    // the old profile's data into the new profile's view).
+  // Point the single shared `state` object's fields at a bucket's live objects.
+  // Reassign EVERY field of PersonalState (keep this exhaustive against
+  // in-memory-store.ts's PersonalState interface — a missed field would leak the
+  // old profile's data into the new profile's view). Never clones — the whole
+  // "instant switch" design depends on `state` aliasing the bucket's objects.
+  function reassignStateToBucket(bucket: PersonalState): void {
     state.speciesPersonal = bucket.speciesPersonal;
     state.formPersonal = bucket.formPersonal;
     state.appSettings = bucket.appSettings;
@@ -508,6 +508,12 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
     state.playerProgress = bucket.playerProgress;
     state.playerProgressLog = bucket.playerProgressLog;
     state.profile = bucket.profile;
+  }
+
+  function switchProfile(profileId: string): void {
+    const bucket = profileBuckets.get(profileId);
+    if (!bucket) throw new Error(`Unknown profile: ${profileId}`);
+    reassignStateToBucket(bucket);
     enqueueWrite(async () => {
       await db.beginTransaction();
       try {
@@ -541,37 +547,65 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
   async function deleteProfile(profileId: string): Promise<void> {
     if (profileBuckets.size <= 1) throw new Error("Cannot delete the only remaining profile.");
     if (!profileBuckets.has(profileId)) throw new Error(`Unknown profile: ${profileId}`);
-    if (profileId === state.profile.id) {
-      // Switch away FIRST so `state` always points at a valid, non-deleted
-      // profile and "exactly one profile is current" holds continuously.
-      // switchProfile enqueues the is_current flip on the SAME write chain the
-      // cascade below is enqueued onto, so the flip commits before the cascade —
-      // no need for an intermediate `await writeQueue` here.
-      const anotherId = [...profileBuckets.keys()].find((id) => id !== profileId)!;
-      switchProfile(anotherId);
-    }
-    // Route the cascade through the write queue (same idiom as deleteTag below):
-    // enqueueing rather than calling beginTransaction directly guarantees no
-    // queued toggle-write can open its own transaction inside this one's window
-    // ("transaction within a transaction"). This is the correctness-critical
-    // file-deletion path — it must not race the shared connection.
-    enqueueWrite(async () => {
-      await db.beginTransaction();
-      try {
-        await db.run("PRAGMA defer_foreign_keys = true", [], false);
-        for (const { sql, params } of buildProfileDeleteStatements(profileId)) {
-          await db.run(sql, params, false);
-        }
-        await db.commitTransaction();
-      } catch (err) {
-        await db.rollbackTransaction();
-        throw err;
-      }
-      await persistDb();
+
+    const deletingCurrent = profileId === state.profile.id;
+    // When deleting the current profile, pick a survivor to become current. Its
+    // is_current flip is folded into the SAME transaction as the cascade below
+    // (see buildDeleteProfileStatements) so the two are atomic: a failure rolls
+    // back BOTH, and we can never end with the old current row deleted while no
+    // survivor was promoted (zero-profiles-current — the invariant this whole
+    // sub-project protects).
+    const survivorId = deletingCurrent ? [...profileBuckets.keys()].find((id) => id !== profileId)! : null;
+    const survivorBucket = survivorId ? profileBuckets.get(survivorId)! : undefined;
+
+    // Enqueue the combined transaction onto the SAME writeQueue chain every other
+    // write uses (so no queued toggle-write can open its own transaction inside
+    // this one's window — the "transaction within a transaction" race). BUT the
+    // generic enqueueWrite helper swallows failures (catch → log → onWriteFailure)
+    // and keeps writeQueue permanently non-rejecting, so `await writeQueue` can't
+    // observe whether THIS operation actually committed. We therefore chain
+    // manually and route the real outcome to a private `settled` promise the
+    // caller awaits — writeQueue itself stays non-rejecting for its other
+    // awaiters (runBulk, getCompletionStats, etc.), exactly as before.
+    let resolveSettled!: () => void;
+    let rejectSettled!: (err: unknown) => void;
+    const settled = new Promise<void>((resolve, reject) => {
+      resolveSettled = resolve;
+      rejectSettled = reject;
     });
-    await writeQueue;
-    // Mutate in-memory only after the cascade has flushed — on a rollback the
-    // bucket stays, matching the DB, instead of diverging from it.
+    writeQueue = writeQueue.then(async () => {
+      try {
+        await db.beginTransaction();
+        try {
+          await db.run("PRAGMA defer_foreign_keys = true", [], false);
+          for (const { sql, params } of buildDeleteProfileStatements(profileId, survivorId)) {
+            await db.run(sql, params, false);
+          }
+          await db.commitTransaction();
+        } catch (err) {
+          await db.rollbackTransaction();
+          throw err;
+        }
+        await persistDb();
+        resolveSettled();
+      } catch (err) {
+        // Surface the real failure to deleteProfile's caller via `settled`, but
+        // do NOT rethrow — that would reject writeQueue and break every unrelated
+        // write that awaits it.
+        rejectSettled(err);
+      }
+    });
+
+    // Throws to the caller if the transaction failed and rolled back. Because it
+    // rolled back atomically, the DB is unchanged (old current profile still
+    // present and still is_current), so we must NOT mutate any in-memory state.
+    await settled;
+
+    // Confirmed committed: now reconcile the in-memory caches. The auto-switch's
+    // state reassignment happens here (after the flip has actually landed), not
+    // synchronously up front — so a rolled-back delete never leaves `state`
+    // pointing at a profile the DB didn't actually switch to.
+    if (deletingCurrent && survivorBucket) reassignStateToBucket(survivorBucket);
     profileBuckets.delete(profileId);
   }
 
