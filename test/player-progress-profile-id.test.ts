@@ -41,7 +41,7 @@ const referenceData: ReferenceData = {
   communityDayEventMoves: [],
 };
 
-function stateWithProfileId(profileId: number): PersonalState {
+function stateWithProfileId(profileId: string): PersonalState {
   return {
     speciesPersonal: {},
     formPersonal: {},
@@ -59,8 +59,8 @@ function stateWithProfileId(profileId: number): PersonalState {
 }
 
 test("setPlayerProgress uses the real profile id, not a hardcoded default", () => {
-  const seenProfileIds: number[] = [];
-  const repo = createInMemoryRepository(referenceData, stateWithProfileId(42), {
+  const seenProfileIds: string[] = [];
+  const repo = createInMemoryRepository(referenceData, stateWithProfileId("42"), {
     onSpeciesPersonalChanged() {},
     onFormPersonalChanged() {},
     onAppSettingChanged() {},
@@ -74,18 +74,17 @@ test("setPlayerProgress uses the real profile id, not a hardcoded default", () =
       seenProfileIds.push(entry.profileId);
     },
     onPokemonInstanceStatusChanged() {},
-    onProfileChanged() {},
   });
 
   repo.setPlayerProgress(40, 12345);
 
-  assert.deepEqual(seenProfileIds, [42, 42]);
-  assert.equal(repo.getPlayerProgress()?.profileId, 42);
+  assert.deepEqual(seenProfileIds, ["42", "42"]);
+  assert.equal(repo.getPlayerProgress()?.profileId, "42");
 });
 
 test("setMedalProgress uses the real profile id, not a hardcoded default", () => {
-  let seenProfileId: number | undefined;
-  const repo = createInMemoryRepository(referenceData, stateWithProfileId(42), {
+  let seenProfileId: string | undefined;
+  const repo = createInMemoryRepository(referenceData, stateWithProfileId("42"), {
     onSpeciesPersonalChanged() {},
     onFormPersonalChanged() {},
     onAppSettingChanged() {},
@@ -97,11 +96,10 @@ test("setMedalProgress uses the real profile id, not a hardcoded default", () =>
     onPlayerProgressChanged() {},
     onPlayerProgressLogAppended() {},
     onPokemonInstanceStatusChanged() {},
-    onProfileChanged() {},
   });
 
   repo.setMedalProgress("collector", 1, 5);
 
-  assert.equal(seenProfileId, 42);
-  assert.equal(repo.listMedalProgress().find((m) => m.medal.slug === "collector")?.progress.profileId, 42);
+  assert.equal(seenProfileId, "42");
+  assert.equal(repo.listMedalProgress().find((m) => m.medal.slug === "collector")?.progress.profileId, "42");
 });

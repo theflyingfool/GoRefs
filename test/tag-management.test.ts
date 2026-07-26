@@ -120,9 +120,9 @@ test("deleting a tag's row before its pokemon_instance_tag links throws with for
 
 test("computeTagUsageCounts counts links per tag and sorts alphabetically by name", () => {
   const tags: Tag[] = [
-    { id: 1, profileId: 1, name: "shiny-hunt" },
-    { id: 2, profileId: 1, name: "raid" },
-    { id: 3, profileId: 1, name: "trade" },
+    { id: 1, profileId: "1", name: "shiny-hunt" },
+    { id: 2, profileId: "1", name: "raid" },
+    { id: 3, profileId: "1", name: "trade" },
   ];
   const links: PokemonInstanceTag[] = [
     { pokemonInstanceId: 10, tagId: 1 },

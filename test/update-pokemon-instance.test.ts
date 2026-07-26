@@ -83,7 +83,7 @@ function fixtureInstance(overrides: Partial<PokemonInstance> = {}): PokemonInsta
   return {
     id: 1,
     formSlug: "bulbasaur-standard",
-    profileId: 1,
+    profileId: "1",
     status: "kept",
     recordedAt: 0,
     caughtAt: null,

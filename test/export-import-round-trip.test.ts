@@ -73,7 +73,7 @@ function emptyState(): PersonalState {
     pokemonInstanceTags: [],
     playerProgress: undefined,
     playerProgressLog: [],
-    profile: { id: 1, username: "Trainer", friendCode: null, createdAt: Date.now() },
+    profile: { id: "1", username: "Trainer", friendCode: null, createdAt: Date.now() },
   };
 }
 
@@ -87,7 +87,6 @@ const noopHooks = {
   onPlayerProgressChanged() {},
   onPlayerProgressLogAppended() {},
   onPokemonInstanceStatusChanged() {},
-  onProfileChanged() {},
 };
 
 test("export/import round-trips species, form, and app-setting personal data", async () => {
