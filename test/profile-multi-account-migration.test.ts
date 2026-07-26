@@ -63,8 +63,8 @@ test("upgrade from a v9 single-profile device: profile_id=1 is rewritten to a re
     CREATE TABLE app_settings (key TEXT PRIMARY KEY, value TEXT NOT NULL);
     CREATE TABLE profile (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, friend_code TEXT, created_at INTEGER NOT NULL);
     INSERT INTO profile (id, username, created_at) VALUES (1, 'Trainer', 0);
-    CREATE TABLE species_personal (species_slug TEXT PRIMARY KEY, profile_id INTEGER NOT NULL DEFAULT 1, registered INTEGER NOT NULL DEFAULT 0, xxl INTEGER NOT NULL DEFAULT 0, xxs INTEGER NOT NULL DEFAULT 0, purified INTEGER NOT NULL DEFAULT 0, updated_at INTEGER NOT NULL DEFAULT 0);
-    INSERT INTO species_personal (species_slug, profile_id, registered, updated_at) VALUES ('bulbasaur', 1, 1, 12345);
+    CREATE TABLE species_personal (species_slug TEXT PRIMARY KEY, profile_id INTEGER NOT NULL DEFAULT 1, registered INTEGER NOT NULL DEFAULT 0, xxl INTEGER NOT NULL DEFAULT 0, xxs INTEGER NOT NULL DEFAULT 0, purified INTEGER NOT NULL DEFAULT 0, updated_at TEXT NOT NULL DEFAULT '1970-01-01T00:00:00.000Z');
+    INSERT INTO species_personal (species_slug, profile_id, registered, updated_at) VALUES ('bulbasaur', 1, 1, '1970-01-01T00:00:12.345Z');
     CREATE TABLE form_personal (
       form_slug TEXT PRIMARY KEY, profile_id INTEGER NOT NULL DEFAULT 1,
       caught INTEGER NOT NULL DEFAULT 0, shiny INTEGER NOT NULL DEFAULT 0, floor INTEGER NOT NULL DEFAULT 0, four_star INTEGER NOT NULL DEFAULT 0, shundo INTEGER NOT NULL DEFAULT 0,

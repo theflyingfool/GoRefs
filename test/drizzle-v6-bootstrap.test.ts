@@ -70,9 +70,13 @@ test("bootstrapping a real v6 device preserves every existing row and correctly 
   assert.equal(instanceRow.recordedAt.getTime(), new Date("2026-06-15T10:31:00.000Z").getTime());
 
   // profile.id is TEXT as of migration 0004 (multi-account): the rebuild
-  // carries the old integer id=1 across into the TEXT column as "1". The
-  // UUID rewrite of this value is Sub-project 7a Task 2, not this migration.
-  const [profileRow] = await drizzleDb.select().from(profile).where(eq(profile.id, "1"));
+  // carries the old integer id=1 across into the TEXT column as "1", but
+  // Sub-project 7a Task 2's randomizeLegacyProfileId then rewrites it to a
+  // real UUID unconditionally as part of runPersonalMigrations — no
+  // consumer should assume id === "1" (or any other fixed sentinel) once
+  // migrations have run. This fixture has exactly one profile row, so
+  // selecting without a filter (or filtering on isCurrent) is enough.
+  const [profileRow] = await drizzleDb.select().from(profile).where(eq(profile.isCurrent, true));
   assert.equal(profileRow.createdAt.getTime(), new Date("2026-01-01T00:00:00.000Z").getTime());
 
   // Drizzle's tracking table reflects all five migrations applied (0000's bootstrap row, then 0001, 0002, 0003, and 0004 applied normally).
