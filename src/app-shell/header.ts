@@ -10,11 +10,14 @@ export type HeaderMode =
 // just search (+ an optional filter-sheet trigger) now, no hamburger. "none"
 // mode still shows a plain screen title (mockup's topbar) so pages that
 // aren't the grid/detail aren't left with a blank header bar.
-export function renderHeader(container: HTMLElement, mode: HeaderMode) {
+export function renderHeader(container: HTMLElement, mode: HeaderMode, currentTrainerName: string) {
   clear(container);
+
+  const trainerBadge = el("span", { class: "header-trainer-badge" }, [currentTrainerName]);
 
   if (mode.kind === "none") {
     if (mode.title) container.append(el("div", { class: "app-header-title" }, [mode.title]));
+    container.append(trainerBadge);
     return;
   }
 
@@ -77,7 +80,7 @@ export function renderHeader(container: HTMLElement, mode: HeaderMode) {
     searchWrap.append(input, results);
   }
 
-  container.append(searchWrap);
+  container.append(searchWrap, trainerBadge);
 }
 
 // Grid interactions (chip toggles, etc.) call this after every filter change

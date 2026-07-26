@@ -178,27 +178,35 @@ function bootstrap(repo: Repository) {
         },
       };
 
-      renderHeader(headerEl, {
-        kind: "filter",
-        value: gridState.filterText,
-        onChange: (v) => {
-          gridState.filterText = v;
-          renderGrid();
+      renderHeader(
+        headerEl,
+        {
+          kind: "filter",
+          value: gridState.filterText,
+          onChange: (v) => {
+            gridState.filterText = v;
+            renderGrid();
+          },
+          filterButton: {
+            activeCount: countActiveFilters(gridState),
+            onClick: () => filterPanel.toggle(),
+          },
         },
-        filterButton: {
-          activeCount: countActiveFilters(gridState),
-          onClick: () => filterPanel.toggle(),
-        },
-      });
+        repo.getCurrentProfile().username,
+      );
       renderGrid();
     } else if (route.name === "data-entry-detail") {
-      renderHeader(headerEl, {
-        kind: "jump",
-        repo,
-        onSelect: (slug) => {
-          location.hash = speciesDetailPath(slug);
+      renderHeader(
+        headerEl,
+        {
+          kind: "jump",
+          repo,
+          onSelect: (slug) => {
+            location.hash = speciesDetailPath(slug);
+          },
         },
-      });
+        repo.getCurrentProfile().username,
+      );
       mountVueRoute(contentEl, SpeciesDetailPage, {
         repo,
         speciesSlug: route.speciesSlug,
@@ -212,10 +220,10 @@ function bootstrap(repo: Repository) {
         navigate("/collection");
         return;
       }
-      renderHeader(headerEl, { kind: "none", title: `Edit ${loaded.species.name}` });
+      renderHeader(headerEl, { kind: "none", title: `Edit ${loaded.species.name}` }, repo.getCurrentProfile().username);
       mountVueRoute(contentEl, EditInstancePage, { repo, instanceId: route.instanceId });
     } else {
-      renderHeader(headerEl, { kind: "none", title: ROUTE_TITLES[route.name] });
+      renderHeader(headerEl, { kind: "none", title: ROUTE_TITLES[route.name] }, repo.getCurrentProfile().username);
       switch (route.name) {
         case "stats":
           mountVueRoute(contentEl, StatsPage, { repo });

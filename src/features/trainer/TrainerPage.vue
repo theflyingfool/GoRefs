@@ -11,12 +11,61 @@ import type { Repository } from "../../data/repository";
 
 const props = defineProps<{ repo: Repository }>();
 
-const profile = ref(props.repo.getProfile());
-const usernameInput = ref(profile.value.username);
-const friendCodeInput = ref(profile.value.friendCode ?? "");
-function saveProfile() {
-  props.repo.setProfile(usernameInput.value.trim() || "Trainer", friendCodeInput.value.trim() || null);
-  profile.value = props.repo.getProfile();
+const profiles = ref(props.repo.listProfiles());
+const currentProfile = ref(props.repo.getCurrentProfile());
+// Which profile's identity fields the edit form below is showing/editing —
+// defaults to the current profile, but a "Rename" click on any row (Step 3
+// below) repoints this without switching which profile is actually current.
+const editingProfileId = ref(currentProfile.value.id);
+const editingProfile = computed(() => profiles.value.find((p) => p.id === editingProfileId.value)!);
+const usernameInput = ref(editingProfile.value.username);
+const friendCodeInput = ref(editingProfile.value.friendCode ?? "");
+
+function startEditing(profileId: string) {
+  editingProfileId.value = profileId;
+  const target = profiles.value.find((p) => p.id === profileId)!;
+  usernameInput.value = target.username;
+  friendCodeInput.value = target.friendCode ?? "";
+}
+
+async function saveProfile() {
+  await props.repo.renameProfile(editingProfileId.value, usernameInput.value.trim() || "Trainer", friendCodeInput.value.trim() || null);
+  profiles.value = props.repo.listProfiles();
+  if (editingProfileId.value === currentProfile.value.id) currentProfile.value = props.repo.getCurrentProfile();
+}
+
+const newProfileUsername = ref("");
+async function createNewProfile() {
+  const name = newProfileUsername.value.trim();
+  if (!name) return;
+  await props.repo.createProfile(name, null);
+  newProfileUsername.value = "";
+  profiles.value = props.repo.listProfiles();
+}
+
+function switchTo(profileId: string) {
+  if (profileId === currentProfile.value.id) return;
+  props.repo.switchProfile(profileId);
+  currentProfile.value = props.repo.getCurrentProfile();
+  editingProfileId.value = currentProfile.value.id;
+  usernameInput.value = currentProfile.value.username;
+  friendCodeInput.value = currentProfile.value.friendCode ?? "";
+  // Every other page's data (Collection, Dex grid, Stats, Tags) reads
+  // through the same repo instance's cache, which switchProfile just
+  // repointed — those pages re-render correctly on their own next
+  // interaction/mount, same as any other in-memory-cache mutation elsewhere
+  // in this app. No extra reload needed here.
+}
+
+async function deleteProfileRow(profileId: string) {
+  if (profiles.value.length <= 1) return; // delete button is hidden in this case anyway, this guard is defense-in-depth
+  if (!confirm(`Delete this profile? All of its Dex progress, collection, and tags will be permanently removed.`)) return;
+  await props.repo.deleteProfile(profileId);
+  profiles.value = props.repo.listProfiles();
+  currentProfile.value = props.repo.getCurrentProfile();
+  editingProfileId.value = currentProfile.value.id;
+  usernameInput.value = currentProfile.value.username;
+  friendCodeInput.value = currentProfile.value.friendCode ?? "";
 }
 
 const progress = ref(props.repo.getPlayerProgress());
@@ -63,7 +112,31 @@ function updateCount(medalSlug: string, tiers: { rank: number; target: number | 
   <h2>Trainer</h2>
 
   <fieldset>
-    <legend>Identity</legend>
+    <legend>Profiles</legend>
+    <ul class="profile-list">
+      <li v-for="p in profiles" :key="p.id" class="profile-row">
+        <span class="profile-row-name">
+          {{ p.username }}
+          <strong v-if="p.id === currentProfile.id">(current)</strong>
+        </span>
+        <div class="profile-row-actions">
+          <button type="button" :disabled="p.id === currentProfile.id" @click="switchTo(p.id)">Switch to</button>
+          <button type="button" @click="startEditing(p.id)">Rename</button>
+          <button type="button" v-if="profiles.length > 1" @click="deleteProfileRow(p.id)">Delete</button>
+        </div>
+      </li>
+    </ul>
+    <div class="input-grid">
+      <label class="field">
+        New profile name
+        <input type="text" maxlength="20" v-model="newProfileUsername" @keydown.enter="createNewProfile" />
+      </label>
+      <button type="button" @click="createNewProfile">+ New profile</button>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Identity — editing {{ editingProfile.username }}</legend>
     <div class="input-grid">
       <label class="field">
         Trainer name
