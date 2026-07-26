@@ -29,7 +29,7 @@ export function emptyMegaPersonal(megaVariantSlug: string): MegaPersonal {
   return { megaVariantSlug, evolved: false, shinyEvolved: false, updatedAt: NEVER_UPDATED };
 }
 
-export function emptyMedalProgress(medalSlug: string, profileId: number): MedalProgressPersonal {
+export function emptyMedalProgress(medalSlug: string, profileId: string): MedalProgressPersonal {
   return { medalSlug, profileId, currentRank: 0, currentCount: 0, updatedAt: NEVER_UPDATED };
 }
 

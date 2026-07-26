@@ -86,7 +86,6 @@ export interface InMemoryStoreHooks {
   onPlayerProgressLogAppended(entry: PlayerProgressLogEntry): void;
   /** Existing-row status update only — creation (which needs a real AUTOINCREMENT id) is implemented directly in sqlite-repository.ts, not through this shared hook. */
   onPokemonInstanceStatusChanged(instance: PokemonInstance): void;
-  onProfileChanged(profile: Profile): void;
 }
 
 export function createInMemoryRepository(
@@ -103,6 +102,12 @@ export function createInMemoryRepository(
   | "getTagUsageCounts"
   | "renameTag"
   | "deleteTag"
+  | "listProfiles"
+  | "getCurrentProfile"
+  | "createProfile"
+  | "switchProfile"
+  | "renameProfile"
+  | "deleteProfile"
 > {
   const speciesBySlug = new Map<string, Species>(referenceData.species.map((s) => [s.slug, s]));
   const speciesByDexOrder = [...referenceData.species].sort((a, b) => a.dexNumber - b.dexNumber);
@@ -345,12 +350,6 @@ export function createInMemoryRepository(
     hooks.onPlayerProgressLogAppended(logEntry);
   }
 
-  function applyProfile(username: string, friendCode: string | null): void {
-    const updated: Profile = { ...state.profile, username, friendCode };
-    state.profile = updated;
-    hooks.onProfileChanged(updated);
-  }
-
   function applyPokemonInstanceStatus(id: number, status: PokemonInstanceStatus): void {
     const index = state.pokemonInstances.findIndex((i) => i.id === id);
     if (index === -1) return;
@@ -528,14 +527,6 @@ export function createInMemoryRepository(
 
     listTags(): Tag[] {
       return state.tags;
-    },
-
-    getProfile(): Profile {
-      return state.profile;
-    },
-
-    setProfile(username: string, friendCode: string | null) {
-      applyProfile(username, friendCode);
     },
 
     getPlayerProgress(): PlayerProgressPersonal | undefined {

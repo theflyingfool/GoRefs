@@ -287,18 +287,19 @@ export interface Repository {
   renameTag(id: number, name: string): Promise<void>;
   deleteTag(id: number): Promise<void>;
 
-  // ---- Trainer/Profile page ----
-  /**
-   * The single existing profile row (id=1) — identity only (username/friend
-   * code), not a multi-profile switcher. species_personal/form_personal/
-   * mega_personal's PK is the slug alone, not composite with profile_id, so
-   * a second profile couldn't hold separate Dex data without a schema
-   * migration — that's deferred to the Drizzle pass, not done here. Not
-   * included in export/import: it's per-install identity, not collection
-   * data to merge across devices.
-   */
-  getProfile(): Profile;
-  setProfile(username: string, friendCode: string | null): void;
+  // ---- Trainer/Profile page: multi-account ----
+  /** Every local profile on this device, in no particular guaranteed order. */
+  listProfiles(): Profile[];
+  /** The currently-active profile — every other Repository method implicitly reads/writes this profile's data. Not included in export/import: it's per-install identity, not collection data to merge across devices. */
+  getCurrentProfile(): Profile;
+  /** Always starts blank — no Dex/collection/tag/progress data is copied from any other profile. Does not switch the current profile to the new one. */
+  createProfile(username: string, friendCode: string | null): Promise<Profile>;
+  /** Instant — no reload. Throws if profileId doesn't match any local profile. */
+  switchProfile(profileId: string): void;
+  /** Renames any local profile (not just the current one) — used by the Trainer page's per-row rename action. */
+  renameProfile(profileId: string, username: string, friendCode: string | null): Promise<void>;
+  /** Throws if profileId is the only remaining profile. If profileId is the current profile, automatically switches to another remaining profile first. */
+  deleteProfile(profileId: string): Promise<void>;
   getPlayerProgress(): PlayerProgressPersonal | undefined;
   setPlayerProgress(currentLevel: number | null, totalXp: number | null): void;
   /** Every past snapshot (see setPlayerProgress), oldest first — for an XP/level-over-time chart. */

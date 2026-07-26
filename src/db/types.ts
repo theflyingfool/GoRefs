@@ -341,6 +341,7 @@ export const FORM_PERSONAL_FIELD_COLUMNS: Record<FormPersonalBooleanField, strin
 
 export interface FormBackgroundPersonal {
   formSlug: string;
+  profileId: string;
   achievementField: FormPersonalBooleanField;
   backgroundSlug: string;
   /** When this link was added — the composite PK has no "value" to compare on merge (a row either exists or doesn't), so this is informational, not a merge tiebreaker. Epoch milliseconds, not an ISO string. */
@@ -358,7 +359,7 @@ export interface MegaPersonal {
 // ---- Local trainer profile (not an auth account — see schema.ts) ----
 
 export interface Profile {
-  id: number;
+  id: string;
   username: string;
   friendCode: string | null;
   createdAt: number;
@@ -373,7 +374,7 @@ export type PokemonInstanceStatus = "kept" | "traded" | "released" | "evolved";
 export interface PokemonInstance {
   id: number;
   formSlug: string;
-  profileId: number;
+  profileId: string;
   status: PokemonInstanceStatus;
   recordedAt: number;
   caughtAt: number | null;
@@ -405,7 +406,7 @@ export function computeIvPercent(ivAttack: number | null, ivDefense: number | nu
 
 export interface Tag {
   id: number;
-  profileId: number;
+  profileId: string;
   name: string;
 }
 
@@ -427,7 +428,7 @@ export interface PokemonInstanceMaxMove {
 }
 
 export interface PlayerProgressPersonal {
-  profileId: number;
+  profileId: string;
   currentLevel: number | null;
   totalXp: number | null;
   updatedAt: number;
@@ -438,7 +439,7 @@ export interface PlayerProgressPersonal {
 // each point it changed".
 export interface PlayerProgressLogEntry {
   id: number;
-  profileId: number;
+  profileId: string;
   recordedAt: number;
   currentLevel: number | null;
   totalXp: number | null;
@@ -450,7 +451,7 @@ export interface PlayerProgressLogEntry {
 // per medal per profile.
 export interface MedalProgressPersonal {
   medalSlug: string;
-  profileId: number;
+  profileId: string;
   currentRank: number;
   currentCount: number;
   updatedAt: number;
