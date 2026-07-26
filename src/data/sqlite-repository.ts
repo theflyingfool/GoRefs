@@ -38,6 +38,7 @@ import { resolveInstanceAchievementField } from "../db/cascades";
 import { applyDexAchievementBackfillIfNeeded, DEX_ACHIEVEMENT_BACKFILL_KEY } from "./dex-achievement-backfill";
 import { buildScalarUpdateStatement, buildTagDiffStatements, mergeUpdatedInstance } from "./pokemon-instance-update-sql";
 import { buildRenameTagStatement, buildDeleteTagStatements, computeTagUsageCounts } from "./tag-management-sql";
+import { buildProfileDeleteStatements } from "./profile-management-sql";
 import { syncReferenceData } from "../db/reference-sync";
 import { getCompletionStatsSql } from "./completion-stats-sql";
 import referenceDataJson from "./reference.json";
@@ -371,13 +372,6 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
         if (!inBulk) await persistDb();
       });
     },
-    onProfileChanged(profile) {
-      const inBulk = bulkDepth > 0;
-      enqueueWrite(async () => {
-        await db.run("UPDATE profile SET username = ?, friend_code = ? WHERE id = ?", [profile.username, profile.friendCode, profile.id], !inBulk);
-        if (!inBulk) await persistDb();
-      });
-    },
     onPokemonInstanceStatusChanged(instance) {
       const inBulk = bulkDepth > 0;
       enqueueWrite(async () => {
@@ -426,6 +420,159 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
     await runBulk(async () => {
       applyDexAchievementBackfillIfNeeded(state, repo);
     });
+  }
+
+  // ---- Profile CRUD (Sub-project 7a, Task 8) --------------------------------
+  // Not part of createInMemoryRepository's shared object (see its Omit<>). These
+  // operate on profileBuckets (the Map<profileId, PersonalState> loaded at boot)
+  // and on the single shared `state` object every other method in this file
+  // reads/writes. switchProfile is the load-bearing one: it reassigns every one
+  // of `state`'s fields to point at the target bucket's live objects (never
+  // clones them), so all existing closures that captured `state` keep working
+  // and instantly see the switched-to profile's data.
+  function listProfiles(): Profile[] {
+    return [...profileBuckets.values()].map((bucket) => bucket.profile);
+  }
+
+  function getCurrentProfile(): Profile {
+    return state.profile;
+  }
+
+  async function createProfile(username: string, friendCode: string | null): Promise<Profile> {
+    const newProfile: Profile = { id: crypto.randomUUID(), username, friendCode, createdAt: Date.now() };
+    // Structurally identical to a bucket loadOneProfileState would return for a
+    // brand-new (empty) profile — every collection is a FRESH literal (no alias
+    // to another profile's arrays/objects), playerProgress undefined, log empty.
+    const newBucket: PersonalState = {
+      speciesPersonal: {},
+      formPersonal: {},
+      appSettings: {},
+      megaPersonal: {},
+      formBackgroundPersonal: [],
+      medalProgress: {},
+      pokemonInstances: [],
+      tags: [],
+      pokemonInstanceTags: [],
+      playerProgress: undefined,
+      playerProgressLog: [],
+      profile: newProfile,
+    };
+    for (const [key, value] of Object.entries(DEFAULT_APP_SETTINGS)) {
+      newBucket.appSettings[key] = value;
+    }
+    // Route through the write queue (same idiom as createTag/deleteTag below) so
+    // the direct INSERT can never open its transaction on top of an in-flight
+    // queued toggle-write's own transaction ("transaction within a transaction").
+    // Profile row + its default app_settings land atomically in one transaction;
+    // the in-memory bucket is only registered after the write has flushed.
+    enqueueWrite(async () => {
+      await db.beginTransaction();
+      try {
+        await db.run("INSERT INTO profile (id, username, friend_code, is_current, created_at) VALUES (?, ?, ?, 0, ?)", [
+          newProfile.id,
+          newProfile.username,
+          newProfile.friendCode,
+          newProfile.createdAt,
+        ], false);
+        for (const [key, value] of Object.entries(DEFAULT_APP_SETTINGS)) {
+          const { sql, params } = buildAppSettingUpsert(newProfile.id, key, value);
+          await db.run(sql, params, false);
+        }
+        await db.commitTransaction();
+      } catch (err) {
+        await db.rollbackTransaction();
+        throw err;
+      }
+      await persistDb();
+    });
+    await writeQueue;
+    profileBuckets.set(newProfile.id, newBucket);
+    return newProfile;
+  }
+
+  function switchProfile(profileId: string): void {
+    const bucket = profileBuckets.get(profileId);
+    if (!bucket) throw new Error(`Unknown profile: ${profileId}`);
+    // Reassign EVERY field of PersonalState (keep this exhaustive against
+    // in-memory-store.ts's PersonalState interface — a missed field would leak
+    // the old profile's data into the new profile's view).
+    state.speciesPersonal = bucket.speciesPersonal;
+    state.formPersonal = bucket.formPersonal;
+    state.appSettings = bucket.appSettings;
+    state.megaPersonal = bucket.megaPersonal;
+    state.formBackgroundPersonal = bucket.formBackgroundPersonal;
+    state.medalProgress = bucket.medalProgress;
+    state.pokemonInstances = bucket.pokemonInstances;
+    state.tags = bucket.tags;
+    state.pokemonInstanceTags = bucket.pokemonInstanceTags;
+    state.playerProgress = bucket.playerProgress;
+    state.playerProgressLog = bucket.playerProgressLog;
+    state.profile = bucket.profile;
+    enqueueWrite(async () => {
+      await db.beginTransaction();
+      try {
+        await db.run("UPDATE profile SET is_current = 0 WHERE is_current = 1", [], false);
+        await db.run("UPDATE profile SET is_current = 1 WHERE id = ?", [profileId], false);
+        await db.commitTransaction();
+      } catch (err) {
+        await db.rollbackTransaction();
+        throw err;
+      }
+      await persistDb();
+    });
+  }
+
+  async function renameProfile(profileId: string, username: string, friendCode: string | null): Promise<void> {
+    const bucket = profileBuckets.get(profileId);
+    if (!bucket) throw new Error(`Unknown profile: ${profileId}`);
+    const updated: Profile = { ...bucket.profile, username, friendCode };
+    // Route through the write queue (same idiom as renameTag below) rather than
+    // a bare db.run, so it serializes behind any in-flight queued write instead
+    // of racing the shared connection. In-memory update lands after the flush.
+    enqueueWrite(async () => {
+      await db.run("UPDATE profile SET username = ?, friend_code = ? WHERE id = ?", [username, friendCode, profileId], true);
+      await persistDb();
+    });
+    await writeQueue;
+    bucket.profile = updated;
+    if (profileId === state.profile.id) state.profile = updated;
+  }
+
+  async function deleteProfile(profileId: string): Promise<void> {
+    if (profileBuckets.size <= 1) throw new Error("Cannot delete the only remaining profile.");
+    if (!profileBuckets.has(profileId)) throw new Error(`Unknown profile: ${profileId}`);
+    if (profileId === state.profile.id) {
+      // Switch away FIRST so `state` always points at a valid, non-deleted
+      // profile and "exactly one profile is current" holds continuously.
+      // switchProfile enqueues the is_current flip on the SAME write chain the
+      // cascade below is enqueued onto, so the flip commits before the cascade —
+      // no need for an intermediate `await writeQueue` here.
+      const anotherId = [...profileBuckets.keys()].find((id) => id !== profileId)!;
+      switchProfile(anotherId);
+    }
+    // Route the cascade through the write queue (same idiom as deleteTag below):
+    // enqueueing rather than calling beginTransaction directly guarantees no
+    // queued toggle-write can open its own transaction inside this one's window
+    // ("transaction within a transaction"). This is the correctness-critical
+    // file-deletion path — it must not race the shared connection.
+    enqueueWrite(async () => {
+      await db.beginTransaction();
+      try {
+        await db.run("PRAGMA defer_foreign_keys = true", [], false);
+        for (const { sql, params } of buildProfileDeleteStatements(profileId)) {
+          await db.run(sql, params, false);
+        }
+        await db.commitTransaction();
+      } catch (err) {
+        await db.rollbackTransaction();
+        throw err;
+      }
+      await persistDb();
+    });
+    await writeQueue;
+    // Mutate in-memory only after the cascade has flushed — on a rollback the
+    // bucket stays, matching the DB, instead of diverging from it.
+    profileBuckets.delete(profileId);
   }
 
   return {
@@ -660,5 +807,11 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
     listBackgrounds() {
       return referenceData.backgrounds.map((b) => ({ slug: b.slug, name: b.name }));
     },
+    listProfiles,
+    getCurrentProfile,
+    createProfile,
+    switchProfile,
+    renameProfile,
+    deleteProfile,
   };
 }
