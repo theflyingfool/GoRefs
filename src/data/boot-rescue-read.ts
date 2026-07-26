@@ -114,6 +114,7 @@ export async function readPersonalDataBestEffort(db: SQLiteDBConnection): Promis
       for (const row of (await db.query("SELECT * FROM form_background_personal")).values ?? []) {
         formBackgroundPersonal.push({
           formSlug: row.form_slug,
+          profileId: row.profile_id,
           achievementField: row.achievement_field,
           backgroundSlug: row.background_slug,
           updatedAt: row.updated_at ?? NEVER_UPDATED,
