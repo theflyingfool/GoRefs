@@ -68,9 +68,9 @@ function formPersonalValues(fp: FormPersonal): unknown[] {
   return values;
 }
 
-async function loadPersonalState(db: Awaited<ReturnType<typeof getDb>>): Promise<PersonalState> {
+async function loadOneProfileState(db: Awaited<ReturnType<typeof getDb>>, profileId: string): Promise<PersonalState> {
   const speciesPersonal: Record<string, SpeciesPersonal> = {};
-  for (const row of (await db.query("SELECT * FROM species_personal")).values ?? []) {
+  for (const row of (await db.query("SELECT * FROM species_personal WHERE profile_id = ?", [profileId])).values ?? []) {
     speciesPersonal[row.species_slug] = {
       speciesSlug: row.species_slug,
       registered: !!row.registered,
@@ -82,7 +82,7 @@ async function loadPersonalState(db: Awaited<ReturnType<typeof getDb>>): Promise
   }
 
   const formPersonal: Record<string, FormPersonal> = {};
-  for (const row of (await db.query("SELECT * FROM form_personal")).values ?? []) {
+  for (const row of (await db.query("SELECT * FROM form_personal WHERE profile_id = ?", [profileId])).values ?? []) {
     const fp = {
       formSlug: row.form_slug,
       bestShiny: row.best_shiny ?? null,
@@ -97,12 +97,12 @@ async function loadPersonalState(db: Awaited<ReturnType<typeof getDb>>): Promise
   }
 
   const appSettings: Record<string, string> = {};
-  for (const row of (await db.query("SELECT * FROM app_settings")).values ?? []) {
+  for (const row of (await db.query("SELECT * FROM app_settings WHERE profile_id = ?", [profileId])).values ?? []) {
     appSettings[row.key] = row.value;
   }
 
   const megaPersonal: Record<string, MegaPersonal> = {};
-  for (const row of (await db.query("SELECT * FROM mega_personal")).values ?? []) {
+  for (const row of (await db.query("SELECT * FROM mega_personal WHERE profile_id = ?", [profileId])).values ?? []) {
     megaPersonal[row.mega_variant_slug] = {
       megaVariantSlug: row.mega_variant_slug,
       evolved: !!row.evolved,
@@ -112,7 +112,7 @@ async function loadPersonalState(db: Awaited<ReturnType<typeof getDb>>): Promise
   }
 
   const formBackgroundPersonal: FormBackgroundPersonal[] = [];
-  for (const row of (await db.query("SELECT * FROM form_background_personal")).values ?? []) {
+  for (const row of (await db.query("SELECT * FROM form_background_personal WHERE profile_id = ?", [profileId])).values ?? []) {
     formBackgroundPersonal.push({
       formSlug: row.form_slug,
       achievementField: row.achievement_field,
@@ -122,7 +122,7 @@ async function loadPersonalState(db: Awaited<ReturnType<typeof getDb>>): Promise
   }
 
   const medalProgress: Record<string, MedalProgressPersonal> = {};
-  for (const row of (await db.query("SELECT * FROM medal_progress_personal")).values ?? []) {
+  for (const row of (await db.query("SELECT * FROM medal_progress_personal WHERE profile_id = ?", [profileId])).values ?? []) {
     medalProgress[row.medal_slug] = {
       medalSlug: row.medal_slug,
       profileId: row.profile_id,
@@ -133,7 +133,7 @@ async function loadPersonalState(db: Awaited<ReturnType<typeof getDb>>): Promise
   }
 
   const pokemonInstances: PokemonInstance[] = [];
-  for (const row of (await db.query("SELECT * FROM pokemon_instance")).values ?? []) {
+  for (const row of (await db.query("SELECT * FROM pokemon_instance WHERE profile_id = ?", [profileId])).values ?? []) {
     pokemonInstances.push({
       id: row.id,
       formSlug: row.form_slug,
@@ -161,17 +161,22 @@ async function loadPersonalState(db: Awaited<ReturnType<typeof getDb>>): Promise
   }
 
   const tags: Tag[] = [];
-  for (const row of (await db.query("SELECT * FROM tag")).values ?? []) {
+  for (const row of (await db.query("SELECT * FROM tag WHERE profile_id = ?", [profileId])).values ?? []) {
     tags.push({ id: row.id, profileId: row.profile_id, name: row.name });
   }
 
   const pokemonInstanceTags: PokemonInstanceTag[] = [];
-  for (const row of (await db.query("SELECT * FROM pokemon_instance_tag")).values ?? []) {
+  for (const row of (
+    await db.query(
+      "SELECT pit.* FROM pokemon_instance_tag pit JOIN pokemon_instance pi ON pi.id = pit.pokemon_instance_id WHERE pi.profile_id = ?",
+      [profileId],
+    )
+  ).values ?? []) {
     pokemonInstanceTags.push({ pokemonInstanceId: row.pokemon_instance_id, tagId: row.tag_id });
   }
 
   let playerProgress: PlayerProgressPersonal | undefined;
-  const playerProgressRow = (await db.query("SELECT * FROM player_progress_personal")).values?.[0];
+  const playerProgressRow = (await db.query("SELECT * FROM player_progress_personal WHERE profile_id = ?", [profileId])).values?.[0];
   if (playerProgressRow) {
     playerProgress = {
       profileId: playerProgressRow.profile_id,
@@ -182,7 +187,7 @@ async function loadPersonalState(db: Awaited<ReturnType<typeof getDb>>): Promise
   }
 
   const playerProgressLog: PlayerProgressLogEntry[] = [];
-  for (const row of (await db.query("SELECT * FROM player_progress_log ORDER BY recorded_at ASC")).values ?? []) {
+  for (const row of (await db.query("SELECT * FROM player_progress_log WHERE profile_id = ? ORDER BY recorded_at ASC", [profileId])).values ?? []) {
     playerProgressLog.push({
       id: row.id,
       profileId: row.profile_id,
@@ -196,7 +201,7 @@ async function loadPersonalState(db: Awaited<ReturnType<typeof getDb>>): Promise
   // guaranteed to be DEFAULT_PROFILE_ID on a device that's been upgraded
   // since before that constant existed, so every write site below reads
   // the real id from this row instead of assuming DEFAULT_PROFILE_ID.
-  const profileRow = (await db.query("SELECT * FROM profile")).values![0];
+  const profileRow = (await db.query("SELECT * FROM profile WHERE id = ?", [profileId])).values![0];
   const profile: Profile = {
     id: profileRow.id,
     username: profileRow.username,
@@ -220,20 +225,43 @@ async function loadPersonalState(db: Awaited<ReturnType<typeof getDb>>): Promise
   };
 }
 
+export async function loadAllProfiles(
+  db: Awaited<ReturnType<typeof getDb>>,
+): Promise<{ buckets: Map<string, PersonalState>; currentProfileId: string }> {
+  const profileRows = (await db.query("SELECT id, is_current FROM profile")).values ?? [];
+  const buckets = new Map<string, PersonalState>();
+  let currentProfileId: string | undefined;
+  for (const row of profileRows) {
+    const state = await loadOneProfileState(db, row.id as string);
+    buckets.set(row.id as string, state);
+    if (row.is_current) currentProfileId = row.id as string;
+  }
+  if (!currentProfileId) throw new Error("No profile has is_current set — this should be impossible after runPersonalMigrations.");
+  return { buckets, currentProfileId };
+}
+
 export async function createSqliteRepository(onWriteFailure?: (message: string, retry: () => Promise<void>) => void): Promise<Repository> {
   const db = await getDb();
   await runPersonalMigrations(db);
   await syncReferenceData(db, referenceData);
-  const state = await loadPersonalState(db);
+  const { buckets: profileBuckets, currentProfileId } = await loadAllProfiles(db);
+  const state = profileBuckets.get(currentProfileId)!;
 
-  // Backfill any app-setting defaults the DB doesn't have a value for yet —
-  // covers both a brand-new install (nothing set at all) and an existing
-  // install that predates a newly-added default key. Never overwrites a
-  // value the user (or a previous default) already set.
-  for (const [key, value] of Object.entries(DEFAULT_APP_SETTINGS)) {
-    if (state.appSettings[key] !== undefined) continue;
-    state.appSettings[key] = value;
-    await db.run("INSERT INTO app_settings (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value", [key, value]);
+  // Backfill any app-setting defaults a profile's row doesn't have a value
+  // for yet — covers a brand-new install (nothing set at all), an existing
+  // install that predates a newly-added default key, AND a freshly-created
+  // second profile (app_settings is per-profile now — Task 8 seeds these
+  // too at creation time, this loop is the boot-time safety net for
+  // whichever profile is current). Never overwrites a value already set.
+  for (const [profileId, bucket] of profileBuckets) {
+    for (const [key, value] of Object.entries(DEFAULT_APP_SETTINGS)) {
+      if (bucket.appSettings[key] !== undefined) continue;
+      bucket.appSettings[key] = value;
+      await db.run(
+        "INSERT INTO app_settings (profile_id, key, value) VALUES (?, ?, ?) ON CONFLICT(profile_id, key) DO UPDATE SET value = excluded.value",
+        [profileId, key, value],
+      );
+    }
   }
   await persistDb();
 
