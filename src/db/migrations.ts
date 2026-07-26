@@ -49,7 +49,7 @@
 // harmless.
 
 import type { SQLiteDBConnection } from "./sqlite-connection";
-import { DEFAULT_PROFILE_ID, DEFAULT_PROFILE_USERNAME } from "./schema";
+import { DEFAULT_PROFILE_USERNAME } from "./schema";
 import { MIGRATION_SQL_BY_TAG } from "./migrations-data";
 import journal from "./migrations/meta/_journal.json" with { type: "json" };
 
@@ -157,10 +157,58 @@ async function seedDefaultProfileIfMissing(db: SQLiteDBConnection): Promise<void
   const row = result.values?.[0] as { c: number } | undefined;
   if ((row?.c ?? 0) > 0) return;
   await db.run(
-    "INSERT INTO profile (id, username, friend_code, created_at) VALUES (?, ?, NULL, ?)",
-    [DEFAULT_PROFILE_ID, DEFAULT_PROFILE_USERNAME, Date.now()],
+    "INSERT INTO profile (id, username, friend_code, is_current, created_at) VALUES (?, ?, NULL, 1, ?)",
+    [crypto.randomUUID(), DEFAULT_PROFILE_USERNAME, Date.now()],
     false,
   );
+}
+
+// A pre-migration (schema v9 and earlier) device's profile.id was the plain
+// integer 1, carried across Task 1's table-rebuild as the TEXT value "1"
+// (SQLite's INSERT...SELECT just casts the old value, it doesn't know it
+// should be a UUID). Detect that shape and replace it, exactly once, with a
+// real UUID — everywhere it's referenced. There's exactly one profile row
+// at this point on every real device (multi-account didn't exist before
+// this migration), so every profile-scoped row gets rewritten
+// unconditionally to the one new id — no WHERE profile_id = 1 comparison,
+// which would be a TEXT-vs-INTEGER-literal footgun now that the column is
+// TEXT-typed.
+const PROFILE_SCOPED_TABLES = [
+  "species_personal",
+  "form_personal",
+  "form_background_personal",
+  "mega_personal",
+  "app_settings",
+  "pokemon_instance",
+  "tag",
+  "player_progress_personal",
+  "medal_progress_personal",
+  "player_progress_log",
+];
+
+async function randomizeLegacyProfileId(db: SQLiteDBConnection): Promise<void> {
+  const result = await db.query("SELECT id FROM profile LIMIT 1");
+  const row = result.values?.[0] as { id: string } | undefined;
+  if (!row || row.id !== "1") return; // already a real UUID, or no profile row yet (fresh install seeds one after this runs)
+
+  const newId = crypto.randomUUID();
+  await db.beginTransaction();
+  try {
+    // Defer FK enforcement to COMMIT: rewriting profile.id and every child
+    // table's profile_id column in either order momentarily breaks the FK
+    // (the parent row and the children can't both reference the same new id
+    // atomically without deferral) — see reference-sync.ts's identical use
+    // of this pragma for the same reason.
+    await db.run("PRAGMA defer_foreign_keys = true", [], false);
+    await db.run("UPDATE profile SET id = ?, is_current = 1 WHERE id = '1'", [newId], false);
+    for (const table of PROFILE_SCOPED_TABLES) {
+      await db.run(`UPDATE ${table} SET profile_id = ? WHERE profile_id = '1'`, [newId], false);
+    }
+    await db.commitTransaction();
+  } catch (err) {
+    await db.rollbackTransaction();
+    throw err;
+  }
 }
 
 async function assertNotADowngrade(db: SQLiteDBConnection): Promise<void> {
@@ -190,6 +238,7 @@ export async function runPersonalMigrations(db: SQLiteDBConnection): Promise<voi
   }
 
   await seedDefaultProfileIfMissing(db);
+  await randomizeLegacyProfileId(db);
 }
 
 // PRAGMA foreign_keys is a documented no-op when issued inside an active

@@ -249,8 +249,4 @@ CREATE TABLE IF NOT EXISTS community_day_event_move (
 // docs/superpowers/specs/2026-07-24-sub-project-5-collection-dex-tags-design.md.
 export const CURRENT_PERSONAL_SCHEMA_VERSION = 10;
 
-// id=1 is the implicit single profile every table's profile_id column
-// defaults to today — every fresh install and every migrated existing
-// install gets exactly this row, so that default is always valid.
-export const DEFAULT_PROFILE_ID = 1;
 export const DEFAULT_PROFILE_USERNAME = "Trainer";
