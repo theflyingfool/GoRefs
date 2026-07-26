@@ -29,6 +29,13 @@ db.exec("PRAGMA foreign_keys = ON;");
 db.exec(REFERENCE_SCHEMA_SQL);
 await runPersonalMigrations(nodeSqliteConnection(db));
 
+const seededProfile = db.prepare("SELECT id FROM profile").get() as { id: string };
+const DEMO_PROFILE_ID = seededProfile.id;
+
+function withDemoProfileId<T extends { profileId: string }>(rows: T[]): T[] {
+  return rows.map((row) => ({ ...row, profileId: DEMO_PROFILE_ID }));
+}
+
 const b = (value: boolean) => (value ? 1 : 0);
 
 function insertAll<T extends object>(table: string, columns: string[], rows: T[]) {
@@ -129,14 +136,15 @@ insertAll(
 
 insertAll(
   "app_settings",
-  ["key", "value"],
-  Object.entries(DEFAULT_APP_SETTINGS).map(([key, value]) => ({ key, value })),
+  ["profile_id", "key", "value"],
+  Object.entries(DEFAULT_APP_SETTINGS).map(([key, value]) => ({ profile_id: DEMO_PROFILE_ID, key, value })),
 );
 
 insertAll(
   "species_personal",
-  ["species_slug", "registered", "xxl", "xxs", "purified", "updated_at"],
-  speciesPersonal.map((sp) => ({
+  ["profile_id", "species_slug", "registered", "xxl", "xxs", "purified", "updated_at"],
+  withDemoProfileId(speciesPersonal).map((sp) => ({
+    profile_id: sp.profileId,
     species_slug: sp.speciesSlug,
     registered: b(sp.registered),
     xxl: b(sp.xxl),
@@ -150,9 +158,9 @@ const formPersonalBooleanColumns = FORM_PERSONAL_BOOLEAN_FIELDS.map((field) => F
 
 insertAll(
   "form_personal",
-  ["form_slug", ...formPersonalBooleanColumns, "best_shiny", "best_non_shiny", "best_lucky", "updated_at"],
-  formPersonal.map((fp) => {
-    const row: Record<string, unknown> = { form_slug: fp.formSlug };
+  ["profile_id", "form_slug", ...formPersonalBooleanColumns, "best_shiny", "best_non_shiny", "best_lucky", "updated_at"],
+  withDemoProfileId(formPersonal).map((fp) => {
+    const row: Record<string, unknown> = { profile_id: fp.profileId, form_slug: fp.formSlug };
     for (const field of FORM_PERSONAL_BOOLEAN_FIELDS) {
       row[FORM_PERSONAL_FIELD_COLUMNS[field]] = b(fp[field]);
     }
@@ -166,8 +174,9 @@ insertAll(
 
 insertAll(
   "form_background_personal",
-  ["form_slug", "achievement_field", "background_slug", "updated_at"],
-  formBackgroundPersonal.map((fb) => ({
+  ["profile_id", "form_slug", "achievement_field", "background_slug", "updated_at"],
+  withDemoProfileId(formBackgroundPersonal).map((fb) => ({
+    profile_id: fb.profileId,
     form_slug: fb.formSlug,
     achievement_field: FORM_PERSONAL_FIELD_COLUMNS[fb.achievementField],
     background_slug: fb.backgroundSlug,
@@ -177,8 +186,9 @@ insertAll(
 
 insertAll(
   "mega_personal",
-  ["mega_variant_slug", "evolved", "shiny_evolved", "updated_at"],
-  megaPersonal.map((mp) => ({
+  ["profile_id", "mega_variant_slug", "evolved", "shiny_evolved", "updated_at"],
+  withDemoProfileId(megaPersonal).map((mp) => ({
+    profile_id: mp.profileId,
     mega_variant_slug: mp.megaVariantSlug,
     evolved: b(mp.evolved),
     shiny_evolved: b(mp.shinyEvolved),
