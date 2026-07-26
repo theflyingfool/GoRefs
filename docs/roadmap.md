@@ -142,31 +142,69 @@ collection data) but still runs sequentially after it, not concurrently.
 
 ### Phase 2 — Multi-Account
 
-- **Local profile concept**: multiple GO accounts tracked in one app
-  instance, switchable, each with its own personal-data scope. Open decision:
-  one DB file with a `profile_id` column added to personal tables, vs.
-  multiple SQLite files (one per profile) — depends on how Phase 1's
-  timestamp/migration work shapes the personal tables.
-  - **Settings page**: add an Account/Username field identifying the current
-    profile, plus a dropdown to switch the active account. The switcher may
-    also make sense elsewhere (header, other pages) beyond Settings — not
-    decided yet.
+This phase was split into two sub-projects during the V2 consolidation
+brainstorm (`docs/superpowers/specs/2026-07-23-v2-consolidation-roadmap.md`'s
+Sub-project 7 split): **7a**, local multi-account only, and **7b**,
+cross-device comparison/merge. The single-DB-with-`profile_id` vs.
+multiple-files decision below was resolved in 7a's favor (single DB file,
+`profile_id` widened onto every personal table's PK, `profile.id` retyped to
+a UUID) — see
+`docs/superpowers/specs/2026-07-25-sub-project-7a-local-multi-account-design.md`
+and [data-model.md](data-model.md)'s migration `0004` writeup for the
+resulting schema.
+
+**Sub-project 7a (local multi-account: create/switch/rename/delete a
+profile, each with fully independent Dex/Collection/tags/progress) is
+complete.** Sub-project 7b (cross-device comparison/merge, stable
+`pokemon_instance`/`tag` identity) is next in sequence.
+
+Closing out both items carried forward from Sub-project 2 (originally
+tracked in `docs/superpowers/specs/2026-07-23-v2-consolidation-roadmap.md`'s
+"Carried forward from Sub-project 2" section) — both are now moot as of
+Sub-project 7a's migration:
+- **"Trainer-level FK fix needs live confirmation."** Resolved: the FK is
+  now genuinely enforced (`profile_id` columns carry a real
+  `REFERENCES profile(id)` constraint) and covered by a dedicated regression
+  test that inserts a row with a bad `profile_id` and asserts the FK rejects
+  it — a stronger confirmation than the originally-requested live device
+  check.
+- **"Possible latent `profile_id` mismatch on existing rows."** Resolved:
+  Sub-project 7a's migration unconditionally rewrites every pre-existing
+  row's `profile_id` to a freshly-generated real UUID, regardless of what
+  integer value it held before — there is no longer a by-value match that
+  could be wrong.
+
+Deferred items from Sub-project 7a's design doc (see that doc's "Out of
+scope / deferred" section), logged here per that doc's instruction:
+- **Copy/duplicate-an-existing-profile option** at profile-creation time —
+  new profiles always start blank today; a copy option was explicitly
+  deferred by the owner, to revisit after real-world use.
+- **Quick-switch UI outside the Trainer page** (e.g. a header/nav dropdown)
+  — switching lives on the Trainer page only for now; the header only got a
+  read-only current-trainer indicator. Deferred to revisit once the app has
+  been used for a while and it's clearer whether switching needs to be
+  available everywhere.
+
+Sub-project 7b's scope (not yet brainstormed):
+- **Sharing/comparison**: export a profile (or subset) to hand to a friend
+  for read-only completion/trade-gap comparison.
   - **Stats page**: add a "compare" section to select the current account
     plus one other account and view both side by side.
-- **Sharing/comparison**: export a profile (or subset) to hand to a friend
-  for read-only completion/trade-gap comparison. This is the scenario behind
-  the Stats-page compare view above, not a separate one-off import/export
-  flow.
+- **Stable identity for `pokemon_instance`/`tag`**: both currently stay local
+  `AUTOINCREMENT` integers (deliberately untouched by 7a); giving them a
+  stable, cross-device-meaningful identity is a prerequisite for real merge
+  semantics and is 7b's job.
 - Depends on Phase 0 (richer reference data may change what's worth
   comparing) and Phase 1 (timestamps needed for merge/diff logic) having
-  already landed.
+  already landed — both are done.
 
 ### Not yet committed
 
 - **Identity/slug rework** and **reference/personal DB file split** — see §4
-  V2 Watchlist below. Revisit once Phase 2's profile-storage decision
-  (single DB with `profile_id` vs. multiple files) is made, since they touch
-  the same schema surface.
+  V2 Watchlist below. Phase 2's profile-storage decision is now made (single
+  DB with `profile_id` widened onto every affected table's PK, per
+  Sub-project 7a) — these two items can be revisited against that resolved
+  schema, since they touch the same surface.
 - **Vue 3 (or similar) for the stats page** — worth considering once the
   Stats-page compare view above is built, not a requirement.
 
