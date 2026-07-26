@@ -34,9 +34,13 @@
 -- (4) app_settings.profile_id is also brand-new (old app_settings was
 -- (key, value) only), so the raw `SELECT ... profile_id ... FROM app_settings`
 -- drizzle-kit emitted raises "no such column: profile_id". Replaced with
--- `(SELECT id FROM profile LIMIT 1)` so every pre-existing global setting is
--- carried over onto the single existing profile (app_settings is rebuilt
--- before profile, so the old profile row is still present at that point).
+-- `(SELECT id FROM profile LIMIT 1)` so every pre-existing setting is carried
+-- over onto the single existing profile (app_settings is rebuilt before
+-- profile, so the old profile row is still present at that point). The
+-- reference_data_version key is excluded here (WHERE key != ...) because it
+-- moves to the global app_meta table instead -- keeping it out of the
+-- per-profile app_settings avoids a duplicate copy that would otherwise tag
+-- along on a future personal-data export.
 --
 -- Also fixed the multi-table PRAGMA-bracketing bug drizzle-kit hits on a
 -- >1-table rebuild (see 0000_baseline.sql): it emitted `foreign_keys=ON`
@@ -69,7 +73,7 @@ CREATE TABLE `__new_app_settings` (
 	PRIMARY KEY(`profile_id`, `key`)
 );
 --> statement-breakpoint
-INSERT INTO `__new_app_settings`("key", "profile_id", "value") SELECT "key", (SELECT id FROM profile LIMIT 1), "value" FROM `app_settings`;--> statement-breakpoint
+INSERT INTO `__new_app_settings`("key", "profile_id", "value") SELECT "key", (SELECT id FROM profile LIMIT 1), "value" FROM `app_settings` WHERE "key" != 'reference_data_version';--> statement-breakpoint
 INSERT INTO `app_meta` ("key", "value") SELECT "key", "value" FROM `app_settings` WHERE "key" = 'reference_data_version';--> statement-breakpoint
 DROP TABLE `app_settings`;--> statement-breakpoint
 ALTER TABLE `__new_app_settings` RENAME TO `app_settings`;--> statement-breakpoint

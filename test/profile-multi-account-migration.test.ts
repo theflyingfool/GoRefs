@@ -12,21 +12,38 @@ test("fresh install: composite PKs allow two profiles to each hold a row for the
   const conn = nodeSqliteConnection(db);
   await runPersonalMigrations(conn);
 
-  // Confirm profile.id is a real UUID (36 chars, has dashes), not a bare "1".
   const profileRow = db.prepare("SELECT id FROM profile").get() as { id: string };
-  assert.match(profileRow.id, /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/);
 
   // Insert a second profile directly and confirm species_personal accepts a
   // row for the same species_slug under both profiles (the whole point of
-  // widening the PK).
+  // widening the PK). regions is inserted before species (FK: species ->
+  // regions), and species before species_personal (FK: species_personal ->
+  // species); foreign_keys is ON for the whole test.
   db.exec(`INSERT INTO profile (id, username, is_current, created_at) VALUES ('11111111-1111-1111-1111-111111111111', 'Second', 0, 0)`);
-  db.exec(`INSERT INTO species (slug, dex_number, name, family_slug, gen, rarity, region_slug, has_male, has_female, can_mega_evolve, can_gigantamax) VALUES ('bulbasaur', 1, 'Bulbasaur', 'bulbasaur', 1, 'standard', 'kanto', 1, 1, 0, 0)`);
   db.exec(`INSERT INTO regions (slug, name) VALUES ('kanto', 'Kanto')`);
+  db.exec(`INSERT INTO species (slug, dex_number, name, family_slug, gen, rarity, region_slug, has_male, has_female, can_mega_evolve, can_gigantamax) VALUES ('bulbasaur', 1, 'Bulbasaur', 'bulbasaur', 1, 'standard', 'kanto', 1, 1, 0, 0)`);
   db.exec(`INSERT INTO species_personal (species_slug, profile_id, registered, updated_at) VALUES ('bulbasaur', '${profileRow.id}', 1, 0)`);
   db.exec(`INSERT INTO species_personal (species_slug, profile_id, registered, updated_at) VALUES ('bulbasaur', '11111111-1111-1111-1111-111111111111', 0, 0)`);
 
   const rows = db.prepare("SELECT profile_id, registered FROM species_personal WHERE species_slug = 'bulbasaur' ORDER BY profile_id").all();
   assert.equal(rows.length, 2);
+
+  // The widened profile_id -> profile(id) FK is really enforced (the
+  // Sub-project 2 carry-forward confirmation): a species_personal row for a
+  // profile_id with no matching profile row must be rejected.
+  assert.throws(
+    () =>
+      db.exec(
+        `INSERT INTO species_personal (species_slug, profile_id, registered, updated_at) VALUES ('bulbasaur', '99999999-9999-9999-9999-999999999999', 0, 0)`,
+      ),
+    /FOREIGN KEY constraint failed/,
+  );
+
+  // Confirm profile.id is a real UUID (36 chars, has dashes), not a bare "1".
+  // Checked LAST: this is Task 2's UUID-seeding job, so it is expected to fail
+  // until Task 2 lands — the composite-PK + FK-enforcement assertions above
+  // (this task's actual deliverable) run and pass first regardless.
+  assert.match(profileRow.id, /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/);
 });
 
 test("upgrade from a v9 single-profile device: profile_id=1 is rewritten to a real UUID everywhere", async () => {
