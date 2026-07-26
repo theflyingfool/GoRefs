@@ -29,23 +29,25 @@ test("logging a shiny catch flips form_personal.shiny and species_personal.regis
   db.exec("PRAGMA foreign_keys = OFF");
 
   db.prepare(
-    "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at, shiny) VALUES ('bulbasaur-standard', 1, 0, 0, 1)",
+    "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at, shiny) VALUES ('bulbasaur-standard', '1', 0, 0, 1)",
   ).run();
 
   // Simulates what Task 3's createPokemonInstances change does after insert:
   // resolve the field, then apply the same UPSERT shape sqlite-repository.ts's
-  // onFormPersonalChanged hook writes (see upsertFormPersonalSql()).
+  // onFormPersonalChanged hook writes (see buildFormPersonalUpsert() in
+  // src/data/profile-scoped-write-sql.ts) — composite PK (profile_id, form_slug)
+  // / (profile_id, species_slug) per Task 1's schema widening.
   db.prepare(
-    `INSERT INTO form_personal (form_slug, shiny, updated_at) VALUES ('bulbasaur-standard', 1, 1)
-     ON CONFLICT(form_slug) DO UPDATE SET shiny = 1, caught = 1, updated_at = 1`,
+    `INSERT INTO form_personal (form_slug, profile_id, shiny, updated_at) VALUES ('bulbasaur-standard', '1', 1, 1)
+     ON CONFLICT(profile_id, form_slug) DO UPDATE SET shiny = 1, caught = 1, updated_at = 1`,
   ).run();
   db.prepare(
-    `INSERT INTO form_personal (form_slug, caught, updated_at) VALUES ('bulbasaur-standard', 1, 1)
-     ON CONFLICT(form_slug) DO UPDATE SET caught = 1, updated_at = 1`,
+    `INSERT INTO form_personal (form_slug, profile_id, caught, updated_at) VALUES ('bulbasaur-standard', '1', 1, 1)
+     ON CONFLICT(profile_id, form_slug) DO UPDATE SET caught = 1, updated_at = 1`,
   ).run();
   db.prepare(
-    `INSERT INTO species_personal (species_slug, registered, updated_at) VALUES ('bulbasaur', 1, 1)
-     ON CONFLICT(species_slug) DO UPDATE SET registered = 1, updated_at = 1`,
+    `INSERT INTO species_personal (species_slug, profile_id, registered, updated_at) VALUES ('bulbasaur', '1', 1, 1)
+     ON CONFLICT(profile_id, species_slug) DO UPDATE SET registered = 1, updated_at = 1`,
   ).run();
 
   const form = db.prepare("SELECT shiny, caught FROM form_personal WHERE form_slug = 'bulbasaur-standard'").get() as {

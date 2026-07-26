@@ -32,6 +32,7 @@ import {
   computeIvPercent,
 } from "../db/types";
 import { getDb, persistDb } from "../db/sqlite-client";
+import { buildSpeciesPersonalUpsert, buildFormPersonalUpsert, buildMegaPersonalUpsert, buildAppSettingUpsert, buildFormBackgroundPersonalInsert } from "./profile-scoped-write-sql";
 import { runPersonalMigrations } from "../db/migrations";
 import { resolveInstanceAchievementField } from "../db/cascades";
 import { applyDexAchievementBackfillIfNeeded, DEX_ACHIEVEMENT_BACKFILL_KEY } from "./dex-achievement-backfill";
@@ -51,22 +52,6 @@ import {
 } from "./repository";
 
 const referenceData = referenceDataJson as unknown as ReferenceData;
-
-const FORM_PERSONAL_COLUMNS = [...FORM_PERSONAL_BOOLEAN_FIELDS.map((f) => FORM_PERSONAL_FIELD_COLUMNS[f]), "best_shiny", "best_non_shiny", "best_lucky", "updated_at"];
-
-function upsertFormPersonalSql(): string {
-  const columns = ["form_slug", ...FORM_PERSONAL_COLUMNS];
-  const placeholders = columns.map(() => "?").join(", ");
-  const updates = FORM_PERSONAL_COLUMNS.map((c) => `${c} = excluded.${c}`).join(", ");
-  return `INSERT INTO form_personal (${columns.join(", ")}) VALUES (${placeholders}) ON CONFLICT(form_slug) DO UPDATE SET ${updates}`;
-}
-
-function formPersonalValues(fp: FormPersonal): unknown[] {
-  const values: unknown[] = [fp.formSlug];
-  for (const field of FORM_PERSONAL_BOOLEAN_FIELDS) values.push(fp[field] ? 1 : 0);
-  values.push(fp.bestShiny, fp.bestNonShiny, fp.bestLucky, fp.updatedAt);
-  return values;
-}
 
 async function loadOneProfileState(db: Awaited<ReturnType<typeof getDb>>, profileId: string): Promise<PersonalState> {
   const speciesPersonal: Record<string, SpeciesPersonal> = {};
@@ -257,10 +242,8 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
     for (const [key, value] of Object.entries(DEFAULT_APP_SETTINGS)) {
       if (bucket.appSettings[key] !== undefined) continue;
       bucket.appSettings[key] = value;
-      await db.run(
-        "INSERT INTO app_settings (profile_id, key, value) VALUES (?, ?, ?) ON CONFLICT(profile_id, key) DO UPDATE SET value = excluded.value",
-        [profileId, key, value],
-      );
+      const { sql, params } = buildAppSettingUpsert(profileId, key, value);
+      await db.run(sql, params);
     }
   }
   await persistDb();
@@ -298,43 +281,37 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
   const repo = createInMemoryRepository(referenceData, state, {
     onSpeciesPersonalChanged(speciesSlug, personal) {
       const inBulk = bulkDepth > 0;
+      const profileId = state.profile.id;
       enqueueWrite(async () => {
-        await db.run(
-          `INSERT INTO species_personal (species_slug, registered, xxl, xxs, purified, updated_at) VALUES (?, ?, ?, ?, ?, ?)
-           ON CONFLICT(species_slug) DO UPDATE SET registered = excluded.registered, xxl = excluded.xxl, xxs = excluded.xxs, purified = excluded.purified, updated_at = excluded.updated_at`,
-          [speciesSlug, personal.registered ? 1 : 0, personal.xxl ? 1 : 0, personal.xxs ? 1 : 0, personal.purified ? 1 : 0, personal.updatedAt],
-          !inBulk,
-        );
+        const { sql, params } = buildSpeciesPersonalUpsert(profileId, speciesSlug, personal);
+        await db.run(sql, params, !inBulk);
         if (!inBulk) await persistDb();
       });
     },
     onFormPersonalChanged(_formSlug, personal) {
       const inBulk = bulkDepth > 0;
+      const profileId = state.profile.id;
       enqueueWrite(async () => {
-        await db.run(upsertFormPersonalSql(), formPersonalValues(personal), !inBulk);
+        const { sql, params } = buildFormPersonalUpsert(profileId, personal);
+        await db.run(sql, params, !inBulk);
         if (!inBulk) await persistDb();
       });
     },
     onAppSettingChanged(key, value) {
       const inBulk = bulkDepth > 0;
+      const profileId = state.profile.id;
       enqueueWrite(async () => {
-        await db.run(
-          "INSERT INTO app_settings (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value",
-          [key, value],
-          !inBulk,
-        );
+        const { sql, params } = buildAppSettingUpsert(profileId, key, value);
+        await db.run(sql, params, !inBulk);
         if (!inBulk) await persistDb();
       });
     },
     onMegaPersonalChanged(megaVariantSlug, personal) {
       const inBulk = bulkDepth > 0;
+      const profileId = state.profile.id;
       enqueueWrite(async () => {
-        await db.run(
-          `INSERT INTO mega_personal (mega_variant_slug, evolved, shiny_evolved, updated_at) VALUES (?, ?, ?, ?)
-           ON CONFLICT(mega_variant_slug) DO UPDATE SET evolved = excluded.evolved, shiny_evolved = excluded.shiny_evolved, updated_at = excluded.updated_at`,
-          [megaVariantSlug, personal.evolved ? 1 : 0, personal.shinyEvolved ? 1 : 0, personal.updatedAt],
-          !inBulk,
-        );
+        const { sql, params } = buildMegaPersonalUpsert(profileId, megaVariantSlug, personal);
+        await db.run(sql, params, !inBulk);
         if (!inBulk) await persistDb();
       });
     },
@@ -345,11 +322,8 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
     onFormBackgroundPersonalAdded(row) {
       const inBulk = bulkDepth > 0;
       enqueueWrite(async () => {
-        await db.run(
-          "INSERT OR IGNORE INTO form_background_personal (form_slug, achievement_field, background_slug, updated_at) VALUES (?, ?, ?, ?)",
-          [row.formSlug, row.achievementField, row.backgroundSlug, row.updatedAt],
-          !inBulk,
-        );
+        const { sql, params } = buildFormBackgroundPersonalInsert(row);
+        await db.run(sql, params, !inBulk);
         if (!inBulk) await persistDb();
       });
     },
