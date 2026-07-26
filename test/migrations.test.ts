@@ -40,8 +40,12 @@ test("runPersonalMigrations on a brand-new database creates every personal table
   // defaults to it or has a REFERENCES FK into it) has to come from app
   // code (see seedDefaultProfileIfMissing in migrations.ts). Asserted
   // directly here, not just indirectly via an FK failure elsewhere.
-  const profileRow = db.prepare("SELECT id, username FROM profile").get() as { id: number; username: string } | undefined;
-  assert.equal(profileRow?.id, 1, "expected the default profile row to be seeded on a fresh install");
+  const profileRow = db.prepare("SELECT id, username FROM profile").get() as { id: string; username: string } | undefined;
+  assert.match(
+    profileRow?.id ?? "",
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/,
+    "expected the default profile row to be seeded with a real UUID on a fresh install",
+  );
   assert.equal(profileRow?.username, "Trainer");
 });
 
