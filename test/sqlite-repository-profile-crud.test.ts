@@ -7,7 +7,7 @@ import { nodeSqliteConnection } from "./node-sqlite-connection";
 // together, at the level createSqliteRepository's own logic operates on —
 // not through the full Tauri-connected repository (not constructible under
 // node:test), but through the same functions it calls internally.
-import { loadAllProfiles } from "../src/data/sqlite-repository";
+import { createSqliteRepository, loadAllProfiles } from "../src/data/sqlite-repository";
 import { buildProfileDeleteStatements } from "../src/data/profile-management-sql";
 import { buildSpeciesPersonalUpsert } from "../src/data/profile-scoped-write-sql";
 import { runPersonalMigrations } from "../src/db/migrations";
@@ -54,4 +54,94 @@ test("deleting a profile removes exactly its own species_personal row", async ()
   const remaining = db.prepare("SELECT id FROM profile").all() as { id: string }[];
   assert.equal(remaining.length, 1);
   assert.equal(remaining[0].id, firstId);
+});
+
+// Regression test for the switchProfile aliasing bug: `state` was assigned the
+// boot bucket's OWN map entry (`profileBuckets.get(currentProfileId)!`), and
+// reassignStateToBucket mutates `state`'s fields in place — so the first switch
+// overwrote the map entry, corrupting the original profile's bucket. The fix is
+// a shallow copy so `state` is a distinct container. This test exercises the
+// REAL createSqliteRepository (via the node:sqlite test seam) through a full
+// switch round-trip, which is the only thing that reveals the aliasing. It fails
+// without the shallow-copy fix (round-trip reports the wrong profile, the
+// original's data is gone, and listProfiles returns duplicates).
+test("switching to another profile and back leaves the original profile's bucket and identity intact", async () => {
+  const db = new DatabaseSync(":memory:");
+  db.exec("PRAGMA foreign_keys = ON;");
+  db.exec(REFERENCE_SCHEMA_SQL);
+  const conn = nodeSqliteConnection(db);
+  const repo = await createSqliteRepository(undefined, conn);
+
+  const original = repo.getCurrentProfile();
+  // Put a concrete, checkable row on the original profile (bulbasaur exists in
+  // the bundled reference data that createSqliteRepository sync'd in).
+  repo.setSpeciesPersonalField("bulbasaur", "registered", true);
+  assert.equal(repo.getSpeciesWithForms("bulbasaur").personal.registered, true);
+
+  // Create + switch to a second, blank profile.
+  const second = await repo.createProfile("Second", null);
+  repo.switchProfile(second.id);
+  assert.equal(repo.getCurrentProfile().id, second.id);
+  // The second profile is genuinely blank — this also proves `state` now points
+  // at the second bucket's data, not a shared/aliased object.
+  assert.equal(repo.getSpeciesWithForms("bulbasaur").personal.registered, false);
+
+  // Switch back to the original. Without the fix, `profileBuckets.get(original)`
+  // had been corrupted to the second profile's data on the first switch.
+  repo.switchProfile(original.id);
+  assert.equal(repo.getCurrentProfile().id, original.id, "round-trip must restore the original profile's identity");
+  assert.equal(
+    repo.getSpeciesWithForms("bulbasaur").personal.registered,
+    true,
+    "the original profile's data must survive a switch round-trip",
+  );
+
+  // listProfiles must report both profiles as distinct identities, not two
+  // entries that collapsed onto the same (corrupted) bucket.
+  const profiles = repo.listProfiles();
+  assert.equal(profiles.length, 2);
+  const ids = profiles.map((p) => p.id);
+  assert.equal(new Set(ids).size, 2, "listProfiles must report two DISTINCT profiles");
+  assert.ok(ids.includes(original.id));
+  assert.ok(ids.includes(second.id));
+});
+
+// Exercises deleteProfile of the CURRENTLY-active profile through the real repo:
+// the auto-switch (reassignStateToBucket(survivor)) followed by
+// profileBuckets.delete(target). Under the aliasing bug `state` WAS the target's
+// map entry, so this path was doubly fragile; under the fix `state` is distinct,
+// so the delete removes the actual intended bucket and `state` cleanly repoints
+// at the survivor's live data.
+test("deleting the current profile auto-switches to the survivor with its data intact and leaves exactly one current", async () => {
+  const db = new DatabaseSync(":memory:");
+  db.exec("PRAGMA foreign_keys = ON;");
+  db.exec(REFERENCE_SCHEMA_SQL);
+  const conn = nodeSqliteConnection(db);
+  const repo = await createSqliteRepository(undefined, conn);
+
+  const original = repo.getCurrentProfile();
+  const survivor = await repo.createProfile("Survivor", null);
+  // Put a checkable row on the survivor so we can prove state repoints at ITS data.
+  repo.switchProfile(survivor.id);
+  repo.setSpeciesPersonalField("bulbasaur", "registered", true);
+  repo.switchProfile(original.id);
+
+  // Delete the current (original) profile.
+  await repo.deleteProfile(original.id);
+
+  // state auto-switched to the survivor, showing the survivor's real data.
+  assert.equal(repo.getCurrentProfile().id, survivor.id);
+  assert.equal(repo.getSpeciesWithForms("bulbasaur").personal.registered, true);
+
+  // The deleted profile is gone from the in-memory map and the DB.
+  const listed = repo.listProfiles();
+  assert.equal(listed.length, 1);
+  assert.equal(listed[0].id, survivor.id);
+  const dbProfiles = db.prepare("SELECT id, is_current FROM profile").all() as { id: string; is_current: number }[];
+  assert.equal(dbProfiles.length, 1);
+  assert.equal(dbProfiles[0].id, survivor.id);
+  // Exactly one profile is current in the DB, and it's the survivor.
+  const current = db.prepare("SELECT COUNT(*) as c FROM profile WHERE is_current = 1").get() as { c: number };
+  assert.equal(current.c, 1);
+  assert.equal((db.prepare("SELECT id FROM profile WHERE is_current = 1").get() as { id: string }).id, survivor.id);
 });

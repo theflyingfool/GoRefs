@@ -47,7 +47,7 @@ const referenceData: ReferenceData = {
   weatherBoosts: [],
   playerLevels: [],
   playerLevelRewards: [],
-  medals: [],
+  medals: [{ slug: "collector", name: "Collector", description: "Catch Pokemon.", isEventMedal: false }],
   medalTiers: [],
   friendshipLevels: [],
   pvpRankRewards: [],
@@ -202,6 +202,106 @@ test("import overwrites the local row when the imported one is newer", async () 
   // merged field-by-field — xxl reverts to false along with xxs flipping true).
   assert.equal(dest.getSpeciesWithForms("bulbasaur").personal.xxl, false);
   assert.equal(dest.getSpeciesWithForms("bulbasaur").personal.xxs, true);
+});
+
+test("import remaps formBackgroundPersonal rows to the importing device's current profile, not the exporting device's", async () => {
+  // Regression test for the Sub-project 7a whole-branch-review finding: the
+  // exported row's profileId is whatever profile was current on the
+  // EXPORTING device. form_background_personal.profile_id carries a
+  // REFERENCES profile(id) FK (migration 0004), so writing the imported
+  // profileId as-is on a different device would violate that FK (silently,
+  // via the write-queue's swallowed .catch) even though the in-memory push
+  // makes it look like it succeeded. importPersonalData must re-stamp every
+  // row with this device's own current profile, exactly like every other
+  // imported table does.
+  const destState = emptyState();
+  destState.profile = { id: "dest-profile", username: "Trainer", friendCode: null, createdAt: Date.now() };
+  const dest = createInMemoryRepository(referenceData, destState, noopHooks);
+
+  const result = await dest.importPersonalData({
+    exportedAt: new Date().toISOString(),
+    schemaVersion: 1,
+    speciesPersonal: {},
+    formPersonal: {},
+    appSettings: {},
+    formBackgroundPersonal: [
+      {
+        formSlug: "bulbasaur-standard",
+        profileId: "source-profile", // a different UUID from an exporting device
+        achievementField: "shiny",
+        backgroundSlug: "some-background",
+        updatedAt: Date.now(),
+      },
+    ],
+  });
+
+  assert.deepEqual(result, { skippedSpeciesSlugs: 0, skippedFormSlugs: 0 });
+  assert.equal(destState.formBackgroundPersonal.length, 1);
+  assert.equal(destState.formBackgroundPersonal[0].profileId, "dest-profile");
+  assert.notEqual(destState.formBackgroundPersonal[0].profileId, "source-profile");
+});
+
+test("import remaps medalProgress rows to the importing device's current profile, not the exporting device's", async () => {
+  // Same Sub-project 7a whole-branch-review finding as the formBackgroundPersonal
+  // test above: medal_progress_personal.profile_id also carries a
+  // REFERENCES profile(id) FK (migration 0004), and MedalProgressPersonal
+  // also carries its own profileId field, so the same unremapped-import bug
+  // applies here too.
+  const destState = emptyState();
+  destState.profile = { id: "dest-profile", username: "Trainer", friendCode: null, createdAt: Date.now() };
+  const dest = createInMemoryRepository(referenceData, destState, noopHooks);
+
+  await dest.importPersonalData({
+    exportedAt: new Date().toISOString(),
+    schemaVersion: 1,
+    speciesPersonal: {},
+    formPersonal: {},
+    appSettings: {},
+    medalProgress: {
+      collector: { medalSlug: "collector", profileId: "source-profile", currentRank: 2, currentCount: 50, updatedAt: Date.now() },
+    },
+  });
+
+  assert.equal(destState.medalProgress.collector.profileId, "dest-profile");
+  assert.notEqual(destState.medalProgress.collector.profileId, "source-profile");
+});
+
+test("import remaps playerProgress to the importing device's current profile, not the exporting device's", async () => {
+  const destState = emptyState();
+  destState.profile = { id: "dest-profile", username: "Trainer", friendCode: null, createdAt: Date.now() };
+  const dest = createInMemoryRepository(referenceData, destState, noopHooks);
+
+  await dest.importPersonalData({
+    exportedAt: new Date().toISOString(),
+    schemaVersion: 1,
+    speciesPersonal: {},
+    formPersonal: {},
+    appSettings: {},
+    playerProgress: { profileId: "source-profile", currentLevel: 40, totalXp: 1000000, updatedAt: Date.now() },
+  });
+
+  assert.ok(destState.playerProgress);
+  assert.equal(destState.playerProgress?.profileId, "dest-profile");
+  assert.notEqual(destState.playerProgress?.profileId, "source-profile");
+});
+
+test("import remaps playerProgressLog entries to the importing device's current profile, not the exporting device's", async () => {
+  const destState = emptyState();
+  destState.profile = { id: "dest-profile", username: "Trainer", friendCode: null, createdAt: Date.now() };
+  const dest = createInMemoryRepository(referenceData, destState, noopHooks);
+
+  await dest.importPersonalData({
+    exportedAt: new Date().toISOString(),
+    schemaVersion: 1,
+    speciesPersonal: {},
+    formPersonal: {},
+    appSettings: {},
+    playerProgressLog: [{ id: 1, profileId: "source-profile", recordedAt: Date.now(), currentLevel: 40, totalXp: 1000000 }],
+  });
+
+  assert.equal(destState.playerProgressLog.length, 1);
+  assert.equal(destState.playerProgressLog[0].profileId, "dest-profile");
+  assert.notEqual(destState.playerProgressLog[0].profileId, "source-profile");
 });
 
 test("import applies every app-setting key (reference_data_version is now device-level app_meta, never in personal data)", async () => {

@@ -662,12 +662,19 @@ export function createInMemoryRepository(
         if (!medalSlugs.has(slug)) continue;
         const local = state.medalProgress[slug];
         if (local && local.updatedAt >= progress.updatedAt) continue;
-        state.medalProgress[slug] = progress;
-        hooks.onMedalProgressChanged(slug, progress);
+        // progress.profileId is whatever profile was current on the
+        // EXPORTING device — meaningless (and FK-violating, migration 0004)
+        // on this device. Re-stamp with this device's current profile, same
+        // as every other imported table that carries its own profileId
+        // field (see formBackgroundPersonal below).
+        const remapped = { ...progress, profileId: state.profile.id };
+        state.medalProgress[slug] = remapped;
+        hooks.onMedalProgressChanged(slug, remapped);
       }
       if (data.playerProgress && (!state.playerProgress || state.playerProgress.updatedAt < data.playerProgress.updatedAt)) {
-        state.playerProgress = data.playerProgress;
-        hooks.onPlayerProgressChanged(data.playerProgress);
+        const remapped = { ...data.playerProgress, profileId: state.profile.id };
+        state.playerProgress = remapped;
+        hooks.onPlayerProgressChanged(remapped);
       }
       // Union, not newer-wins — every log row is its own historical fact,
       // there's nothing to overwrite. Deduped by recordedAt (see
@@ -675,8 +682,11 @@ export function createInMemoryRepository(
       const knownRecordedAts = new Set(state.playerProgressLog.map((e) => e.recordedAt));
       for (const entry of data.playerProgressLog ?? []) {
         if (knownRecordedAts.has(entry.recordedAt)) continue;
-        state.playerProgressLog.push(entry);
-        hooks.onPlayerProgressLogAppended(entry);
+        // Same re-stamp as medalProgress/playerProgress above — entry.profileId
+        // is the exporting device's profile, not this one's.
+        const remapped = { ...entry, profileId: state.profile.id };
+        state.playerProgressLog.push(remapped);
+        hooks.onPlayerProgressLogAppended(remapped);
       }
       // pokemonInstances/tags are exported for completeness (a rescue export
       // or backup shouldn't silently drop them) but NOT merge-imported here:
@@ -691,8 +701,16 @@ export function createInMemoryRepository(
           (b) => b.formSlug === row.formSlug && b.achievementField === row.achievementField && b.backgroundSlug === row.backgroundSlug,
         );
         if (alreadyPresent) continue;
-        state.formBackgroundPersonal.push(row);
-        hooks.onFormBackgroundPersonalAdded(row);
+        // row.profileId is whatever profile UUID was current on the
+        // EXPORTING device — meaningless (and FK-violating) on this device.
+        // Every other imported row is stamped with THIS device's current
+        // profile at the point of application (see the hooks above, which
+        // capture state.profile.id themselves); do the same here explicitly,
+        // since FormBackgroundPersonal already carries its own profileId
+        // field and the hook writes it as-is.
+        const remapped = { ...row, profileId: state.profile.id };
+        state.formBackgroundPersonal.push(remapped);
+        hooks.onFormBackgroundPersonalAdded(remapped);
       }
       for (const [key, value] of Object.entries(data.appSettings)) {
         setAppSetting(key, value);

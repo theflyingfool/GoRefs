@@ -227,12 +227,29 @@ export async function loadAllProfiles(
   return { buckets, currentProfileId };
 }
 
-export async function createSqliteRepository(onWriteFailure?: (message: string, retry: () => Promise<void>) => void): Promise<Repository> {
-  const db = await getDb();
+export async function createSqliteRepository(
+  onWriteFailure?: (message: string, retry: () => Promise<void>) => void,
+  // Test seam only: lets a unit test construct the FULL repository against a
+  // node:sqlite-backed connection (see test/node-sqlite-connection.ts) instead
+  // of the Tauri-only getDb(). Production callers (main.ts) never pass this, so
+  // behavior on-device is unchanged. Exists so switchProfile/profileBuckets
+  // round-trips can be exercised through the real code path in a test.
+  dbOverride?: Awaited<ReturnType<typeof getDb>>,
+): Promise<Repository> {
+  const db = dbOverride ?? (await getDb());
   await runPersonalMigrations(db);
   await syncReferenceData(db, referenceData);
   const { buckets: profileBuckets, currentProfileId } = await loadAllProfiles(db);
-  const state = profileBuckets.get(currentProfileId)!;
+  // SHALLOW COPY — critical. `state` must be its own stable container, NOT the
+  // map's own bucket object. switchProfile()/reassignStateToBucket() mutate
+  // `state`'s fields in place (every closure in this file captured `state` by
+  // reference); if `state` WERE the boot bucket's map entry, the first switch
+  // would overwrite that entry's fields to point at the target profile's data,
+  // silently corrupting the map (profile A's bucket would vanish, replaced by
+  // B's data — then editing "A" would write to B's rows on disk, permanently).
+  // The spread makes `state` distinct while its field pointers still alias the
+  // boot bucket's objects, so pre-switch edits stay in sync with that bucket.
+  const state: PersonalState = { ...profileBuckets.get(currentProfileId)! };
 
   // Backfill any app-setting defaults a profile's row doesn't have a value
   // for yet — covers a brand-new install (nothing set at all), an existing
