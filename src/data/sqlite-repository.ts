@@ -437,7 +437,7 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
     // read a connection that's still mid-write.
     async getCompletionStats(scope, lenses) {
       await writeQueue;
-      return getCompletionStatsSql(db, scope, lenses, state.appSettings[EXCLUDE_REGIONAL_SETTING_KEY] === "1");
+      return getCompletionStatsSql(db, state.profile.id, scope, lenses, state.appSettings[EXCLUDE_REGIONAL_SETTING_KEY] === "1");
     },
     // Overrides the in-memory-store default to (a) run the whole merge as
     // one SQL transaction via runBulk, so a failure partway through can't

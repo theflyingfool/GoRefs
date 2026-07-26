@@ -43,19 +43,19 @@ function toMissing(rows: { slug: string; name: string; dexNumber: number }[]): C
   return rows.map((r) => ({ slug: r.slug, name: r.name, dexNumber: r.dexNumber }));
 }
 
-async function registeredLens(db: DrizzleDb, scope: CompletionScope): Promise<Omit<CompletionLensResult, "lens">> {
+async function registeredLens(db: DrizzleDb, profileId: string, scope: CompletionScope): Promise<Omit<CompletionLensResult, "lens">> {
   const scopeCond = scopeCondition(scope);
   const total = await countSpecies(db, scopeCond);
   const missingRows = await db
     .select({ slug: species.slug, name: species.name, dexNumber: species.dexNumber })
     .from(species)
-    .leftJoin(speciesPersonal, eq(speciesPersonal.speciesSlug, species.slug))
+    .leftJoin(speciesPersonal, and(eq(speciesPersonal.speciesSlug, species.slug), eq(speciesPersonal.profileId, profileId)))
     .where(and(scopeCond, or(isNull(speciesPersonal.registered), eq(speciesPersonal.registered, false))));
   const missingSpecies = toMissing(missingRows);
   return { total, complete: total - missingSpecies.length, missingSpecies };
 }
 
-async function formCompleteLens(db: DrizzleDb, scope: CompletionScope, excludeRegional: boolean): Promise<Omit<CompletionLensResult, "lens">> {
+async function formCompleteLens(db: DrizzleDb, profileId: string, scope: CompletionScope, excludeRegional: boolean): Promise<Omit<CompletionLensResult, "lens">> {
   const scopeCond = scopeCondition(scope);
   const total = await countSpecies(db, scopeCond);
   const innerConditions = [eq(form.speciesSlug, species.slug), isNull(form.costumeName), notGigantamax(form.formName)];
@@ -72,7 +72,7 @@ async function formCompleteLens(db: DrizzleDb, scope: CompletionScope, excludeRe
           db
             .select({ one: sql`1` })
             .from(form)
-            .leftJoin(formPersonal, eq(formPersonal.formSlug, form.slug))
+            .leftJoin(formPersonal, and(eq(formPersonal.formSlug, form.slug), eq(formPersonal.profileId, profileId)))
             .where(and(...innerConditions)),
         ),
       ),
@@ -81,7 +81,7 @@ async function formCompleteLens(db: DrizzleDb, scope: CompletionScope, excludeRe
   return { total, complete: total - missingSpecies.length, missingSpecies };
 }
 
-async function gigantamaxCompleteLens(db: DrizzleDb, scope: CompletionScope): Promise<Omit<CompletionLensResult, "lens">> {
+async function gigantamaxCompleteLens(db: DrizzleDb, profileId: string, scope: CompletionScope): Promise<Omit<CompletionLensResult, "lens">> {
   const scopeCond = scopeCondition(scope);
   const totalRows = await db
     .select({ c: sql<number>`count(distinct ${species.slug})` })
@@ -102,7 +102,7 @@ async function gigantamaxCompleteLens(db: DrizzleDb, scope: CompletionScope): Pr
           db
             .select({ one: sql`1` })
             .from(form)
-            .leftJoin(formPersonal, eq(formPersonal.formSlug, form.slug))
+            .leftJoin(formPersonal, and(eq(formPersonal.formSlug, form.slug), eq(formPersonal.profileId, profileId)))
             .where(and(eq(form.speciesSlug, species.slug), sql`not (${notGigantamax(form.formName)})`, or(isNull(formPersonal.caught), eq(formPersonal.caught, false)))),
         ),
       ),
@@ -111,7 +111,7 @@ async function gigantamaxCompleteLens(db: DrizzleDb, scope: CompletionScope): Pr
   return { total, complete: total - missingSpecies.length, missingSpecies };
 }
 
-async function costumeCompleteLens(db: DrizzleDb, scope: CompletionScope): Promise<Omit<CompletionLensResult, "lens">> {
+async function costumeCompleteLens(db: DrizzleDb, profileId: string, scope: CompletionScope): Promise<Omit<CompletionLensResult, "lens">> {
   const scopeCond = scopeCondition(scope);
   const totalRows = await db
     .select({ c: sql<number>`count(distinct ${species.slug})` })
@@ -132,7 +132,7 @@ async function costumeCompleteLens(db: DrizzleDb, scope: CompletionScope): Promi
           db
             .select({ one: sql`1` })
             .from(form)
-            .leftJoin(formPersonal, eq(formPersonal.formSlug, form.slug))
+            .leftJoin(formPersonal, and(eq(formPersonal.formSlug, form.slug), eq(formPersonal.profileId, profileId)))
             .where(and(eq(form.speciesSlug, species.slug), sql`${form.costumeName} is not null`, or(isNull(formPersonal.caught), eq(formPersonal.caught, false)))),
         ),
       ),
@@ -141,7 +141,7 @@ async function costumeCompleteLens(db: DrizzleDb, scope: CompletionScope): Promi
   return { total, complete: total - missingSpecies.length, missingSpecies };
 }
 
-async function megaCompleteLens(db: DrizzleDb, scope: CompletionScope, shiny: boolean): Promise<Omit<CompletionLensResult, "lens">> {
+async function megaCompleteLens(db: DrizzleDb, profileId: string, scope: CompletionScope, shiny: boolean): Promise<Omit<CompletionLensResult, "lens">> {
   const column = shiny ? megaPersonal.shinyEvolved : megaPersonal.evolved;
   const scopeCond = scopeCondition(scope);
   const totalRows = await db
@@ -162,7 +162,7 @@ async function megaCompleteLens(db: DrizzleDb, scope: CompletionScope, shiny: bo
           db
             .select({ one: sql`1` })
             .from(megaVariant)
-            .leftJoin(megaPersonal, eq(megaPersonal.megaVariantSlug, megaVariant.slug))
+            .leftJoin(megaPersonal, and(eq(megaPersonal.megaVariantSlug, megaVariant.slug), eq(megaPersonal.profileId, profileId)))
             .where(and(eq(megaVariant.speciesSlug, species.slug), or(isNull(column), eq(column, false)))),
         ),
       ),
@@ -171,7 +171,7 @@ async function megaCompleteLens(db: DrizzleDb, scope: CompletionScope, shiny: bo
   return { total, complete: total - missingSpecies.length, missingSpecies };
 }
 
-async function achievementLens(db: DrizzleDb, scope: CompletionScope, field: FormPersonalBooleanField): Promise<Omit<CompletionLensResult, "lens">> {
+async function achievementLens(db: DrizzleDb, profileId: string, scope: CompletionScope, field: FormPersonalBooleanField): Promise<Omit<CompletionLensResult, "lens">> {
   if (!FORM_PERSONAL_BOOLEAN_FIELDS.includes(field)) throw new Error(`Unknown achievement field: ${field}`);
   const column = formPersonal[field as keyof typeof formPersonal] as typeof formPersonal.caught;
   void FORM_PERSONAL_FIELD_COLUMNS; // column resolved via the typed table object directly, not a snake_case string
@@ -188,7 +188,7 @@ async function achievementLens(db: DrizzleDb, scope: CompletionScope, field: For
           db
             .select({ one: sql`1` })
             .from(form)
-            .innerJoin(formPersonal, eq(formPersonal.formSlug, form.slug))
+            .innerJoin(formPersonal, and(eq(formPersonal.formSlug, form.slug), eq(formPersonal.profileId, profileId)))
             .where(and(eq(form.speciesSlug, species.slug), eq(column, true))),
         ),
       ),
@@ -199,6 +199,7 @@ async function achievementLens(db: DrizzleDb, scope: CompletionScope, field: For
 
 export async function getCompletionStatsSql(
   conn: SQLiteDBConnection,
+  profileId: string,
   scope: CompletionScope,
   lenses: CompletionLens[],
   excludeRegionalFromFormComplete: boolean,
@@ -208,18 +209,18 @@ export async function getCompletionStatsSql(
   for (const lens of lenses) {
     const partial =
       lens.kind === "registered"
-        ? await registeredLens(db, scope)
+        ? await registeredLens(db, profileId, scope)
         : lens.kind === "formComplete"
-          ? await formCompleteLens(db, scope, excludeRegionalFromFormComplete)
+          ? await formCompleteLens(db, profileId, scope, excludeRegionalFromFormComplete)
           : lens.kind === "costumeComplete"
-            ? await costumeCompleteLens(db, scope)
+            ? await costumeCompleteLens(db, profileId, scope)
             : lens.kind === "gigantamaxComplete"
-              ? await gigantamaxCompleteLens(db, scope)
+              ? await gigantamaxCompleteLens(db, profileId, scope)
               : lens.kind === "megaComplete"
-                ? await megaCompleteLens(db, scope, false)
+                ? await megaCompleteLens(db, profileId, scope, false)
                 : lens.kind === "megaShinyComplete"
-                  ? await megaCompleteLens(db, scope, true)
-                  : await achievementLens(db, scope, lens.field);
+                  ? await megaCompleteLens(db, profileId, scope, true)
+                  : await achievementLens(db, profileId, scope, lens.field);
     results.push({ lens, ...partial });
   }
   return results;
