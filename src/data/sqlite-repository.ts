@@ -100,6 +100,7 @@ async function loadOneProfileState(db: Awaited<ReturnType<typeof getDb>>, profil
   for (const row of (await db.query("SELECT * FROM form_background_personal WHERE profile_id = ?", [profileId])).values ?? []) {
     formBackgroundPersonal.push({
       formSlug: row.form_slug,
+      profileId: row.profile_id,
       achievementField: row.achievement_field,
       backgroundSlug: row.background_slug,
       updatedAt: row.updated_at,
