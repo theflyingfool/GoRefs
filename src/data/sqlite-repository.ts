@@ -392,6 +392,19 @@ export async function createSqliteRepository(
     },
     onPlayerProgressChanged(progress) {
       const inBulk = bulkDepth > 0;
+      // Keep the profile's bucket in sync with `state`. Unlike every other
+      // PersonalState field (collections mutated IN PLACE, so `state` and the
+      // bucket share the same inner object even after the shallow-copy of
+      // `state` at construction), playerProgress is a single value that
+      // applyPlayerProgress/import REASSIGN wholesale on `state` only — the
+      // bucket's own field would otherwise stay stale, and switching away and
+      // back would revert the in-memory Stats display to the pre-edit value
+      // (DB is already correct; this is purely in-memory coherence). Writing it
+      // back here covers both call sites, which both fire this hook right after
+      // reassigning state.playerProgress. progress.profileId is the current,
+      // live profile (captured synchronously at edit time), so it's always in
+      // the map.
+      profileBuckets.get(progress.profileId)!.playerProgress = progress;
       enqueueWrite(async () => {
         await db.run(
           `INSERT INTO player_progress_personal (profile_id, current_level, total_xp, updated_at) VALUES (?, ?, ?, ?)

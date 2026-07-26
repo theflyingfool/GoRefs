@@ -145,3 +145,31 @@ test("deleting the current profile auto-switches to the survivor with its data i
   assert.equal(current.c, 1);
   assert.equal((db.prepare("SELECT id FROM profile WHERE is_current = 1").get() as { id: string }).id, survivor.id);
 });
+
+// Regression test for the playerProgress in-memory-coherence gap: playerProgress
+// is a single value REASSIGNED wholesale on `state` (not mutated in place like
+// the collections), so after the shallow-copy of `state`, the profile's bucket
+// in profileBuckets kept a stale playerProgress unless onPlayerProgressChanged
+// wrote the new value back. Symptom: edit level on A, switch to B, switch back
+// to A -> the in-memory Stats display silently reverts to A's pre-edit value
+// (the DB is correct; this is display staleness). Fails without the write-back.
+test("player progress set on a profile survives a switch away and back", async () => {
+  const db = new DatabaseSync(":memory:");
+  db.exec("PRAGMA foreign_keys = ON;");
+  db.exec(REFERENCE_SCHEMA_SQL);
+  const conn = nodeSqliteConnection(db);
+  const repo = await createSqliteRepository(undefined, conn);
+
+  const original = repo.getCurrentProfile();
+  repo.setPlayerProgress(42, 123456);
+  assert.equal(repo.getPlayerProgress()?.currentLevel, 42);
+  assert.equal(repo.getPlayerProgress()?.totalXp, 123456);
+
+  const second = await repo.createProfile("Second", null);
+  repo.switchProfile(second.id);
+  assert.equal(repo.getPlayerProgress(), undefined); // freshly-created profile is blank
+
+  repo.switchProfile(original.id);
+  assert.equal(repo.getPlayerProgress()?.currentLevel, 42, "player level set on A must survive a switch round-trip");
+  assert.equal(repo.getPlayerProgress()?.totalXp, 123456, "player XP set on A must survive a switch round-trip");
+});
