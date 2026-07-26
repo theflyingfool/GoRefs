@@ -69,12 +69,15 @@ test("bootstrapping a real v6 device preserves every existing row and correctly 
   assert.equal(instanceRow.caughtAt?.getTime(), new Date("2026-06-14T18:00:00.000Z").getTime());
   assert.equal(instanceRow.recordedAt.getTime(), new Date("2026-06-15T10:31:00.000Z").getTime());
 
-  const [profileRow] = await drizzleDb.select().from(profile).where(eq(profile.id, 1));
+  // profile.id is TEXT as of migration 0004 (multi-account): the rebuild
+  // carries the old integer id=1 across into the TEXT column as "1". The
+  // UUID rewrite of this value is Sub-project 7a Task 2, not this migration.
+  const [profileRow] = await drizzleDb.select().from(profile).where(eq(profile.id, "1"));
   assert.equal(profileRow.createdAt.getTime(), new Date("2026-01-01T00:00:00.000Z").getTime());
 
-  // Drizzle's tracking table reflects all four migrations applied (0000's bootstrap row, 0001, 0002, and 0003 applied normally).
+  // Drizzle's tracking table reflects all five migrations applied (0000's bootstrap row, then 0001, 0002, 0003, and 0004 applied normally).
   const migrationRows = db.prepare("SELECT COUNT(*) as c FROM __drizzle_migrations").get() as { c: number };
-  assert.equal(migrationRows.c, 4);
+  assert.equal(migrationRows.c, 5);
 
   // A new row's id doesn't collide with any id that survived the rebuild. Note this doesn't prove
   // AUTOINCREMENT's sequence high-water mark survives a rebuild in general — with a single
@@ -131,7 +134,7 @@ test("bootstrapping a real v5 device (missing player_progress_log) does not cras
   assert.deepEqual(afterSpecies, { species_slug: "bulbasaur", registered: 1, xxl: 1 });
 
   const migrationRows = db.prepare("SELECT COUNT(*) as c FROM __drizzle_migrations").get() as { c: number };
-  assert.equal(migrationRows.c, 4);
+  assert.equal(migrationRows.c, 5);
 });
 
 // A prior review flagged a schema-parity gap: the old hand-rolled migration

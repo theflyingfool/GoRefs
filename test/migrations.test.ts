@@ -48,13 +48,14 @@ test("runPersonalMigrations on a brand-new database creates every personal table
 test("runPersonalMigrations is a no-op replay for a device already at the current migration", async () => {
   const db = freshDb();
   await runPersonalMigrations(nodeSqliteConnection(db));
-  // A fresh install applies all four migrations (0000, then 0001's
-  // timestamp rebuild, 0002's iv_percent generated-column rebuild, and
-  // 0003's dynamax/received_via_trade rebuild — all no-ops over the empty
-  // tables 0000 just created) — expect 4 rows, not 1. Adjust this count if
-  // a later task adds migration 0004+.
+  // A fresh install applies all five migrations (0000, then 0001's
+  // timestamp rebuild, 0002's iv_percent generated-column rebuild, 0003's
+  // dynamax/received_via_trade rebuild, and 0004's multi-account PK-widen +
+  // profile_id-retype rebuild — all no-ops over the empty tables 0000 just
+  // created) — expect 5 rows, not 1. Adjust this count if a later task adds
+  // migration 0005+.
   const countAfterFirst = (db.prepare("SELECT COUNT(*) as c FROM __drizzle_migrations").get() as { c: number }).c;
-  assert.equal(countAfterFirst, 4);
+  assert.equal(countAfterFirst, 5);
 
   await runPersonalMigrations(nodeSqliteConnection(db));
   const countAfterSecond = (db.prepare("SELECT COUNT(*) as c FROM __drizzle_migrations").get() as { c: number }).c;

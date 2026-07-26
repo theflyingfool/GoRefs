@@ -247,7 +247,7 @@ CREATE TABLE IF NOT EXISTS community_day_event_move (
 // achievement -- same relationship shiny already has to form_personal.shiny)
 // and received_via_trade (this specimen's origin). See
 // docs/superpowers/specs/2026-07-24-sub-project-5-collection-dex-tags-design.md.
-export const CURRENT_PERSONAL_SCHEMA_VERSION = 9;
+export const CURRENT_PERSONAL_SCHEMA_VERSION = 10;
 
 // id=1 is the implicit single profile every table's profile_id column
 // defaults to today — every fresh install and every migrated existing

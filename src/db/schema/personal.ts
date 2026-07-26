@@ -25,37 +25,48 @@ function boolChecks(tableName: string, columns: Record<string, AnySQLiteColumn>)
   );
 }
 
-export const appSettings = sqliteTable("app_settings", {
-  key: text("key").primaryKey(),
-  value: text("value").notNull(),
-});
+export const appSettings = sqliteTable(
+  "app_settings",
+  {
+    key: text("key").notNull(),
+    profileId: text("profile_id").notNull(),
+    value: text("value").notNull(),
+  },
+  (table) => ({
+    pk: primaryKey({ columns: [table.profileId, table.key] }),
+  }),
+);
 
 export const profile = sqliteTable("profile", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
+  id: text("id").primaryKey(),
   username: text("username").notNull(),
   friendCode: text("friend_code"),
+  isCurrent: integer("is_current", { mode: "boolean" }).notNull().default(false),
   createdAt: integer("created_at", { mode: "timestamp_ms" }).notNull(),
 });
 
 export const speciesPersonal = sqliteTable(
   "species_personal",
   {
-    speciesSlug: text("species_slug").primaryKey(),
-    profileId: integer("profile_id").notNull().default(1),
+    speciesSlug: text("species_slug").notNull(),
+    profileId: text("profile_id").notNull(),
     registered: integer("registered", { mode: "boolean" }).notNull().default(false),
     xxl: integer("xxl", { mode: "boolean" }).notNull().default(false),
     xxs: integer("xxs", { mode: "boolean" }).notNull().default(false),
     purified: integer("purified", { mode: "boolean" }).notNull().default(false),
     updatedAt: integer("updated_at", { mode: "timestamp_ms" }).notNull().default(sql`0`),
   },
-  (table) => boolChecks("species_personal", { registered: table.registered, xxl: table.xxl, xxs: table.xxs, purified: table.purified }),
+  (table) => ({
+    pk: primaryKey({ columns: [table.profileId, table.speciesSlug] }),
+    ...boolChecks("species_personal", { registered: table.registered, xxl: table.xxl, xxs: table.xxs, purified: table.purified }),
+  }),
 );
 
 export const formPersonal = sqliteTable(
   "form_personal",
   {
-    formSlug: text("form_slug").primaryKey(),
-    profileId: integer("profile_id").notNull().default(1),
+    formSlug: text("form_slug").notNull(),
+    profileId: text("profile_id").notNull(),
 
     caught: integer("caught", { mode: "boolean" }).notNull().default(false),
     shiny: integer("shiny", { mode: "boolean" }).notNull().default(false),
@@ -93,8 +104,9 @@ export const formPersonal = sqliteTable(
 
     updatedAt: integer("updated_at", { mode: "timestamp_ms" }).notNull().default(sql`0`),
   },
-  (table) =>
-    boolChecks("form_personal", {
+  (table) => ({
+    pk: primaryKey({ columns: [table.profileId, table.formSlug] }),
+    ...boolChecks("form_personal", {
       caught: table.caught,
       shiny: table.shiny,
       floor: table.floor,
@@ -121,32 +133,36 @@ export const formPersonal = sqliteTable(
       luckyDynamaxFourStar: table.luckyDynamaxFourStar,
       luckyDynamaxShundo: table.luckyDynamaxShundo,
     }),
+  }),
 );
 
 export const formBackgroundPersonal = sqliteTable(
   "form_background_personal",
   {
     formSlug: text("form_slug").notNull(),
-    profileId: integer("profile_id").notNull().default(1),
+    profileId: text("profile_id").notNull(),
     achievementField: text("achievement_field").notNull(),
     backgroundSlug: text("background_slug").notNull(),
     updatedAt: integer("updated_at", { mode: "timestamp_ms" }).notNull().default(sql`0`),
   },
   (table) => ({
-    pk: primaryKey({ columns: [table.formSlug, table.achievementField, table.backgroundSlug] }),
+    pk: primaryKey({ columns: [table.profileId, table.formSlug, table.achievementField, table.backgroundSlug] }),
   }),
 );
 
 export const megaPersonal = sqliteTable(
   "mega_personal",
   {
-    megaVariantSlug: text("mega_variant_slug").primaryKey(),
-    profileId: integer("profile_id").notNull().default(1),
+    megaVariantSlug: text("mega_variant_slug").notNull(),
+    profileId: text("profile_id").notNull(),
     evolved: integer("evolved", { mode: "boolean" }).notNull().default(false),
     shinyEvolved: integer("shiny_evolved", { mode: "boolean" }).notNull().default(false),
     updatedAt: integer("updated_at", { mode: "timestamp_ms" }).notNull().default(sql`0`),
   },
-  (table) => boolChecks("mega_personal", { evolved: table.evolved, shinyEvolved: table.shinyEvolved }),
+  (table) => ({
+    pk: primaryKey({ columns: [table.profileId, table.megaVariantSlug] }),
+    ...boolChecks("mega_personal", { evolved: table.evolved, shinyEvolved: table.shinyEvolved }),
+  }),
 );
 
 export const pokemonInstance = sqliteTable(
@@ -154,7 +170,7 @@ export const pokemonInstance = sqliteTable(
   {
     id: integer("id").primaryKey({ autoIncrement: true }),
     formSlug: text("form_slug").notNull(),
-    profileId: integer("profile_id").notNull(),
+    profileId: text("profile_id").notNull(),
     status: text("status", { enum: ["kept", "traded", "released", "evolved"] }).notNull().default("kept"),
     recordedAt: integer("recorded_at", { mode: "timestamp_ms" }).notNull(),
     caughtAt: integer("caught_at", { mode: "timestamp_ms" }),
@@ -204,7 +220,7 @@ export const tag = sqliteTable(
   "tag",
   {
     id: integer("id").primaryKey({ autoIncrement: true }),
-    profileId: integer("profile_id").notNull(),
+    profileId: text("profile_id").notNull(),
     name: text("name").notNull(),
   },
   (table) => ({
@@ -237,7 +253,7 @@ export const pokemonInstanceMaxMove = sqliteTable(
 );
 
 export const playerProgressPersonal = sqliteTable("player_progress_personal", {
-  profileId: integer("profile_id").primaryKey(),
+  profileId: text("profile_id").primaryKey(),
   currentLevel: integer("current_level"),
   totalXp: integer("total_xp"),
   updatedAt: integer("updated_at", { mode: "timestamp_ms" }).notNull(),
@@ -247,7 +263,7 @@ export const medalProgressPersonal = sqliteTable(
   "medal_progress_personal",
   {
     medalSlug: text("medal_slug").notNull(),
-    profileId: integer("profile_id").notNull().default(1),
+    profileId: text("profile_id").notNull(),
     currentRank: integer("current_rank").notNull().default(0),
     currentCount: integer("current_count").notNull().default(0),
     updatedAt: integer("updated_at", { mode: "timestamp_ms" }).notNull(),
@@ -259,7 +275,7 @@ export const medalProgressPersonal = sqliteTable(
 
 export const playerProgressLog = sqliteTable("player_progress_log", {
   id: integer("id").primaryKey({ autoIncrement: true }),
-  profileId: integer("profile_id").notNull().default(1),
+  profileId: text("profile_id").notNull(),
   recordedAt: integer("recorded_at", { mode: "timestamp_ms" }).notNull(),
   currentLevel: integer("current_level"),
   totalXp: integer("total_xp"),
