@@ -279,6 +279,14 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
   // unchanged: per-statement transaction + a persistDb() call per edit.
   let bulkDepth = 0;
 
+  // Every hook below that writes a row scoped by profile_id captures
+  // `state.profile.id` SYNCHRONOUSLY, in the hook body itself (not inside
+  // the enqueueWrite closure) — the hook fires synchronously from
+  // in-memory-store.ts's apply*() functions, at the exact moment the edit
+  // happens, before any later profile switch could change what
+  // `state.profile.id` means. Capturing it inside enqueueWrite's deferred
+  // closure instead would bind the WRONG profile if a switch happens between
+  // the edit and the write actually flushing.
   const repo = createInMemoryRepository(referenceData, state, {
     onSpeciesPersonalChanged(speciesSlug, personal) {
       const inBulk = bulkDepth > 0;
