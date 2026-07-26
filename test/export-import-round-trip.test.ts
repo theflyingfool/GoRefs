@@ -205,9 +205,14 @@ test("import overwrites the local row when the imported one is newer", async () 
   assert.equal(dest.getSpeciesWithForms("bulbasaur").personal.xxs, true);
 });
 
-test("import never overwrites reference_data_version from another device's export", async () => {
+test("import applies every app-setting key (reference_data_version is now device-level app_meta, never in personal data)", async () => {
+  // reference_data_version moved out of the now-per-profile app_settings into
+  // the global app_meta table (migration 0004), so it is never part of a
+  // personal-data export's appSettings in the first place — the old import-time
+  // special-case skip for it is gone, and every imported app-setting key is
+  // applied unconditionally.
   const destState = emptyState();
-  destState.appSettings.reference_data_version = "local-hash";
+  destState.appSettings.collapse_gender_forms = "0";
   const dest = createInMemoryRepository(referenceData, destState, noopHooks);
 
   await dest.importPersonalData({
@@ -215,9 +220,8 @@ test("import never overwrites reference_data_version from another device's expor
     schemaVersion: 1,
     speciesPersonal: {},
     formPersonal: {},
-    appSettings: { reference_data_version: "other-devices-hash", collapse_gender_forms: "1" },
+    appSettings: { collapse_gender_forms: "1" },
   });
 
-  assert.equal(dest.getAppSetting("reference_data_version"), "local-hash");
   assert.equal(dest.getAppSetting("collapse_gender_forms"), "1");
 });

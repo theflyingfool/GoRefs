@@ -33,13 +33,45 @@ test("upgrade from a v9 single-profile device: profile_id=1 is rewritten to a re
   const db = new DatabaseSync(":memory:");
   db.exec("PRAGMA foreign_keys = ON;");
   db.exec(REFERENCE_SCHEMA_SQL);
+  // A pre-Drizzle device (schema_version row, no __drizzle_migrations table)
+  // triggers the bootstrap path, which replays migrations 0001->0004. Every
+  // one of those does an INSERT...SELECT-by-column-name against these tables,
+  // so the fixture must supply the full pre-migration (v6-era) column set for
+  // each — mirroring test/fixtures/v6-personal-schema.sql. Tables the test
+  // doesn't assert on are created empty; only their columns need to exist so
+  // the migration chain runs end-to-end instead of dying on a missing table.
   db.exec(`
     CREATE TABLE schema_version (version INTEGER NOT NULL);
     INSERT INTO schema_version (version) VALUES (9);
+    CREATE TABLE app_settings (key TEXT PRIMARY KEY, value TEXT NOT NULL);
     CREATE TABLE profile (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, friend_code TEXT, created_at INTEGER NOT NULL);
     INSERT INTO profile (id, username, created_at) VALUES (1, 'Trainer', 0);
     CREATE TABLE species_personal (species_slug TEXT PRIMARY KEY, profile_id INTEGER NOT NULL DEFAULT 1, registered INTEGER NOT NULL DEFAULT 0, xxl INTEGER NOT NULL DEFAULT 0, xxs INTEGER NOT NULL DEFAULT 0, purified INTEGER NOT NULL DEFAULT 0, updated_at INTEGER NOT NULL DEFAULT 0);
     INSERT INTO species_personal (species_slug, profile_id, registered, updated_at) VALUES ('bulbasaur', 1, 1, 12345);
+    CREATE TABLE form_personal (
+      form_slug TEXT PRIMARY KEY, profile_id INTEGER NOT NULL DEFAULT 1,
+      caught INTEGER NOT NULL DEFAULT 0, shiny INTEGER NOT NULL DEFAULT 0, floor INTEGER NOT NULL DEFAULT 0, four_star INTEGER NOT NULL DEFAULT 0, shundo INTEGER NOT NULL DEFAULT 0,
+      lucky INTEGER NOT NULL DEFAULT 0, lucky_shiny INTEGER NOT NULL DEFAULT 0, lucky_floor INTEGER NOT NULL DEFAULT 0, lucky_four_star INTEGER NOT NULL DEFAULT 0, lucky_shundo INTEGER NOT NULL DEFAULT 0,
+      shadow INTEGER NOT NULL DEFAULT 0, shadow_shiny INTEGER NOT NULL DEFAULT 0, shadow_floor INTEGER NOT NULL DEFAULT 0, shadow_four_star INTEGER NOT NULL DEFAULT 0, shadow_shundo INTEGER NOT NULL DEFAULT 0,
+      dynamax INTEGER NOT NULL DEFAULT 0, dynamax_floor INTEGER NOT NULL DEFAULT 0, dynamax_shiny INTEGER NOT NULL DEFAULT 0, dynamax_four_star INTEGER NOT NULL DEFAULT 0, dynamax_shundo INTEGER NOT NULL DEFAULT 0,
+      lucky_dynamax INTEGER NOT NULL DEFAULT 0, lucky_dynamax_floor INTEGER NOT NULL DEFAULT 0, lucky_dynamax_shiny INTEGER NOT NULL DEFAULT 0, lucky_dynamax_four_star INTEGER NOT NULL DEFAULT 0, lucky_dynamax_shundo INTEGER NOT NULL DEFAULT 0,
+      best_shiny TEXT, best_non_shiny TEXT, best_lucky TEXT, updated_at TEXT NOT NULL DEFAULT '1970-01-01T00:00:00.000Z'
+    );
+    CREATE TABLE form_background_personal (form_slug TEXT NOT NULL, profile_id INTEGER NOT NULL DEFAULT 1, achievement_field TEXT NOT NULL, background_slug TEXT NOT NULL, updated_at TEXT NOT NULL DEFAULT '1970-01-01T00:00:00.000Z', PRIMARY KEY (form_slug, achievement_field, background_slug));
+    CREATE TABLE mega_personal (mega_variant_slug TEXT PRIMARY KEY, profile_id INTEGER NOT NULL DEFAULT 1, evolved INTEGER NOT NULL DEFAULT 0, shiny_evolved INTEGER NOT NULL DEFAULT 0, updated_at TEXT NOT NULL DEFAULT '1970-01-01T00:00:00.000Z');
+    CREATE TABLE pokemon_instance (
+      id INTEGER PRIMARY KEY AUTOINCREMENT, form_slug TEXT NOT NULL, profile_id INTEGER NOT NULL, status TEXT NOT NULL DEFAULT 'kept',
+      recorded_at TEXT NOT NULL, caught_at TEXT, updated_at TEXT NOT NULL, cp INTEGER, iv_percent REAL,
+      shiny INTEGER NOT NULL DEFAULT 0, lucky INTEGER NOT NULL DEFAULT 0, shadow INTEGER NOT NULL DEFAULT 0, purified INTEGER NOT NULL DEFAULT 0,
+      hearts_earned INTEGER, current_mega_level INTEGER, nickname TEXT, background_slug TEXT
+    );
+    CREATE TABLE tag (id INTEGER PRIMARY KEY AUTOINCREMENT, profile_id INTEGER NOT NULL, name TEXT NOT NULL, UNIQUE(profile_id, name));
+    CREATE TABLE pokemon_instance_tag (pokemon_instance_id INTEGER NOT NULL, tag_id INTEGER NOT NULL, PRIMARY KEY (pokemon_instance_id, tag_id));
+    CREATE TABLE pokemon_instance_max_move (pokemon_instance_id INTEGER NOT NULL, move_slot TEXT NOT NULL, level INTEGER, updated_at TEXT NOT NULL, PRIMARY KEY (pokemon_instance_id, move_slot));
+    CREATE TABLE player_progress_personal (profile_id INTEGER PRIMARY KEY, current_level INTEGER, total_xp INTEGER, updated_at TEXT NOT NULL);
+    CREATE TABLE medal_progress_personal (medal_slug TEXT NOT NULL, profile_id INTEGER NOT NULL DEFAULT 1, current_rank INTEGER NOT NULL DEFAULT 0, current_count INTEGER NOT NULL DEFAULT 0, updated_at TEXT NOT NULL, PRIMARY KEY (medal_slug, profile_id));
+    CREATE TABLE player_progress_log (id INTEGER PRIMARY KEY AUTOINCREMENT, profile_id INTEGER NOT NULL DEFAULT 1, recorded_at TEXT NOT NULL, current_level INTEGER, total_xp INTEGER);
+    CREATE TABLE personal_data_quarantine (id INTEGER PRIMARY KEY AUTOINCREMENT, source_table TEXT NOT NULL, slug TEXT NOT NULL, payload_json TEXT NOT NULL, quarantined_at TEXT NOT NULL);
   `);
   const conn = nodeSqliteConnection(db);
   await runPersonalMigrations(conn);

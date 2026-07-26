@@ -601,7 +601,13 @@ PRAGMA foreign_keys=ON;`,
 -- rebuild with the same class of fixes). This migration widens the primary
 -- key on five personal tables to include profile_id, retypes every
 -- profile_id (and profile.id) from INTEGER to TEXT, and adds
--- app_settings.profile_id + profile.is_current. Four hand-fixes were needed:
+-- app_settings.profile_id + profile.is_current. It also adds a new global
+-- (non-profile-scoped) app_meta table and moves reference_data_version out of
+-- the now-per-profile app_settings into it (a global value can no longer live
+-- in app_settings, whose profile_id is NOT NULL with a REFERENCES profile(id)
+-- FK) -- the WHERE key='reference_data_version' backfill runs before
+-- app_settings is dropped so an upgrading device keeps its resync-skip marker.
+-- Four hand-fixes were needed:
 --
 -- (1) Restored EVERY REFERENCES clause drizzle-kit's rebuild drops. These
 -- columns are deliberately plain (no Drizzle \`.references()\`) in
@@ -637,6 +643,11 @@ PRAGMA foreign_keys=ON;`,
 -- which toggles FK enforcement outside the migration transaction -- see
 -- migrations.ts -- but kept correct to match every prior migration.)
 PRAGMA foreign_keys=OFF;--> statement-breakpoint
+CREATE TABLE \`app_meta\` (
+	\`key\` text PRIMARY KEY NOT NULL,
+	\`value\` text NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE \`__new_form_background_personal\` (
 	\`form_slug\` text NOT NULL REFERENCES form(slug),
 	\`profile_id\` text NOT NULL REFERENCES profile(id),
@@ -657,6 +668,7 @@ CREATE TABLE \`__new_app_settings\` (
 );
 --> statement-breakpoint
 INSERT INTO \`__new_app_settings\`("key", "profile_id", "value") SELECT "key", (SELECT id FROM profile LIMIT 1), "value" FROM \`app_settings\`;--> statement-breakpoint
+INSERT INTO \`app_meta\` ("key", "value") SELECT "key", "value" FROM \`app_settings\` WHERE "key" = 'reference_data_version';--> statement-breakpoint
 DROP TABLE \`app_settings\`;--> statement-breakpoint
 ALTER TABLE \`__new_app_settings\` RENAME TO \`app_settings\`;--> statement-breakpoint
 CREATE TABLE \`__new_form_personal\` (

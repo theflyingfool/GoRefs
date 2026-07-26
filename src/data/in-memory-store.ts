@@ -56,9 +56,6 @@ import {
 } from "./repository";
 
 const INDICATOR_SETTING_KEY = "grid_indicators";
-// App-owned reference-sync bookkeeping (see reference-sync.ts) — deliberately
-// NOT overwritten by a personal-data import; see importPersonalData below.
-const IMPORT_SKIP_SETTING_KEY = "reference_data_version";
 
 export interface PersonalState {
   speciesPersonal: Record<string, SpeciesPersonal>;
@@ -707,12 +704,6 @@ export function createInMemoryRepository(
         hooks.onFormBackgroundPersonalAdded(row);
       }
       for (const [key, value] of Object.entries(data.appSettings)) {
-        // reference_data_version is reference-sync bookkeeping (a content
-        // hash of the app's bundled reference.json), not user data. Importing
-        // another device's value overwrites the local marker and forces a
-        // spurious reference-table re-sync on the next load — skip it so an
-        // import only touches the user's own settings.
-        if (key === IMPORT_SKIP_SETTING_KEY) continue;
         setAppSetting(key, value);
       }
       // Base implementation has nothing async to wait for — sqlite-repository.ts

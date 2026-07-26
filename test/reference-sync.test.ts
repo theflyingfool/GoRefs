@@ -91,7 +91,7 @@ test("syncReferenceData is a no-op when reference.json content hasn't changed", 
 
   // Mark a personal fact so we can prove a no-op sync doesn't touch it.
   db.prepare(
-    "INSERT INTO species_personal (species_slug, registered, xxl, xxs, purified) VALUES ('bulbasaur', 1, 0, 0, 0)",
+    "INSERT INTO species_personal (species_slug, profile_id, registered, xxl, xxs, purified) VALUES ('bulbasaur', (SELECT id FROM profile LIMIT 1), 1, 0, 0, 0)",
   ).run();
 
   await syncReferenceData(nodeSqliteConnection(db), data, "v1");
@@ -104,10 +104,10 @@ test("syncReferenceData quarantines personal rows whose slug no longer exists in
   const db = await freshlyMigratedDb();
   await syncReferenceData(nodeSqliteConnection(db), fixture(["bulbasaur", "charmander"]), "v1");
   db.prepare(
-    "INSERT INTO species_personal (species_slug, registered, xxl, xxs, purified) VALUES ('charmander', 1, 0, 0, 0)",
+    "INSERT INTO species_personal (species_slug, profile_id, registered, xxl, xxs, purified) VALUES ('charmander', (SELECT id FROM profile LIMIT 1), 1, 0, 0, 0)",
   ).run();
   db.prepare(
-    "INSERT INTO form_personal (form_slug, caught) VALUES ('charmander-standard', 1)",
+    "INSERT INTO form_personal (form_slug, profile_id, caught) VALUES ('charmander-standard', (SELECT id FROM profile LIMIT 1), 1)",
   ).run();
 
   // A new reference.json content that drops charmander entirely (e.g. a

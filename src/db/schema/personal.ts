@@ -37,6 +37,17 @@ export const appSettings = sqliteTable(
   }),
 );
 
+// Device-level (global) bookkeeping — intentionally NOT per-profile, unlike
+// app_settings. reference_data_version (the bundled reference-dataset version
+// reference-sync.ts uses to skip a redundant resync) lives here because a
+// global value structurally cannot live in app_settings anymore: that table's
+// profile_id column is NOT NULL with a REFERENCES profile(id) FK, so there is
+// no valid profile-agnostic row to hold it.
+export const appMeta = sqliteTable("app_meta", {
+  key: text("key").primaryKey(),
+  value: text("value").notNull(),
+});
+
 export const profile = sqliteTable("profile", {
   id: text("id").primaryKey(),
   username: text("username").notNull(),

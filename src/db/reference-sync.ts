@@ -4,8 +4,10 @@
 // never touched here except for the slug-rename remap below. Mirrors
 // CLAUDE.md's "wholesale replaceable reference tables, upsert by slug" design.
 //
-// Runs after runPersonalMigrations() — it depends on app_settings existing to
-// store the last-synced version marker.
+// Runs after runPersonalMigrations() — it depends on app_meta (the global,
+// non-profile-scoped bookkeeping table) existing to store the last-synced
+// version marker. (reference_data_version was moved out of the now-per-profile
+// app_settings in migration 0004 — a global value can't carry a profile_id.)
 //
 // The "has it changed" check compares against REFERENCE_DATA_VERSION, a hash
 // baked into src/data/reference-version.ts at build time (see
@@ -51,7 +53,7 @@ import {
 const VERSION_SETTING_KEY = "reference_data_version";
 
 async function getStoredReferenceVersion(db: SQLiteDBConnection): Promise<string | null> {
-  const result = await db.query("SELECT value FROM app_settings WHERE key = ?", [VERSION_SETTING_KEY]);
+  const result = await db.query("SELECT value FROM app_meta WHERE key = ?", [VERSION_SETTING_KEY]);
   const row = result.values?.[0] as { value: string } | undefined;
   return row?.value ?? null;
 }
@@ -437,7 +439,7 @@ export async function syncReferenceData(db: SQLiteDBConnection, referenceData: R
     }
 
     await db.run(
-      `INSERT INTO app_settings (key, value) VALUES (?, ?)
+      `INSERT INTO app_meta (key, value) VALUES (?, ?)
        ON CONFLICT(key) DO UPDATE SET value = excluded.value`,
       [VERSION_SETTING_KEY, newVersion],
       false,
