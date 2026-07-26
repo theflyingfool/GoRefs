@@ -267,6 +267,30 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
     });
   }
 
+  // Like enqueueWrite, but returns a promise that reflects fn's REAL outcome —
+  // resolves only on a genuine commit, rejects on failure — so the caller can
+  // observe it and skip its own in-memory cache mutation on a rollback. Crucially,
+  // writeQueue ITSELF stays non-rejecting (the callback never rethrows), so this
+  // never breaks the unrelated writes that await writeQueue (runBulk,
+  // getCompletionStats, importPersonalData, ...). This is the serialization
+  // primitive the profile-CRUD methods need: enqueueWrite's fire-and-forget
+  // .catch swallows failures, which would let them mutate their caches (or return
+  // a "created" profile) for a write that actually rolled back. Placing fn on the
+  // same writeQueue chain also preserves full serialization — no queued write can
+  // open a transaction inside fn's begin→commit window.
+  function enqueueSerialized(fn: () => Promise<void>): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      writeQueue = writeQueue.then(async () => {
+        try {
+          await fn();
+          resolve();
+        } catch (err) {
+          reject(err);
+        }
+      });
+    });
+  }
+
   // When > 0, a bulk operation is in flight (see runBulk below). The
   // personal-changed hooks below fire synchronously — one per row — while the
   // in-memory bulk method loops, so each reads this flag at enqueue time and,
@@ -460,12 +484,14 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
     for (const [key, value] of Object.entries(DEFAULT_APP_SETTINGS)) {
       newBucket.appSettings[key] = value;
     }
-    // Route through the write queue (same idiom as createTag/deleteTag below) so
-    // the direct INSERT can never open its transaction on top of an in-flight
-    // queued toggle-write's own transaction ("transaction within a transaction").
-    // Profile row + its default app_settings land atomically in one transaction;
-    // the in-memory bucket is only registered after the write has flushed.
-    enqueueWrite(async () => {
+    // Route through enqueueSerialized (not enqueueWrite): the INSERT can never
+    // open its transaction on top of an in-flight queued write ("transaction
+    // within a transaction"), AND a failed+rolled-back INSERT rejects here rather
+    // than being swallowed — so we never register a phantom in-memory bucket for
+    // a profile whose DB row doesn't exist. Profile row + its default app_settings
+    // land atomically in one transaction; the bucket is registered only after a
+    // confirmed commit.
+    await enqueueSerialized(async () => {
       await db.beginTransaction();
       try {
         await db.run("INSERT INTO profile (id, username, friend_code, is_current, created_at) VALUES (?, ?, ?, 0, ?)", [
@@ -485,7 +511,6 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
       }
       await persistDb();
     });
-    await writeQueue;
     profileBuckets.set(newProfile.id, newBucket);
     return newProfile;
   }
@@ -532,14 +557,14 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
     const bucket = profileBuckets.get(profileId);
     if (!bucket) throw new Error(`Unknown profile: ${profileId}`);
     const updated: Profile = { ...bucket.profile, username, friendCode };
-    // Route through the write queue (same idiom as renameTag below) rather than
-    // a bare db.run, so it serializes behind any in-flight queued write instead
-    // of racing the shared connection. In-memory update lands after the flush.
-    enqueueWrite(async () => {
+    // Route through enqueueSerialized (not enqueueWrite): serializes behind any
+    // in-flight queued write AND rejects on a rolled-back UPDATE rather than
+    // swallowing it, so the in-memory profile isn't renamed for a DB write that
+    // didn't land. Cache update happens only after a confirmed commit.
+    await enqueueSerialized(async () => {
       await db.run("UPDATE profile SET username = ?, friend_code = ? WHERE id = ?", [username, friendCode, profileId], true);
       await persistDb();
     });
-    await writeQueue;
     bucket.profile = updated;
     if (profileId === state.profile.id) state.profile = updated;
   }
@@ -558,48 +583,30 @@ export async function createSqliteRepository(onWriteFailure?: (message: string, 
     const survivorId = deletingCurrent ? [...profileBuckets.keys()].find((id) => id !== profileId)! : null;
     const survivorBucket = survivorId ? profileBuckets.get(survivorId)! : undefined;
 
-    // Enqueue the combined transaction onto the SAME writeQueue chain every other
-    // write uses (so no queued toggle-write can open its own transaction inside
-    // this one's window — the "transaction within a transaction" race). BUT the
-    // generic enqueueWrite helper swallows failures (catch → log → onWriteFailure)
-    // and keeps writeQueue permanently non-rejecting, so `await writeQueue` can't
-    // observe whether THIS operation actually committed. We therefore chain
-    // manually and route the real outcome to a private `settled` promise the
-    // caller awaits — writeQueue itself stays non-rejecting for its other
-    // awaiters (runBulk, getCompletionStats, etc.), exactly as before.
-    let resolveSettled!: () => void;
-    let rejectSettled!: (err: unknown) => void;
-    const settled = new Promise<void>((resolve, reject) => {
-      resolveSettled = resolve;
-      rejectSettled = reject;
-    });
-    writeQueue = writeQueue.then(async () => {
+    // Run the combined transaction through enqueueSerialized: it stays on the
+    // SAME writeQueue chain every other write uses (so no queued toggle-write can
+    // open a transaction inside this one's begin→commit window — the "transaction
+    // within a transaction" race), while the returned promise reflects the REAL
+    // commit/rollback outcome. `await` therefore throws to deleteProfile's caller
+    // on failure — unlike enqueueWrite's swallow-everything path — so a
+    // rolled-back delete never proceeds to mutate in-memory state below. Because
+    // the flip is folded into this same atomic transaction (see
+    // buildDeleteProfileStatements), a failure rolls back the flip too: we can
+    // never end with the old current row deleted and no survivor promoted.
+    await enqueueSerialized(async () => {
+      await db.beginTransaction();
       try {
-        await db.beginTransaction();
-        try {
-          await db.run("PRAGMA defer_foreign_keys = true", [], false);
-          for (const { sql, params } of buildDeleteProfileStatements(profileId, survivorId)) {
-            await db.run(sql, params, false);
-          }
-          await db.commitTransaction();
-        } catch (err) {
-          await db.rollbackTransaction();
-          throw err;
+        await db.run("PRAGMA defer_foreign_keys = true", [], false);
+        for (const { sql, params } of buildDeleteProfileStatements(profileId, survivorId)) {
+          await db.run(sql, params, false);
         }
-        await persistDb();
-        resolveSettled();
+        await db.commitTransaction();
       } catch (err) {
-        // Surface the real failure to deleteProfile's caller via `settled`, but
-        // do NOT rethrow — that would reject writeQueue and break every unrelated
-        // write that awaits it.
-        rejectSettled(err);
+        await db.rollbackTransaction();
+        throw err;
       }
+      await persistDb();
     });
-
-    // Throws to the caller if the transaction failed and rolled back. Because it
-    // rolled back atomically, the DB is unchanged (old current profile still
-    // present and still is_current), so we must NOT mutate any in-memory state.
-    await settled;
 
     // Confirmed committed: now reconcile the in-memory caches. The auto-switch's
     // state reassignment happens here (after the flip has actually landed), not
