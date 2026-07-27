@@ -80,7 +80,7 @@ function editInstance(id: number) {
       <option value="all">All statuses</option>
       <option value="kept">Kept</option>
       <option value="traded">Traded</option>
-      <option value="released">Released</option>
+      <option value="transferred">Transferred</option>
       <option value="evolved">Evolved</option>
     </select>
     <select v-model="tagId">
@@ -107,7 +107,7 @@ function editInstance(id: number) {
       <div class="collection-actions" v-if="openActionsFor === row.instance.id">
         <button type="button" @click="setStatus(row.instance.id, 'kept')">Mark kept</button>
         <button type="button" @click="setStatus(row.instance.id, 'traded')">Mark traded</button>
-        <button type="button" @click="setStatus(row.instance.id, 'released')">Release</button>
+        <button type="button" @click="setStatus(row.instance.id, 'transferred')">Transfer</button>
         <button type="button" @click="setStatus(row.instance.id, 'evolved')">Mark evolved</button>
         <button type="button" @click="editInstance(row.instance.id)">Edit details</button>
       </div>

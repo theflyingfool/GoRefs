@@ -148,7 +148,7 @@ async function save() {
   }
 }
 
-async function quickAction(id: number, status: "traded" | "evolved" | "released") {
+async function quickAction(id: number, status: "traded" | "evolved" | "transferred") {
   await props.repo.setPokemonInstanceStatus(id, status);
 }
 </script>
@@ -258,7 +258,7 @@ async function quickAction(id: number, status: "traded" | "evolved" | "released"
       <span>#{{ i + 1 }}</span>
       <button type="button" @click="quickAction(inst.id, 'traded')">Trade</button>
       <button type="button" @click="quickAction(inst.id, 'evolved')">Evolved</button>
-      <button type="button" @click="quickAction(inst.id, 'released')">Release</button>
+      <button type="button" @click="quickAction(inst.id, 'transferred')">Transfer</button>
     </div>
     <p class="gap-note" v-if="justLogged.length > 12">+ {{ justLogged.length - 12 }} more — see Collection.</p>
   </div>
