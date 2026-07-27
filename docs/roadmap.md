@@ -155,8 +155,37 @@ resulting schema.
 
 **Sub-project 7a (local multi-account: create/switch/rename/delete a
 profile, each with fully independent Dex/Collection/tags/progress) is
-complete.** Sub-project 7b (cross-device comparison/merge, stable
-`pokemon_instance`/`tag` identity) is next in sequence.
+complete.** Sub-project 7 was further split during design brainstorming
+into **7b** (stable `pokemon_instance`/`tag` identity + merge-gap closure —
+see
+`docs/superpowers/specs/2026-07-26-sub-project-7b-identity-and-merge-design.md`)
+and **7c** (the Stats-page compare view — see
+`docs/superpowers/specs/2026-07-26-sub-project-7c-compare-view-design.md`,
+which depends on 7b and is expected to need revision once 7b actually
+ships). 7b's design doc is written and is next in the implementation
+sequence.
+
+Deferred items surfaced by 7b/7c's design brainstorm (logged here per that
+spec's §8 instruction):
+- **Export "selected trainers"** (multi-select), once 7b's "export all"
+  ships.
+- **A tag editor + `referenced_trainer` cleanup UI** — bundled as one
+  future small Settings-page management feature.
+- **Hiding `traded`/`transferred`/`evolved` specimens from Collection's
+  default view** while keeping them queryable for future trade-history
+  stats (7b ships the free `released`→`transferred` rename only; the
+  actual visibility filtering is a separate, unscoped feature).
+- **Evolution-lineage display** ("this Venusaur started as a Bulbasaur") —
+  unrelated to identity/merge, surfaced during this brainstorm, not
+  scoped. Related to, but distinct from, this document's existing
+  "Evolving a specimen doesn't change its species/form" item in §5 — that
+  one is about `pokemon_instance.form_slug` not updating on evolve; this
+  one is about displaying prior-form history once it does.
+- **Compare-screen Trade UX** (select a specimen from each side, hit
+  "trade," prompt for new IVs/lucky/first-registration credit) — a real
+  planned feature for 7c, not scoped or built in either 7b or 7c.
+- **A larger, currently-unscoped UI/UX refactor** is planned at some point
+  after 7b/7c — no shape yet, flagged here so it isn't silently forgotten.
 
 Closing out both items carried forward from Sub-project 2 (originally
 tracked in `docs/superpowers/specs/2026-07-23-v2-consolidation-roadmap.md`'s
