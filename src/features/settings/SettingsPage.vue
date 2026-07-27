@@ -10,7 +10,7 @@ import { EXCLUDE_REGIONAL_SETTING_KEY, MAX_GRID_INDICATORS, type Repository } fr
 import { CURRENT_PERSONAL_SCHEMA_VERSION } from "../../db/schema";
 import { applyTheme, getThemePreference, setThemePreference, type ThemePreference } from "../../app-shell/theme";
 import { FORM_GRID_SECOND_FIELD_OPTIONS, INDICATOR_LABELS, INDICATOR_OPTIONS, getFormGridSecondField, setFormGridSecondField } from "../data-entry/indicator-labels";
-import { exportPersonalData, readPersonalDataFile } from "./personal-data-transfer";
+import { buildExportBundle, downloadTextFile, readExportBundleFile } from "./personal-data-transfer";
 
 const props = defineProps<{ repo: Repository }>();
 
@@ -67,10 +67,30 @@ function onBackupBeforeImportChange(checked: boolean) {
 
 const status = ref("");
 
-async function onExport() {
+async function onExportCurrent() {
   status.value = "Exporting…";
   try {
-    await exportPersonalData(props.repo);
+    const bundle = buildExportBundle(props.repo, [props.repo.getCurrentProfile().id]);
+    await downloadTextFile(JSON.stringify(bundle, null, 2), {
+      suggestedName: `gobuddy-export-${new Date().toISOString().replace(/[:.]/g, "-")}.json`,
+      mimeType: "application/json",
+      description: "GoBuddy export",
+    });
+    status.value = "Exported.";
+  } catch (err) {
+    status.value = `Export failed: ${(err as Error).message}`;
+  }
+}
+
+async function onExportAll() {
+  status.value = "Exporting…";
+  try {
+    const bundle = buildExportBundle(props.repo, props.repo.listProfiles().map((p) => p.id));
+    await downloadTextFile(JSON.stringify(bundle, null, 2), {
+      suggestedName: `gobuddy-export-all-${new Date().toISOString().replace(/[:.]/g, "-")}.json`,
+      mimeType: "application/json",
+      description: "GoBuddy export (all trainers)",
+    });
     status.value = "Exported.";
   } catch (err) {
     status.value = `Export failed: ${(err as Error).message}`;
@@ -83,32 +103,34 @@ async function onImportFileChange(event: Event) {
   input.value = "";
   if (!file) return;
   try {
-    const { data, schemaMismatch } = await readPersonalDataFile(file);
+    const { bundle, schemaMismatch } = await readExportBundleFile(file);
     if (schemaMismatch) {
       const proceed = window.confirm(
-        `This export is from schema version ${data.schemaVersion}, but this app is on version ${CURRENT_PERSONAL_SCHEMA_VERSION}. Some fields may not match. Import anyway?`,
+        `This export is from schema version ${bundle.schemaVersion}, but this app is on version ${CURRENT_PERSONAL_SCHEMA_VERSION}. Some fields may not match. Import anyway?`,
       );
       if (!proceed) return;
     }
-    const proceed = window.confirm(
-      `Import "${file.name}" (exported ${new Date(data.exportedAt).toLocaleString()})? This MERGES with your current species/form/mega data — anything caught locally that isn't in the file stays as-is, and for anything tracked on both sides, whichever was updated more recently wins. Settings/preferences aren't affected.`,
-    );
-    if (!proceed) return;
+
+    const plan = await props.repo.planTrainerImport(bundle);
+    const resolutions: Record<string, "merge" | "separate"> = {};
+    for (const entry of plan.entries) {
+      if (entry.decision.kind !== "ask-merge-or-separate") continue;
+      const merge = window.confirm(
+        `"${entry.trainerName}" matches an existing local trainer with the same name. Merge them as one trainer? (Cancel treats them as two separate trainers.)`,
+      );
+      resolutions[entry.trainerUuid] = merge ? "merge" : "separate";
+    }
 
     // Backup-before-import is a persistent setting (backupBeforeImport
     // above), not a per-import prompt — off by default.
     if (backupBeforeImport.value) {
       status.value = "Saving a backup of your current data first…";
-      await exportPersonalData(props.repo);
+      await onExportAll();
     }
 
     status.value = "Importing…";
-    const { skippedSpeciesSlugs, skippedFormSlugs } = await props.repo.importPersonalData(data);
-    const skipped = skippedSpeciesSlugs + skippedFormSlugs;
-    status.value =
-      skipped > 0
-        ? `Imported, but skipped ${skipped} row(s) with slugs this app's reference data doesn't recognize (likely from a different app version).`
-        : "Imported.";
+    const summary = await props.repo.applyTrainerImport(bundle, resolutions);
+    status.value = `Imported: ${summary.merged} merged, ${summary.promoted} promoted, ${summary.created} created as new, ${summary.separate} kept separate.`;
   } catch (err) {
     status.value = `Import failed: ${(err as Error).message}`;
   }
@@ -215,7 +237,8 @@ void applyTheme;
       <input type="checkbox" :checked="backupBeforeImport" @change="onBackupBeforeImportChange(($event.target as HTMLInputElement).checked)" />
       <span>Back up before import</span>
     </label>
-    <button type="button" @click="onExport">Export personal data</button>
+    <button type="button" @click="onExportCurrent">Export current trainer</button>
+    <button type="button" @click="onExportAll">Export all trainers</button>
     <!-- This file is the only backup that exists — nothing here syncs to any
          account or server. Sits right under the button rather than in a
          tooltip/help page, since it's the moment someone decides whether to

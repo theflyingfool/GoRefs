@@ -5,6 +5,7 @@ import { nodeSqliteConnection } from "./node-sqlite-connection";
 import { createSqliteRepository } from "../src/data/sqlite-repository";
 import { REFERENCE_SCHEMA_SQL } from "../src/db/schema";
 import { buildRewriteTrainerUuidStatements } from "../src/data/trainer-reconciliation";
+import { buildExportBundle } from "../src/features/settings/personal-data-transfer";
 
 test("exportTrainer exports a non-current profile's data without switching to it", async () => {
   const db = new DatabaseSync(":memory:");
@@ -75,4 +76,29 @@ test("buildRewriteTrainerUuidStatements sweeps profile_id, original_trainer_id, 
   assert.equal(oldReferenced, undefined, "the old uuid's referenced_trainer row must be gone");
   const newReferenced = db.prepare("SELECT uuid FROM referenced_trainer WHERE uuid = ?").get(newUuid) as { uuid: string } | undefined;
   assert.ok(newReferenced, "the new uuid must have a referenced_trainer row");
+});
+
+test("planTrainerImport + applyTrainerImport merges two devices' data for the same trainer via matching friend codes", async () => {
+  const dbA = new DatabaseSync(":memory:");
+  dbA.exec("PRAGMA foreign_keys = ON;");
+  dbA.exec(REFERENCE_SCHEMA_SQL);
+  const repoA = await createSqliteRepository(undefined, nodeSqliteConnection(dbA));
+  await repoA.renameProfile(repoA.getCurrentProfile().id, "Ash", "111122223333");
+  repoA.setSpeciesPersonalField("bulbasaur", "registered", true);
+
+  const dbB = new DatabaseSync(":memory:");
+  dbB.exec("PRAGMA foreign_keys = ON;");
+  dbB.exec(REFERENCE_SCHEMA_SQL);
+  const repoB = await createSqliteRepository(undefined, nodeSqliteConnection(dbB));
+  await repoB.renameProfile(repoB.getCurrentProfile().id, "Ash Ketchum", "111122223333");
+  repoB.setSpeciesPersonalField("charmander", "registered", true);
+
+  const bundleFromA = buildExportBundle(repoA, [repoA.getCurrentProfile().id]);
+  const plan = await repoB.planTrainerImport(bundleFromA);
+  assert.equal(plan.entries[0].decision.kind, "auto-merge");
+
+  const summary = await repoB.applyTrainerImport(bundleFromA, {});
+  assert.equal(summary.merged, 1);
+  assert.equal(repoB.getSpeciesWithForms("bulbasaur").personal.registered, true, "B must gain A's data");
+  assert.equal(repoB.getSpeciesWithForms("charmander").personal.registered, true, "B must keep its own data");
 });

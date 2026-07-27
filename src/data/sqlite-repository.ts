@@ -40,18 +40,22 @@ import { applyDexAchievementBackfillIfNeeded, DEX_ACHIEVEMENT_BACKFILL_KEY } fro
 import { buildScalarUpdateStatement, buildTagDiffStatements, mergeUpdatedInstance } from "./pokemon-instance-update-sql";
 import { buildRenameTagStatement, buildDeleteTagStatements, computeTagUsageCounts } from "./tag-management-sql";
 import { buildDeleteProfileStatements } from "./profile-management-sql";
-import { buildReferencedTrainerUpsert, findReferencedTrainerByName } from "./referenced-trainer-sql";
+import { buildReferencedTrainerUpsert, findReferencedTrainerByName, listReferencedTrainers } from "./referenced-trainer-sql";
 import { syncReferenceData } from "../db/reference-sync";
 import { getCompletionStatsSql } from "./completion-stats-sql";
 import referenceDataJson from "./reference.json";
 import { createInMemoryRepository, type PersonalState } from "./in-memory-store";
+import { reconcileTrainer, buildRewriteTrainerUuidStatements } from "./trainer-reconciliation";
 import {
   EXCLUDE_REGIONAL_SETTING_KEY,
+  type ExportBundle,
   type ImportResult,
   type NewPokemonInstanceBatch,
   type Repository,
   type TagCount,
   type TrainerExport,
+  type TrainerImportPlan,
+  type TrainerImportSummary,
   type UpdatePokemonInstanceFields,
 } from "./repository";
 
@@ -251,6 +255,16 @@ export async function createSqliteRepository(
     const r = row as Record<string, unknown>;
     return { id: r.id as number, profileId: r.profile_id as string, name: r.name as string };
   }) ?? [];
+  // The device-wide trainer-identity registry (real profiles + placeholders
+  // -- see design doc §4.2), same "load once, keep in sync on every write"
+  // discipline as sharedTags above. Kept fresh at createProfile/renameProfile/
+  // updatePokemonInstance's resolve-or-create path (each upserts one row in
+  // place) and refreshed wholesale from the DB at the end of
+  // applyTrainerImport (which touches this table through several different
+  // code paths -- buildRewriteTrainerUuidStatements' internal INSERT/DELETE,
+  // the promote branch's fresh INSERT -- a full re-read there is simpler and
+  // just as correct as surgically patching every one of those sites).
+  let sharedReferencedTrainers = await listReferencedTrainers(db);
   // SHALLOW COPY — critical. `state` must be its own stable container, NOT the
   // map's own bucket object. switchProfile()/reassignStateToBucket() mutate
   // `state`'s fields in place (every closure in this file captured `state` by
@@ -569,6 +583,9 @@ export async function createSqliteRepository(
       await persistDb();
     });
     profileBuckets.set(newProfile.id, newBucket);
+    sharedReferencedTrainers = isPlaceholder
+      ? sharedReferencedTrainers.map((t) => (t.uuid === newProfile.id ? { uuid: newProfile.id, name: newProfile.username, friendCode: newProfile.friendCode } : t))
+      : [...sharedReferencedTrainers, { uuid: newProfile.id, name: newProfile.username, friendCode: newProfile.friendCode }];
     return newProfile;
   }
 
@@ -632,6 +649,9 @@ export async function createSqliteRepository(
     });
     bucket.profile = updated;
     if (profileId === state.profile.id) state.profile = updated;
+    sharedReferencedTrainers = sharedReferencedTrainers.some((t) => t.uuid === profileId)
+      ? sharedReferencedTrainers.map((t) => (t.uuid === profileId ? { uuid: profileId, name: username, friendCode } : t))
+      : [...sharedReferencedTrainers, { uuid: profileId, name: username, friendCode }];
   }
 
   async function deleteProfile(profileId: string): Promise<void> {
@@ -679,6 +699,191 @@ export async function createSqliteRepository(
     // pointing at a profile the DB didn't actually switch to.
     if (deletingCurrent && survivorBucket) reassignStateToBucket(survivorBucket);
     profileBuckets.delete(profileId);
+  }
+
+  // Tags are device-wide (task 6 / design doc §3.3) — read/write
+  // `sharedTags`, not any per-profile bucket field. `state.profile.id` is
+  // still recorded on the INSERT as an informational "who created this"
+  // value; it's no longer used for scoping or uniqueness. Pulled out as a
+  // standalone function (rather than defined inline in the returned object,
+  // as it originally was) so applyTrainerImport's tag-merge loop below can
+  // call it directly, same as it already does for createProfile.
+  async function createTag(name: string): Promise<Tag> {
+    const existing = sharedTags.find((t) => t.name === name);
+    if (existing) return existing;
+    let created: Tag | undefined;
+    enqueueWrite(async () => {
+      await db.run("INSERT INTO tag (profile_id, name) VALUES (?, ?)", [state.profile.id, name], true);
+      const idRow = (await db.query("SELECT last_insert_rowid() AS id")).values?.[0] as { id: number } | undefined;
+      created = { id: idRow!.id, profileId: state.profile.id, name };
+      await persistDb();
+    });
+    await writeQueue;
+    sharedTags = [...sharedTags, created!];
+    return created!;
+  }
+
+  // ---- Trainer import/export (Sub-project 7b, Task 9) ------------------------
+
+  // The "run importPersonalData's existing per-row merge against a specific,
+  // possibly-non-current bucket" primitive every applyTrainerImport branch
+  // needs. Temporarily points the shared `state` object at targetState (via
+  // reassignStateToBucket, same mechanism switchProfile uses) so the shared
+  // in-memory-store merge logic -- which always reads/writes `state` -- lands
+  // in the right bucket, then runs the merge as one SQL transaction via
+  // runBulk. Deliberately does NOT try to restore `state` itself afterward:
+  // that's applyTrainerImport's job, once, after every trainer in the bundle
+  // has been processed -- see its own doc comment for why restoring per-call
+  // here would restore the wrong profile on a multi-trainer bundle.
+  async function mergeTrainerExportIntoBucket(trainer: TrainerExport, targetState: PersonalState, targetProfileId: string): Promise<void> {
+    const wasCurrent = state.profile.id === targetProfileId;
+    if (!wasCurrent) reassignStateToBucket(targetState);
+    await runBulk(async () => {
+      await repo.importPersonalData(trainer);
+    });
+  }
+
+  async function planTrainerImport(bundle: ExportBundle): Promise<TrainerImportPlan> {
+    const localProfiles = listProfiles();
+    const localReferencedTrainers = await listReferencedTrainers(db);
+    return {
+      entries: bundle.trainers.map((trainer) => ({
+        trainerUuid: trainer.trainerUuid,
+        trainerName: trainer.trainerName,
+        decision: reconcileTrainer(
+          { uuid: trainer.trainerUuid, name: trainer.trainerName, friendCode: trainer.trainerFriendCode },
+          localProfiles,
+          localReferencedTrainers,
+        ),
+      })),
+    };
+  }
+
+  async function applyTrainerImport(bundle: ExportBundle, resolutions: Record<string, "merge" | "separate">): Promise<TrainerImportSummary> {
+    const summary: TrainerImportSummary = { merged: 0, promoted: 0, created: 0, separate: 0 };
+    const localProfiles = listProfiles();
+    const localReferencedTrainers = await listReferencedTrainers(db);
+    // The true "current before this whole call began" profile id -- restored
+    // at the very end, not left on whichever trainer was merged last. `let`,
+    // not `const`: if the merge branch below rewrites THIS profile's own
+    // uuid to the incoming trainer's uuid (re-keying its bucket), this needs
+    // to track that rename so the restore at the end still finds the bucket.
+    let originalCurrentProfileId = state.profile.id;
+
+    for (const trainer of bundle.trainers) {
+      const decision = reconcileTrainer(
+        { uuid: trainer.trainerUuid, name: trainer.trainerName, friendCode: trainer.trainerFriendCode },
+        localProfiles,
+        localReferencedTrainers,
+      );
+      const resolvedKind =
+        decision.kind === "ask-merge-or-separate" ? (resolutions[trainer.trainerUuid] ?? "separate") : decision.kind;
+
+      if (resolvedKind === "new" || resolvedKind === "definitely-separate" || resolvedKind === "separate") {
+        const created = await createProfile(trainer.trainerName, trainer.trainerFriendCode);
+        const targetState = profileBuckets.get(created.id)!;
+        await mergeTrainerExportIntoBucket(trainer, targetState, created.id);
+        // "new" (no local identity matched at all) counts as created; both
+        // definitely-separate (friend-code mismatch) and a user's explicit
+        // "separate" answer to an ask-merge-or-separate prompt count as kept
+        // separate -- distinct outcomes the UI's summary message reports
+        // differently (see TrainerImportSummary/SettingsPage.vue).
+        if (resolvedKind === "new") summary.created++;
+        else summary.separate++;
+        continue;
+      }
+
+      if (decision.kind === "promote") {
+        await enqueueSerialized(async () => {
+          await db.beginTransaction();
+          try {
+            await db.run("PRAGMA defer_foreign_keys = true", [], false);
+            for (const { sql, params } of buildRewriteTrainerUuidStatements(decision.placeholderUuid, trainer.trainerUuid)) {
+              await db.run(sql, params, false);
+            }
+            await db.run("INSERT INTO profile (id, username, friend_code, is_current, created_at) VALUES (?, ?, ?, 0, ?)", [
+              trainer.trainerUuid,
+              trainer.trainerName,
+              trainer.trainerFriendCode,
+              Date.now(),
+            ], false);
+            const referencedUpsert = buildReferencedTrainerUpsert({ uuid: trainer.trainerUuid, name: trainer.trainerName, friendCode: trainer.trainerFriendCode });
+            await db.run(referencedUpsert.sql, referencedUpsert.params, false);
+            await db.commitTransaction();
+          } catch (err) {
+            await db.rollbackTransaction();
+            throw err;
+          }
+          await persistDb();
+        });
+        const { buckets } = await loadAllProfiles(db);
+        const targetState = buckets.get(trainer.trainerUuid)!;
+        profileBuckets.set(trainer.trainerUuid, targetState);
+        await mergeTrainerExportIntoBucket(trainer, targetState, trainer.trainerUuid);
+        summary.promoted++;
+        continue;
+      }
+
+      // "auto-merge", or "merge"-resolved "ask-merge-or-separate":
+      const localProfileId = decision.kind === "auto-merge" || decision.kind === "ask-merge-or-separate" ? decision.localProfileId : trainer.trainerUuid;
+      if (localProfileId !== trainer.trainerUuid) {
+        await enqueueSerialized(async () => {
+          await db.beginTransaction();
+          try {
+            await db.run("PRAGMA defer_foreign_keys = true", [], false);
+            for (const { sql, params } of buildRewriteTrainerUuidStatements(localProfileId, trainer.trainerUuid)) {
+              await db.run(sql, params, false);
+            }
+            await db.commitTransaction();
+          } catch (err) {
+            await db.rollbackTransaction();
+            throw err;
+          }
+          await persistDb();
+        });
+        const bucket = profileBuckets.get(localProfileId)!;
+        profileBuckets.delete(localProfileId);
+        bucket.profile = { ...bucket.profile, id: trainer.trainerUuid };
+        profileBuckets.set(trainer.trainerUuid, bucket);
+        if (state.profile.id === localProfileId) state.profile = bucket.profile;
+        // The current profile's own uuid was just rewritten -- track the
+        // rename so the restore at the end of this function still finds the
+        // right bucket (see this function's opening comment).
+        if (originalCurrentProfileId === localProfileId) originalCurrentProfileId = trainer.trainerUuid;
+      }
+      const targetState = profileBuckets.get(trainer.trainerUuid)!;
+      await mergeTrainerExportIntoBucket(trainer, targetState, trainer.trainerUuid);
+      summary.merged++;
+    }
+
+    for (const referenced of bundle.trainers.flatMap((t) => t.referencedTrainers)) {
+      const upsert = buildReferencedTrainerUpsert(referenced);
+      await db.run(upsert.sql, upsert.params, true);
+    }
+    for (const tagRow of bundle.tags) {
+      const exists = sharedTags.some((t) => t.name === tagRow.name);
+      if (!exists) await createTag(tagRow.name);
+    }
+    await persistDb();
+
+    // Restore whichever profile was actually current before this call began
+    // -- see this function's opening comment. Not just a matter of tidiness:
+    // every other Repository method implicitly reads/writes `state`'s
+    // profile, so leaving it pointed at the last-merged trainer after a
+    // multi-trainer import would silently redirect the user's next edit to
+    // the wrong trainer's data.
+    const originalBucket = profileBuckets.get(originalCurrentProfileId);
+    if (originalBucket && state.profile.id !== originalCurrentProfileId) reassignStateToBucket(originalBucket);
+
+    // This table was touched through several different code paths above
+    // (buildRewriteTrainerUuidStatements' internal referenced_trainer
+    // INSERT/DELETE, the promote branch's fresh INSERT, the referencedTrainers
+    // upsert loop) -- a full re-read from the DB is simpler and just as
+    // correct as surgically patching sharedReferencedTrainers at every one of
+    // those sites (same reasoning as this binding's declaration comment).
+    sharedReferencedTrainers = await listReferencedTrainers(db);
+
+    return summary;
   }
 
   return {
@@ -806,24 +1011,7 @@ export async function createSqliteRepository(
       }
       return created;
     },
-    // Tags are device-wide (task 6 / design doc §3.3) — read/write
-    // `sharedTags`, not any per-profile bucket field. `state.profile.id` is
-    // still recorded on the INSERT as an informational "who created this"
-    // value; it's no longer used for scoping or uniqueness.
-    async createTag(name: string): Promise<Tag> {
-      const existing = sharedTags.find((t) => t.name === name);
-      if (existing) return existing;
-      let created: Tag | undefined;
-      enqueueWrite(async () => {
-        await db.run("INSERT INTO tag (profile_id, name) VALUES (?, ?)", [state.profile.id, name], true);
-        const idRow = (await db.query("SELECT last_insert_rowid() AS id")).values?.[0] as { id: number } | undefined;
-        created = { id: idRow!.id, profileId: state.profile.id, name };
-        await persistDb();
-      });
-      await writeQueue;
-      sharedTags = [...sharedTags, created!];
-      return created!;
-    },
+    createTag,
     // Not part of createInMemoryRepository's shared object (see its Omit<>) —
     // pure in-memory computation over already-loaded state, but excluded
     // from the dummy backend's shared implementation to keep all three tag-
@@ -895,6 +1083,7 @@ export async function createSqliteRepository(
         } else {
           originalTrainerId = crypto.randomUUID();
           const upsert = buildReferencedTrainerUpsert({ uuid: originalTrainerId, name: fields.originalTrainerName, friendCode: null });
+          sharedReferencedTrainers = [...sharedReferencedTrainers, { uuid: originalTrainerId, name: fields.originalTrainerName, friendCode: null }];
           enqueueWrite(async () => {
             await db.run(upsert.sql, upsert.params, true);
             await persistDb();
@@ -984,8 +1173,15 @@ export async function createSqliteRepository(
         trainerUuid: bucket.profile.id,
         trainerName: bucket.profile.username,
         trainerFriendCode: bucket.profile.friendCode,
-        referencedTrainers: [], // filled in by the caller building the ExportBundle -- see buildExportBundle in Task 9, which fetches the device-wide list ONCE and attaches it to every trainer rather than re-querying per trainer.
+        referencedTrainers: [], // filled in by the caller building the ExportBundle -- see buildExportBundle, which fetches the device-wide list ONCE and attaches it to every trainer rather than re-querying per trainer.
       };
     },
+    // Synchronous cached read (mirrors sharedTags) -- see sharedReferencedTrainers's
+    // declaration comment above for how it's kept fresh.
+    listReferencedTrainers() {
+      return sharedReferencedTrainers;
+    },
+    planTrainerImport,
+    applyTrainerImport,
   };
 }

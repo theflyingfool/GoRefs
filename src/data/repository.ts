@@ -223,6 +223,23 @@ export interface ExportBundle {
   tags: { name: string }[];
 }
 
+export interface TrainerImportPlanEntry {
+  trainerUuid: string;
+  trainerName: string;
+  decision: import("./trainer-reconciliation").ReconciliationDecision;
+}
+
+export interface TrainerImportPlan {
+  entries: TrainerImportPlanEntry[];
+}
+
+export interface TrainerImportSummary {
+  merged: number;
+  promoted: number;
+  created: number;
+  separate: number;
+}
+
 export interface Repository {
   listRegions(): Region[];
   listSpeciesByRegion(regionSlug: string): Species[];
@@ -325,6 +342,12 @@ export interface Repository {
   deleteProfile(profileId: string): Promise<void>;
   /** One trainer's full export (see TrainerExport) -- works for ANY local profile, not just the current one, so "export all" can call this once per profile without switching. */
   exportTrainer(profileId: string): TrainerExport;
+  /** The complete trainer-identity registry (real profiles + placeholders) -- a synchronous cached read, kept fresh the same way sharedTags is (see sqlite-repository.ts). Used by buildExportBundle so every trainer in a multi-trainer export carries the device's full identity registry, fetched once rather than per trainer. */
+  listReferencedTrainers(): { uuid: string; name: string; friendCode: string | null }[];
+  /** Runs reconcileTrainer for every trainer in the bundle against this device's current profiles/referenced_trainer -- read-only, no writes. The UI shows any "ask-merge-or-separate" entries to the user before calling applyTrainerImport with their answers. */
+  planTrainerImport(bundle: ExportBundle): Promise<TrainerImportPlan>;
+  /** Executes the plan: "new"/"promote" create or promote a profile then merge via importPersonalData; "auto-merge" and "merge"-resolved "ask" entries run the uuid rewrite (buildRewriteTrainerUuidStatements) then importPersonalData; "definitely-separate" and "separate"-resolved entries create a new independent profile. `resolutions` is keyed by trainerUuid, required only for entries whose plan decision was "ask-merge-or-separate". */
+  applyTrainerImport(bundle: ExportBundle, resolutions: Record<string, "merge" | "separate">): Promise<TrainerImportSummary>;
   getPlayerProgress(): PlayerProgressPersonal | undefined;
   setPlayerProgress(currentLevel: number | null, totalXp: number | null): void;
   /** Every past snapshot (see setPlayerProgress), oldest first — for an XP/level-over-time chart. */

@@ -7,8 +7,10 @@
 // src/data/in-memory-store.ts so both backends get it for free.
 
 import { CURRENT_PERSONAL_SCHEMA_VERSION } from "../../db/schema";
-import type { PersonalDataExport, Repository } from "../../data/repository";
+import type { ExportBundle, PersonalDataExport, Repository } from "../../data/repository";
 import { downloadTextFile } from "../../shared/file-download";
+
+export { downloadTextFile };
 
 function fileName(): string {
   return `gobuddy-export-${new Date().toISOString().replace(/[:.]/g, "-")}.json`;
@@ -76,4 +78,30 @@ export async function readPersonalDataFile(file: File): Promise<{ data: Personal
   }
   if (data.schemaVersion < 7) data = convertLegacyTimestamps(data);
   return { data, schemaMismatch: data.schemaVersion !== CURRENT_PERSONAL_SCHEMA_VERSION };
+}
+
+// Builds the file format written by both "Export current" and "Export all
+// trainers" (see design doc §5 -- one export function, called once per
+// trainer, wrapped into one bundle regardless of how many profileIds are
+// passed). The device's full referenced_trainer registry is fetched ONCE via
+// the real Repository.listReferencedTrainers() method (not re-derived per
+// trainer) and attached to every TrainerExport in the bundle.
+export function buildExportBundle(repo: Repository, profileIds: string[]): ExportBundle {
+  const referencedTrainers = repo.listReferencedTrainers();
+  return {
+    exportedAt: new Date().toISOString(),
+    schemaVersion: CURRENT_PERSONAL_SCHEMA_VERSION,
+    trainers: profileIds.map((id) => ({ ...repo.exportTrainer(id), referencedTrainers })),
+    tags: repo.listTags().map((t) => ({ name: t.name })),
+  };
+}
+
+/** Reads and validates a picked ExportBundle file; the caller (Settings UI) handles reconciliation (planTrainerImport/applyTrainerImport) and confirmation. */
+export async function readExportBundleFile(file: File): Promise<{ bundle: ExportBundle; schemaMismatch: boolean }> {
+  const text = await file.text();
+  const bundle = JSON.parse(text) as ExportBundle;
+  if (typeof bundle.schemaVersion !== "number" || !Array.isArray(bundle.trainers)) {
+    throw new Error("This doesn't look like a GoBuddy trainer-export bundle.");
+  }
+  return { bundle, schemaMismatch: bundle.schemaVersion !== CURRENT_PERSONAL_SCHEMA_VERSION };
 }

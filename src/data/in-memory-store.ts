@@ -116,6 +116,9 @@ export function createInMemoryRepository(
   | "renameProfile"
   | "deleteProfile"
   | "exportTrainer"
+  | "listReferencedTrainers"
+  | "planTrainerImport"
+  | "applyTrainerImport"
 > {
   const speciesBySlug = new Map<string, Species>(referenceData.species.map((s) => [s.slug, s]));
   const speciesByDexOrder = [...referenceData.species].sort((a, b) => a.dexNumber - b.dexNumber);
