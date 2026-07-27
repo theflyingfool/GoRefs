@@ -595,9 +595,16 @@ export async function createSqliteRepository(
     // swallowing it, so the in-memory profile isn't renamed for a DB write that
     // didn't land. Cache update happens only after a confirmed commit.
     await enqueueSerialized(async () => {
-      await db.run("UPDATE profile SET username = ?, friend_code = ? WHERE id = ?", [username, friendCode, profileId], true);
-      const referencedUpsert = buildReferencedTrainerUpsert({ uuid: profileId, name: username, friendCode });
-      await db.run(referencedUpsert.sql, referencedUpsert.params, true);
+      await db.beginTransaction();
+      try {
+        await db.run("UPDATE profile SET username = ?, friend_code = ? WHERE id = ?", [username, friendCode, profileId], false);
+        const referencedUpsert = buildReferencedTrainerUpsert({ uuid: profileId, name: username, friendCode });
+        await db.run(referencedUpsert.sql, referencedUpsert.params, false);
+        await db.commitTransaction();
+      } catch (err) {
+        await db.rollbackTransaction();
+        throw err;
+      }
       await persistDb();
     });
     bucket.profile = updated;
