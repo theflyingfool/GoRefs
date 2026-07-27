@@ -103,7 +103,7 @@ async function onImportFileChange(event: Event) {
   input.value = "";
   if (!file) return;
   try {
-    const { bundle, schemaMismatch } = await readExportBundleFile(file);
+    const { bundle, schemaMismatch } = await readExportBundleFile(file, props.repo);
     if (schemaMismatch) {
       const proceed = window.confirm(
         `This export is from schema version ${bundle.schemaVersion}, but this app is on version ${CURRENT_PERSONAL_SCHEMA_VERSION}. Some fields may not match. Import anyway?`,

@@ -27,6 +27,22 @@ export function reconcileTrainer(
   localProfiles: Profile[],
   localReferencedTrainers: ReferencedTrainer[],
 ): ReconciliationDecision {
+  // 0. Identical uuid: uuids are minted once and never reused, so a local
+  // profile whose id equals the incoming uuid is definitively the SAME
+  // trainer -- no ambiguity, no need to fall through to the name/friend-code
+  // heuristics below (which exist precisely because those are the only
+  // signals available when uuids DON'T match, e.g. two independent devices
+  // for the same real-world trainer). This also covers the legacy-import
+  // synthesis in personal-data-transfer.ts's wrapLegacyExportAsBundle, which
+  // sets the synthetic trainer's uuid to the current profile's own id
+  // specifically to land here and reproduce pre-7b "always merge into
+  // current" behavior -- without this rule, a current profile with no
+  // friend code set (the common case: DEFAULT_PROFILE_USERNAME profiles are
+  // created with friend_code = null) would fall through to
+  // ask-merge-or-separate/definitely-new instead of merging.
+  const uuidMatch = localProfiles.find((p) => p.id === candidate.uuid);
+  if (uuidMatch) return { kind: "auto-merge", localProfileId: uuidMatch.id };
+
   // 1. Friend code, both sides present: definitive, no name check needed.
   if (candidate.friendCode) {
     const friendCodeMatch = localProfiles.find((p) => p.friendCode && p.friendCode === candidate.friendCode);

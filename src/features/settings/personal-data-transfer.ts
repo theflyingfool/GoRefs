@@ -96,11 +96,65 @@ export function buildExportBundle(repo: Repository, profileIds: string[]): Expor
   };
 }
 
-/** Reads and validates a picked ExportBundle file; the caller (Settings UI) handles reconciliation (planTrainerImport/applyTrainerImport) and confirmation. */
-export async function readExportBundleFile(file: File): Promise<{ bundle: ExportBundle; schemaMismatch: boolean }> {
+// Old (pre-7b) export files are a bare PersonalDataExport -- no `.trainers`
+// array, no trainer-identity concept at all. Detecting that shape here
+// (rather than only accepting the new ExportBundle wrapper) is what keeps
+// those old backups importable after this app updates -- see this module's
+// readExportBundleFile doc comment and CLAUDE.md's backward-compatibility
+// invariant.
+function isBarePersonalDataExport(data: unknown): data is PersonalDataExport {
+  const candidate = data as PersonalDataExport;
+  return (
+    typeof candidate?.schemaVersion === "number" &&
+    !Array.isArray((candidate as unknown as ExportBundle).trainers) &&
+    !!candidate.speciesPersonal &&
+    !!candidate.formPersonal &&
+    !!candidate.appSettings
+  );
+}
+
+// Wraps a legacy bare PersonalDataExport as a single-trainer ExportBundle so
+// it can flow through the same planTrainerImport/applyTrainerImport
+// machinery as every other import, rather than needing a second, parallel
+// import code path. The synthetic trainer's uuid/name/friendCode are set to
+// match the CURRENT profile on THIS device exactly (not anything from the
+// file, which never carried trainer identity) -- that guarantees
+// reconcileTrainer resolves it to "auto-merge" against the current profile,
+// reproducing the pre-7b behavior of importPersonalData always merging into
+// whatever profile was current, with no trainer-identity concept.
+function wrapLegacyExportAsBundle(data: PersonalDataExport, currentProfile: { id: string; username: string; friendCode: string | null }): ExportBundle {
+  return {
+    exportedAt: data.exportedAt,
+    schemaVersion: data.schemaVersion,
+    trainers: [
+      {
+        ...data,
+        trainerUuid: currentProfile.id,
+        trainerName: currentProfile.username,
+        trainerFriendCode: currentProfile.friendCode,
+        referencedTrainers: [],
+      },
+    ],
+    tags: data.tags ?? [],
+  };
+}
+
+/**
+ * Reads and validates a picked import file; the caller (Settings UI) handles
+ * reconciliation (planTrainerImport/applyTrainerImport) and confirmation.
+ * Accepts both the current ExportBundle format and a pre-7b bare
+ * PersonalDataExport file (synthesized into a single-trainer bundle that
+ * merges into `repo`'s current profile -- see wrapLegacyExportAsBundle).
+ */
+export async function readExportBundleFile(file: File, repo: Repository): Promise<{ bundle: ExportBundle; schemaMismatch: boolean }> {
   const text = await file.text();
-  const bundle = JSON.parse(text) as ExportBundle;
-  if (typeof bundle.schemaVersion !== "number" || !Array.isArray(bundle.trainers)) {
+  const data = JSON.parse(text) as ExportBundle | PersonalDataExport;
+  let bundle: ExportBundle;
+  if (typeof data.schemaVersion === "number" && Array.isArray((data as ExportBundle).trainers)) {
+    bundle = data as ExportBundle;
+  } else if (isBarePersonalDataExport(data)) {
+    bundle = wrapLegacyExportAsBundle(data.schemaVersion < 7 ? convertLegacyTimestamps(data) : data, repo.getCurrentProfile());
+  } else {
     throw new Error("This doesn't look like a GoBuddy trainer-export bundle.");
   }
   return { bundle, schemaMismatch: bundle.schemaVersion !== CURRENT_PERSONAL_SCHEMA_VERSION };

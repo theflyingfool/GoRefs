@@ -9,8 +9,12 @@
 // convertLegacyTimestamps for the full failure mode this guards against).
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { DatabaseSync } from "node:sqlite";
 
-import { readPersonalDataFile } from "../src/features/settings/personal-data-transfer";
+import { readPersonalDataFile, readExportBundleFile } from "../src/features/settings/personal-data-transfer";
+import { createSqliteRepository } from "../src/data/sqlite-repository";
+import { nodeSqliteConnection } from "./node-sqlite-connection";
+import { REFERENCE_SCHEMA_SQL } from "../src/db/schema";
 
 function legacyExportFile(): File {
   const legacy = {
@@ -99,4 +103,51 @@ test("readPersonalDataFile leaves a current (v11) export's epoch-ms timestamps u
 
   assert.equal(schemaMismatch, false);
   assert.equal(data.speciesPersonal.bulbasaur.updatedAt, now);
+});
+
+// Regression coverage for the backward-compatibility fix: a pre-7b bare
+// PersonalDataExport file (no `.trainers` array -- old exports never had a
+// trainer-identity concept at all) must still be importable through
+// readExportBundleFile, the ONLY read path SettingsPage.vue's import flow
+// calls now. It must merge into whichever profile is CURRENT on this
+// device, matching the old importPersonalData behavior exactly, via
+// planTrainerImport/applyTrainerImport's normal auto-merge path (not a
+// second parallel import code path).
+test("readExportBundleFile accepts a pre-7b bare PersonalDataExport file and merges it into the current profile", async () => {
+  const db = new DatabaseSync(":memory:");
+  db.exec("PRAGMA foreign_keys = ON;");
+  db.exec(REFERENCE_SCHEMA_SQL);
+  const repo = await createSqliteRepository(undefined, nodeSqliteConnection(db));
+  const currentProfile = repo.getCurrentProfile();
+  repo.setSpeciesPersonalField("charmander", "registered", true);
+
+  // Constructed directly as a plain object matching PersonalDataExport's
+  // shape -- deliberately NOT wrapped in an ExportBundle, and carrying no
+  // trainer identity, exactly like a real pre-7b export file would.
+  const bareExport = {
+    exportedAt: new Date().toISOString(),
+    schemaVersion: 11,
+    speciesPersonal: {
+      bulbasaur: { speciesSlug: "bulbasaur", registered: true, xxl: false, xxs: false, purified: false, updatedAt: Date.now() },
+    },
+    formPersonal: {},
+    appSettings: {},
+  };
+  const file = new File([JSON.stringify(bareExport)], "old-export.json", { type: "application/json" });
+
+  const { bundle, schemaMismatch } = await readExportBundleFile(file, repo);
+  assert.equal(schemaMismatch, false);
+  assert.equal(bundle.trainers.length, 1, "the bare export must be synthesized into a single-trainer bundle");
+  assert.equal(bundle.trainers[0].trainerUuid, currentProfile.id, "synthetic trainer identity must match the CURRENT profile so reconciliation auto-merges into it");
+  assert.equal(bundle.trainers[0].trainerName, currentProfile.username);
+  assert.equal(bundle.trainers[0].trainerFriendCode, currentProfile.friendCode);
+
+  const plan = await repo.planTrainerImport(bundle);
+  assert.equal(plan.entries[0].decision.kind, "auto-merge", "must resolve to auto-merge against the current profile, reproducing pre-7b 'always merge into current' behavior");
+
+  const summary = await repo.applyTrainerImport(bundle, {});
+  assert.equal(summary.merged, 1);
+  assert.equal(repo.getCurrentProfile().id, currentProfile.id, "the current profile must not change");
+  assert.equal(repo.getSpeciesWithForms("bulbasaur").personal.registered, true, "the legacy data must land on the current profile");
+  assert.equal(repo.getSpeciesWithForms("charmander").personal.registered, true, "the current profile's own pre-existing data must be preserved");
 });
