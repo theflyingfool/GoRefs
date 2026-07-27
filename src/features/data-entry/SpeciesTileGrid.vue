@@ -6,6 +6,7 @@
   section 3. Any future visual change to a tile applies to both automatically.
 -->
 <script setup lang="ts">
+import { computed } from "vue";
 import type { SpeciesSummary } from "../../data/repository";
 import type { FormPersonalBooleanField } from "../../db/types";
 import { speciesSpritePath } from "../../ui/sprites";
@@ -46,7 +47,7 @@ function handleTileClick(summary: SpeciesSummary) {
   props.onTileClick?.(summary);
 }
 
-const anyResults = props.sections.length > 0;
+const anyResults = computed(() => props.sections.length > 0);
 </script>
 
 <template>
