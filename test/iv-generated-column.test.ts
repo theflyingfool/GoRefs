@@ -17,16 +17,16 @@ test("pokemon_instance.iv_percent is computed from iv_attack/iv_defense/iv_stami
   await runPersonalMigrations(nodeSqliteConnection(db));
   db.exec("PRAGMA foreign_keys = OFF"); // form_slug/profile_id/background_slug reference tables this test doesn't create
   db.prepare(
-    "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at, iv_attack, iv_defense, iv_stamina) VALUES ('bulbasaur-standard', 1, 0, 0, 15, 15, 15)",
+    "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at, iv_attack, iv_defense, iv_stamina, uuid, original_trainer_name) VALUES ('bulbasaur-standard', 1, 0, 0, 15, 15, 15, 'test-uuid-1', 'Trainer')",
   ).run();
   db.prepare(
-    "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at, iv_attack, iv_defense, iv_stamina) VALUES ('bulbasaur-standard', 1, 0, 0, 0, 0, 0)",
+    "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at, iv_attack, iv_defense, iv_stamina, uuid, original_trainer_name) VALUES ('bulbasaur-standard', 1, 0, 0, 0, 0, 0, 'test-uuid-2', 'Trainer')",
   ).run();
   db.prepare(
-    "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at, iv_attack, iv_defense, iv_stamina) VALUES ('bulbasaur-standard', 1, 0, 0, 10, 8, 4)",
+    "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at, iv_attack, iv_defense, iv_stamina, uuid, original_trainer_name) VALUES ('bulbasaur-standard', 1, 0, 0, 10, 8, 4, 'test-uuid-3', 'Trainer')",
   ).run();
   db.prepare(
-    "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at, iv_attack, iv_defense, iv_stamina) VALUES ('bulbasaur-standard', 1, 0, 0, NULL, NULL, NULL)",
+    "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at, iv_attack, iv_defense, iv_stamina, uuid, original_trainer_name) VALUES ('bulbasaur-standard', 1, 0, 0, NULL, NULL, NULL, 'test-uuid-4', 'Trainer')",
   ).run();
 
   const rows = db.prepare("SELECT iv_attack, iv_defense, iv_stamina, iv_percent FROM pokemon_instance ORDER BY id").all() as {
@@ -63,7 +63,7 @@ test("inserting an out-of-range IV component is rejected by the CHECK constraint
   db.exec("PRAGMA foreign_keys = OFF");
   assert.throws(() => {
     db.prepare(
-      "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at, iv_attack, iv_defense, iv_stamina) VALUES ('bulbasaur-standard', 1, 0, 0, 16, 0, 0)",
+      "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at, iv_attack, iv_defense, iv_stamina, uuid, original_trainer_name) VALUES ('bulbasaur-standard', 1, 0, 0, 16, 0, 0, 'test-uuid-5', 'Trainer')",
     ).run();
   }, /CHECK constraint failed/);
 });

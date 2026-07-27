@@ -105,7 +105,7 @@ test("bootstrapping a real v6 device preserves every existing row and correctly 
   // target's table existence at INSERT-time regardless of row/NULL values, so this insert would
   // otherwise fail on a missing reference table unrelated to what's being checked here.
   db.exec("PRAGMA foreign_keys = OFF");
-  const insertResult = db.prepare("INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at) VALUES ('bulbasaur-standard-male', 1, 0, 0)").run();
+  const insertResult = db.prepare("INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at, uuid, original_trainer_name) VALUES ('bulbasaur-standard-male', 1, 0, 0, 'test-uuid', 'Trainer')").run();
   db.exec("PRAGMA foreign_keys = ON");
   assert.ok(Number(insertResult.lastInsertRowid) > maxExistingInstanceId, "new row's id should not collide with a pre-migration id");
 });
