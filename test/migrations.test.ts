@@ -48,6 +48,17 @@ test("runPersonalMigrations on a brand-new database creates every personal table
     "expected the default profile row to be seeded with a real UUID on a fresh install",
   );
   assert.equal(profileRow?.username, "Trainer");
+
+  // referenced_trainer's invariant (every real profile has a mirrored row)
+  // must hold from the very first boot, not just for profiles created later
+  // via createProfile/renameProfile -- the default profile is seeded by
+  // migrations.ts directly, a separate code path that must maintain the
+  // same invariant.
+  const referencedRow = db.prepare("SELECT uuid, name FROM referenced_trainer WHERE uuid = ?").get(profileRow?.id) as
+    | { uuid: string; name: string }
+    | undefined;
+  assert.ok(referencedRow, "the boot-seeded default profile must have a mirrored referenced_trainer row");
+  assert.equal(referencedRow?.name, "Trainer");
 });
 
 test("runPersonalMigrations is a no-op replay for a device already at the current migration", async () => {

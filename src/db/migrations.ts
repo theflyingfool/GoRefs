@@ -52,6 +52,7 @@ import type { SQLiteDBConnection } from "./sqlite-connection";
 import { DEFAULT_PROFILE_USERNAME } from "./schema";
 import { MIGRATION_SQL_BY_TAG } from "./migrations-data";
 import journal from "./migrations/meta/_journal.json" with { type: "json" };
+import { buildReferencedTrainerUpsert } from "../data/referenced-trainer-sql";
 
 const MIGRATIONS_TABLE = "__drizzle_migrations";
 
@@ -156,11 +157,20 @@ async function seedDefaultProfileIfMissing(db: SQLiteDBConnection): Promise<void
   const result = await db.query("SELECT COUNT(*) as c FROM profile");
   const row = result.values?.[0] as { c: number } | undefined;
   if ((row?.c ?? 0) > 0) return;
+  const id = crypto.randomUUID();
   await db.run(
     "INSERT INTO profile (id, username, friend_code, is_current, created_at) VALUES (?, ?, NULL, 1, ?)",
-    [crypto.randomUUID(), DEFAULT_PROFILE_USERNAME, Date.now()],
+    [id, DEFAULT_PROFILE_USERNAME, Date.now()],
     false,
   );
+  // referenced_trainer's invariant (every real profile has a mirrored row --
+  // see docs/superpowers/specs/2026-07-26-sub-project-7b-identity-and-merge-design.md
+  // section 4.2) is otherwise only maintained by createProfile/renameProfile
+  // -- a fresh install's very first, boot-seeded profile never goes through
+  // either, so without this it would be the single most common case that
+  // violates the invariant (every fresh install's default profile).
+  const upsert = buildReferencedTrainerUpsert({ uuid: id, name: DEFAULT_PROFILE_USERNAME, friendCode: null });
+  await db.run(upsert.sql, upsert.params, false);
 }
 
 // A pre-migration (schema v9 and earlier) device's profile.id was the plain
