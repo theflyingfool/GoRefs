@@ -158,12 +158,23 @@ profile, each with fully independent Dex/Collection/tags/progress) is
 complete.** Sub-project 7 was further split during design brainstorming
 into **7b** (stable `pokemon_instance`/`tag` identity + merge-gap closure —
 see
-`docs/superpowers/specs/2026-07-26-sub-project-7b-identity-and-merge-design.md`)
+`docs/superpowers/specs/2026-07-26-sub-project-7b-identity-and-merge-design.md`
+and `docs/superpowers/plans/2026-07-26-sub-project-7b-identity-and-merge.md`)
 and **7c** (the Stats-page compare view — see
-`docs/superpowers/specs/2026-07-26-sub-project-7c-compare-view-design.md`,
-which depends on 7b and is expected to need revision once 7b actually
-ships). 7b's design doc is written and is next in the implementation
-sequence.
+`docs/superpowers/specs/2026-07-26-sub-project-7c-compare-view-design.md`).
+
+**Sub-project 7b is complete** (10 tasks — the plan grew from 9 to 10 mid-execution
+when a review found the original plan built `pokemon_instance`'s uuid
+identity but never actually wired the uuid-based merge rule itself; Task 10
+closed that). `referenced_trainer` mirrors every real profile; tags are
+device-wide; export/import bundles (`ExportBundle`/`TrainerExport`) support
+"export current"/"export all" with friend-code/name reconciliation deciding
+new/promote/merge/separate; `pokemon_instance` (and its tags) now genuinely
+merge by uuid on import, verified double-import-idempotent. See
+[data-model.md](data-model.md)'s migration `0005` writeup for the resulting
+schema. **7c (compare view) is next** — its spec explicitly expected a
+revision pass once 7b's real interfaces existed; that revisit hasn't
+happened yet.
 
 Deferred items surfaced by 7b/7c's design brainstorm (logged here per that
 spec's §8 instruction):
@@ -219,18 +230,19 @@ scope / deferred" section), logged here per that doc's instruction:
   been used for a while and it's clearer whether switching needs to be
   available everywhere.
 
-Sub-project 7b's scope (not yet brainstormed):
-- **Sharing/comparison**: export a profile (or subset) to hand to a friend
-  for read-only completion/trade-gap comparison.
-  - **Stats page**: add a "compare" section to select the current account
-    plus one other account and view both side by side.
-- **Stable identity for `pokemon_instance`/`tag`**: both currently stay local
-  `AUTOINCREMENT` integers (deliberately untouched by 7a); giving them a
-  stable, cross-device-meaningful identity is a prerequisite for real merge
-  semantics and is 7b's job.
+Sub-project 7c's scope (compare view — spec written, needs a revision pass
+against 7b's real shipped interfaces before an implementation plan):
+- **Sharing/comparison**: a Stats-page "compare" section to select the
+  current account plus one other (local or freshly-imported) and view both
+  side by side — canned comparison models plus a manual/free-form option,
+  per the spec's §3 (not finalized, flagged there as needing its own
+  brainstorm).
+- Reuses 7b's `exportTrainer`/`ExportBundle`/reconciliation mechanism
+  directly for bringing in a friend's or a second local profile's data —
+  no separate import path.
 - Depends on Phase 0 (richer reference data may change what's worth
-  comparing) and Phase 1 (timestamps needed for merge/diff logic) having
-  already landed — both are done.
+  comparing) and Phase 1 (timestamps needed for merge/diff logic) — both
+  done — and now also on 7b, which is done.
 
 ### Not yet committed
 
