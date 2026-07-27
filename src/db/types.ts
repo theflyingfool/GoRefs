@@ -365,7 +365,15 @@ export interface Profile {
   createdAt: number;
 }
 
-export type PokemonInstanceStatus = "kept" | "traded" | "released" | "evolved";
+// The complete trainer-identity registry -- see schema.ts's referencedTrainer
+// table comment. Every real Profile has a mirrored row here.
+export interface ReferencedTrainer {
+  uuid: string;
+  name: string;
+  friendCode: string | null;
+}
+
+export type PokemonInstanceStatus = "kept" | "traded" | "transferred" | "evolved";
 
 // Individual caught-specimen log — see schema.ts's pokemon_instance comment
 // for why this exists alongside FormPersonal's achievement flags rather
@@ -396,6 +404,9 @@ export interface PokemonInstance {
   currentMegaLevel: number | null;
   nickname: string | null;
   backgroundSlug: string | null;
+  uuid: string;
+  originalTrainerName: string;
+  originalTrainerId: string | null;
 }
 
 /** Mirrors pokemon_instance.iv_percent's SQL GENERATED expression exactly (schema/personal.ts) -- used wherever a value is needed before an actual DB round-trip (the in-memory cache after an insert, and the Log-a-catch live preview). */

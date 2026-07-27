@@ -56,6 +56,18 @@ export const profile = sqliteTable("profile", {
   createdAt: integer("created_at", { mode: "timestamp_ms" }).notNull(),
 });
 
+// The complete trainer-identity registry -- every real `profile` row has a
+// mirrored row here (kept in sync by createProfile/renameProfile), plus
+// placeholder rows for trainers referenced (via pokemon_instance.original_trainer_id
+// or an import name-match) but never promoted to a real local profile. See
+// docs/superpowers/specs/2026-07-26-sub-project-7b-identity-and-merge-design.md
+// section 4 for why this is a separate table rather than a flag on `profile`.
+export const referencedTrainer = sqliteTable("referenced_trainer", {
+  uuid: text("uuid").primaryKey(),
+  name: text("name").notNull(),
+  friendCode: text("friend_code"),
+});
+
 export const speciesPersonal = sqliteTable(
   "species_personal",
   {
@@ -182,7 +194,7 @@ export const pokemonInstance = sqliteTable(
     id: integer("id").primaryKey({ autoIncrement: true }),
     formSlug: text("form_slug").notNull(),
     profileId: text("profile_id").notNull(),
-    status: text("status", { enum: ["kept", "traded", "released", "evolved"] }).notNull().default("kept"),
+    status: text("status", { enum: ["kept", "traded", "transferred", "evolved"] }).notNull().default("kept"),
     recordedAt: integer("recorded_at", { mode: "timestamp_ms" }).notNull(),
     caughtAt: integer("caught_at", { mode: "timestamp_ms" }),
     updatedAt: integer("updated_at", { mode: "timestamp_ms" }).notNull(),
@@ -210,6 +222,13 @@ export const pokemonInstance = sqliteTable(
     currentMegaLevel: integer("current_mega_level"),
     nickname: text("nickname"),
     backgroundSlug: text("background_slug"),
+    uuid: text("uuid").notNull(),
+    originalTrainerName: text("original_trainer_name").notNull(),
+    // Soft link into referenced_trainer.uuid -- deliberately NOT `.references()`.
+    // See docs/superpowers/specs/2026-07-26-sub-project-7b-identity-and-merge-design.md
+    // section 3.1: a specimen naming a trainer this device has never imported
+    // must not fail or silently drop on write.
+    originalTrainerId: text("original_trainer_id"),
   },
   (table) => ({
     ...boolChecks("pokemon_instance", {
@@ -220,10 +239,11 @@ export const pokemonInstance = sqliteTable(
       dynamax: table.dynamax,
       receivedViaTrade: table.receivedViaTrade,
     }),
-    statusCheck: check("pokemon_instance_status_enum", sql`${table.status} IN ('kept', 'traded', 'released', 'evolved')`),
+    statusCheck: check("pokemon_instance_status_enum", sql`${table.status} IN ('kept', 'traded', 'transferred', 'evolved')`),
     ivAttackCheck: check("pokemon_instance_iv_attack_range", sql`${table.ivAttack} IS NULL OR (${table.ivAttack} >= 0 AND ${table.ivAttack} <= 15)`),
     ivDefenseCheck: check("pokemon_instance_iv_defense_range", sql`${table.ivDefense} IS NULL OR (${table.ivDefense} >= 0 AND ${table.ivDefense} <= 15)`),
     ivStaminaCheck: check("pokemon_instance_iv_stamina_range", sql`${table.ivStamina} IS NULL OR (${table.ivStamina} >= 0 AND ${table.ivStamina} <= 15)`),
+    uuidUnique: unique("pokemon_instance_uuid_unique").on(table.uuid),
   }),
 );
 
@@ -235,7 +255,7 @@ export const tag = sqliteTable(
     name: text("name").notNull(),
   },
   (table) => ({
-    profileNameUnique: unique("tag_profile_id_name_unique").on(table.profileId, table.name),
+    nameUnique: unique("tag_name_unique").on(table.name),
   }),
 );
 

@@ -247,6 +247,9 @@ CREATE TABLE IF NOT EXISTS community_day_event_move (
 // achievement -- same relationship shiny already has to form_personal.shiny)
 // and received_via_trade (this specimen's origin). See
 // docs/superpowers/specs/2026-07-24-sub-project-5-collection-dex-tags-design.md.
-export const CURRENT_PERSONAL_SCHEMA_VERSION = 10;
+// Bumped 10 -> 11: pokemon_instance gains uuid/original_trainer_name/
+// original_trainer_id, status's 'released' renamed to 'transferred', tag
+// uniqueness becomes device-wide, new referenced_trainer table (Sub-project 7b).
+export const CURRENT_PERSONAL_SCHEMA_VERSION = 11;
 
 export const DEFAULT_PROFILE_USERNAME = "Trainer";
