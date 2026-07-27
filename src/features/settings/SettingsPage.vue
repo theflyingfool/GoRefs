@@ -10,7 +10,7 @@ import { EXCLUDE_REGIONAL_SETTING_KEY, MAX_GRID_INDICATORS, type Repository } fr
 import { CURRENT_PERSONAL_SCHEMA_VERSION } from "../../db/schema";
 import { applyTheme, getThemePreference, setThemePreference, type ThemePreference } from "../../app-shell/theme";
 import { FORM_GRID_SECOND_FIELD_OPTIONS, INDICATOR_LABELS, INDICATOR_OPTIONS, getFormGridSecondField, setFormGridSecondField } from "../data-entry/indicator-labels";
-import { buildExportBundle, downloadTextFile, readExportBundleFile } from "./personal-data-transfer";
+import { buildExportBundle, downloadTextFile, importTrainerBundleFile } from "./personal-data-transfer";
 
 const props = defineProps<{ repo: Repository }>();
 
@@ -103,33 +103,14 @@ async function onImportFileChange(event: Event) {
   input.value = "";
   if (!file) return;
   try {
-    const { bundle, schemaMismatch } = await readExportBundleFile(file, props.repo);
-    if (schemaMismatch) {
-      const proceed = window.confirm(
-        `This export is from schema version ${bundle.schemaVersion}, but this app is on version ${CURRENT_PERSONAL_SCHEMA_VERSION}. Some fields may not match. Import anyway?`,
-      );
-      if (!proceed) return;
-    }
-
-    const plan = await props.repo.planTrainerImport(bundle);
-    const resolutions: Record<string, "merge" | "separate"> = {};
-    for (const entry of plan.entries) {
-      if (entry.decision.kind !== "ask-merge-or-separate") continue;
-      const merge = window.confirm(
-        `"${entry.trainerName}" matches an existing local trainer with the same name. Merge them as one trainer? (Cancel treats them as two separate trainers.)`,
-      );
-      resolutions[entry.trainerUuid] = merge ? "merge" : "separate";
-    }
-
     // Backup-before-import is a persistent setting (backupBeforeImport
     // above), not a per-import prompt — off by default.
     if (backupBeforeImport.value) {
       status.value = "Saving a backup of your current data first…";
       await onExportAll();
     }
-
     status.value = "Importing…";
-    const summary = await props.repo.applyTrainerImport(bundle, resolutions);
+    const summary = await importTrainerBundleFile(props.repo, file);
     status.value = `Imported: ${summary.merged} merged, ${summary.promoted} promoted, ${summary.created} created as new, ${summary.separate} kept separate.`;
   } catch (err) {
     status.value = `Import failed: ${(err as Error).message}`;

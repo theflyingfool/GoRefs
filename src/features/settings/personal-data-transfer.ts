@@ -7,7 +7,7 @@
 // src/data/in-memory-store.ts so both backends get it for free.
 
 import { CURRENT_PERSONAL_SCHEMA_VERSION } from "../../db/schema";
-import type { ExportBundle, PersonalDataExport, Repository } from "../../data/repository";
+import type { ExportBundle, PersonalDataExport, Repository, TrainerImportSummary } from "../../data/repository";
 import { downloadTextFile } from "../../shared/file-download";
 
 export { downloadTextFile };
@@ -158,4 +158,34 @@ export async function readExportBundleFile(file: File, repo: Repository): Promis
     throw new Error("This doesn't look like a GoBuddy trainer-export bundle.");
   }
   return { bundle, schemaMismatch: bundle.schemaVersion !== CURRENT_PERSONAL_SCHEMA_VERSION };
+}
+
+/**
+ * Reads a picked file, runs 7b's reconciliation flow (prompting the user via
+ * window.confirm for any trainer that matched an existing local profile by
+ * name only -- see planTrainerImport/applyTrainerImport), and applies the
+ * import. Shared by Settings' "Import personal data" and the compare view's
+ * "Import a trainer" button (Sub-project 7c) -- one import code path
+ * regardless of caller, per design spec section 2.
+ */
+export async function importTrainerBundleFile(repo: Repository, file: File): Promise<TrainerImportSummary> {
+  const { bundle, schemaMismatch } = await readExportBundleFile(file, repo);
+  if (schemaMismatch) {
+    const proceed = window.confirm(
+      `This export is from schema version ${bundle.schemaVersion}, but this app is on version ${CURRENT_PERSONAL_SCHEMA_VERSION}. Some fields may not match. Import anyway?`,
+    );
+    if (!proceed) throw new Error("Import cancelled.");
+  }
+
+  const plan = await repo.planTrainerImport(bundle);
+  const resolutions: Record<string, "merge" | "separate"> = {};
+  for (const entry of plan.entries) {
+    if (entry.decision.kind !== "ask-merge-or-separate") continue;
+    const merge = window.confirm(
+      `"${entry.trainerName}" matches an existing local trainer with the same name. Merge them as one trainer? (Cancel treats them as two separate trainers.)`,
+    );
+    resolutions[entry.trainerUuid] = merge ? "merge" : "separate";
+  }
+
+  return repo.applyTrainerImport(bundle, resolutions);
 }
