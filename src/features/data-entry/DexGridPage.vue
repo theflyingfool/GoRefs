@@ -25,20 +25,12 @@
 import { computed, ref } from "vue";
 import type { Repository, SpeciesSummary } from "../../data/repository";
 import { navigate } from "../../app-shell/router";
-import { speciesSpritePath } from "../../ui/sprites";
 import { SPECIES_FIELDS } from "./field-groups";
-import { INDICATOR_LABELS } from "./indicator-labels";
 import type { GridCallbacks, GridState, SpeciesBulkField } from "./grid-types";
 import BulkFormEditPanel from "./BulkFormEditPanel.vue";
+import SpeciesTileGrid, { type RegionSection } from "./SpeciesTileGrid.vue";
 
 const props = defineProps<{ repo: Repository; state: GridState; callbacks: GridCallbacks }>();
-
-interface RegionSection {
-  slug: string;
-  name: string;
-  collapsed: boolean;
-  summaries: SpeciesSummary[];
-}
 
 const indicatorSelection = computed(() => props.repo.getIndicatorSelection());
 
@@ -56,12 +48,6 @@ const sections = computed<RegionSection[]>(() => {
   }
   return out;
 });
-
-const anyResults = computed(() => sections.value.length > 0);
-
-function badgesFor(summary: SpeciesSummary) {
-  return indicatorSelection.value.filter((field) => summary.indicators[field]);
-}
 
 // Registered-toggle click patches this tile's own visual state in place
 // instead of re-querying listSpeciesSummaries() — same tradeoff
@@ -163,43 +149,17 @@ function onBulkFieldChange(e: Event) {
       <button type="button" class="bulk-clear-button" @click="callbacks.onClearSelection()">Clear</button>
     </div>
 
-    <template v-for="section in sections" :key="section.slug">
-      <button type="button" class="region-header" @click="props.callbacks.onToggleRegion(section.slug)">
-        <span class="region-collapse-caret">{{ section.collapsed ? "▶" : "▼" }}</span>
-        <span>{{ section.name }} ({{ section.summaries.length }})</span>
-      </button>
-
-      <div v-if="!section.collapsed" class="species-grid">
-        <div v-for="summary in section.summaries" :key="summary.species.slug" class="species-tile-wrap">
-          <button
-            type="button"
-            :class="['species-tile', { uncaught: !effectiveCaught(summary), selected: isSelected(summary) }]"
-            @click="onTileClick(summary)"
-          >
-            <div class="badge-row">
-              <span v-for="field in badgesFor(summary)" :key="field" class="badge" :title="INDICATOR_LABELS[field].full">
-                {{ INDICATOR_LABELS[field].badge }}
-              </span>
-            </div>
-            <span v-if="state.selectMode" :class="['select-check', { on: isSelected(summary) }]">{{ isSelected(summary) ? "✓" : "" }}</span>
-            <img class="species-sprite" :src="speciesSpritePath(summary.species.dexNumber)" alt="" loading="lazy" />
-          </button>
-          <button
-            v-if="!state.selectMode"
-            type="button"
-            :class="['registered-toggle', { on: effectiveCaught(summary) }]"
-            :aria-pressed="String(effectiveCaught(summary))"
-            :aria-label="`Registered: ${effectiveCaught(summary) ? 'on' : 'off'}`"
-            @click.stop="toggleRegistered(summary)"
-          >
-            {{ effectiveCaught(summary) ? "✓" : "" }}
-          </button>
-          <div class="tile-label"><span class="dex-num">#{{ summary.species.dexNumber }}</span> {{ summary.species.name }}</div>
-        </div>
-      </div>
-    </template>
-
-    <p v-if="!anyResults" class="empty-state">No Pokémon match that search/filter.</p>
+    <SpeciesTileGrid
+      :sections="sections"
+      :indicator-selection="indicatorSelection"
+      :read-only="false"
+      :select-mode="state.selectMode"
+      :is-selected="isSelected"
+      :on-toggle-region="props.callbacks.onToggleRegion"
+      :on-tile-click="onTileClick"
+      :effective-caught="effectiveCaught"
+      :on-toggle-registered="toggleRegistered"
+    />
 
     <button type="button" class="fab" @click="navigate('/log-catch')">+ Log a catch</button>
   </template>
