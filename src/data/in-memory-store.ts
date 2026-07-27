@@ -116,10 +116,17 @@ export function createInMemoryRepository(
   | "renameProfile"
   | "deleteProfile"
   | "exportTrainer"
+  | "listSpeciesSummariesForProfile"
   | "listReferencedTrainers"
   | "planTrainerImport"
   | "applyTrainerImport"
-> {
+> & {
+  /** Not part of the public Repository type -- sqlite-repository.ts accesses this directly off the object returned here (same pattern as importPersonalData/setSpeciesPersonalField/etc.) to implement listSpeciesSummariesForProfile against an arbitrary profile bucket. */
+  computeSpeciesSummariesForBucket(
+    bucket: Pick<PersonalState, "speciesPersonal" | "formPersonal">,
+    filter?: SpeciesFilter,
+  ): SpeciesSummary[];
+} {
   const speciesBySlug = new Map<string, Species>(referenceData.species.map((s) => [s.slug, s]));
   const speciesByDexOrder = [...referenceData.species].sort((a, b) => a.dexNumber - b.dexNumber);
   const formsBySpecies = new Map<string, Form[]>();
@@ -395,6 +402,31 @@ export function createInMemoryRepository(
     return sortInstances(rows, filter.sort);
   }
 
+  function computeSpeciesSummariesForBucket(
+    bucket: Pick<PersonalState, "speciesPersonal" | "formPersonal">,
+    filter: SpeciesFilter = {},
+  ): SpeciesSummary[] {
+    return speciesByDexOrder
+      .filter((s) => (filter.region ? s.regionSlug === filter.region : true))
+      .filter((s) => (filter.search ? matchesSearch(s, filter.search) : true))
+      .map((species) => {
+        const personal = bucket.speciesPersonal[species.slug] ?? emptySpeciesPersonal(species.slug);
+        const forms = formsBySpecies.get(species.slug) ?? [];
+        const formPersonals = forms.map((f) => bucket.formPersonal[f.slug] ?? emptyFormPersonal(f.slug));
+        const indicators = {} as Record<FormPersonalBooleanField, boolean>;
+        for (const field of FORM_PERSONAL_BOOLEAN_FIELDS) {
+          indicators[field] = formPersonals.some((fp) => fp[field]);
+        }
+        return { species, personal, caught: personal.registered, indicators };
+      })
+      .filter((s) => {
+        if (!filter.caught || filter.caught === "all") return true;
+        return filter.caught === "caught" ? s.caught : !s.caught;
+      })
+      .filter((s) => matchesFieldFilters(s.species, s.personal, s.indicators, filter.fieldFilters))
+      .map(({ personal: _personal, ...summary }) => summary);
+  }
+
   return {
     listRegions(): Region[] {
       return referenceData.regions;
@@ -439,25 +471,7 @@ export function createInMemoryRepository(
     },
 
     listSpeciesSummaries(filter: SpeciesFilter = {}): SpeciesSummary[] {
-      return speciesByDexOrder
-        .filter((s) => (filter.region ? s.regionSlug === filter.region : true))
-        .filter((s) => (filter.search ? matchesSearch(s, filter.search) : true))
-        .map((species) => {
-          const personal = state.speciesPersonal[species.slug] ?? emptySpeciesPersonal(species.slug);
-          const forms = formsBySpecies.get(species.slug) ?? [];
-          const formPersonals = forms.map((f) => state.formPersonal[f.slug] ?? emptyFormPersonal(f.slug));
-          const indicators = {} as Record<FormPersonalBooleanField, boolean>;
-          for (const field of FORM_PERSONAL_BOOLEAN_FIELDS) {
-            indicators[field] = formPersonals.some((fp) => fp[field]);
-          }
-          return { species, personal, caught: personal.registered, indicators };
-        })
-        .filter((s) => {
-          if (!filter.caught || filter.caught === "all") return true;
-          return filter.caught === "caught" ? s.caught : !s.caught;
-        })
-        .filter((s) => matchesFieldFilters(s.species, s.personal, s.indicators, filter.fieldFilters))
-        .map(({ personal: _personal, ...summary }) => summary);
+      return computeSpeciesSummariesForBucket(state, filter);
     },
 
     searchSpecies(query: string, limit = 8): Species[] {
@@ -738,5 +752,6 @@ export function createInMemoryRepository(
       // overrides this to also await its pending write queue.
       return { skippedSpeciesSlugs, skippedFormSlugs };
     },
+    computeSpeciesSummariesForBucket,
   };
 }

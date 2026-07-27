@@ -340,3 +340,31 @@ test("re-importing a trainer whose uuid ALREADY matches locally (no id rewrite n
   const referencedRow = dbB.prepare("SELECT name FROM referenced_trainer WHERE uuid = ?").get(mergedProfile.id) as { name: string } | undefined;
   assert.equal(referencedRow?.name, "Ash Ketchum Sr.", "referenced_trainer.name must agree with profile.username here too");
 });
+
+test("listSpeciesSummariesForProfile reads a non-current profile's data without switching to it", async () => {
+  const db = new DatabaseSync(":memory:");
+  db.exec("PRAGMA foreign_keys = ON;");
+  db.exec(REFERENCE_SCHEMA_SQL);
+  const conn = nodeSqliteConnection(db);
+  const repo = await createSqliteRepository(undefined, conn);
+
+  const original = repo.getCurrentProfile();
+  const second = await repo.createProfile("Second", null);
+  repo.switchProfile(second.id);
+  repo.setSpeciesPersonalField("bulbasaur", "registered", true);
+  repo.switchProfile(original.id);
+
+  const summaries = repo.listSpeciesSummariesForProfile(second.id, { search: "bulbasaur" });
+  const bulbasaur = summaries.find((s) => s.species.slug === "bulbasaur");
+  assert.equal(bulbasaur?.caught, true, "must reflect the SECOND profile's data");
+  assert.equal(repo.getCurrentProfile().id, original.id, "must not switch the current profile");
+});
+
+test("listSpeciesSummariesForProfile throws for an unknown profileId", async () => {
+  const db = new DatabaseSync(":memory:");
+  db.exec("PRAGMA foreign_keys = ON;");
+  db.exec(REFERENCE_SCHEMA_SQL);
+  const conn = nodeSqliteConnection(db);
+  const repo = await createSqliteRepository(undefined, conn);
+  assert.throws(() => repo.listSpeciesSummariesForProfile("not-a-real-id"), /Unknown profile/);
+});

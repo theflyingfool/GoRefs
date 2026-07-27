@@ -344,6 +344,8 @@ export interface Repository {
   deleteProfile(profileId: string): Promise<void>;
   /** One trainer's full export (see TrainerExport) -- works for ANY local profile, not just the current one, so "export all" can call this once per profile without switching. */
   exportTrainer(profileId: string): TrainerExport;
+  /** Same as listSpeciesSummaries, but for an ARBITRARY local profile, not just the current one -- doesn't switch to it. Used by the compare view (Sub-project 7c) to show two profiles' dex grids without disturbing which profile is actually current. Throws for an unknown profileId. */
+  listSpeciesSummariesForProfile(profileId: string, filter?: SpeciesFilter): SpeciesSummary[];
   /** The complete trainer-identity registry (real profiles + placeholders) -- a synchronous cached read, kept fresh the same way sharedTags is (see sqlite-repository.ts). Used by buildExportBundle so every trainer in a multi-trainer export carries the device's full identity registry, fetched once rather than per trainer. */
   listReferencedTrainers(): { uuid: string; name: string; friendCode: string | null }[];
   /** Runs reconcileTrainer for every trainer in the bundle against this device's current profiles/referenced_trainer -- read-only, no writes. The UI shows any "ask-merge-or-separate" entries to the user before calling applyTrainerImport with their answers. */

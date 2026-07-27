@@ -53,6 +53,8 @@ import {
   type NewPokemonInstanceBatch,
   type PersonalDataExport,
   type Repository,
+  type SpeciesFilter,
+  type SpeciesSummary,
   type TagCount,
   type TrainerExport,
   type TrainerImportPlan,
@@ -1394,6 +1396,11 @@ export async function createSqliteRepository(
         trainerFriendCode: bucket.profile.friendCode,
         referencedTrainers: [], // filled in by the caller building the ExportBundle -- see buildExportBundle, which fetches the device-wide list ONCE and attaches it to every trainer rather than re-querying per trainer.
       };
+    },
+    listSpeciesSummariesForProfile(profileId: string, filter?: SpeciesFilter): SpeciesSummary[] {
+      const bucket = profileBuckets.get(profileId);
+      if (!bucket) throw new Error(`Unknown profile: ${profileId}`);
+      return repo.computeSpeciesSummariesForBucket(bucket, filter);
     },
     // Synchronous cached read (mirrors sharedTags) -- see sharedReferencedTrainers's
     // declaration comment above for how it's kept fresh.
