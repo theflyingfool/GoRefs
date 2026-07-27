@@ -177,3 +177,32 @@ test("creating a tag with a name that already exists (any profile) returns the e
   assert.equal(duplicate.id, first.id, "createTag must dedupe by name against the shared list regardless of current profile");
   assert.equal(repo.listTags().filter((t) => t.name === "shiny-candidates").length, 1);
 });
+
+// Task 10 (sub-project 7b): deleteTag used to reassign
+// state.pokemonInstanceTags to a brand-new array instead of mutating it in
+// place, which broke the aliasing between `state` and a NON-current
+// profile's profileBuckets entry -- a tag deleted while profile A was
+// current still showed up linked on profile B until switching away and
+// back forced a fresh read. Deleting a tag is device-wide (Task 6), so its
+// links must disappear from every profile's bucket immediately.
+test("deleteTag removes the tag's links from a non-current profile's bucket immediately, not just the current one", async () => {
+  const db = new DatabaseSync(":memory:");
+  db.exec("PRAGMA foreign_keys = ON;");
+  db.exec(REFERENCE_SCHEMA_SQL);
+  const repo = await createSqliteRepository(undefined, nodeSqliteConnection(db));
+
+  const second = await repo.createProfile("Second", null);
+  repo.switchProfile(second.id);
+  const [instance] = await repo.createPokemonInstances({ formSlug: "bulbasaur-standard-male", count: 1 });
+  const tag = await repo.createTag("starters");
+  await repo.updatePokemonInstance(instance.id, { tagIds: [tag.id] });
+
+  const first = repo.listProfiles().find((p) => p.id !== second.id)!;
+  repo.switchProfile(first.id);
+  // `second` is no longer the current profile at the moment of deletion.
+  await repo.deleteTag(tag.id);
+
+  repo.switchProfile(second.id);
+  const rows = repo.listPokemonInstances({ status: "all" });
+  assert.equal(rows.find((r) => r.instance.id === instance.id)!.tags.length, 0, "the deleted tag's link must be gone even on a profile that wasn't current at delete time");
+});
