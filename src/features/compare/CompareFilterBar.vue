@@ -9,7 +9,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import type { GridFilterField, SpeciesFilter } from "../../data/repository";
-import { MORE_FILTER_FIELDS, gridFilterFieldLabel } from "../data-entry/indicator-labels";
+import { CLASSIFICATION_FIELDS, MORE_FILTER_FIELDS, gridFilterFieldLabel } from "../data-entry/indicator-labels";
 
 const props = defineProps<{ modelValue: SpeciesFilter }>();
 const emit = defineEmits<{ "update:modelValue": [SpeciesFilter] }>();
@@ -56,6 +56,18 @@ function cycleFieldFilter(field: GridFilterField) {
         @click="update({ caught: opt.value })"
       >
         {{ opt.label }}
+      </button>
+    </div>
+    <div class="theme-options">
+      <button
+        v-for="field in CLASSIFICATION_FIELDS"
+        :key="field"
+        type="button"
+        :class="['filter-chip', fieldChipClass(field)]"
+        :title="gridFilterFieldLabel(field).full"
+        @click="cycleFieldFilter(field)"
+      >
+        {{ gridFilterFieldLabel(field).badge }}
       </button>
     </div>
     <div class="theme-options">
