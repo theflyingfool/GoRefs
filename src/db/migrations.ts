@@ -204,6 +204,13 @@ async function randomizeLegacyProfileId(db: SQLiteDBConnection): Promise<void> {
     for (const table of PROFILE_SCOPED_TABLES) {
       await db.run(`UPDATE ${table} SET profile_id = ? WHERE profile_id = '1'`, [newId], false);
     }
+    // referenced_trainer has no profile_id column -- its own PK (uuid)
+    // doubles as the identity being rewritten here, and it was seeded with
+    // the old sentinel by migration 0005's referenced_trainer <- profile
+    // seed (which runs, keyed by profile.id, before this function does in
+    // runPersonalMigrations). Leaving it unrewritten would orphan the
+    // registry row at '1' while profile.id (and everything else) moved on.
+    await db.run(`UPDATE referenced_trainer SET uuid = ? WHERE uuid = '1'`, [newId], false);
     await db.commitTransaction();
   } catch (err) {
     await db.rollbackTransaction();

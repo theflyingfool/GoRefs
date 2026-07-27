@@ -39,6 +39,7 @@ import { applyDexAchievementBackfillIfNeeded, DEX_ACHIEVEMENT_BACKFILL_KEY } fro
 import { buildScalarUpdateStatement, buildTagDiffStatements, mergeUpdatedInstance } from "./pokemon-instance-update-sql";
 import { buildRenameTagStatement, buildDeleteTagStatements, computeTagUsageCounts } from "./tag-management-sql";
 import { buildDeleteProfileStatements } from "./profile-management-sql";
+import { buildReferencedTrainerUpsert } from "./referenced-trainer-sql";
 import { syncReferenceData } from "../db/reference-sync";
 import { getCompletionStatsSql } from "./completion-stats-sql";
 import referenceDataJson from "./reference.json";
@@ -534,6 +535,8 @@ export async function createSqliteRepository(
           const { sql, params } = buildAppSettingUpsert(newProfile.id, key, value);
           await db.run(sql, params, false);
         }
+        const referencedUpsert = buildReferencedTrainerUpsert({ uuid: newProfile.id, name: newProfile.username, friendCode: newProfile.friendCode });
+        await db.run(referencedUpsert.sql, referencedUpsert.params, false);
         await db.commitTransaction();
       } catch (err) {
         await db.rollbackTransaction();
@@ -593,6 +596,8 @@ export async function createSqliteRepository(
     // didn't land. Cache update happens only after a confirmed commit.
     await enqueueSerialized(async () => {
       await db.run("UPDATE profile SET username = ?, friend_code = ? WHERE id = ?", [username, friendCode, profileId], true);
+      const referencedUpsert = buildReferencedTrainerUpsert({ uuid: profileId, name: username, friendCode });
+      await db.run(referencedUpsert.sql, referencedUpsert.params, true);
       await persistDb();
     });
     bucket.profile = updated;

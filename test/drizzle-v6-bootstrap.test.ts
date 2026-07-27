@@ -79,6 +79,15 @@ test("bootstrapping a real v6 device preserves every existing row and correctly 
   const [profileRow] = await drizzleDb.select().from(profile).where(eq(profile.isCurrent, true));
   assert.equal(profileRow.createdAt.getTime(), new Date("2026-01-01T00:00:00.000Z").getTime());
 
+  // Sub-project 7b Task 2's fix: migration 0005 seeds referenced_trainer
+  // keyed by profile.id BEFORE randomizeLegacyProfileId renames it away
+  // from the legacy sentinel '1' -- confirm the registry row was rewritten
+  // alongside profile.id, not left behind as an orphaned '1' placeholder.
+  const orphaned = db.prepare("SELECT COUNT(*) as c FROM referenced_trainer WHERE uuid = '1'").get() as { c: number };
+  assert.equal(orphaned.c, 0, "referenced_trainer must not be left orphaned at the legacy sentinel uuid");
+  const referencedRow = db.prepare("SELECT uuid, name FROM referenced_trainer WHERE uuid = ?").get(profileRow.id) as { uuid: string; name: string } | undefined;
+  assert.ok(referencedRow, "referenced_trainer row must have been rewritten to the new profile id, not left orphaned at '1'");
+
   // Drizzle's tracking table reflects all six migrations applied (0000's bootstrap row, then 0001, 0002, 0003, 0004, and 0005 applied normally).
   const migrationRows = db.prepare("SELECT COUNT(*) as c FROM __drizzle_migrations").get() as { c: number };
   assert.equal(migrationRows.c, 6);

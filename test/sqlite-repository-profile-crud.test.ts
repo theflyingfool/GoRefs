@@ -173,3 +173,21 @@ test("player progress set on a profile survives a switch away and back", async (
   assert.equal(repo.getPlayerProgress()?.currentLevel, 42, "player level set on A must survive a switch round-trip");
   assert.equal(repo.getPlayerProgress()?.totalXp, 123456, "player XP set on A must survive a switch round-trip");
 });
+
+test("createProfile and renameProfile keep referenced_trainer mirrored", async () => {
+  const db = new DatabaseSync(":memory:");
+  db.exec("PRAGMA foreign_keys = ON;");
+  db.exec(REFERENCE_SCHEMA_SQL);
+  const conn = nodeSqliteConnection(db);
+  const repo = await createSqliteRepository(undefined, conn);
+
+  const created = await repo.createProfile("Misty", "111122223333");
+  let row = db.prepare("SELECT name, friend_code FROM referenced_trainer WHERE uuid = ?").get(created.id) as { name: string; friend_code: string | null };
+  assert.equal(row.name, "Misty");
+  assert.equal(row.friend_code, "111122223333");
+
+  await repo.renameProfile(created.id, "Misty Waterflower", null);
+  row = db.prepare("SELECT name, friend_code FROM referenced_trainer WHERE uuid = ?").get(created.id) as { name: string; friend_code: string | null };
+  assert.equal(row.name, "Misty Waterflower");
+  assert.equal(row.friend_code, null);
+});
