@@ -186,6 +186,11 @@ spec's §8 instruction):
   planned feature for 7c, not scoped or built in either 7b or 7c.
 - **A larger, currently-unscoped UI/UX refactor** is planned at some point
   after 7b/7c — no shape yet, flagged here so it isn't silently forgotten.
+- **`pokemon_instance_max_move` export/merge** — explicitly out of scope for
+  7b's uuid-based `pokemon_instance` merge (Task 10). The design spec's own
+  schema comment already calls the Max Move mechanic's modeling
+  "provisional," so extending export/merge to it now would build on an
+  acknowledged-unstable foundation. Revisit once that modeling is settled.
 
 Closing out both items carried forward from Sub-project 2 (originally
 tracked in `docs/superpowers/specs/2026-07-23-v2-consolidation-roadmap.md`'s

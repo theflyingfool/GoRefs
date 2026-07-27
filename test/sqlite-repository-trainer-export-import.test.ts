@@ -262,3 +262,29 @@ test("applyTrainerImport: an ask-merge-or-separate decision resolved as \"separa
   repoB.switchProfile(newSeparateProfile.id);
   assert.equal(repoB.getSpeciesWithForms("squirtle").personal.registered, true, "the new separate profile must carry A's imported data");
 });
+
+test("importing the same bundle twice does not duplicate specimens, and tag links survive both passes", async () => {
+  const dbA = new DatabaseSync(":memory:");
+  dbA.exec("PRAGMA foreign_keys = ON;");
+  dbA.exec(REFERENCE_SCHEMA_SQL);
+  const repoA = await createSqliteRepository(undefined, nodeSqliteConnection(dbA));
+  await repoA.renameProfile(repoA.getCurrentProfile().id, "Ash", "111122223333");
+  const [instance] = await repoA.createPokemonInstances({ formSlug: "bulbasaur-standard-male", count: 1 });
+  const tag = await repoA.createTag("starters");
+  await repoA.updatePokemonInstance(instance.id, { tagIds: [tag.id] });
+
+  const dbB = new DatabaseSync(":memory:");
+  dbB.exec("PRAGMA foreign_keys = ON;");
+  dbB.exec(REFERENCE_SCHEMA_SQL);
+  const repoB = await createSqliteRepository(undefined, nodeSqliteConnection(dbB));
+  await repoB.renameProfile(repoB.getCurrentProfile().id, "Ash Ketchum", "111122223333");
+
+  const bundle = buildExportBundle(repoA, [repoA.getCurrentProfile().id]);
+  await repoB.applyTrainerImport(bundle, {});
+  await repoB.applyTrainerImport(bundle, {}); // import the SAME bundle again
+
+  const rows = repoB.listPokemonInstances({ status: "all" });
+  assert.equal(rows.length, 1, "importing the same bundle twice must not duplicate the specimen");
+  assert.equal(rows[0].tags.length, 1, "tag links must survive both import passes");
+  assert.equal(rows[0].tags[0].name, "starters");
+});

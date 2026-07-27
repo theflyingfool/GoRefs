@@ -51,6 +51,7 @@ import {
   type ExportBundle,
   type ImportResult,
   type NewPokemonInstanceBatch,
+  type PersonalDataExport,
   type Repository,
   type TagCount,
   type TrainerExport,
@@ -723,6 +724,142 @@ export async function createSqliteRepository(
     return created!;
   }
 
+  // Pre-resolves a batch of tag names to their (possibly newly-created) ids
+  // BEFORE any SQL transaction is open. createTag hardcodes its own
+  // per-statement transaction (`db.run(..., true)` above) -- calling it from
+  // inside runBulk's already-open transaction would throw "transaction
+  // within a transaction", so every tag a specimen merge might need must be
+  // resolved here, outside runBulk, first.
+  async function resolveTagNameToIdMap(tagNames: Set<string>): Promise<Map<string, number>> {
+    const map = new Map<string, number>();
+    for (const tagName of tagNames) {
+      const tag = await createTag(tagName);
+      map.set(tagName, tag.id);
+    }
+    return map;
+  }
+
+  // The real merge-by-uuid rule (design spec §3.1, "closing gap 1 directly"):
+  // a specimen present on both sides keeps whichever row's updatedAt is
+  // newer, whole-row (same rule in-memory-store.ts's importPersonalData
+  // already uses for every other personal table); a specimen new to this
+  // device gets inserted with its own uuid intact. Tag links move with
+  // whichever side's row won -- replaced wholesale, not merged link-by-link,
+  // same "whole row, not field by field" reasoning. MUST be called from
+  // inside an already-open transaction (runBulk) -- see resolveTagNameToIdMap
+  // above for why tag creation itself is NOT done here.
+  async function mergePokemonInstancesTx(
+    data: PersonalDataExport,
+    targetProfileId: string,
+    tagNameToId: Map<string, number>,
+  ): Promise<void> {
+    for (const incoming of data.pokemonInstances ?? []) {
+      const existingRow = (await db.query("SELECT id, updated_at FROM pokemon_instance WHERE uuid = ?", [incoming.uuid])).values?.[0] as
+        | { id: number; updated_at: number }
+        | undefined;
+
+      let localId: number;
+      if (existingRow) {
+        if (existingRow.updated_at >= incoming.updatedAt) continue; // local wins -- row AND its tag links stay as-is
+        localId = existingRow.id;
+        await db.run(
+          `UPDATE pokemon_instance SET form_slug = ?, profile_id = ?, status = ?, recorded_at = ?, caught_at = ?, updated_at = ?, cp = ?, iv_attack = ?, iv_defense = ?, iv_stamina = ?, shiny = ?, lucky = ?, shadow = ?, purified = ?, dynamax = ?, received_via_trade = ?, hearts_earned = ?, current_mega_level = ?, nickname = ?, background_slug = ?, original_trainer_name = ?, original_trainer_id = ? WHERE id = ?`,
+          [
+            incoming.formSlug, targetProfileId, incoming.status, incoming.recordedAt, incoming.caughtAt, incoming.updatedAt,
+            incoming.cp, incoming.ivAttack, incoming.ivDefense, incoming.ivStamina, incoming.shiny ? 1 : 0, incoming.lucky ? 1 : 0,
+            incoming.shadow ? 1 : 0, incoming.purified ? 1 : 0, incoming.dynamax ? 1 : 0, incoming.receivedViaTrade ? 1 : 0,
+            incoming.heartsEarned, incoming.currentMegaLevel, incoming.nickname, incoming.backgroundSlug,
+            incoming.originalTrainerName, incoming.originalTrainerId, localId,
+          ],
+          false,
+        );
+      } else {
+        await db.run(
+          `INSERT INTO pokemon_instance (form_slug, profile_id, status, recorded_at, caught_at, updated_at, cp, iv_attack, iv_defense, iv_stamina, shiny, lucky, shadow, purified, dynamax, received_via_trade, hearts_earned, current_mega_level, nickname, background_slug, uuid, original_trainer_name, original_trainer_id)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          [
+            incoming.formSlug, targetProfileId, incoming.status, incoming.recordedAt, incoming.caughtAt, incoming.updatedAt,
+            incoming.cp, incoming.ivAttack, incoming.ivDefense, incoming.ivStamina, incoming.shiny ? 1 : 0, incoming.lucky ? 1 : 0,
+            incoming.shadow ? 1 : 0, incoming.purified ? 1 : 0, incoming.dynamax ? 1 : 0, incoming.receivedViaTrade ? 1 : 0,
+            incoming.heartsEarned, incoming.currentMegaLevel, incoming.nickname, incoming.backgroundSlug,
+            incoming.uuid, incoming.originalTrainerName, incoming.originalTrainerId,
+          ],
+          false,
+        );
+        const idRow = (await db.query("SELECT last_insert_rowid() AS id")).values?.[0] as { id: number } | undefined;
+        localId = idRow!.id;
+      }
+
+      await db.run("DELETE FROM pokemon_instance_tag WHERE pokemon_instance_id = ?", [localId], false);
+      const tagNames = (data.pokemonInstanceTagNames ?? []).filter((t) => t.instanceUuid === incoming.uuid).map((t) => t.tagName);
+      for (const tagName of tagNames) {
+        const tagId = tagNameToId.get(tagName);
+        if (tagId === undefined) continue;
+        await db.run("INSERT OR IGNORE INTO pokemon_instance_tag (pokemon_instance_id, tag_id) VALUES (?, ?)", [localId, tagId], false);
+      }
+    }
+  }
+
+  // Post-commit cache sync for whichever profile was the merge target --
+  // re-reads pokemon_instance/pokemon_instance_tag from SQL rather than
+  // trying to incrementally patch the in-memory arrays to match every
+  // insert/update/delete mergePokemonInstancesTx just did. Updates BOTH
+  // `state` (if it's still pointed at this profile) and this profile's
+  // profileBuckets entry (so the merged data survives a later profile
+  // switch away and back, even if `state` gets reassigned elsewhere before
+  // that switch happens -- see applyTrainerImport's own restore-at-the-end).
+  async function refreshPokemonInstanceCache(targetProfileId: string): Promise<void> {
+    const pokemonInstances: PokemonInstance[] = [];
+    for (const row of (await db.query("SELECT * FROM pokemon_instance WHERE profile_id = ?", [targetProfileId])).values ?? []) {
+      pokemonInstances.push({
+        id: row.id,
+        formSlug: row.form_slug,
+        profileId: row.profile_id,
+        status: row.status,
+        recordedAt: row.recorded_at,
+        caughtAt: row.caught_at ?? null,
+        updatedAt: row.updated_at,
+        cp: row.cp ?? null,
+        ivAttack: row.iv_attack ?? null,
+        ivDefense: row.iv_defense ?? null,
+        ivStamina: row.iv_stamina ?? null,
+        ivPercent: row.iv_percent ?? null,
+        shiny: !!row.shiny,
+        lucky: !!row.lucky,
+        shadow: !!row.shadow,
+        purified: !!row.purified,
+        dynamax: !!row.dynamax,
+        receivedViaTrade: !!row.received_via_trade,
+        heartsEarned: row.hearts_earned ?? null,
+        currentMegaLevel: row.current_mega_level ?? null,
+        nickname: row.nickname ?? null,
+        backgroundSlug: row.background_slug ?? null,
+        uuid: row.uuid,
+        originalTrainerName: row.original_trainer_name,
+        originalTrainerId: row.original_trainer_id ?? null,
+      });
+    }
+    const pokemonInstanceTags: PokemonInstanceTag[] = [];
+    for (const row of (
+      await db.query(
+        "SELECT pit.* FROM pokemon_instance_tag pit JOIN pokemon_instance pi ON pi.id = pit.pokemon_instance_id WHERE pi.profile_id = ?",
+        [targetProfileId],
+      )
+    ).values ?? []) {
+      pokemonInstanceTags.push({ pokemonInstanceId: row.pokemon_instance_id, tagId: row.tag_id });
+    }
+
+    const bucket = profileBuckets.get(targetProfileId);
+    if (bucket) {
+      bucket.pokemonInstances = pokemonInstances;
+      bucket.pokemonInstanceTags = pokemonInstanceTags;
+    }
+    if (state.profile.id === targetProfileId) {
+      state.pokemonInstances = pokemonInstances;
+      state.pokemonInstanceTags = pokemonInstanceTags;
+    }
+  }
+
   // ---- Trainer import/export (Sub-project 7b, Task 9) ------------------------
 
   // The "run importPersonalData's existing per-row merge against a specific,
@@ -738,9 +875,14 @@ export async function createSqliteRepository(
   async function mergeTrainerExportIntoBucket(trainer: TrainerExport, targetState: PersonalState, targetProfileId: string): Promise<void> {
     const wasCurrent = state.profile.id === targetProfileId;
     if (!wasCurrent) reassignStateToBucket(targetState);
+    // Tag ids resolved OUTSIDE runBulk -- see resolveTagNameToIdMap's doc
+    // comment for why createTag can't run inside runBulk's open transaction.
+    const tagNameToId = await resolveTagNameToIdMap(new Set((trainer.pokemonInstanceTagNames ?? []).map((t) => t.tagName)));
     await runBulk(async () => {
       await repo.importPersonalData(trainer);
+      await mergePokemonInstancesTx(trainer, targetProfileId, tagNameToId);
     });
+    await refreshPokemonInstanceCache(targetProfileId);
   }
 
   async function planTrainerImport(bundle: ExportBundle): Promise<TrainerImportPlan> {
@@ -899,15 +1041,30 @@ export async function createSqliteRepository(
     },
     // Overrides the in-memory-store default to (a) run the whole merge as
     // one SQL transaction via runBulk, so a failure partway through can't
-    // leave some rows merged and others not, and (b) wait for the writes it
+    // leave some rows merged and others not, (b) wait for the writes it
     // just queued to actually land in SQLite — callers that reload the page
     // right after importing need the real backing store updated first, not
-    // just the in-memory cache.
+    // just the in-memory cache, and (c) actually merge pokemon_instance (and
+    // its tag links) by uuid — the real merge rule design spec §3.1 calls
+    // "closing gap 1 directly" — via mergePokemonInstancesTx, since
+    // in-memory-store.ts's importPersonalData deliberately leaves specimens
+    // alone (see its own comment for why: a genuinely new specimen needs a
+    // real INSERT's AUTOINCREMENT id back before the in-memory cache can be
+    // updated). mergeTrainerExportIntoBucket below runs the identical
+    // specimen-merge path for the trainer-bundle import flow, since that
+    // flow calls `repo.importPersonalData` (the un-overridden base) directly
+    // rather than through this override.
     async importPersonalData(data) {
       let result: ImportResult | undefined;
+      const targetProfileId = state.profile.id;
+      // Tag ids resolved OUTSIDE runBulk -- see resolveTagNameToIdMap's doc
+      // comment for why createTag can't run inside runBulk's open transaction.
+      const tagNameToId = await resolveTagNameToIdMap(new Set((data.pokemonInstanceTagNames ?? []).map((t) => t.tagName)));
       await runBulk(async () => {
         result = await repo.importPersonalData(data);
+        await mergePokemonInstancesTx(data, targetProfileId, tagNameToId);
       });
+      await refreshPokemonInstanceCache(targetProfileId);
       return result!;
     },
     // Bulk overrides: run the shared in-memory cascade path (repo.bulkSet*)
@@ -1049,7 +1206,18 @@ export async function createSqliteRepository(
       });
       await writeQueue;
       sharedTags = sharedTags.filter((t) => t.id !== id);
-      state.pokemonInstanceTags = state.pokemonInstanceTags.filter((l) => l.tagId !== id);
+      // In-place mutation, not reassignment -- `state.pokemonInstanceTags`
+      // aliases the SAME array as this profile's profileBuckets entry (see
+      // `state`'s "SHALLOW COPY" declaration comment above); reassigning the
+      // field here would only repoint state's own copy, leaving the bucket's
+      // (and any other alias's) array stale. Tags are device-wide, so every
+      // OTHER profile's bucket also needs this tag's links dropped -- loop
+      // over all of them, not just the current one.
+      for (const bucket of profileBuckets.values()) {
+        const kept = bucket.pokemonInstanceTags.filter((l) => l.tagId !== id);
+        bucket.pokemonInstanceTags.length = 0;
+        bucket.pokemonInstanceTags.push(...kept);
+      }
     },
     // Not part of createInMemoryRepository's shared object (see its Omit<>) —
     // this is a dynamic-column-list UPDATE against real SQL, which the
@@ -1132,8 +1300,14 @@ export async function createSqliteRepository(
         }
       }
       if (fields.tagIds !== undefined) {
-        state.pokemonInstanceTags = state.pokemonInstanceTags.filter((t) => t.pokemonInstanceId !== id);
-        state.pokemonInstanceTags.push(...fields.tagIds.map((tagId) => ({ pokemonInstanceId: id, tagId })));
+        // In-place mutation, not reassignment -- see deleteTag's identical
+        // note above for why: `state.pokemonInstanceTags` aliases the SAME
+        // array as this profile's profileBuckets entry, and reassigning the
+        // field would only repoint state's own copy, leaving the bucket
+        // (read directly by exportTrainer, bypassing `state` entirely) stale.
+        const kept = state.pokemonInstanceTags.filter((t) => t.pokemonInstanceId !== id);
+        state.pokemonInstanceTags.length = 0;
+        state.pokemonInstanceTags.push(...kept, ...fields.tagIds.map((tagId) => ({ pokemonInstanceId: id, tagId })));
       }
     },
     // Reads straight from the module-level reference.json import, same
@@ -1168,6 +1342,13 @@ export async function createSqliteRepository(
         formBackgroundPersonal: [...bucket.formBackgroundPersonal],
         medalProgress: { ...bucket.medalProgress },
         pokemonInstances: [...bucket.pokemonInstances],
+        pokemonInstanceTagNames: bucket.pokemonInstanceTags
+          .map((link) => {
+            const instance = bucket.pokemonInstances.find((i) => i.id === link.pokemonInstanceId);
+            const tag = sharedTags.find((t) => t.id === link.tagId);
+            return instance && tag ? { instanceUuid: instance.uuid, tagName: tag.name } : undefined;
+          })
+          .filter((x): x is { instanceUuid: string; tagName: string } => x !== undefined),
         playerProgress: bucket.playerProgress,
         playerProgressLog: [...bucket.playerProgressLog],
         trainerUuid: bucket.profile.id,

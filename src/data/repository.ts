@@ -195,6 +195,8 @@ export interface PersonalDataExport {
   /** Every logged specimen — flat array, same reasoning as formBackgroundPersonal (no single natural key better than the row's own id). */
   pokemonInstances?: PokemonInstance[];
   tags?: Tag[];
+  /** Specimen-to-tag links as a flat, id-free join (specimen uuid + tag name) -- pokemon_instance.id/tag.id are both locally-meaningless on another device, same reasoning as pokemonInstances/tags above. Always populated going forward; optional only for reading older exports that predate it. */
+  pokemonInstanceTagNames?: { instanceUuid: string; tagName: string }[];
   playerProgress?: PlayerProgressPersonal;
   /** Append-only (see PlayerProgressLogEntry) — import unions in whichever entries the local device doesn't already have (deduped by recordedAt, not id — id is a local AUTOINCREMENT with no cross-device meaning, same pitfall as pokemonInstances/tags above) rather than a newer-wins merge, since there's nothing to overwrite: every row is its own historical fact. */
   playerProgressLog?: PlayerProgressLogEntry[];

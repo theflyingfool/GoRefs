@@ -614,6 +614,13 @@ export function createInMemoryRepository(
         medalProgress: { ...state.medalProgress },
         pokemonInstances: [...state.pokemonInstances],
         tags: [...getSharedTags()],
+        pokemonInstanceTagNames: state.pokemonInstanceTags
+          .map((link) => {
+            const instance = state.pokemonInstances.find((i) => i.id === link.pokemonInstanceId);
+            const tag = getSharedTags().find((t) => t.id === link.tagId);
+            return instance && tag ? { instanceUuid: instance.uuid, tagName: tag.name } : undefined;
+          })
+          .filter((x): x is { instanceUuid: string; tagName: string } => x !== undefined),
         playerProgress: state.playerProgress,
         playerProgressLog: [...state.playerProgressLog],
       };
@@ -699,13 +706,14 @@ export function createInMemoryRepository(
         state.playerProgressLog.push(remapped);
         hooks.onPlayerProgressLogAppended(remapped);
       }
-      // pokemonInstances/tags are exported for completeness (a rescue export
-      // or backup shouldn't silently drop them) but NOT merge-imported here:
-      // unlike every other personal table, pokemon_instance.id/tag.id are
-      // local AUTOINCREMENT integers with no cross-device meaning, so two
-      // different devices' row #12 are unrelated individuals — a real design
-      // gap (see docs/vue-migration-plan.md), not something to paper over
-      // with a wrong-but-quiet id-based merge.
+      // pokemon_instance merge-by-uuid happens in sqlite-repository.ts's
+      // importPersonalData OVERRIDE, not here -- unlike every other row type
+      // in this function, a genuinely new specimen needs a fresh
+      // AUTOINCREMENT id back from a real INSERT before the in-memory cache
+      // can be updated (same reason createPokemonInstances bypasses the
+      // hook system entirely -- see that function). This function's job for
+      // pokemonInstances/pokemonInstanceTagNames is just to leave them
+      // alone; the override handles both directly against SQL.
       for (const row of data.formBackgroundPersonal ?? []) {
         if (!speciesSlugByFormSlug.has(row.formSlug)) continue;
         const alreadyPresent = state.formBackgroundPersonal.some(
