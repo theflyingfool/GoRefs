@@ -102,3 +102,163 @@ test("planTrainerImport + applyTrainerImport merges two devices' data for the sa
   assert.equal(repoB.getSpeciesWithForms("bulbasaur").personal.registered, true, "B must gain A's data");
   assert.equal(repoB.getSpeciesWithForms("charmander").personal.registered, true, "B must keep its own data");
 });
+
+test("applyTrainerImport: a multi-trainer bundle can promote a matching placeholder AND create a brand-new trainer in the same call", async () => {
+  const dbA = new DatabaseSync(":memory:");
+  dbA.exec("PRAGMA foreign_keys = ON;");
+  dbA.exec(REFERENCE_SCHEMA_SQL);
+  const repoA = await createSqliteRepository(undefined, nodeSqliteConnection(dbA));
+  const misty = await repoA.createProfile("Misty", null);
+  repoA.switchProfile(misty.id);
+  repoA.setSpeciesPersonalField("psyduck", "registered", true);
+  const brock = await repoA.createProfile("Brock", null);
+  repoA.switchProfile(brock.id);
+  repoA.setSpeciesPersonalField("geodude", "registered", true);
+
+  const dbB = new DatabaseSync(":memory:");
+  dbB.exec("PRAGMA foreign_keys = ON;");
+  dbB.exec(REFERENCE_SCHEMA_SQL);
+  const repoB = await createSqliteRepository(undefined, nodeSqliteConnection(dbB));
+  // Give repoB a placeholder identity named "Misty" -- a referenced_trainer
+  // row with no matching real profile -- via the same
+  // updatePokemonInstance(originalTrainerName) path a real user hits when
+  // logging a trade partner's name before that trainer has ever been
+  // exported/imported. No real profile named "Brock" exists on repoB, so
+  // that trainer has no local identity at all.
+  const [instance] = await repoB.createPokemonInstances({ formSlug: "bulbasaur-standard-male", count: 1 });
+  await repoB.updatePokemonInstance(instance.id, { originalTrainerName: "Misty" });
+
+  const bundleFromA = buildExportBundle(repoA, [misty.id, brock.id]);
+  const plan = await repoB.planTrainerImport(bundleFromA);
+  const mistyEntry = plan.entries.find((e) => e.trainerName === "Misty")!;
+  const brockEntry = plan.entries.find((e) => e.trainerName === "Brock")!;
+  assert.equal(mistyEntry.decision.kind, "promote", "Misty must resolve against repoB's existing placeholder");
+  assert.equal(brockEntry.decision.kind, "new", "Brock has no local identity at all on repoB");
+
+  const summary = await repoB.applyTrainerImport(bundleFromA, {});
+  assert.equal(summary.promoted, 1);
+  assert.equal(summary.created, 1);
+  assert.equal(summary.merged, 0);
+  assert.equal(summary.separate, 0);
+
+  // Both trainers' data must have actually landed: promoted Misty keeps her
+  // OWN bucket (the placeholder uuid rewritten to Misty's real uuid from A),
+  // and Brock's data lives in a freshly created profile of his own.
+  const profiles = repoB.listProfiles();
+  const promotedMisty = profiles.find((p) => p.username === "Misty");
+  const createdBrock = profiles.find((p) => p.username === "Brock");
+  assert.ok(promotedMisty, "the promoted Misty must now be a real profile on repoB");
+  assert.ok(createdBrock, "Brock must now be a real profile on repoB");
+  assert.equal(promotedMisty!.id, misty.id, "promotion must adopt the INCOMING uuid, not mint a fresh one");
+
+  repoB.switchProfile(promotedMisty!.id);
+  assert.equal(repoB.getSpeciesWithForms("psyduck").personal.registered, true, "Misty's imported data must have landed on her promoted profile");
+  repoB.switchProfile(createdBrock!.id);
+  assert.equal(repoB.getSpeciesWithForms("geodude").personal.registered, true, "Brock's imported data must have landed on his newly created profile");
+});
+
+test("applyTrainerImport: a mid-loop auto-merge that rewrites the CURRENT profile's own uuid still leaves the current profile pointed at the right (new) uuid afterward", async () => {
+  const dbA = new DatabaseSync(":memory:");
+  dbA.exec("PRAGMA foreign_keys = ON;");
+  dbA.exec(REFERENCE_SCHEMA_SQL);
+  const repoA = await createSqliteRepository(undefined, nodeSqliteConnection(dbA));
+  const gary = repoA.getCurrentProfile();
+  await repoA.renameProfile(gary.id, "Gary", "111100002222");
+  repoA.setSpeciesPersonalField("pikachu", "registered", true);
+  const twoOnA = await repoA.createProfile("TwoOnA", "555566667777");
+  repoA.switchProfile(twoOnA.id);
+  repoA.setSpeciesPersonalField("eevee", "registered", true);
+  const erika = await repoA.createProfile("Erika", "333344445555");
+  repoA.switchProfile(erika.id);
+  repoA.setSpeciesPersonalField("oddish", "registered", true);
+
+  const dbB = new DatabaseSync(":memory:");
+  dbB.exec("PRAGMA foreign_keys = ON;");
+  dbB.exec(REFERENCE_SCHEMA_SQL);
+  const repoB = await createSqliteRepository(undefined, nodeSqliteConnection(dbB));
+  const originalCurrentId = repoB.getCurrentProfile().id;
+  // repoB's CURRENT profile shares a friend code with A's SECOND exported
+  // trainer (deliberately not the first or last in the bundle) -- this is
+  // the exact "mid-loop self-rewrite" case: reconcileTrainer resolves it to
+  // auto-merge, and applyTrainerImport's merge branch rewrites repoB's own
+  // current profile uuid to the incoming uuid mid-loop, then keeps
+  // processing a THIRD, unrelated trainer afterward.
+  await repoB.renameProfile(originalCurrentId, "Two", "555566667777");
+  repoB.setSpeciesPersonalField("squirtle", "registered", true);
+
+  const bundleFromA = buildExportBundle(repoA, [gary.id, twoOnA.id, erika.id]);
+  // Sanity-check the ordering assumption the scenario depends on.
+  assert.equal(bundleFromA.trainers[0].trainerName, "Gary");
+  assert.equal(bundleFromA.trainers[1].trainerName, "TwoOnA");
+  assert.equal(bundleFromA.trainers[2].trainerName, "Erika");
+
+  const plan = await repoB.planTrainerImport(bundleFromA);
+  assert.equal(plan.entries[0].decision.kind, "new");
+  assert.deepEqual(plan.entries[1].decision, { kind: "auto-merge", localProfileId: originalCurrentId });
+  assert.equal(plan.entries[2].decision.kind, "new");
+
+  const summary = await repoB.applyTrainerImport(bundleFromA, {});
+  assert.equal(summary.merged, 1);
+  assert.equal(summary.created, 2);
+
+  // The crux of the finding: current must end up on the INCOMING uuid from
+  // trainer #2 (TwoOnA), not the OLD local uuid, and not Gary's or Erika's
+  // freshly created profiles -- even though they were processed after the
+  // self-rewrite happened.
+  const current = repoB.getCurrentProfile();
+  assert.equal(current.id, twoOnA.id, "current profile must be re-keyed to the incoming uuid");
+  assert.notEqual(current.id, originalCurrentId);
+
+  assert.equal(repoB.getSpeciesWithForms("squirtle").personal.registered, true, "the current profile's own pre-existing data must survive the uuid rewrite");
+  assert.equal(repoB.getSpeciesWithForms("eevee").personal.registered, true, "the merged-in trainer's data must land on the (same, now-current) profile");
+
+  const profiles = repoB.listProfiles();
+  const garyLocal = profiles.find((p) => p.username === "Gary")!;
+  const erikaLocal = profiles.find((p) => p.username === "Erika")!;
+  repoB.switchProfile(garyLocal.id);
+  assert.equal(repoB.getSpeciesWithForms("pikachu").personal.registered, true);
+  repoB.switchProfile(erikaLocal.id);
+  assert.equal(repoB.getSpeciesWithForms("oddish").personal.registered, true);
+  repoB.switchProfile(current.id);
+});
+
+test("applyTrainerImport: an ask-merge-or-separate decision resolved as \"separate\" creates a genuinely new, independent profile (not merged into the same-named one)", async () => {
+  const dbA = new DatabaseSync(":memory:");
+  dbA.exec("PRAGMA foreign_keys = ON;");
+  dbA.exec(REFERENCE_SCHEMA_SQL);
+  const repoA = await createSqliteRepository(undefined, nodeSqliteConnection(dbA));
+  await repoA.renameProfile(repoA.getCurrentProfile().id, "Duplicate", null);
+  repoA.setSpeciesPersonalField("squirtle", "registered", true);
+
+  const dbB = new DatabaseSync(":memory:");
+  dbB.exec("PRAGMA foreign_keys = ON;");
+  dbB.exec(REFERENCE_SCHEMA_SQL);
+  const repoB = await createSqliteRepository(undefined, nodeSqliteConnection(dbB));
+  const existingDuplicate = await repoB.createProfile("Duplicate", null);
+  repoB.switchProfile(existingDuplicate.id);
+  repoB.setSpeciesPersonalField("charmander", "registered", true);
+  repoB.switchProfile(repoB.listProfiles().find((p) => p.id !== existingDuplicate.id)!.id);
+
+  const bundleFromA = buildExportBundle(repoA, [repoA.getCurrentProfile().id]);
+  const incomingTrainerUuid = bundleFromA.trainers[0].trainerUuid;
+
+  const plan = await repoB.planTrainerImport(bundleFromA);
+  assert.deepEqual(plan.entries[0].decision, { kind: "ask-merge-or-separate", localProfileId: existingDuplicate.id });
+
+  const summary = await repoB.applyTrainerImport(bundleFromA, { [incomingTrainerUuid]: "separate" });
+  assert.equal(summary.separate, 1);
+  assert.equal(summary.merged, 0);
+  assert.equal(summary.promoted, 0);
+  assert.equal(summary.created, 0);
+
+  const duplicateNamedProfiles = repoB.listProfiles().filter((p) => p.username === "Duplicate");
+  assert.equal(duplicateNamedProfiles.length, 2, "a genuinely separate second 'Duplicate' profile must exist, not a merge into the first");
+  const newSeparateProfile = duplicateNamedProfiles.find((p) => p.id !== existingDuplicate.id)!;
+  assert.ok(newSeparateProfile, "the new profile must have its own uuid, distinct from the existing same-named one");
+  assert.notEqual(newSeparateProfile.id, incomingTrainerUuid, "createProfile must mint a genuinely fresh uuid, not adopt A's uuid, when kept separate");
+
+  repoB.switchProfile(existingDuplicate.id);
+  assert.equal(repoB.getSpeciesWithForms("charmander").personal.registered, true, "the pre-existing 'Duplicate' profile's own data must be untouched");
+  repoB.switchProfile(newSeparateProfile.id);
+  assert.equal(repoB.getSpeciesWithForms("squirtle").personal.registered, true, "the new separate profile must carry A's imported data");
+});
