@@ -37,6 +37,11 @@ export default defineConfig([
       // eslint doesn't consult .gitignore on its own, so unscoped `eslint .`
       // was walking into it and failing on non-project JSON inside.
       "Refs from Obsidian/**",
+      // Loose freeform drafts/scratch notes (e.g. prompts prepared for a
+      // future session) that are meant to be committed and kept in the
+      // repo, but aren't real project docs and shouldn't be held to
+      // markdown/recommended's structural rules (single-H1, etc.).
+      "docs/drafts/**",
       "scripts/ingest/.cache/**",
       "data-authoring/**",
       "*.sqlite",
