@@ -160,8 +160,12 @@ into **7b** (stable `pokemon_instance`/`tag` identity + merge-gap closure —
 see
 `docs/superpowers/specs/2026-07-26-sub-project-7b-identity-and-merge-design.md`
 and `docs/superpowers/plans/2026-07-26-sub-project-7b-identity-and-merge.md`)
-and **7c** (the Stats-page compare view — see
-`docs/superpowers/specs/2026-07-26-sub-project-7c-compare-view-design.md`).
+and **7c** (a dex/collection compare view — see
+`docs/superpowers/specs/2026-07-27-sub-project-7c-compare-view-design.md`,
+which revises and supersedes the original
+`2026-07-26-sub-project-7c-compare-view-design.md` draft's §3 after 7b
+shipped — same entry points, a much narrower "same filter bar, two
+profiles side by side" v1 instead of canned gap models).
 
 **Sub-project 7b is complete** (10 tasks — the plan grew from 9 to 10 mid-execution
 when a review found the original plan built `pokemon_instance`'s uuid
@@ -230,19 +234,27 @@ scope / deferred" section), logged here per that doc's instruction:
   been used for a while and it's clearer whether switching needs to be
   available everywhere.
 
-Sub-project 7c's scope (compare view — spec written, needs a revision pass
-against 7b's real shipped interfaces before an implementation plan):
-- **Sharing/comparison**: a Stats-page "compare" section to select the
-  current account plus one other (local or freshly-imported) and view both
-  side by side — canned comparison models plus a manual/free-form option,
-  per the spec's §3 (not finalized, flagged there as needing its own
-  brainstorm).
-- Reuses 7b's `exportTrainer`/`ExportBundle`/reconciliation mechanism
-  directly for bringing in a friend's or a second local profile's data —
-  no separate import path.
-- Depends on Phase 0 (richer reference data may change what's worth
-  comparing) and Phase 1 (timestamps needed for merge/diff logic) — both
-  done — and now also on 7b, which is done.
+Sub-project 7c's scope (dex/collection compare view — design revised
+2026-07-27 after 7b shipped, ready for an implementation plan):
+- A new `/compare` route: pick two local profiles (or import one on the
+  spot, reusing 7b's import/reconciliation flow directly), apply the
+  existing Dex-grid filter bar once, see both profiles' filtered dex grids
+  side by side. No bespoke comparison-model logic — the shared filter *is*
+  the comparison.
+- Needs one new `Repository` method (`listSpeciesSummariesForProfile`,
+  reading a specific profile's bucket without switching to it, same
+  pattern `exportTrainer` already established) and a read-only mode on
+  the existing Dex-grid component.
+- Deferred out of this pass, logged here: independent per-side filters
+  (compare trainer A's shinies against trainer B's uncaught, etc.); any
+  canned comparison model beyond "same filter, both sides."
+- Depends on Phase 0 and Phase 1 (both done) and 7b (done).
+
+**Split off as its own separate future item**: comparing **stats** (player
+level, XP, medal progress) between two trainers on the Stats page — the
+original 7c draft called this "Stats page: add a compare section," but
+that's now understood to be a *different* feature from the dex/collection
+compare view above. Not scoped or designed yet; revisit after 7c ships.
 
 ### Not yet committed
 
