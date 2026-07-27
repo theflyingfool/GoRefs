@@ -32,6 +32,11 @@ export default defineConfig([
       // error-context.md) — not project source, not meant to be linted.
       "test-results/**",
       ".obsidian/**",
+      // Loose local-only reference material (old Obsidian vault exports) —
+      // already excluded from git (see .gitignore's matching entry), but
+      // eslint doesn't consult .gitignore on its own, so unscoped `eslint .`
+      // was walking into it and failing on non-project JSON inside.
+      "Refs from Obsidian/**",
       "scripts/ingest/.cache/**",
       "data-authoring/**",
       "*.sqlite",
