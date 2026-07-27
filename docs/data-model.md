@@ -140,6 +140,62 @@ the `INSERT`/`SELECT` lists (still a `GENERATED` column), and seeding
 `src/db/migrations/0004_empty_vapor.sql`'s header comment for the exact
 mechanism and every hand-fix.
 
+Migration `0005` is Sub-project 7b's stable-identity/merge-gap-closure
+migration — this is why `CURRENT_PERSONAL_SCHEMA_VERSION` bumped 10 → 11. See
+[the design spec](superpowers/specs/2026-07-26-sub-project-7b-identity-and-merge-design.md)
+and [the implementation plan](superpowers/plans/2026-07-26-sub-project-7b-identity-and-merge.md)
+for the full rationale; in short:
+
+- `pokemon_instance` gains `uuid TEXT UNIQUE NOT NULL` (a fresh
+  `crypto.randomUUID()` backfilled per existing row) so a specimen can
+  finally be recognized as "the same individual" across two devices during a
+  merge — this is what closes the original gap (`importPersonalData` had
+  excluded `pokemon_instance`/`tag` from merge entirely, since a local
+  `AUTOINCREMENT` id has no cross-device meaning). It also gains
+  `original_trainer_name TEXT NOT NULL` (backfilled to that row's own
+  profile's current username) and `original_trainer_id TEXT NULL`
+  (backfilled to that row's own `profile_id`; a soft link, deliberately not a
+  FK — see the design spec §3.1 for why a real FK would risk a silently
+  dropped write). `status`'s `released` value is renamed to `transferred`
+  (translated inline in the rebuild's `SELECT`, since the new `CHECK`
+  constraint only allows the new enum and would reject the old value on
+  `INSERT`).
+- `tag`'s uniqueness moves from `(profile_id, name)` to `name` alone — tags
+  become device-wide rather than per-profile (design spec §3.3). Pre-existing
+  per-profile duplicate names are de-duplicated first (links repointed to the
+  lowest-id survivor, duplicates deleted) so the new unique index can be
+  created without failing.
+- A new table, `referenced_trainer` (`uuid` PK, `name`, `friend_code`), is
+  added as the device's complete trainer-identity registry — every real
+  `profile` row plus any placeholder identity ever referenced (design spec
+  §4). Backfilled with one row per pre-existing `profile` row. Kept mirrored
+  going forward at `createProfile`, `renameProfile`, and (for the
+  boot-seeded default profile) `seedDefaultProfileIfMissing`.
+- Same table-rebuild pattern as `0001`-`0004` (SQLite can't `ALTER TABLE` a
+  `CHECK`/uniqueness change in place). See
+  `src/db/migrations/0005_married_krista_starr.sql`'s header comment for the
+  exact hand-fixes (restored `REFERENCES` clauses, `iv_percent` dropped from
+  the rebuild's INSERT/SELECT since it's a `GENERATED` column, and the
+  backfill/de-dup ordering needed before each new unique index is created).
+
+On top of the schema change, this sub-project also builds the actual
+import/export/reconciliation mechanism that makes the new identity columns
+useful: `Repository.exportTrainer`/`listReferencedTrainers` (one trainer's
+full export, plus a synchronous cached read of the registry, kept fresh the
+same way the device-wide tag cache is), `planTrainerImport`/
+`applyTrainerImport` (reconciles each trainer in an imported `ExportBundle`
+against this device's profiles/registry — friend-code match, name match
+against a placeholder ["promote"] or a real profile ["ask merge or
+separate"], or no match ["new"] — then executes the chosen outcome, restoring
+whichever profile was actually current before a multi-trainer import once the
+whole bundle has been processed), and `buildExportBundle`/
+`readExportBundleFile` (Settings' "Export current trainer"/"Export all
+trainers" buttons and the import file picker). `importPersonalData` itself
+still does not merge `pokemon_instance`/`tag` by row — the new `uuid` column
+makes that possible in principle, but wiring an actual uuid-based merge into
+`importPersonalData` was not part of this sub-project's task list and remains
+open (see roadmap.md).
+
 In short: touching `reference.json` (new Pokémon, new forms/costumes, data
 corrections) needs no manual version bump. Touching the *shape or meaning*
 of a personal table (including a column's on-disk type) needs a
@@ -200,7 +256,7 @@ mega_variant               -- one row per (species, X/Y/Primal) that's real
 PERSONAL (never touched by reference updates)
 
 schema_version
-  version INTEGER         -- structural schema version (currently 10;
+  version INTEGER         -- structural schema version (currently 11;
                            -- see CURRENT_PERSONAL_SCHEMA_VERSION in
                            -- src/db/schema.ts, which is the real source of
                            -- truth -- this comment is a pointer, not a
