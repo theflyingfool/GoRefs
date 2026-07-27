@@ -298,6 +298,3 @@ migration mechanism needed.
   unrelated to identity/merge, surfaced during this brainstorm, not
   scoped.
 - The future compare-screen Trade UX described in §7.
-- A placeholder note: a larger, currently-unscoped UI/UX refactor is
-  planned at some point after 7b/7c — no shape yet, just don't let it be
-  silently forgotten.
