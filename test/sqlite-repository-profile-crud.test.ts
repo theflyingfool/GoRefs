@@ -191,3 +191,32 @@ test("createProfile and renameProfile keep referenced_trainer mirrored", async (
   assert.equal(row.name, "Misty Waterflower");
   assert.equal(row.friend_code, null);
 });
+
+test("createProfile promotes a matching referenced_trainer placeholder instead of minting a new uuid", async () => {
+  const db = new DatabaseSync(":memory:");
+  db.exec("PRAGMA foreign_keys = ON;");
+  db.exec(REFERENCE_SCHEMA_SQL);
+  const conn = nodeSqliteConnection(db);
+  const repo = await createSqliteRepository(undefined, conn);
+
+  const placeholderUuid = "22222222-2222-2222-2222-222222222222";
+  db.exec(`INSERT INTO referenced_trainer (uuid, name, friend_code) VALUES ('${placeholderUuid}', 'Steve', NULL)`);
+
+  const created = await repo.createProfile("Steve", null);
+  assert.equal(created.id, placeholderUuid, "must reuse the placeholder's uuid, not mint a new one");
+
+  const profiles = repo.listProfiles();
+  assert.ok(profiles.some((p) => p.id === placeholderUuid));
+});
+
+test("createProfile mints a fresh uuid when the name matches an existing REAL profile", async () => {
+  const db = new DatabaseSync(":memory:");
+  db.exec("PRAGMA foreign_keys = ON;");
+  db.exec(REFERENCE_SCHEMA_SQL);
+  const conn = nodeSqliteConnection(db);
+  const repo = await createSqliteRepository(undefined, conn);
+
+  const first = await repo.createProfile("Ash", null);
+  const second = await repo.createProfile("Ash", null);
+  assert.notEqual(first.id, second.id, "two real profiles sharing a name must stay distinct identities");
+});

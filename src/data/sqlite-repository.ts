@@ -39,7 +39,7 @@ import { applyDexAchievementBackfillIfNeeded, DEX_ACHIEVEMENT_BACKFILL_KEY } fro
 import { buildScalarUpdateStatement, buildTagDiffStatements, mergeUpdatedInstance } from "./pokemon-instance-update-sql";
 import { buildRenameTagStatement, buildDeleteTagStatements, computeTagUsageCounts } from "./tag-management-sql";
 import { buildDeleteProfileStatements } from "./profile-management-sql";
-import { buildReferencedTrainerUpsert } from "./referenced-trainer-sql";
+import { buildReferencedTrainerUpsert, findReferencedTrainerByName } from "./referenced-trainer-sql";
 import { syncReferenceData } from "../db/reference-sync";
 import { getCompletionStatsSql } from "./completion-stats-sql";
 import referenceDataJson from "./reference.json";
@@ -494,7 +494,22 @@ export async function createSqliteRepository(
   }
 
   async function createProfile(username: string, friendCode: string | null): Promise<Profile> {
-    const newProfile: Profile = { id: crypto.randomUUID(), username, friendCode, createdAt: Date.now() };
+    const existingReferenced = await findReferencedTrainerByName(db, username);
+    // Promote a placeholder (referenced_trainer row with no matching real
+    // profile) instead of minting a fresh uuid -- if this name was ever
+    // referenced as an original trainer or seen in an import before being
+    // fully created, this device already has an identity for it. Real
+    // profiles never collide here in practice (profile.id values are UUIDs),
+    // so "already a real profile" can only mean two people manually chose
+    // the same display name -- that's the "treat as separate" case: fall
+    // through to minting a new uuid exactly as before.
+    const isPlaceholder = existingReferenced && !profileBuckets.has(existingReferenced.uuid);
+    const newProfile: Profile = {
+      id: isPlaceholder ? existingReferenced!.uuid : crypto.randomUUID(),
+      username,
+      friendCode,
+      createdAt: Date.now(),
+    };
     // Structurally identical to a bucket loadOneProfileState would return for a
     // brand-new (empty) profile — every collection is a FRESH literal (no alias
     // to another profile's arrays/objects), playerProgress undefined, log empty.
