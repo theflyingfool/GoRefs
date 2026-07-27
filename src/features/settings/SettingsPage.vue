@@ -103,14 +103,17 @@ async function onImportFileChange(event: Event) {
   input.value = "";
   if (!file) return;
   try {
-    // Backup-before-import is a persistent setting (backupBeforeImport
-    // above), not a per-import prompt — off by default.
-    if (backupBeforeImport.value) {
-      status.value = "Saving a backup of your current data first…";
-      await onExportAll();
-    }
     status.value = "Importing…";
-    const summary = await importTrainerBundleFile(props.repo, file);
+    // Backup-before-import is a persistent setting (backupBeforeImport
+    // above), not a per-import prompt — off by default. Runs as a callback
+    // right before the mutating apply step, so a cancelled schema-mismatch
+    // or merge/separate prompt never triggers a spurious backup download.
+    const summary = await importTrainerBundleFile(props.repo, file, async () => {
+      if (backupBeforeImport.value) {
+        status.value = "Saving a backup of your current data first…";
+        await onExportAll();
+      }
+    });
     status.value = `Imported: ${summary.merged} merged, ${summary.promoted} promoted, ${summary.created} created as new, ${summary.separate} kept separate.`;
   } catch (err) {
     status.value = `Import failed: ${(err as Error).message}`;

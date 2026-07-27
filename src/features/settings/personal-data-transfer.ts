@@ -168,7 +168,11 @@ export async function readExportBundleFile(file: File, repo: Repository): Promis
  * "Import a trainer" button (Sub-project 7c) -- one import code path
  * regardless of caller, per design spec section 2.
  */
-export async function importTrainerBundleFile(repo: Repository, file: File): Promise<TrainerImportSummary> {
+export async function importTrainerBundleFile(
+  repo: Repository,
+  file: File,
+  onBeforeApply?: () => Promise<void>,
+): Promise<TrainerImportSummary> {
   const { bundle, schemaMismatch } = await readExportBundleFile(file, repo);
   if (schemaMismatch) {
     const proceed = window.confirm(
@@ -187,5 +191,6 @@ export async function importTrainerBundleFile(repo: Repository, file: File): Pro
     resolutions[entry.trainerUuid] = merge ? "merge" : "separate";
   }
 
+  await onBeforeApply?.();
   return repo.applyTrainerImport(bundle, resolutions);
 }
