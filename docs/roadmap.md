@@ -161,11 +161,10 @@ see
 `docs/superpowers/specs/2026-07-26-sub-project-7b-identity-and-merge-design.md`
 and `docs/superpowers/plans/2026-07-26-sub-project-7b-identity-and-merge.md`)
 and **7c** (a dex/collection compare view — see
-`docs/superpowers/specs/2026-07-27-sub-project-7c-compare-view-design.md`,
-which revises and supersedes the original
-`2026-07-26-sub-project-7c-compare-view-design.md` draft's §3 after 7b
-shipped — same entry points, a much narrower "same filter bar, two
-profiles side by side" v1 instead of canned gap models).
+`docs/superpowers/specs/2026-07-26-sub-project-7c-compare-view-design.md`,
+revised in place after 7b shipped — same entry points, a much narrower
+"same filter bar, two profiles side by side" v1 instead of canned gap
+models).
 
 **Sub-project 7b is complete** (10 tasks — the plan grew from 9 to 10 mid-execution
 when a review found the original plan built `pokemon_instance`'s uuid

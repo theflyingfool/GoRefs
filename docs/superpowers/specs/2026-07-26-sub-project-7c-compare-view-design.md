@@ -1,75 +1,146 @@
 # Sub-project 7c: Compare View — Design
 
-**Status:** Draft, deliberately lighter-weight than usual. Written alongside
-7b per the owner's explicit instruction ("let's get both plans/specs
-written even if we need to update 7c after running 7b"), since 7c consumes
-7b's output (stable `pokemon_instance`/`tag` identity, `referenced_trainer`,
-the export/import bundle shape) and its concrete UI needs may shift once
-7b is real. Expect this doc to get a revision pass before its own
-implementation plan is written.
+**Status:** Written alongside 7b, then revised 2026-07-27 after 7b actually
+shipped (per this doc's original §6 "Next step" instruction). §1/§2 held up
+unchanged against 7b's real shipped interfaces; §3 (comparison mechanics)
+was rewritten to a much narrower v1, per the owner's steer toward "the
+easiest to implement first comparison" over building canned gap models.
+Git history has the pre-revision version if needed — this file is kept as
+the single current copy rather than a separate dated revision file.
 
-**Depends on:** Sub-project 7b (identity + merge-gap closure) — specifically
-needs `ExportBundle`/`exportTrainer` (§5) and the reconciled, cross-device-
-stable `profile.id`/`pokemon_instance.uuid` that only exist after 7b ships.
+**Depends on:** Sub-project 7b (complete) — `exportTrainer`,
+`ExportBundle`/`TrainerExport`, `planTrainerImport`/`applyTrainerImport`,
+`pokemon_instance.uuid`. Confirmed these interfaces match this doc's
+assumptions exactly; no drift from 7b's actual shipped shape.
 
 ## 1. What this is
 
-A screen to look at two trainer collections side by side — the current
-profile plus one other. "Other" can be: a second local profile (created
-manually, or promoted from an imported friend export), or a friend's
-profile imported specifically for comparison. Per the core architectural
-decision established in 7b, the app treats all of these identically: once
-imported, a friend's data is "just another local profile" — there is no
-comparison-specific import path, only the reconciliation flow 7b already
-builds.
+A **dex/collection comparison** screen — explicitly *not* a stats
+comparison (player level, XP, medals; see §6). Pick two local trainer
+profiles (or import a new one on the spot) and view their filtered dex
+grids side by side, using the exact same filter/search bar the existing
+Dex page already has. Per the core architectural decision established in
+7b, the app treats "the other trainer" identically regardless of origin —
+a second local profile or a freshly-imported friend's export are both
+just "another local profile" once imported; there is no comparison-specific
+import path.
 
-## 2. Entry points
+There is no bespoke "comparison model" for v1 — the comparison *is* just
+"the same filter, applied to two profiles' data, shown side by side."
+Registered-count gaps, shiny gaps, etc. are all just different filter
+selections a user can already make with the existing chips; nothing new
+needs to be computed.
 
-- **Stats page**: a new "Compare" section/tab. Two dropdowns (own account,
-  other account) populated from `listProfiles()`.
-- **A button on the compare screen itself that triggers import**, so a user
-  doesn't have to detour through Settings to bring in a friend's file
-  first. This calls the same import function 7b builds for Settings — not
-  a separate one.
+## 2. Entry point and picking the other trainer
 
-## 3. What gets compared (starting point, not final)
+- New top-level route, `/compare`, with its own nav entry (mirrors how
+  every other major feature — Dex, Collection, Stats, Settings — already
+  gets its own route).
+- Two dropdowns, "Left" and "Right", both populated from
+  `repo.listProfiles()`.
+- An "Import a trainer..." button next to the dropdowns opens the exact
+  same flow Settings' import already uses: file picker →
+  `readExportBundleFile` → `repo.planTrainerImport` → (if any entry is
+  `ask-merge-or-separate`, the same confirm-prompt pattern Settings uses)
+  → `repo.applyTrainerImport`. No separate import code path. Once
+  imported, the new or promoted profile is just another entry in both
+  dropdowns.
 
-Owner's own framing, explicitly flagged as a starting point to design
-further, not a finished spec:
+## 3. Comparison mechanics (v1)
 
-- Top of page: two side-by-side trainer-name dropdowns.
-- A third dropdown underneath: a handful of "common comparison models" —
-  candidates to define during implementation, e.g. "who has more species
-  registered," "shiny dex gap," "who's missing what the other has caught."
-- A manual/free-form search option for more specialized comparisons,
-  beyond the canned models above.
+One filter bar (reusing the existing `SpeciesFilter`/toggle-chip UI from
+the Dex grid), shared by both sides — not independent per-side filters.
+Below it, two grids side by side, each showing
+`listSpeciesSummariesForProfile(profileId, filter)`'s result for its own
+selected profile.
 
-This needs its own follow-up brainstorm once 7b's real schema exists to
-query against — the exact comparison models, what "gap" means per model
-(e.g. does a shiny-gap comparison count `pokemon_instance` rows or
-`form_personal.shiny`?), and the actual layout are all open.
+### New repository method needed
 
-## 4. Known future feature, explicitly not built here or in 7b
+`Repository.listSpeciesSummaries(filter)` implicitly operates on whichever
+profile is *current* — there's no way to ask it for an arbitrary other
+profile's summaries without switching to it first (which has real side
+effects: it writes `is_current` to disk and repoints every other page's
+live data). The compare screen needs to read **two** profiles'
+data — often neither of which is the current one — without switching
+either.
 
-From the compare screen, select one specimen from each side and hit
-"trade": moves that `pokemon_instance` row to the other profile, prompting
-for new IVs (IVs change on trade), whether it was lucky (trade-only
-attribute), and handling first-time registration/shiny-dex credit if the
-receiving trainer hadn't registered that species/shiny before. This is a
-real planned feature, not a vague idea, but has no schema or UX design yet
-and depends on 7b's `pokemon_instance.uuid` existing to make "this specimen
-moved to a different trainer" a well-defined operation. Tracked in
-`docs/roadmap.md` per 7b's spec §8; not scoped further here.
+This is the exact same problem `exportTrainer(profileId)` already solved
+for Sub-project 7b (reading a specific profile's bucket directly from
+`profileBuckets`, not through the live `state`). Add a parallel method:
 
-## 5. Explicitly out of scope for 7c
+```ts
+listSpeciesSummariesForProfile(profileId: string, filter?: SpeciesFilter): SpeciesSummary[];
+```
 
-- The trade flow above (§4).
-- Any comparison model beyond whatever the follow-up brainstorm (§3)
-  settles on for a first version.
+implemented in `sqlite-repository.ts` by temporarily computing summaries
+against `profileBuckets.get(profileId)`'s data — following
+`exportTrainer`'s established pattern, not switching `state`. (The
+in-memory-store's shared `listSpeciesSummaries` logic can likely be
+refactored into a pure function taking a `PersonalState`-shaped bucket, so
+both the "current profile" method and this new one call the same
+underlying logic against different buckets — avoid duplicating the
+filter/search logic itself.)
 
-## 6. Next step
+### Read-only grid rendering
 
-Once 7b is implemented and merged, revisit this doc: confirm the export/
-import interfaces it depends on didn't change shape, then run a dedicated
-brainstorm on §3's actual comparison models and layout before writing an
-implementation plan.
+The existing Dex grid (`DexGridPage.vue`) is tightly coupled to editing:
+tapping a tile calls `repo.setSpeciesPersonalField` directly (mutating
+whichever profile is *live*-current), plus select-mode and bulk-edit
+affordances. None of that is meaningful — or safe — for a side-by-side
+view of two profiles that usually aren't the current one. Per the owner's
+choice to reuse the existing component rather than build a separate
+renderer from scratch, add a `readOnly` prop to the grid component (or the
+shared tile-rendering piece of it, if it's cleaner to extract just that
+much): when true, tapping a tile does nothing, select-mode/bulk-edit UI is
+hidden, and rendering otherwise looks identical. The compare screen
+renders two instances of the grid in `readOnly` mode, each fed a
+`SpeciesSummary[]` from `listSpeciesSummariesForProfile` directly (not
+looked up live through the component's own `props.repo` calls) rather than
+each pane owning its own repo-backed fetch.
+
+### Layout/interaction details
+
+Left to standard practice, matching this app's existing conventions (the
+owner is not looking for design review here) — stacked on narrow
+viewports, side-by-side above the existing `≥768px` desktop breakpoint,
+consistent with the rest of the app's responsive handling.
+
+## 4. Testing
+
+- `listSpeciesSummariesForProfile` — unit-testable the same way
+  `exportTrainer`'s "doesn't switch, reads the right bucket" test already
+  proved that pattern works: set data on profile A, switch away, call the
+  new method for A by id, confirm it reflects A's real data without
+  switching back to it.
+- The read-only grid mode — confirm tapping a tile in `readOnly` mode
+  doesn't call `setSpeciesPersonalField`/mutate anything, matching however
+  this codebase already tests "does this button call this handler"
+  interactions elsewhere (this project's `.vue` files aren't covered by
+  `tsc`, so this is a manual/compiled-output check, same accepted gap
+  precedent as prior Vue-migration sub-projects).
+
+## 5. Explicitly out of scope for this pass
+
+- Independent per-side filters — a real, acknowledged future need
+  (comparing e.g. trainer A's shinies against trainer B's uncaught), just
+  not v1. Logged to roadmap.
+- Any canned "comparison model" beyond "the same filter, both sides" —
+  registered-count/shiny/missing-from-each-other gap models are all
+  achievable today via the existing filter chips; a dedicated model picker
+  can be revisited if the shared-filter approach proves insufficient in
+  practice.
+- The compare-screen Trade UX (select a specimen from each side, hit
+  "trade," prompt for new IVs/lucky/first-registration credit) — a real
+  planned feature, not scoped or built here. Tracked in `docs/roadmap.md`.
+
+## 6. Explicitly NOT this sub-project: stats comparison
+
+An earlier framing of this sub-project described "Stats page: add a
+compare section" — that idea is **superseded and split off**, per the
+owner's clarification: this sub-project builds a dex/collection comparison
+(`/compare`, per §1-3 above), which is a *different* feature from comparing
+**stats** (player level, total XP, medal progress, specimen-state counts,
+etc.) between two trainers on the existing Stats page. That
+stats-comparison idea is real and still wanted eventually, but is not
+scoped or designed here — logged to `docs/roadmap.md` as its own future
+item, distinct from this one.
