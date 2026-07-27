@@ -29,7 +29,7 @@ test("logging a shiny catch flips form_personal.shiny and species_personal.regis
   db.exec("PRAGMA foreign_keys = OFF");
 
   db.prepare(
-    "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at, shiny) VALUES ('bulbasaur-standard', '1', 0, 0, 1)",
+    "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at, shiny, uuid, original_trainer_name) VALUES ('bulbasaur-standard', '1', 0, 0, 1, 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'Trainer')",
   ).run();
 
   // Simulates what Task 3's createPokemonInstances change does after insert:

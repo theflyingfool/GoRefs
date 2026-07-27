@@ -27,9 +27,12 @@ async function seededDb(): Promise<DatabaseSync> {
 }
 
 function insertInstance(db: DatabaseSync): number {
+  // uuid/original_trainer_name are NOT NULL as of migration 0005 -- a fresh
+  // uuid per call keeps this safe even if a single test calls insertInstance
+  // more than once against the same in-memory DB.
   db.prepare(
-    "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at) VALUES ('bulbasaur-standard', 1, 0, 0)",
-  ).run();
+    "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at, uuid, original_trainer_name) VALUES ('bulbasaur-standard', 1, 0, 0, ?, 'Trainer')",
+  ).run(crypto.randomUUID());
   return (db.prepare("SELECT last_insert_rowid() as id").get() as { id: number }).id;
 }
 
