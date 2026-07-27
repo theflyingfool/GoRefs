@@ -101,6 +101,23 @@ test("planTrainerImport + applyTrainerImport merges two devices' data for the sa
   assert.equal(summary.merged, 1);
   assert.equal(repoB.getSpeciesWithForms("bulbasaur").personal.registered, true, "B must gain A's data");
   assert.equal(repoB.getSpeciesWithForms("charmander").personal.registered, true, "B must keep its own data");
+
+  // Regression (final whole-branch review, Finding 1): the merge must also
+  // apply the "incoming uuid always wins" rule to the NAME, not just the id,
+  // so profile.username and the mirrored referenced_trainer.name for the
+  // same uuid agree afterward -- before this fix, profile.username stayed
+  // "Ash Ketchum" (B's own old local name) while the end-of-loop
+  // referenced_trainer upsert overwrote that uuid's row to "Ash" (A's
+  // incoming name), leaving the two tables disagreeing about the same
+  // trainer.
+  const mergedProfile = repoB.getCurrentProfile();
+  assert.equal(mergedProfile.username, "Ash", "the incoming (A's) name must win on merge, not B's old local name");
+  const referencedRow = dbB.prepare("SELECT name, friend_code FROM referenced_trainer WHERE uuid = ?").get(mergedProfile.id) as
+    | { name: string; friend_code: string | null }
+    | undefined;
+  assert.ok(referencedRow, "the merged uuid must have a referenced_trainer row");
+  assert.equal(referencedRow!.name, "Ash", "referenced_trainer.name must also be the incoming name");
+  assert.equal(referencedRow!.name, mergedProfile.username, "profile.username and referenced_trainer.name must agree for the same uuid");
 });
 
 test("applyTrainerImport: a multi-trainer bundle can promote a matching placeholder AND create a brand-new trainer in the same call", async () => {
@@ -287,4 +304,39 @@ test("importing the same bundle twice does not duplicate specimens, and tag link
   assert.equal(rows.length, 1, "importing the same bundle twice must not duplicate the specimen");
   assert.equal(rows[0].tags.length, 1, "tag links must survive both import passes");
   assert.equal(rows[0].tags[0].name, "starters");
+});
+
+test("re-importing a trainer whose uuid ALREADY matches locally (no id rewrite needed) still applies the incoming name on a rename", async () => {
+  // Covers the auto-merge sub-case where reconcileTrainer's uuidMatch path
+  // fires (localProfileId already equals trainer.trainerUuid, so
+  // applyTrainerImport's merge branch skips buildRewriteTrainerUuidStatements
+  // entirely) -- this is the OTHER place the "incoming name wins" fix had to
+  // land, distinct from the friend-code-match case covered above.
+  const dbA = new DatabaseSync(":memory:");
+  dbA.exec("PRAGMA foreign_keys = ON;");
+  dbA.exec(REFERENCE_SCHEMA_SQL);
+  const repoA = await createSqliteRepository(undefined, nodeSqliteConnection(dbA));
+  await repoA.renameProfile(repoA.getCurrentProfile().id, "Ash", "111122223333");
+
+  const dbB = new DatabaseSync(":memory:");
+  dbB.exec("PRAGMA foreign_keys = ON;");
+  dbB.exec(REFERENCE_SCHEMA_SQL);
+  const repoB = await createSqliteRepository(undefined, nodeSqliteConnection(dbB));
+  await repoB.renameProfile(repoB.getCurrentProfile().id, "Ash Ketchum", "111122223333");
+
+  // First import: friend-code match, different uuid -- rewrites repoB's local
+  // profile id to repoA's uuid (the if-branch).
+  await repoB.applyTrainerImport(buildExportBundle(repoA, [repoA.getCurrentProfile().id]), {});
+  assert.equal(repoB.getCurrentProfile().id, repoA.getCurrentProfile().id);
+
+  // repoA renames itself, then repoB re-imports. This second import's
+  // trainerUuid already equals repoB's local profile id (the uuidMatch
+  // auto-merge path, no rewrite needed) -- the else-branch this test targets.
+  await repoA.renameProfile(repoA.getCurrentProfile().id, "Ash Ketchum Sr.", "111122223333");
+  await repoB.applyTrainerImport(buildExportBundle(repoA, [repoA.getCurrentProfile().id]), {});
+
+  const mergedProfile = repoB.getCurrentProfile();
+  assert.equal(mergedProfile.username, "Ash Ketchum Sr.", "the incoming name must win even when no uuid rewrite was needed");
+  const referencedRow = dbB.prepare("SELECT name FROM referenced_trainer WHERE uuid = ?").get(mergedProfile.id) as { name: string } | undefined;
+  assert.equal(referencedRow?.name, "Ash Ketchum Sr.", "referenced_trainer.name must agree with profile.username here too");
 });

@@ -190,11 +190,15 @@ separate"], or no match ["new"] — then executes the chosen outcome, restoring
 whichever profile was actually current before a multi-trainer import once the
 whole bundle has been processed), and `buildExportBundle`/
 `readExportBundleFile` (Settings' "Export current trainer"/"Export all
-trainers" buttons and the import file picker). `importPersonalData` itself
-still does not merge `pokemon_instance`/`tag` by row — the new `uuid` column
-makes that possible in principle, but wiring an actual uuid-based merge into
-`importPersonalData` was not part of this sub-project's task list and remains
-open (see roadmap.md).
+trainers" buttons and the import file picker). Task 10 closed the remaining
+merge gap on top of that: `mergePokemonInstancesTx` merges `pokemon_instance`
+by the new `uuid` column (existing row found by `uuid` → `updated_at`-gated
+last-write-wins update; no local match → insert) and `pokemon_instance_tag`
+links by tag *name* (via `createTag`, since tags are device-wide as of this
+same migration) rather than by the source device's local tag id, which would
+have no cross-device meaning. Re-importing the same bundle twice is
+idempotent — the second pass matches every specimen by `uuid` and every tag
+link by name, so nothing is duplicated.
 
 In short: touching `reference.json` (new Pokémon, new forms/costumes, data
 corrections) needs no manual version bump. Touching the *shape or meaning*

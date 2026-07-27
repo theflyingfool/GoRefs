@@ -519,7 +519,6 @@ export async function createSqliteRepository(
   }
 
   async function createProfile(username: string, friendCode: string | null): Promise<Profile> {
-    const existingReferenced = await findReferencedTrainerByName(db, username);
     // Promote a placeholder (referenced_trainer row with no matching real
     // profile) instead of minting a fresh uuid -- if this name was ever
     // referenced as an original trainer or seen in an import before being
@@ -528,9 +527,17 @@ export async function createSqliteRepository(
     // so "already a real profile" can only mean two people manually chose
     // the same display name -- that's the "treat as separate" case: fall
     // through to minting a new uuid exactly as before.
-    const isPlaceholder = existingReferenced && !profileBuckets.has(existingReferenced.uuid);
+    //
+    // `referenced_trainer` allows duplicate names (its PK is uuid, not
+    // name), so a plain unordered by-name lookup (findReferencedTrainerByName)
+    // could land on either row when a real profile and an unrelated
+    // placeholder happen to share this name -- same hazard reconcileTrainer's
+    // doc comment describes, and the same fix: collect every same-name
+    // match and specifically prefer a placeholder among them.
+    const nameMatches = (await listReferencedTrainers(db)).filter((t) => t.name === username);
+    const existingReferenced = nameMatches.find((t) => !profileBuckets.has(t.uuid));
     const newProfile: Profile = {
-      id: isPlaceholder ? existingReferenced!.uuid : crypto.randomUUID(),
+      id: existingReferenced ? existingReferenced.uuid : crypto.randomUUID(),
       username,
       friendCode,
       createdAt: Date.now(),
@@ -584,7 +591,7 @@ export async function createSqliteRepository(
       await persistDb();
     });
     profileBuckets.set(newProfile.id, newBucket);
-    sharedReferencedTrainers = isPlaceholder
+    sharedReferencedTrainers = existingReferenced
       ? sharedReferencedTrainers.map((t) => (t.uuid === newProfile.id ? { uuid: newProfile.id, name: newProfile.username, friendCode: newProfile.friendCode } : t))
       : [...sharedReferencedTrainers, { uuid: newProfile.id, name: newProfile.username, friendCode: newProfile.friendCode }];
     return newProfile;
@@ -976,6 +983,19 @@ export async function createSqliteRepository(
             for (const { sql, params } of buildRewriteTrainerUuidStatements(localProfileId, trainer.trainerUuid)) {
               await db.run(sql, params, false);
             }
+            // Per the design's "incoming uuid always wins" rule (see
+            // sub-project 7b design doc S:4.3), the incoming name/friendCode
+            // wins too on merge -- otherwise profile.username would keep the
+            // OLD local name while the referenced_trainer upsert at the end
+            // of this function overwrites that same uuid's mirrored row with
+            // the NEW incoming name, leaving the two tables disagreeing about
+            // the same trainer (violates the referenced_trainer mirror
+            // invariant in S:4.2).
+            await db.run("UPDATE profile SET username = ?, friend_code = ? WHERE id = ?", [
+              trainer.trainerName,
+              trainer.trainerFriendCode,
+              trainer.trainerUuid,
+            ], false);
             await db.commitTransaction();
           } catch (err) {
             await db.rollbackTransaction();
@@ -985,13 +1005,31 @@ export async function createSqliteRepository(
         });
         const bucket = profileBuckets.get(localProfileId)!;
         profileBuckets.delete(localProfileId);
-        bucket.profile = { ...bucket.profile, id: trainer.trainerUuid };
+        bucket.profile = { ...bucket.profile, id: trainer.trainerUuid, username: trainer.trainerName, friendCode: trainer.trainerFriendCode };
         profileBuckets.set(trainer.trainerUuid, bucket);
         if (state.profile.id === localProfileId) state.profile = bucket.profile;
         // The current profile's own uuid was just rewritten -- track the
         // rename so the restore at the end of this function still finds the
         // right bucket (see this function's opening comment).
         if (originalCurrentProfileId === localProfileId) originalCurrentProfileId = trainer.trainerUuid;
+      } else {
+        // uuid already matches (decision.kind === "auto-merge" via the
+        // uuid-match path in reconcileTrainer) -- no id rewrite needed, but
+        // the incoming name/friendCode can still differ from the local copy
+        // (e.g. re-importing after renaming on the source device), so the
+        // same "incoming wins" update is still required to keep profile in
+        // sync with the referenced_trainer upsert at the end of this
+        // function.
+        await enqueueSerialized(async () => {
+          await db.run("UPDATE profile SET username = ?, friend_code = ? WHERE id = ?", [
+            trainer.trainerName,
+            trainer.trainerFriendCode,
+            trainer.trainerUuid,
+          ], true);
+        });
+        const bucket = profileBuckets.get(trainer.trainerUuid)!;
+        bucket.profile = { ...bucket.profile, username: trainer.trainerName, friendCode: trainer.trainerFriendCode };
+        if (state.profile.id === trainer.trainerUuid) state.profile = bucket.profile;
       }
       const targetState = profileBuckets.get(trainer.trainerUuid)!;
       await mergeTrainerExportIntoBucket(trainer, targetState, trainer.trainerUuid);

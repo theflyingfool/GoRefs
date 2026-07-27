@@ -220,3 +220,26 @@ test("createProfile mints a fresh uuid when the name matches an existing REAL pr
   const second = await repo.createProfile("Ash", null);
   assert.notEqual(first.id, second.id, "two real profiles sharing a name must stay distinct identities");
 });
+
+test("createProfile prefers a same-name placeholder over a same-name real profile, regardless of which referenced_trainer row a plain lookup would surface first", async () => {
+  const db = new DatabaseSync(":memory:");
+  db.exec("PRAGMA foreign_keys = ON;");
+  db.exec(REFERENCE_SCHEMA_SQL);
+  const conn = nodeSqliteConnection(db);
+  const repo = await createSqliteRepository(undefined, conn);
+
+  // A REAL profile named "Steve" already exists...
+  const realSteve = await repo.createProfile("Steve", "111100002222");
+  // ...AND, independently, an unrelated placeholder also named "Steve" (e.g.
+  // referenced as some other specimen's original trainer) exists too. Both
+  // rows share the name "Steve" in `referenced_trainer`; only uuid is unique.
+  const placeholderUuid = "33333333-3333-3333-3333-333333333333";
+  db.exec(`INSERT INTO referenced_trainer (uuid, name, friend_code) VALUES ('${placeholderUuid}', 'Steve', NULL)`);
+
+  // Creating a THIRD "Steve" must promote the genuine placeholder, never the
+  // already-real profile's uuid -- a plain unordered by-name lookup could
+  // land on either row (see createProfile's doc comment).
+  const created = await repo.createProfile("Steve", null);
+  assert.equal(created.id, placeholderUuid, "must promote the placeholder, not collide with the existing real profile");
+  assert.notEqual(created.id, realSteve.id);
+});
