@@ -203,6 +203,9 @@ test("resolveInstanceAchievementField + setFormPersonalField (in-memory engine) 
     currentMegaLevel: null,
     nickname: null,
     backgroundSlug: null,
+    uuid: "11111111-1111-1111-1111-111111111111",
+    originalTrainerName: "Trainer",
+    originalTrainerId: "1",
   };
 
   repo.setFormPersonalField(instance.formSlug, resolveInstanceAchievementField(instance), true);

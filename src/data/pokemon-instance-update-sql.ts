@@ -51,6 +51,13 @@ const SCALAR_COLUMN_BY_FIELD: Record<string, string> = {
   heartsEarned: "hearts_earned",
   currentMegaLevel: "current_mega_level",
   backgroundSlug: "background_slug",
+  originalTrainerName: "original_trainer_name",
+  // originalTrainerId is not part of UpdatePokemonInstanceFields directly --
+  // sqlite-repository.ts's updatePokemonInstance resolves it (against
+  // referenced_trainer, creating a placeholder row if needed) BEFORE calling
+  // buildScalarUpdateStatement, then passes it in alongside the rest of
+  // `fields` as an extra key. See that function's own comment.
+  originalTrainerId: "original_trainer_id",
 };
 
 /**

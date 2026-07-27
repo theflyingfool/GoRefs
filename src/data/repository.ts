@@ -376,6 +376,8 @@ export interface UpdatePokemonInstanceFields {
   heartsEarned?: number | null;
   currentMegaLevel?: number | null;
   backgroundSlug?: string | null;
+  /** Free-typed; resolved against referenced_trainer by exact name match on save (a new name creates a new placeholder row) -- see updatePokemonInstance. */
+  originalTrainerName?: string;
   /** Full replacement of this instance's tag set -- diffed against current
    * pokemon_instance_tag rows (insert new links, delete removed ones). */
   tagIds?: number[];

@@ -148,6 +148,9 @@ function makeInstance(overrides: Partial<PokemonInstance>): PokemonInstance {
     currentMegaLevel: null,
     nickname: null,
     backgroundSlug: null,
+    uuid: "11111111-1111-1111-1111-111111111111",
+    originalTrainerName: "Trainer",
+    originalTrainerId: "1",
     ...overrides,
   };
 }

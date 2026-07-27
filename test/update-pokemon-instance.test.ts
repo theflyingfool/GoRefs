@@ -6,6 +6,8 @@ import { nodeSqliteConnection } from "./node-sqlite-connection";
 import { buildScalarUpdateStatement, buildTagDiffStatements, mergeUpdatedInstance } from "../src/data/pokemon-instance-update-sql";
 import { computeIvPercent } from "../src/db/types";
 import type { PokemonInstance } from "../src/db/types";
+import { createSqliteRepository } from "../src/data/sqlite-repository";
+import { REFERENCE_SCHEMA_SQL } from "../src/db/schema";
 
 function freshDb(): DatabaseSync {
   const db = new DatabaseSync(":memory:");
@@ -103,6 +105,9 @@ function fixtureInstance(overrides: Partial<PokemonInstance> = {}): PokemonInsta
     currentMegaLevel: null,
     nickname: null,
     backgroundSlug: null,
+    uuid: "11111111-1111-1111-1111-111111111111",
+    originalTrainerName: "Trainer",
+    originalTrainerId: "1",
     ...overrides,
   };
 }
@@ -168,4 +173,39 @@ test("buildTagDiffStatements replaces a non-empty tag set: removes, adds, and ke
     links.map((l) => l.tag_id).sort((a, b) => a - b),
     [tagKept, tagAdded].sort((a, b) => a - b),
   );
+});
+
+// Exercises the REAL updatePokemonInstance/createPokemonInstances through the
+// full repository (test seam described on createSqliteRepository) since the
+// resolve-or-create step against referenced_trainer lives in
+// sqlite-repository.ts, not in the pure SQL builders this file otherwise
+// tests directly.
+test("updatePokemonInstance resolves originalTrainerName against referenced_trainer, creating a placeholder if new", async () => {
+  const db = new DatabaseSync(":memory:");
+  db.exec("PRAGMA foreign_keys = ON;");
+  db.exec(REFERENCE_SCHEMA_SQL);
+  const conn = nodeSqliteConnection(db);
+  // createSqliteRepository syncs the app's real bundled reference data
+  // (src/data/reference.json) into the DB at boot -- any species/form rows
+  // manually inserted beforehand get deleted by that sync since they aren't
+  // part of the bundle, so use a real form slug rather than fixture data.
+  const repo = await createSqliteRepository(undefined, conn);
+
+  const [firstInstance] = await repo.createPokemonInstances({ formSlug: "bulbasaur-standard-male", count: 1 });
+  const instanceId = firstInstance.id;
+
+  await repo.updatePokemonInstance(instanceId, { originalTrainerName: "Gary" });
+  const row = db.prepare("SELECT original_trainer_name, original_trainer_id FROM pokemon_instance WHERE id = ?").get(instanceId) as {
+    original_trainer_name: string;
+    original_trainer_id: string;
+  };
+  assert.equal(row.original_trainer_name, "Gary");
+  const referenced = db.prepare("SELECT name FROM referenced_trainer WHERE uuid = ?").get(row.original_trainer_id) as { name: string } | undefined;
+  assert.equal(referenced?.name, "Gary");
+
+  // Second specimen naming the SAME trainer must resolve to the SAME uuid, not a new placeholder.
+  const secondBatch = await repo.createPokemonInstances({ formSlug: "bulbasaur-standard-male", count: 1 });
+  await repo.updatePokemonInstance(secondBatch[0].id, { originalTrainerName: "Gary" });
+  const secondRow = db.prepare("SELECT original_trainer_id FROM pokemon_instance WHERE id = ?").get(secondBatch[0].id) as { original_trainer_id: string };
+  assert.equal(secondRow.original_trainer_id, row.original_trainer_id);
 });

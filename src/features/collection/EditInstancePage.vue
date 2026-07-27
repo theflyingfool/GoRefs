@@ -28,6 +28,7 @@ if (!loaded) {
 const instance = loaded?.instance ?? null;
 
 const nickname = ref(instance?.nickname ?? "");
+const originalTrainerName = ref(instance?.originalTrainerName ?? "");
 const cp = ref<number | null>(instance?.cp ?? null);
 const ivAttack = ref<number | null>(instance?.ivAttack ?? null);
 const ivDefense = ref<number | null>(instance?.ivDefense ?? null);
@@ -73,6 +74,7 @@ async function save() {
   try {
     const fields: UpdatePokemonInstanceFields = {
       nickname: nickname.value.trim() || null,
+      originalTrainerName: originalTrainerName.value.trim() || undefined,
       cp: cp.value,
       ivAttack: ivAttack.value,
       ivDefense: ivDefense.value,
@@ -106,6 +108,7 @@ async function save() {
     <legend>Details</legend>
     <div class="input-grid">
       <label class="field">Nickname<input type="text" v-model="nickname" /></label>
+      <label class="field">Original Trainer<input type="text" v-model="originalTrainerName" /></label>
       <label class="field">CP<input type="number" v-model.number="cp" /></label>
       <IvComponentInput v-model="ivAttack" label="Attack IV" />
       <IvComponentInput v-model="ivDefense" label="Defense IV" />

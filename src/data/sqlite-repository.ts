@@ -145,6 +145,9 @@ async function loadOneProfileState(db: Awaited<ReturnType<typeof getDb>>, profil
       currentMegaLevel: row.current_mega_level ?? null,
       nickname: row.nickname ?? null,
       backgroundSlug: row.background_slug ?? null,
+      uuid: row.uuid,
+      originalTrainerName: row.original_trainer_name,
+      originalTrainerId: row.original_trainer_id ?? null,
     });
   }
 
@@ -721,9 +724,10 @@ export async function createSqliteRepository(
       enqueueWrite(async () => {
         await db.beginTransaction();
         for (let i = 0; i < batch.count; i++) {
+          const uuid = crypto.randomUUID();
           await db.run(
-            `INSERT INTO pokemon_instance (form_slug, profile_id, status, recorded_at, caught_at, updated_at, cp, iv_attack, iv_defense, iv_stamina, shiny, lucky, shadow, purified, dynamax, received_via_trade, nickname, background_slug)
-             VALUES (?, ?, 'kept', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            `INSERT INTO pokemon_instance (form_slug, profile_id, status, recorded_at, caught_at, updated_at, cp, iv_attack, iv_defense, iv_stamina, shiny, lucky, shadow, purified, dynamax, received_via_trade, nickname, background_slug, uuid, original_trainer_name, original_trainer_id)
+             VALUES (?, ?, 'kept', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
               batch.formSlug,
               state.profile.id,
@@ -742,6 +746,9 @@ export async function createSqliteRepository(
               batch.receivedViaTrade ? 1 : 0,
               batch.nickname ?? null,
               batch.backgroundSlug ?? null,
+              uuid,
+              state.profile.username,
+              state.profile.id,
             ],
             false,
           );
@@ -770,6 +777,9 @@ export async function createSqliteRepository(
             currentMegaLevel: null,
             nickname: batch.nickname ?? null,
             backgroundSlug: batch.backgroundSlug ?? null,
+            uuid,
+            originalTrainerName: state.profile.username,
+            originalTrainerId: state.profile.id,
           });
           for (const tagId of batch.tagIds ?? []) {
             await db.run("INSERT OR IGNORE INTO pokemon_instance_tag (pokemon_instance_id, tag_id) VALUES (?, ?)", [id, tagId], false);
@@ -860,7 +870,33 @@ export async function createSqliteRepository(
     // isn't surprised by the gap.
     async updatePokemonInstance(id: number, fields: UpdatePokemonInstanceFields): Promise<void> {
       const now = Date.now();
-      const scalarUpdate = buildScalarUpdateStatement(id, fields, now);
+
+      // originalTrainerName is free-typed on the edit form, but the column
+      // that actually gets written (original_trainer_id) is a soft link
+      // resolved against referenced_trainer -- a new name mints a fresh
+      // placeholder row there rather than leaving the specimen's link
+      // dangling. This has to happen BEFORE buildScalarUpdateStatement is
+      // called, since the resolved id needs to ride along in the same
+      // dynamic-column-list object it builds from (see
+      // pokemon-instance-update-sql.ts's SCALAR_COLUMN_BY_FIELD).
+      let originalTrainerId: string | null | undefined;
+      if (fields.originalTrainerName !== undefined) {
+        const existing = await findReferencedTrainerByName(db, fields.originalTrainerName);
+        if (existing) {
+          originalTrainerId = existing.uuid;
+        } else {
+          originalTrainerId = crypto.randomUUID();
+          const upsert = buildReferencedTrainerUpsert({ uuid: originalTrainerId, name: fields.originalTrainerName, friendCode: null });
+          enqueueWrite(async () => {
+            await db.run(upsert.sql, upsert.params, true);
+            await persistDb();
+          });
+        }
+      }
+      const scalarFields: UpdatePokemonInstanceFields & { originalTrainerId?: string | null } =
+        fields.originalTrainerName !== undefined ? { ...fields, originalTrainerId } : fields;
+
+      const scalarUpdate = buildScalarUpdateStatement(id, scalarFields, now);
       const tagStatements = fields.tagIds !== undefined ? buildTagDiffStatements(id, fields.tagIds) : [];
 
       enqueueWrite(async () => {
@@ -886,7 +922,11 @@ export async function createSqliteRepository(
           // See mergeUpdatedInstance's own doc comment (pokemon-instance-
           // update-sql.ts) for why ivPercent needs a manual recompute here
           // from the merged IV values, not just the ones present in `fields`.
-          state.pokemonInstances[idx] = mergeUpdatedInstance(state.pokemonInstances[idx], fields, now);
+          // scalarFields (not `fields`) so a resolved originalTrainerId rides
+          // along into the cache the same way it did into the DB row --
+          // otherwise the cache would show the new original_trainer_name
+          // paired with the stale original_trainer_id until next reload.
+          state.pokemonInstances[idx] = mergeUpdatedInstance(state.pokemonInstances[idx], scalarFields, now);
         }
       } else {
         const idx = state.pokemonInstances.findIndex((i) => i.id === id);
