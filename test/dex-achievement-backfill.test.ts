@@ -102,7 +102,6 @@ function emptyPersonalState(): PersonalState {
     formBackgroundPersonal: [],
     medalProgress: {},
     pokemonInstances: [],
-    tags: [],
     pokemonInstanceTags: [],
     playerProgress: undefined,
     playerProgressLog: [],
@@ -161,7 +160,7 @@ test("applyDexAchievementBackfillIfNeeded sets the real form_personal/species_pe
     makeInstance({ id: 1, formSlug: "bulbasaur-standard", shiny: true }),
     makeInstance({ id: 2, formSlug: "charmander-standard", shiny: false, ivPercent: 100 }),
   ];
-  const repo = createInMemoryRepository(emptyReferenceData(), state, noopHooks());
+  const repo = createInMemoryRepository(emptyReferenceData(), state, noopHooks(), () => []);
 
   const ran = applyDexAchievementBackfillIfNeeded(state, repo);
 
@@ -182,7 +181,7 @@ test("applyDexAchievementBackfillIfNeeded sets the real form_personal/species_pe
 test("applyDexAchievementBackfillIfNeeded is a genuine no-op on a second call (marker gate short-circuits)", () => {
   const state = emptyPersonalState();
   state.pokemonInstances = [makeInstance({ id: 1, formSlug: "bulbasaur-standard", shiny: true })];
-  const repo = createInMemoryRepository(emptyReferenceData(), state, noopHooks());
+  const repo = createInMemoryRepository(emptyReferenceData(), state, noopHooks(), () => []);
 
   const firstRun = applyDexAchievementBackfillIfNeeded(state, repo);
   assert.equal(firstRun, true);
@@ -203,7 +202,7 @@ test("applyDexAchievementBackfillIfNeeded is a genuine no-op on a second call (m
 
 test("applyDexAchievementBackfillIfNeeded never unsets an already-true flag on an unrelated form (real cascade)", () => {
   const state = emptyPersonalState();
-  const repo = createInMemoryRepository(emptyReferenceData(), state, noopHooks());
+  const repo = createInMemoryRepository(emptyReferenceData(), state, noopHooks(), () => []);
 
   // charmander-standard's shiny flag is already true going in, via some
   // unrelated prior action (e.g. logged directly rather than backfilled) --

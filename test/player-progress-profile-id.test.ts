@@ -50,7 +50,6 @@ function stateWithProfileId(profileId: string): PersonalState {
     formBackgroundPersonal: [],
     medalProgress: {},
     pokemonInstances: [],
-    tags: [],
     pokemonInstanceTags: [],
     playerProgress: undefined,
     playerProgressLog: [],
@@ -74,7 +73,7 @@ test("setPlayerProgress uses the real profile id, not a hardcoded default", () =
       seenProfileIds.push(entry.profileId);
     },
     onPokemonInstanceStatusChanged() {},
-  });
+  }, () => []);
 
   repo.setPlayerProgress(40, 12345);
 
@@ -96,7 +95,7 @@ test("setMedalProgress uses the real profile id, not a hardcoded default", () =>
     onPlayerProgressChanged() {},
     onPlayerProgressLogAppended() {},
     onPokemonInstanceStatusChanged() {},
-  });
+  }, () => []);
 
   repo.setMedalProgress("collector", 1, 5);
 

@@ -150,7 +150,6 @@ function emptyPersonalState(): PersonalState {
     formBackgroundPersonal: [],
     medalProgress: {},
     pokemonInstances: [],
-    tags: [],
     pokemonInstanceTags: [],
     playerProgress: undefined,
     playerProgressLog: [],
@@ -174,7 +173,7 @@ function noopHooks(): InMemoryStoreHooks {
 
 test("resolveInstanceAchievementField + setFormPersonalField (in-memory engine) flips form_personal.shiny/caught and species_personal.registered", () => {
   const state = emptyPersonalState();
-  const repo = createInMemoryRepository(emptyReferenceData(), state, noopHooks());
+  const repo = createInMemoryRepository(emptyReferenceData(), state, noopHooks(), () => []);
 
   // Mirrors exactly what sqlite-repository.ts's createPokemonInstances does
   // after inserting a new pokemon_instance row: resolve the achievement

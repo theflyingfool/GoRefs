@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 import { DatabaseSync } from "node:sqlite";
 import { runPersonalMigrations } from "../src/db/migrations";
 import { nodeSqliteConnection } from "./node-sqlite-connection";
+import { createSqliteRepository } from "../src/data/sqlite-repository";
+import { REFERENCE_SCHEMA_SQL } from "../src/db/schema";
 import { buildRenameTagStatement, buildDeleteTagStatements, computeTagUsageCounts } from "../src/data/tag-management-sql";
 import type { Tag, PokemonInstanceTag } from "../src/db/types";
 
@@ -29,7 +31,7 @@ function insertTag(db: DatabaseSync, name: string): number {
 
 function insertInstance(db: DatabaseSync): number {
   db.prepare(
-    "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at) VALUES ('bulbasaur-standard', 1, 0, 0)",
+    "INSERT INTO pokemon_instance (form_slug, profile_id, recorded_at, updated_at, uuid, original_trainer_name) VALUES ('bulbasaur-standard', 1, 0, 0, 'test-uuid', 'Trainer')",
   ).run();
   return (db.prepare("SELECT last_insert_rowid() as id").get() as { id: number }).id;
 }
@@ -140,4 +142,38 @@ test("computeTagUsageCounts counts links per tag and sorts alphabetically by nam
       ["trade", 0],
     ],
   );
+});
+
+// Task 6: tags moved from a per-profile cache to a device-wide shared list
+// (design doc §3.3) -- these two tests exercise that through the real
+// createSqliteRepository, not just the SQL builders above.
+test("tags are visible across profiles, not scoped to the profile that created them", async () => {
+  const db = new DatabaseSync(":memory:");
+  db.exec("PRAGMA foreign_keys = ON;");
+  db.exec(REFERENCE_SCHEMA_SQL);
+  const conn = nodeSqliteConnection(db);
+  const repo = await createSqliteRepository(undefined, conn);
+
+  const tag = await repo.createTag("shiny-candidates");
+  const second = await repo.createProfile("Second", null);
+  repo.switchProfile(second.id);
+
+  const tagsOnSecond = repo.listTags();
+  assert.ok(tagsOnSecond.some((t) => t.id === tag.id), "a tag created under the first profile must be visible after switching");
+});
+
+test("creating a tag with a name that already exists (any profile) returns the existing tag, never a duplicate", async () => {
+  const db = new DatabaseSync(":memory:");
+  db.exec("PRAGMA foreign_keys = ON;");
+  db.exec(REFERENCE_SCHEMA_SQL);
+  const conn = nodeSqliteConnection(db);
+  const repo = await createSqliteRepository(undefined, conn);
+
+  const first = await repo.createTag("shiny-candidates");
+  const second = await repo.createProfile("Second", null);
+  repo.switchProfile(second.id);
+  const duplicate = await repo.createTag("shiny-candidates");
+
+  assert.equal(duplicate.id, first.id, "createTag must dedupe by name against the shared list regardless of current profile");
+  assert.equal(repo.listTags().filter((t) => t.name === "shiny-candidates").length, 1);
 });

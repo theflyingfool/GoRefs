@@ -69,7 +69,6 @@ function emptyState(): PersonalState {
     formBackgroundPersonal: [],
     medalProgress: {},
     pokemonInstances: [],
-    tags: [],
     pokemonInstanceTags: [],
     playerProgress: undefined,
     playerProgressLog: [],
@@ -91,7 +90,7 @@ const noopHooks = {
 
 test("export/import round-trips species, form, and app-setting personal data", async () => {
   const sourceState = emptyState();
-  const source = createInMemoryRepository(referenceData, sourceState, noopHooks);
+  const source = createInMemoryRepository(referenceData, sourceState, noopHooks, () => []);
 
   source.setSpeciesPersonalField("bulbasaur", "xxl", true);
   source.setFormPersonalField("bulbasaur-standard", "shiny", true);
@@ -100,7 +99,7 @@ test("export/import round-trips species, form, and app-setting personal data", a
   const exported = source.exportPersonalData();
 
   const destState = emptyState();
-  const dest = createInMemoryRepository(referenceData, destState, noopHooks);
+  const dest = createInMemoryRepository(referenceData, destState, noopHooks, () => []);
   const result = await dest.importPersonalData(exported);
 
   assert.deepEqual(result, { skippedSpeciesSlugs: 0, skippedFormSlugs: 0 });
@@ -118,7 +117,7 @@ test("export/import round-trips species, form, and app-setting personal data", a
 
 test("import skips rows whose slug no longer resolves against the loaded reference data, and counts them", async () => {
   const destState = emptyState();
-  const dest = createInMemoryRepository(referenceData, destState, noopHooks);
+  const dest = createInMemoryRepository(referenceData, destState, noopHooks, () => []);
 
   const result = await dest.importPersonalData({
     exportedAt: new Date().toISOString(),
@@ -138,7 +137,7 @@ test("import skips rows whose slug no longer resolves against the loaded referen
 
 test("import merges instead of wiping: a local row absent from the import survives untouched", async () => {
   const destState = emptyState();
-  const dest = createInMemoryRepository(referenceData, destState, noopHooks);
+  const dest = createInMemoryRepository(referenceData, destState, noopHooks, () => []);
 
   // Local data that the about-to-be-imported file knows nothing about.
   dest.setSpeciesPersonalField("bulbasaur", "xxl", true);
@@ -165,7 +164,7 @@ test("import merges instead of wiping: a local row absent from the import surviv
 
 test("import keeps the local row when it's newer than the imported one", async () => {
   const destState = emptyState();
-  const dest = createInMemoryRepository(referenceData, destState, noopHooks);
+  const dest = createInMemoryRepository(referenceData, destState, noopHooks, () => []);
   dest.setSpeciesPersonalField("bulbasaur", "xxl", true); // stamps a real, current updatedAt
 
   await dest.importPersonalData({
@@ -185,7 +184,7 @@ test("import keeps the local row when it's newer than the imported one", async (
 
 test("import overwrites the local row when the imported one is newer", async () => {
   const destState = emptyState();
-  const dest = createInMemoryRepository(referenceData, destState, noopHooks);
+  const dest = createInMemoryRepository(referenceData, destState, noopHooks, () => []);
   destState.speciesPersonal.bulbasaur = { speciesSlug: "bulbasaur", registered: true, xxl: true, xxs: false, purified: false, updatedAt: new Date("2000-01-01T00:00:00.000Z").getTime() };
 
   await dest.importPersonalData({
@@ -216,7 +215,7 @@ test("import remaps formBackgroundPersonal rows to the importing device's curren
   // imported table does.
   const destState = emptyState();
   destState.profile = { id: "dest-profile", username: "Trainer", friendCode: null, createdAt: Date.now() };
-  const dest = createInMemoryRepository(referenceData, destState, noopHooks);
+  const dest = createInMemoryRepository(referenceData, destState, noopHooks, () => []);
 
   const result = await dest.importPersonalData({
     exportedAt: new Date().toISOString(),
@@ -249,7 +248,7 @@ test("import remaps medalProgress rows to the importing device's current profile
   // applies here too.
   const destState = emptyState();
   destState.profile = { id: "dest-profile", username: "Trainer", friendCode: null, createdAt: Date.now() };
-  const dest = createInMemoryRepository(referenceData, destState, noopHooks);
+  const dest = createInMemoryRepository(referenceData, destState, noopHooks, () => []);
 
   await dest.importPersonalData({
     exportedAt: new Date().toISOString(),
@@ -269,7 +268,7 @@ test("import remaps medalProgress rows to the importing device's current profile
 test("import remaps playerProgress to the importing device's current profile, not the exporting device's", async () => {
   const destState = emptyState();
   destState.profile = { id: "dest-profile", username: "Trainer", friendCode: null, createdAt: Date.now() };
-  const dest = createInMemoryRepository(referenceData, destState, noopHooks);
+  const dest = createInMemoryRepository(referenceData, destState, noopHooks, () => []);
 
   await dest.importPersonalData({
     exportedAt: new Date().toISOString(),
@@ -288,7 +287,7 @@ test("import remaps playerProgress to the importing device's current profile, no
 test("import remaps playerProgressLog entries to the importing device's current profile, not the exporting device's", async () => {
   const destState = emptyState();
   destState.profile = { id: "dest-profile", username: "Trainer", friendCode: null, createdAt: Date.now() };
-  const dest = createInMemoryRepository(referenceData, destState, noopHooks);
+  const dest = createInMemoryRepository(referenceData, destState, noopHooks, () => []);
 
   await dest.importPersonalData({
     exportedAt: new Date().toISOString(),
@@ -312,7 +311,7 @@ test("import applies every app-setting key (reference_data_version is now device
   // applied unconditionally.
   const destState = emptyState();
   destState.appSettings.collapse_gender_forms = "0";
-  const dest = createInMemoryRepository(referenceData, destState, noopHooks);
+  const dest = createInMemoryRepository(referenceData, destState, noopHooks, () => []);
 
   await dest.importPersonalData({
     exportedAt: new Date().toISOString(),

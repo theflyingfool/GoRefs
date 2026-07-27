@@ -151,11 +151,6 @@ async function loadOneProfileState(db: Awaited<ReturnType<typeof getDb>>, profil
     });
   }
 
-  const tags: Tag[] = [];
-  for (const row of (await db.query("SELECT * FROM tag WHERE profile_id = ?", [profileId])).values ?? []) {
-    tags.push({ id: row.id, profileId: row.profile_id, name: row.name });
-  }
-
   const pokemonInstanceTags: PokemonInstanceTag[] = [];
   for (const row of (
     await db.query(
@@ -208,7 +203,6 @@ async function loadOneProfileState(db: Awaited<ReturnType<typeof getDb>>, profil
     formBackgroundPersonal,
     medalProgress,
     pokemonInstances,
-    tags,
     pokemonInstanceTags,
     playerProgress,
     playerProgressLog,
@@ -244,6 +238,17 @@ export async function createSqliteRepository(
   await runPersonalMigrations(db);
   await syncReferenceData(db, referenceData);
   const { buckets: profileBuckets, currentProfileId } = await loadAllProfiles(db);
+  // Tags are device-wide (task 6 / design doc §3.3), not part of any
+  // profile's PersonalState bucket — loaded once here rather than per
+  // profile in loadOneProfileState. `let`, not `const`: create/rename/delete
+  // reassign this binding wholesale (`sharedTags = ...`) rather than mutating
+  // in place, and createInMemoryRepository's `getSharedTags` closure below
+  // always reads the current binding, so every consumer (in this file and in
+  // in-memory-store.ts) stays in sync across a reassignment.
+  let sharedTags: Tag[] = (await db.query("SELECT id, profile_id, name FROM tag", [])).values?.map((row) => {
+    const r = row as Record<string, unknown>;
+    return { id: r.id as number, profileId: r.profile_id as string, name: r.name as string };
+  }) ?? [];
   // SHALLOW COPY — critical. `state` must be its own stable container, NOT the
   // map's own bucket object. switchProfile()/reassignStateToBucket() mutate
   // `state`'s fields in place (every closure in this file captured `state` by
@@ -437,7 +442,7 @@ export async function createSqliteRepository(
         if (!inBulk) await persistDb();
       });
     },
-  });
+  }, () => sharedTags);
 
   // Runs a batched in-memory apply (which fires N onXChanged hooks
   // synchronously, each enqueuing a transaction-less row write with persist
@@ -524,7 +529,6 @@ export async function createSqliteRepository(
       formBackgroundPersonal: [],
       medalProgress: {},
       pokemonInstances: [],
-      tags: [],
       pokemonInstanceTags: [],
       playerProgress: undefined,
       playerProgressLog: [],
@@ -579,7 +583,6 @@ export async function createSqliteRepository(
     state.formBackgroundPersonal = bucket.formBackgroundPersonal;
     state.medalProgress = bucket.medalProgress;
     state.pokemonInstances = bucket.pokemonInstances;
-    state.tags = bucket.tags;
     state.pokemonInstanceTags = bucket.pokemonInstanceTags;
     state.playerProgress = bucket.playerProgress;
     state.playerProgressLog = bucket.playerProgressLog;
@@ -801,8 +804,12 @@ export async function createSqliteRepository(
       }
       return created;
     },
+    // Tags are device-wide (task 6 / design doc §3.3) — read/write
+    // `sharedTags`, not any per-profile bucket field. `state.profile.id` is
+    // still recorded on the INSERT as an informational "who created this"
+    // value; it's no longer used for scoping or uniqueness.
     async createTag(name: string): Promise<Tag> {
-      const existing = state.tags.find((t) => t.name === name);
+      const existing = sharedTags.find((t) => t.name === name);
       if (existing) return existing;
       let created: Tag | undefined;
       enqueueWrite(async () => {
@@ -812,7 +819,7 @@ export async function createSqliteRepository(
         await persistDb();
       });
       await writeQueue;
-      state.tags.push(created!);
+      sharedTags = [...sharedTags, created!];
       return created!;
     },
     // Not part of createInMemoryRepository's shared object (see its Omit<>) —
@@ -822,7 +829,7 @@ export async function createSqliteRepository(
     // lives in the extracted computeTagUsageCounts (see tag-management-sql.ts)
     // so it's directly unit-testable.
     getTagUsageCounts(): TagCount[] {
-      return computeTagUsageCounts(state.tags, state.pokemonInstanceTags);
+      return computeTagUsageCounts(sharedTags, state.pokemonInstanceTags);
     },
     // Not part of createInMemoryRepository's shared object (see its Omit<>) —
     // uses the extracted buildRenameTagStatement (see tag-management-sql.ts)
@@ -834,8 +841,7 @@ export async function createSqliteRepository(
         await persistDb();
       });
       await writeQueue;
-      const idx = state.tags.findIndex((t) => t.id === id);
-      if (idx !== -1) state.tags[idx] = { ...state.tags[idx], name };
+      sharedTags = sharedTags.map((t) => (t.id === id ? { ...t, name } : t));
     },
     // Not part of createInMemoryRepository's shared object (see its Omit<>) —
     // uses the extracted buildDeleteTagStatements (see tag-management-sql.ts),
@@ -852,7 +858,7 @@ export async function createSqliteRepository(
         await persistDb();
       });
       await writeQueue;
-      state.tags = state.tags.filter((t) => t.id !== id);
+      sharedTags = sharedTags.filter((t) => t.id !== id);
       state.pokemonInstanceTags = state.pokemonInstanceTags.filter((l) => l.tagId !== id);
     },
     // Not part of createInMemoryRepository's shared object (see its Omit<>) —

@@ -66,7 +66,6 @@ export interface PersonalState {
   formBackgroundPersonal: FormBackgroundPersonal[];
   medalProgress: Record<string, MedalProgressPersonal>;
   pokemonInstances: PokemonInstance[];
-  tags: Tag[];
   pokemonInstanceTags: PokemonInstanceTag[];
   playerProgress: PlayerProgressPersonal | undefined;
   playerProgressLog: PlayerProgressLogEntry[];
@@ -92,6 +91,14 @@ export function createInMemoryRepository(
   referenceData: ReferenceData,
   state: PersonalState,
   hooks: InMemoryStoreHooks,
+  // Tags are device-wide, not part of PersonalState (see PersonalState's
+  // doc comment / task-6 design note). This is a getter, not a plain array,
+  // because the caller (sqlite-repository.ts) reassigns its `sharedTags`
+  // binding wholesale on every create/rename/delete (`sharedTags = ...`)
+  // rather than mutating in place — a getter closing over that `let` always
+  // observes the latest array; a value captured once here would go stale
+  // after the first mutation.
+  getSharedTags: () => Tag[],
 ): Omit<
   Repository,
   | "getCompletionStats"
@@ -152,7 +159,7 @@ export function createInMemoryRepository(
     const species = speciesSlug ? speciesBySlug.get(speciesSlug) : undefined;
     if (!form || !species) return undefined;
     const tagIds = new Set(state.pokemonInstanceTags.filter((t) => t.pokemonInstanceId === instance.id).map((t) => t.tagId));
-    const tags = state.tags.filter((t) => tagIds.has(t.id));
+    const tags = getSharedTags().filter((t) => tagIds.has(t.id));
     return { instance, form, species, tags };
   }
 
@@ -526,7 +533,7 @@ export function createInMemoryRepository(
     },
 
     listTags(): Tag[] {
-      return state.tags;
+      return getSharedTags();
     },
 
     getPlayerProgress(): PlayerProgressPersonal | undefined {
@@ -570,7 +577,7 @@ export function createInMemoryRepository(
     getTopTagCounts(limit = 10): TagCount[] {
       const counts = new Map<number, number>();
       for (const link of state.pokemonInstanceTags) counts.set(link.tagId, (counts.get(link.tagId) ?? 0) + 1);
-      return state.tags
+      return getSharedTags()
         .map((tag) => ({ tag, count: counts.get(tag.id) ?? 0 }))
         .sort((a, b) => b.count - a.count)
         .slice(0, limit);
@@ -602,7 +609,7 @@ export function createInMemoryRepository(
         formBackgroundPersonal: [...state.formBackgroundPersonal],
         medalProgress: { ...state.medalProgress },
         pokemonInstances: [...state.pokemonInstances],
-        tags: [...state.tags],
+        tags: [...getSharedTags()],
         playerProgress: state.playerProgress,
         playerProgressLog: [...state.playerProgressLog],
       };
