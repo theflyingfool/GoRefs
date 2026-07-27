@@ -34,6 +34,7 @@ import {
 import { getDb, persistDb } from "../db/sqlite-client";
 import { buildSpeciesPersonalUpsert, buildFormPersonalUpsert, buildMegaPersonalUpsert, buildAppSettingUpsert, buildFormBackgroundPersonalInsert } from "./profile-scoped-write-sql";
 import { runPersonalMigrations } from "../db/migrations";
+import { CURRENT_PERSONAL_SCHEMA_VERSION } from "../db/schema";
 import { resolveInstanceAchievementField } from "../db/cascades";
 import { applyDexAchievementBackfillIfNeeded, DEX_ACHIEVEMENT_BACKFILL_KEY } from "./dex-achievement-backfill";
 import { buildScalarUpdateStatement, buildTagDiffStatements, mergeUpdatedInstance } from "./pokemon-instance-update-sql";
@@ -50,6 +51,7 @@ import {
   type NewPokemonInstanceBatch,
   type Repository,
   type TagCount,
+  type TrainerExport,
   type UpdatePokemonInstanceFields,
 } from "./repository";
 
@@ -957,5 +959,33 @@ export async function createSqliteRepository(
     switchProfile,
     renameProfile,
     deleteProfile,
+    // Reads from profileBuckets directly (not the live `state`) so it works
+    // for ANY local profile -- including one that isn't current -- without
+    // switching to it first. `tags` is intentionally omitted from the
+    // returned TrainerExport: tags are device-wide (Task 6), not part of
+    // any profile's PersonalState bucket, so there's nothing per-trainer to
+    // put here -- callers get the device's tag list from ExportBundle.tags
+    // instead (populated once in Task 9's bundle builder).
+    exportTrainer(profileId: string): TrainerExport {
+      const bucket = profileBuckets.get(profileId);
+      if (!bucket) throw new Error(`Unknown profile: ${profileId}`);
+      return {
+        exportedAt: new Date().toISOString(),
+        schemaVersion: CURRENT_PERSONAL_SCHEMA_VERSION,
+        speciesPersonal: { ...bucket.speciesPersonal },
+        formPersonal: { ...bucket.formPersonal },
+        appSettings: { ...bucket.appSettings },
+        megaPersonal: { ...bucket.megaPersonal },
+        formBackgroundPersonal: [...bucket.formBackgroundPersonal],
+        medalProgress: { ...bucket.medalProgress },
+        pokemonInstances: [...bucket.pokemonInstances],
+        playerProgress: bucket.playerProgress,
+        playerProgressLog: [...bucket.playerProgressLog],
+        trainerUuid: bucket.profile.id,
+        trainerName: bucket.profile.username,
+        trainerFriendCode: bucket.profile.friendCode,
+        referencedTrainers: [], // filled in by the caller building the ExportBundle -- see buildExportBundle in Task 9, which fetches the device-wide list ONCE and attaches it to every trainer rather than re-querying per trainer.
+      };
+    },
   };
 }

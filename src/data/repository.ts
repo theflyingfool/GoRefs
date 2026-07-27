@@ -200,6 +200,29 @@ export interface PersonalDataExport {
   playerProgressLog?: PlayerProgressLogEntry[];
 }
 
+// A single trainer's full export, tagged with its own identity so an
+// importing device can tell WHOSE data this is and reconcile it against
+// what it already knows -- see docs/superpowers/specs/2026-07-26-sub-project-7b-identity-and-merge-design.md
+// section 5. Extends PersonalDataExport rather than duplicating its fields.
+export interface TrainerExport extends PersonalDataExport {
+  trainerUuid: string;
+  trainerName: string;
+  trainerFriendCode: string | null;
+  /** This trainer's own referenced_trainer rows (real + placeholder) at export time -- carries placeholder identities along so an importing device gains them too. */
+  referencedTrainers: { uuid: string; name: string; friendCode: string | null }[];
+}
+
+// The file format written by both "Export current" and "Export all
+// trainers" -- always this shape, never a single bare PersonalDataExport,
+// so import has exactly one code path regardless of how many trainers are
+// in the file.
+export interface ExportBundle {
+  exportedAt: string;
+  schemaVersion: number;
+  trainers: TrainerExport[];
+  tags: { name: string }[];
+}
+
 export interface Repository {
   listRegions(): Region[];
   listSpeciesByRegion(regionSlug: string): Species[];
@@ -300,6 +323,8 @@ export interface Repository {
   renameProfile(profileId: string, username: string, friendCode: string | null): Promise<void>;
   /** Throws if profileId is the only remaining profile. If profileId is the current profile, automatically switches to another remaining profile first. */
   deleteProfile(profileId: string): Promise<void>;
+  /** One trainer's full export (see TrainerExport) -- works for ANY local profile, not just the current one, so "export all" can call this once per profile without switching. */
+  exportTrainer(profileId: string): TrainerExport;
   getPlayerProgress(): PlayerProgressPersonal | undefined;
   setPlayerProgress(currentLevel: number | null, totalXp: number | null): void;
   /** Every past snapshot (see setPlayerProgress), oldest first — for an XP/level-over-time chart. */
