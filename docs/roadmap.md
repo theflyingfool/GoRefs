@@ -233,21 +233,7 @@ scope / deferred" section), logged here per that doc's instruction:
   been used for a while and it's clearer whether switching needs to be
   available everywhere.
 
-Sub-project 7c's scope (dex/collection compare view — design revised
-2026-07-27 after 7b shipped, ready for an implementation plan):
-- A new `/compare` route: pick two local profiles (or import one on the
-  spot, reusing 7b's import/reconciliation flow directly), apply the
-  existing Dex-grid filter bar once, see both profiles' filtered dex grids
-  side by side. No bespoke comparison-model logic — the shared filter *is*
-  the comparison.
-- Needs one new `Repository` method (`listSpeciesSummariesForProfile`,
-  reading a specific profile's bucket without switching to it, same
-  pattern `exportTrainer` already established) and a read-only mode on
-  the existing Dex-grid component.
-- Deferred out of this pass, logged here: independent per-side filters
-  (compare trainer A's shinies against trainer B's uncaught, etc.); any
-  canned comparison model beyond "same filter, both sides."
-- Depends on Phase 0 and Phase 1 (both done) and 7b (done).
+**Sub-project 7c (dex/collection compare view) is complete.** The new `/compare` route picks two local profiles (or imports one on the spot, reusing 7b's export/import flow), applies the shared Dex-grid filter bar once, and displays both profiles' filtered dex grids side by side. Implementation includes the new `Repository` method `listSpeciesSummariesForProfile` (reading a specific profile's bucket without switching to it), read-only mode on the extracted `SpeciesTileGrid` component, and integration with `importTrainerBundleFile` for importing trainers on the spot.
 
 **Split off as its own separate future item**: comparing **stats** (player
 level, XP, medal progress) between two trainers on the Stats page — the
