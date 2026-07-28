@@ -1,0 +1,1100 @@
+{
+    "1": {
+        "free": [
+            {
+                "amount": 300,
+                "type": "stardust"
+            },
+            {
+                "amount": 300,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 600,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 600,
+                "type": "stardust"
+            },
+            {
+                "amount": 600,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1200,
+                "type": "stardust"
+            }
+        ],
+        "rank": 1
+    },
+    "2": {
+        "free": [
+            {
+                "amount": 330,
+                "type": "stardust"
+            },
+            {
+                "amount": 330,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 660,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 660,
+                "type": "stardust"
+            },
+            {
+                "amount": 660,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1320,
+                "type": "stardust"
+            }
+        ],
+        "rank": 2
+    },
+    "3": {
+        "free": [
+            {
+                "amount": 330,
+                "type": "stardust"
+            },
+            {
+                "amount": 330,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 660,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 660,
+                "type": "stardust"
+            },
+            {
+                "amount": 660,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1320,
+                "type": "stardust"
+            }
+        ],
+        "rank": 3
+    },
+    "4": {
+        "free": [
+            {
+                "amount": 370,
+                "type": "stardust"
+            },
+            {
+                "amount": 370,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 740,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 740,
+                "type": "stardust"
+            },
+            {
+                "amount": 740,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1480,
+                "type": "stardust"
+            }
+        ],
+        "rank": 4
+    },
+    "5": {
+        "free": [
+            null,
+            null,
+            null,
+            null,
+            null
+        ],
+        "premium": [
+            null,
+            null,
+            null,
+            null,
+            null
+        ],
+        "rank": 5
+    },
+    "6": {
+        "free": [
+            {
+                "amount": 400,
+                "type": "stardust"
+            },
+            {
+                "amount": 400,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 800,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 800,
+                "type": "stardust"
+            },
+            {
+                "amount": 800,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1600,
+                "type": "stardust"
+            }
+        ],
+        "rank": 6
+    },
+    "7": {
+        "free": [
+            {
+                "amount": 430,
+                "type": "stardust"
+            },
+            {
+                "amount": 430,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 860,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 860,
+                "type": "stardust"
+            },
+            {
+                "amount": 860,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1720,
+                "type": "stardust"
+            }
+        ],
+        "rank": 7
+    },
+    "8": {
+        "free": [
+            {
+                "amount": 430,
+                "type": "stardust"
+            },
+            {
+                "amount": 430,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 860,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 860,
+                "type": "stardust"
+            },
+            {
+                "amount": 860,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1720,
+                "type": "stardust"
+            }
+        ],
+        "rank": 8
+    },
+    "9": {
+        "free": [
+            {
+                "amount": 470,
+                "type": "stardust"
+            },
+            {
+                "amount": 470,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 940,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 940,
+                "type": "stardust"
+            },
+            {
+                "amount": 940,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1880,
+                "type": "stardust"
+            }
+        ],
+        "rank": 9
+    },
+    "10": {
+        "free": [
+            {
+                "amount": 750,
+                "type": "stardust"
+            },
+            {
+                "amount": 750,
+                "type": "stardust"
+            },
+            {
+                "amount": 750,
+                "type": "stardust"
+            },
+            {
+                "amount": 750,
+                "type": "stardust"
+            },
+            {
+                "amount": 750,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 1500,
+                "type": "stardust"
+            },
+            {
+                "amount": 1500,
+                "type": "stardust"
+            },
+            {
+                "amount": 1500,
+                "type": "stardust"
+            },
+            {
+                "amount": 1500,
+                "type": "stardust"
+            },
+            {
+                "amount": 1500,
+                "type": "stardust"
+            }
+        ],
+        "rank": 10
+    },
+    "11": {
+        "free": [
+            {
+                "amount": 530,
+                "type": "stardust"
+            },
+            {
+                "amount": 530,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1060,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 1060,
+                "type": "stardust"
+            },
+            {
+                "amount": 1060,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 2120,
+                "type": "stardust"
+            }
+        ],
+        "rank": 11
+    },
+    "12": {
+        "free": [
+            {
+                "amount": 530,
+                "type": "stardust"
+            },
+            {
+                "amount": 530,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1060,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 1060,
+                "type": "stardust"
+            },
+            {
+                "amount": 1060,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 2120,
+                "type": "stardust"
+            }
+        ],
+        "rank": 12
+    },
+    "13": {
+        "free": [
+            {
+                "amount": 570,
+                "type": "stardust"
+            },
+            {
+                "amount": 570,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1140,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 1140,
+                "type": "stardust"
+            },
+            {
+                "amount": 1140,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 2280,
+                "type": "stardust"
+            }
+        ],
+        "rank": 13
+    },
+    "14": {
+        "free": [
+            {
+                "amount": 600,
+                "type": "stardust"
+            },
+            {
+                "amount": 600,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1200,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 1200,
+                "type": "stardust"
+            },
+            {
+                "amount": 1200,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 2400,
+                "type": "stardust"
+            }
+        ],
+        "rank": 14
+    },
+    "15": {
+        "free": [
+            {
+                "amount": 2,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 2,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 2,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 2,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 2,
+                "item_name": "Rare Candy",
+                "type": "item"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            }
+        ],
+        "rank": 15
+    },
+    "16": {
+        "free": [
+            {
+                "amount": 700,
+                "type": "stardust"
+            },
+            {
+                "amount": 700,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1400,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 1400,
+                "type": "stardust"
+            },
+            {
+                "amount": 1400,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 2800,
+                "type": "stardust"
+            }
+        ],
+        "rank": 16
+    },
+    "17": {
+        "free": [
+            {
+                "amount": 730,
+                "type": "stardust"
+            },
+            {
+                "amount": 730,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1460,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 1460,
+                "type": "stardust"
+            },
+            {
+                "amount": 1460,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 2920,
+                "type": "stardust"
+            }
+        ],
+        "rank": 17
+    },
+    "18": {
+        "free": [
+            {
+                "amount": 770,
+                "type": "stardust"
+            },
+            {
+                "amount": 770,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1540,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 1540,
+                "type": "stardust"
+            },
+            {
+                "amount": 1540,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 3080,
+                "type": "stardust"
+            }
+        ],
+        "rank": 18
+    },
+    "19": {
+        "free": [
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "type": "pokemon_from_pool"
+            }
+        ],
+        "premium": [
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "type": "pokemon_from_pool"
+            }
+        ],
+        "rank": 19
+    },
+    "20": {
+        "free": [
+            {
+                "amount": 870,
+                "type": "stardust"
+            },
+            {
+                "amount": 870,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1740,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 1740,
+                "type": "stardust"
+            },
+            {
+                "amount": 1740,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 3480,
+                "type": "stardust"
+            }
+        ],
+        "rank": 20
+    },
+    "21": {
+        "free": [
+            {
+                "amount": 900,
+                "type": "stardust"
+            },
+            {
+                "amount": 900,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1800,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 1800,
+                "type": "stardust"
+            },
+            {
+                "amount": 1800,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 3600,
+                "type": "stardust"
+            }
+        ],
+        "rank": 21
+    },
+    "22": {
+        "free": [
+            {
+                "amount": 900,
+                "type": "stardust"
+            },
+            {
+                "amount": 900,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1800,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 1800,
+                "type": "stardust"
+            },
+            {
+                "amount": 1800,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 3600,
+                "type": "stardust"
+            }
+        ],
+        "rank": 22
+    },
+    "23": {
+        "free": [
+            {
+                "amount": 900,
+                "type": "stardust"
+            },
+            {
+                "amount": 900,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1800,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 1800,
+                "type": "stardust"
+            },
+            {
+                "amount": 1800,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 3600,
+                "type": "stardust"
+            }
+        ],
+        "rank": 23
+    },
+    "24": {
+        "free": [
+            {
+                "amount": 900,
+                "type": "stardust"
+            },
+            {
+                "amount": 900,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 1800,
+                "type": "stardust"
+            }
+        ],
+        "premium": [
+            {
+                "amount": 1800,
+                "type": "stardust"
+            },
+            {
+                "amount": 1800,
+                "type": "stardust"
+            },
+            {
+                "type": "pokemon_from_pool"
+            },
+            {
+                "amount": 3,
+                "item_name": "Rare Candy",
+                "type": "item"
+            },
+            {
+                "amount": 3600,
+                "type": "stardust"
+            }
+        ],
+        "rank": 24
+    }
+}
