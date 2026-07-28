@@ -60,7 +60,13 @@ function buildAll(): ReferenceData {
   return {
     regions: [...new Set(Object.values(GEN_TO_REGION))].map((slug) => ({ slug, name: capitalize(slug) })),
     types: [...allTypeSlugs].map((slug) => ({ slug, name: capitalize(slug) })),
-    backgrounds: [],
+    // Not source-derived: two hardcoded rows, carried over verbatim from
+    // build-reference.ts's tail. No transform owns them; the orchestrator
+    // supplies them, same as `regions` and `types`.
+    backgrounds: [
+      { slug: "spring-2024", name: "Spring 2024" },
+      { slug: "anniversary-2016", name: "8th Anniversary" },
+    ],
     species: speciesResult.species,
     forms: speciesResult.forms,
     formTypes: speciesResult.formTypes,
@@ -96,6 +102,7 @@ test("raid-boss and Community-Day tables are present as empty arrays, not omitte
 test("every other table is populated by the transforms", () => {
   const referenceData = buildAll();
 
+  assert.deepEqual(referenceData.backgrounds.map((b) => b.slug), ["spring-2024", "anniversary-2016"]);
   assert.equal(referenceData.species.length, 2);
   assert.equal(referenceData.forms.length, 4);
   assert.equal(referenceData.formTypes.length, 4);
