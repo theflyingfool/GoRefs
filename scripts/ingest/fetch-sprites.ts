@@ -68,7 +68,11 @@ async function main() {
   const urlList = [...urls];
   let done = 0;
   await withConcurrency(urlList, 8, async (url) => {
-    await fetchToCache(url, resolve(SPRITES_DIR, basename(url)));
+    // Sprites are large binaries and not part of ingestion-manifest.json's
+    // change detection -- keep the old skip-if-already-cached behavior
+    // rather than http-cache.ts's new always-fresh default (see
+    // FetchToCacheOptions in http-cache.ts).
+    await fetchToCache(url, resolve(SPRITES_DIR, basename(url)), { skipIfExists: true });
     done++;
     if (done % 200 === 0) console.log(`  ${done}/${urlList.length}`);
   });
