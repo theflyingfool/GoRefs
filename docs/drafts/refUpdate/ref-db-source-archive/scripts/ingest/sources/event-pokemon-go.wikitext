@@ -1,0 +1,1866 @@
+'''Event Pokémon''' or '''costumed Pokémon''' are special forms that have appeared during various events for a limited time in {{g|GO}}.
+
+These forms are usually an otherwise-normal Pokémon with an event-relevant costume. Some Event Pokémon can potentially be {{GO|Shiny Pokémon|Shiny}} as well, or know event-exclusive [[move]]s. Some Event Pokémon can evolve, and will retain their costume after doing so. From July 2021 until February 6, 2025, event forms (except [[Clone]] Pokémon) had their own category in the [[Pokédex]] of Pokémon GO. As of February 6, 2025, Event Pokémon, including Clone Pokémon, are shown as part of individual Pokémon entires within the standard Pokédex. Since Event Pokémon are unique to Pokémon GO, they cannot be transferred to {{LGPE}} and {{g|HOME}}. 
+
+As of July 21, 2026, there are 309 Event Pokémon in total, originating from 124 species of Pokémon. This includes 64 costumed Pokémon released since the February 6, 2025 Pokédex update, 245 costumed Pokémon categorized in the deprecated Event Pokédex (243 unique costumes, and 2 duplicate costumes), 4 Clone Pokémon, and 6 variations in form (3 additional for {{p|Pumpkaboo}}, and 3 additional for {{p|Gourgeist}}).
+
+==Terminology==
+{{main|Terminology of Event Pokémon (GO)}}
+
+In the dialogue of [[Pokémon GO]], these Pokémon are known as '''Event''', '''event''', '''special event''', '''costumed''', '''special costumed''', '''wearing costumes''', '''in costumes''', or '''sporting festive headwear''' (Japanese: '''{{ruby|着飾|きかざ}}った''' ''dressed-up'', '''{{ruby|帽子|ぼうし}}をかぶった''' ''hat-wearing'', '''{{ruby|特殊|とくしゅ}}''' ''special'', '''{{ruby|特別|とくべつ}}''' ''special'', or '''いつもとは違う''' ''other than usual'').
+
+==List of Event Pokémon==
+{| style="margin:auto; background: #{{contest color}}; {{roundy|10px}}; border: 2px solid #{{contest color dark}}" cellpadding=2px
+|- style="background: #{{contest color light}};"
+! style="{{roundytl|5px}}" | Form
+! style="min-width: 160px;" | Pokémon
+! style="min-width: 160px;" | Evolution only
+! style="{{roundytr|5px}}" | Availability
+|- style="background: #fff"
+| Festive hat
+|{{MSP/GO|size=80|0172Holiday2016|Pichu}}{{MSP/GO|size=80|0025Holiday2016|Pikachu}}
+|{{MSP/GO|size=80|0026Holiday2016|Raichu}}
+| 
+* Holiday 2016: December 12, 2016 - January 3, 2017
+* Holiday 2017: December 21, 2017 - January 4, 2018
+** Knows {{m|Present}}
+** Festive {{p|Pichu}} debut
+* Holiday 2018: December 18, 2018 - January 2, 2019 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2019 — Yokohama: August 6, 2019 {{Shinystar/GO|Shiny possible}}
+** Pikachu only
+* Holiday 2021: December 16 - December 31, 2021 {{Shinystar/GO|Shiny possible}}
+** Pikachu only
+* Winter Holiday Part 1: December 18 - December 24, 2025 {{Shinystar/GO|Shiny possible}}
+** Pichu only
+|- style="background: #fff"
+| Party hat
+|{{MSP/GO|size=80|0172Anniversary|Pichu}}{{MSP/GO|size=80|0025Anniversary|Pikachu}}
+|{{MSP/GO|size=80|0026Anniversary|Raichu}}
+| 
+* Pokémon Day 2017: February 26 - March 6, 2017
+* Pokémon Day 2018: February 26 - February 28, 2018 {{Shinystar/GO|Shiny possible}}
+** Knows {{m|Present}}
+** Party hat {{p|Pichu}} debut
+* Pokémon GO Fest 2019 — Yokohama: August 7, 2019 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO 3rd Anniversary: June 28 - July 6, 2019
+** [[GO Snapshot]] only, once per day
+** Pikachu only
+* Adventure Sync Hatchathon: January 2 - January 16, 2020 {{Shinystar/GO|Shiny possible}}
+* New Year's 2023: December 31, 2022 - January 4, 2023 {{Shinystar/GO|Shiny possible}}
+** Pichu only
+* New Year's 2024: January 1 - January 3, 2024 {{Shinystar/GO|Shiny possible}}
+** Pichu only
+* [[Spotlight Hour]]: July 1, 2025 {{Shinystar/GO|Shiny possible}}
+** Pikachu only
+|- style="background: #fff"
+| rowspan="2" | [[Cap Pikachu]]
+|{{MSP/GO|size=80|0172O|Pichu}}{{MSP/GO|size=80|0025O|Pikachu}}
+|{{MSP/GO|size=80|0026O|Raichu}}
+|
+* Pokémon GO 1st Anniversary: July 6 - July 27, 2017
+* [[April Fools' Day 2019|April Fools' Day]]: April 1 - April 2, 2019 {{Shinystar/GO|Shiny possible}}
+** [[GO Snapshot]] only, up to five times
+** Pikachu only
+* Pokémon GO Fest 2019 — Yokohama: August 8, 2019 {{Shinystar/GO|Shiny possible}}
+* [[Spotlight Hour]]: October 13, 2020 {{Shinystar/GO|Shiny possible}}
+** Pikachu only
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025W|Pikachu}}
+|{{MSP/GO|size=80|0026W|Raichu}}
+|
+* [[Spotlight Hour]]: October 6, 2020 {{Shinystar/GO|Shiny possible}}
+* Animation Week: November 6 - November 12, 2020 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| rowspan="2" | Witch hat
+|{{MSP/GO|size=80|0172Halloween2017|Pichu}}{{MSP/GO|size=80|0025Halloween2017|Pikachu}}
+|{{MSP/GO|size=80|0026Halloween2017|Raichu}}
+|
+* Halloween 2017: October 20 - November 2, 2017
+* Halloween 2018: October 23 - November 1, 2018 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2019 — Yokohama: August 9, 2019 {{Shinystar/GO|Shiny possible}}
+* Halloween 2024 Part I: October 22 - October 28, 2024 {{Shinystar/GO|Shiny possible}}
+* Halloween 2024 Part II: October 28 - November 3, 2024 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0216Halloween|Teddiursa}}
+|{{MSP/GO|size=80|0217Halloween|Ursaring}}{{MSP/GO|size=80|0901Halloween|Ursaluna}}
+|
+* GO Pass - Halloween 2025: October 21 - November 2, 2025 {{Shinystar/GO|Shiny possible}}
+** Reward for Rank 12 <small>(Deluxe)</small> and Rank 37 <small>(Basic & Deluxe)</small>
+* Halloween 2025 Part II: October 27 - November 2, 2025 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| Summer-style
+|{{MSP/GO|size=80|0172Summer2018|Pichu}}{{MSP/GO|size=80|0025Summer2018|Pikachu}}
+|{{MSP/GO|size=80|0026Summer2018|Raichu}}
+|
+* Pokémon GO 2nd Anniversary: July 5 - July 31, 2018
+* Pokémon GO Fest 2019 — Yokohama: August 10, 2019 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2020 Weekly Challenge 3: July 17 - July 22, 2020 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2023: November 15 - November 19, 2023 {{Shinystar/GO|Shiny possible}}
+* Holiday Part 1: December 17 - December 22, 2024 {{Shinystar/GO|Shiny possible}}
+** Pichu only
+* Special Anniversary Pikachu Celebration: July 13 - July 20, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| [[Squirtle Squad]] sunglasses
+|{{MSP/GO|size=80|0007Summer2018|Squirtle}}
+|{{MSP/GO|size=80|0008Summer2018|Wartortle}}{{MSP/GO|size=80|0009Summer2018|Blastoise}}
+|
+* Squirtle [[Community Day]]: July 8, 2018 {{Shinystar/GO|Shiny possible}}
+** [[Field Research]] encounters only
+* [[Ed Sheeran]] collab: November 22, 2021 - November 30, 2021 {{Shinystar/GO|Shiny possible}}
+* Squirtle Community Day Classic: July 9, 2018 {{Shinystar/GO|Shiny possible}}
+** Community Day Classic Make Up: July 23, 2023 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| H.F. Custom Cap
+|{{MSP/GO|size=80|0025Fall2018|Pikachu}}
+|{{MSP/GO|size=80|0026Fall2018|Raichu}}
+|
+* H.F. Custom Tie-in: October 5 - October 7, 2018 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| rowspan="6" | Flower crown
+|{{MSP/GO|size=80|0172November2018|Pichu}}{{MSP/GO|size=80|0025November2018|Pikachu}}
+|{{MSP/GO|size=80|0026November2018|Raichu}}
+| 
+* Pokémon Day 2019: February 26 - February 28, 2019 {{Shinystar/GO|Shiny possible}}
+** Pikachu only
+* Pokémon GO Fest 2019 — Yokohama: August 11, 2019 {{Shinystar/GO|Shiny possible}}
+** Pikachu only
+* Spring 2020: April 9 - April 16, 2020 {{Shinystar/GO|Shiny possible}}
+** Pichu only
+** Flower crown {{p|Pichu}} debut
+* Spring 2021: April 4 - April 8, 2021 {{Shinystar/GO|Shiny possible}}
+* Spring 2022: April 12 - April 18, 2022 {{Shinystar/GO|Shiny possible}}
+* Spring into Spring: April 9 - April 14, 2025 {{Shinystar/GO|Shiny possible}}
+** Pikachu only
+** Field Research only
+* Spring Marathon: May 12 - 18, 2026 {{Shinystar/GO|Shiny possible}}
+** Only available in 5 km Eggs
+** Pichu only
+|- style="background: #fff"
+|{{MSP/GO|size=80|0133November2018|Eevee}}
+|{{MSP/GO|size=80|0134November2018|Vaporeon}}{{MSP/GO|size=80|0135November2018|Jolteon}}<br>{{MSP/GO|size=80|0136November2018|Flareon}}{{MSP/GO|size=80|0196November2018|Espeon}}<br>{{MSP/GO|size=80|0197November2018|Umbreon}}{{MSP/GO|size=80|0470November2018|Leafeon}}<br>{{MSP/GO|size=80|0471November2018|Glaceon}}{{MSP/GO|size=80|0700November2018|Sylveon}}
+| 
+* Pokémon Day 2019: February 26 - February 28, 2019 {{Shinystar/GO|Shiny possible}}
+* Spring 2020: April 9 - April 16, 2020 {{Shinystar/GO|Shiny possible}}
+* [[Research Breakthrough]]: September 1 - November 1, 2019 {{Shinystar/GO|Shiny possible}}
+* Spring 2021: April 4 - April 8, 2021 {{Shinystar/GO|Shiny possible}}
+* Spring 2022: April 12 - April 18, 2022 {{Shinystar/GO|Shiny possible}}
+* Spring into Spring: April 9 - April 14, 2025 {{Shinystar/GO|Shiny possible}}
+** Field Research only
+* Spring Marathon: May 12 - 18, 2026 {{Shinystar/GO|Shiny possible}}
+** Field Research only
+|- style="background: #fff"
+|{{MSP/GO|size=80|0175April2020|Togepi}}{{MSP/GO|size=80|0176April2022|Togetic}}
+|{{MSP/GO|size=80|0468April2022|Togekiss}}
+|
+* Spring 2020: April 9 - April 16, 2020 {{Shinystar/GO|Shiny possible}}
+* Spring 2022: April 12 - April 18, 2022 {{Shinystar/GO|Shiny possible}}
+** Flower crown {{p|Togetic}} and {{p|Togekiss}} debut
+* Spring 2023: April 4 - April 10, 2023 {{Shinystar/GO|Shiny possible}}
+* Spring Marathon: May 12 - 18, 2026 {{Shinystar/GO|Shiny possible}}
+** Available in 5 km Eggs and GO Pass: Spring Marathon 2026
+|- style="background: #fff"
+|{{MSP/GO|size=80|0427April2020|Buneary}}
+|{{MSP/GO|size=80|0428April2022|Lopunny}}
+|
+* Spring 2020: April 9 - April 16, 2020 {{Shinystar/GO|Shiny possible}}
+* Spring 2022: April 12 - April 18, 2022 {{Shinystar/GO|Shiny possible}}
+** Flower crown {{p|Lopunny}} debut
+* Spring 2023: April 4 - April 10, 2023 {{Shinystar/GO|Shiny possible}}
+* Spring Marathon: May 12 - 18, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from Field Research and GO Pass: Spring Marathon 2026
+|- style="background: #fff"
+|{{MSP/GO|size=80|0440November2018|Happiny}}{{MSP/GO|size=80|0113November2018|Chansey}}
+|{{MSP/GO|size=80|0242November2018|Blissey}}
+| 
+* Spring 2021: April 4 - April 8, 2021 {{Shinystar/GO|Shiny possible}}
+* Spring 2022: April 12 - April 18, 2022 {{Shinystar/GO|Shiny possible}}
+* Spring 2023: April 4 - April 10, 2023 {{Shinystar/GO|Shiny possible}}
+* Spring Marathon: May 12 - 18, 2026 {{Shinystar/GO|Shiny possible}}
+** Available in 5 km Eggs and GO Pass: Spring Marathon 2026
+|- style="background: #fff"
+|{{MSP/GO|size=80|0546Crown|Cottonee}}
+|{{MSP/GO|size=80|0547Crown|Whimsicott}}
+|
+* Verdant Wonders: March 21 - March 25, 2024 {{Shinystar/GO|Shiny possible}}
+* Spring Marathon: May 12 - 18, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from Field Research and GO Pass: Spring Marathon 2026
+|- style="background: #fff"
+| {{anchor|Detective Pikachu}}{{OBP|Detective Pikachu|character}}
+|{{MSP/GO|size=80|0025Feb2019|Pikachu}}{{MSP/GO|size=80|0025Feb2019|Pikachu}}
+|{{MSP/GO|size=80|0026Feb2019|Raichu}}{{MSP/GO|size=80|0026Feb2019|Raichu}}
+|
+* {{DetPikMov}}: May 7 - May 17, 2019{{tt|*|In a possible oversight, Pikachu generated before the end of the event via GO Snapshot had a chance of being Shiny if encountered after the event ended.}}
+** Male only
+* Pokémon GO Fest 2019 — Yokohama: August 12, 2019
+** Male only
+* [[Detective Pikachu Returns]]: October 5 - October 9, 2023 {{Shinystar/GO|Shiny possible}}
+** Despite being the same costume, the Pikachu and Raichu released during the 2023 event count as separate entries in the Event Pokédex from the Pikachu and Raichu released during the 2019 events.
+** The Pikachu from the 2023 event has a unique idle animation.
+|- style="background: #fff"
+| {{anchor|Armored Mewtwo}}[[Mewtwo (M01)|Armored Mewtwo]]
+|{{MSP/GO|size=80|0150A|Mewtwo}}
+|
+|
+* [[M22|Mewtwo Strikes Back: Evolution]] in Japan: July 10 - July 31, 2019
+* Pokémon Day 2020: February 25 - March 2, 2020
+** Knows {{m|Psystrike}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+| Straw hat
+|{{MSP/GO|size=80|0025May2019|Pikachu}}
+|
+|
+* {{wp|Kumamoto Prefecture}} Revival Project: July 22 - July 29, 2019 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| {{p|Shedinja}} Costume
+|{{MSP/GO|size=80|0001Fall2019|Bulbasaur}}
+|
+|
+* Halloween 2019: October 17 - November 1, 2019 {{Shinystar/GO|Shiny possible}}
+* Halloween 2020: October 23 - November 3, 2020 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| {{p|Cubone}} Costume
+|{{MSP/GO|size=80|0004Fall2019|Charmander}}
+|
+|
+* Halloween 2019: October 17 - November 1, 2019 {{Shinystar/GO|Shiny possible}}
+* Halloween 2020: October 23 - November 3, 2020 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| {{p|Yamask}} Costume
+|{{MSP/GO|size=80|0007Fall2019|Squirtle}}
+|
+|
+* Halloween 2019: October 17 - November 1, 2019 {{Shinystar/GO|Shiny possible}}
+* Halloween 2020: October 23 - November 3, 2020 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| {{p|Mimikyu}} Costume
+|{{MSP/GO|size=80|0025Fall2019|Pikachu}}
+|
+|
+* Halloween 2019: October 17 - November 1, 2019 {{Shinystar/GO|Shiny possible}}
+** Male only
+* Halloween 2020: October 23 - November 3, 2020 {{Shinystar/GO|Shiny possible}}
+** Male only
+* Misunderstood Mischief [[Special Research]] {{Shinystar/GO|Shiny possible}}
+** Male only
+|- style="background: #fff"
+| Beanie hat
+|{{MSP/GO|size=80|0172Winter2018|Pichu}}{{MSP/GO|size=80|0025Winter2018|Pikachu}}
+|{{MSP/GO|size=80|0026Winter2018|Raichu}}
+|
+* Holiday 2019: December 24, 2019 - January 1, 2020 {{Shinystar/GO|Shiny possible}}
+* New Year's 2025: December 30, 2024 - January 1, 2025 {{Shinystar/GO|Shiny possible}}
+** Raid Battles and Field Research only
+|- style="background: #fff"
+| rowspan="4" | Holiday outfit
+|{{MSP/GO|size=80|0234Winter2018|Stantler}}
+|
+|
+* Holiday 2019: December 24, 2019 - January 1, 2020 {{Shinystar/GO|Shiny possible}}
+* Holiday 2020: December 22 - December 31, 2020 {{Shinystar/GO|Shiny possible}}
+* Holiday 2021: December 16 - December 31, 2021 {{Shinystar/GO|Shiny possible}}
+* Winter Holiday 2022 - Part 1: December 15 - December 23, 2022 {{Shinystar/GO|Shiny possible}}
+* Winter Holiday 2023 - Part 1: December 18 - December 25, 2023 {{Shinystar/GO|Shiny possible}}
+* Holiday Part 1: December 17 - December 22, 2024 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0363Holiday2021|Spheal}}
+|
+| 
+* Holiday 2021: December 16 - December 31, 2021 {{Shinystar/GO|Shiny possible}}
+* Winter Holiday 2022 - Part 1: December 15 - December 23, 2022 {{Shinystar/GO|Shiny possible}}
+* Winter Holiday 2023 - Part 1: December 18 - December 25, 2023 {{Shinystar/GO|Shiny possible}}
+* Holiday Part 1: December 17 - December 22, 2024 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025Holiday2023|Pikachu}}
+|{{MSP/GO|size=80|0026Holiday2023|Raichu}}
+| 
+* Winter Holiday 2023 - Part 1: December 18 - December 25, 2023 {{Shinystar/GO|Shiny possible}}
+* Winter Holiday 2023 - Part 2: December 25 - December 31, 2023 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0054Holiday2023|Psyduck}}
+|{{MSP/GO|size=80|0055Holiday2023|Golduck}}
+| 
+* Winter Holiday 2023 - Part 2: December 25 - December 31, 2023 {{Shinystar/GO|Shiny possible}}
+* Holiday Part 1: December 17 - December 22, 2024 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+| rowspan="3" | Party hat (green)
+|{{MSP/GO|size=80|0020Jan2020|Raticate}}
+|
+|
+* Adventure Sync Hatchathon: January 2 - January 16, 2020 {{Shinystar/GO|Shiny possible}}
+* Minccino Limited Research Day: February 2, 2020 {{Shinystar/GO|Shiny possible}}
+* New Year's 2021: December 31, 2020 - January 4, 2021 {{Shinystar/GO|Shiny possible}}
+* New Year's 2022: December 31, 2021 - January 4, 2022 {{Shinystar/GO|Shiny possible}}
+* New Year's 2023: December 31, 2022 - January 4, 2023 {{Shinystar/GO|Shiny possible}}
+* New Year's 2024: January 1 - January 3, 2024 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+* New Year's 2025: December 30, 2024 - January 1, 2025 {{Shinystar/GO|Shiny possible}}
+** Raid Battles and Field Research only
+* Pokémon GO's 9th Anniversary Party: July 1 - July 6, 2025 {{Shinystar/GO|Shiny possible}}
+** Timed Research only
+* New Year's 2026: December 31, 2025 - January 4, 2026 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0202Jan2020|Wobbuffet}}
+|
+|
+* Adventure Sync Hatchathon: January 2 - January 16, 2020 {{Shinystar/GO|Shiny possible}}
+* New Year's 2021: December 31, 2020 - January 4, 2021 {{Shinystar/GO|Shiny possible}}
+* New Year's 2022: December 31, 2021 - January 4, 2022 {{Shinystar/GO|Shiny possible}}
+* New Year's 2023: December 31, 2022 - January 4, 2023 {{Shinystar/GO|Shiny possible}}
+* New Year's 2024: January 1 - January 3, 2024 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+* New Year's 2025: December 30, 2024 - January 1, 2025 {{Shinystar/GO|Shiny possible}}
+** Raid Battles and Field Research only
+* Pokémon GO's 9th Anniversary Party: July 1 - July 6, 2025 {{Shinystar/GO|Shiny possible}}
+** Can appear when tapping on party hats
+* New Year's 2026: December 31, 2025 - January 4, 2026 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0265Jan2020|Wurmple}}
+|
+|
+* Adventure Sync Hatchathon: January 2 - January 16, 2020 {{Shinystar/GO|Shiny possible}}
+* New Year's 2021: December 31, 2020 - January 4, 2021 {{Shinystar/GO|Shiny possible}}
+* New Year's 2022: December 31, 2021 - January 4, 2022 {{Shinystar/GO|Shiny possible}}
+* New Year's 2023: December 31, 2022 - January 4, 2023 {{Shinystar/GO|Shiny possible}}
+* New Year's 2024: January 1 - January 3, 2024 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+* New Year's 2025: December 30, 2024 - January 1, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO's 9th Anniversary Party: July 1 - July 6, 2025 {{Shinystar/GO|Shiny possible}}
+** Can appear when tapping on party hats
+* New Year's 2026: December 31, 2025 - January 4, 2026 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+* 10th Anniversary Party: July 4 - July 6, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| rowspan="8" | Party hat (red)
+|{{MSP/GO|size=80|0001Jan2020|Bulbasaur}}
+|{{MSP/GO|size=80|0002Jul2025|Ivysaur}}{{MSP/GO|size=80|0003Jul2025|Venusaur}}
+|
+* Pokémon Day 2020: February 25 - March 2, 2020 {{Shinystar/GO|Shiny possible}}
+* New Year's 2022: December 31, 2021 - January 4, 2022 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO 7th Anniversary: July 6 - July 12, 2023 {{Shinystar/GO|Shiny possible}}
+* New Year's 2023: December 31, 2022 - January 4, 2023 {{Shinystar/GO|Shiny possible}}
+* New Year's 2024: January 1 - January 3, 2024 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+* Pokémon Day 2024: February 27 - February 28, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO 8th Anniversary: June 28 - July 3, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO's 9th Anniversary Party: July 1 - July 6, 2025 {{Shinystar/GO|Shiny possible}}
+** Party hat {{p|Ivysaur}} and {{p|Venusaur}} debut
+* New Year's 2026: December 31, 2025 - January 4, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0004Jan2020|Charmander}}{{MSP/GO|size=80|0006Jan2020|Charizard}}
+|{{MSP/GO|size=80|0005Jan2020|Charmeleon}}
+|
+* Pokémon Day 2020: February 25 - March 2, 2020 {{Shinystar/GO|Shiny possible}}
+* New Year's 2022: December 31, 2021 - January 4, 2022 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO 6th Anniversary: July 6 - July 12, 2022 {{Shinystar/GO|Shiny possible}}
+** Party hat {{p|Charmeleon}} and {{p|Charizard}} debut
+* Pokémon GO 7th Anniversary: July 6 - July 12, 2023 {{Shinystar/GO|Shiny possible}}
+* New Year's 2023: December 31, 2022 - January 4, 2023 {{Shinystar/GO|Shiny possible}}
+* New Year's 2024: January 1 - January 3, 2024 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+* Pokémon Day 2024: February 27 - February 28, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO 8th Anniversary: June 28 - July 3, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO's 9th Anniversary Party: July 1 - July 6, 2025 {{Shinystar/GO|Shiny possible}}
+* New Year's 2026: December 31, 2025 - January 4, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0007Jan2020|Squirtle}}{{MSP/GO|size=80|0009Jul2023|Blastoise}}
+|{{MSP/GO|size=80|0008Jul2023|Wartortle}}
+|
+* Pokémon Day 2020: February 25 - March 2, 2020 {{Shinystar/GO|Shiny possible}}
+* New Year's 2022: December 31, 2021 - January 4, 2022 {{Shinystar/GO|Shiny possible}}
+* New Year's 2023: December 31, 2022 - January 4, 2023 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO 7th Anniversary: July 6 - July 12, 2023 {{Shinystar/GO|Shiny possible}}
+** Party hat {{p|Wartortle}} and {{p|Blastoise}} debut
+* New Year's 2024: January 1 - January 3, 2024 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+* Pokémon Day 2024: February 27 - February 28, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO 8th Anniversary: June 28 - July 3, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO's 9th Anniversary Party: July 1 - July 6, 2025 {{Shinystar/GO|Shiny possible}}
+* New Year's 2026: December 31, 2025 - January 4, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025Jan2020|Pikachu}}
+|
+|
+* Pokémon Day 2020: February 25 - March 2, 2020 {{Shinystar/GO|Shiny possible}}
+* Pokémon Day 2024: February 27 - February 28, 2024 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0133Jan2020|Eevee}}
+|
+|
+* Pokémon Day 2020: February 25 - March 2, 2020 {{Shinystar/GO|Shiny possible}}
+* New Year's 2021: December 31, 2020 - January 4, 2021 {{Shinystar/GO|Shiny possible}}
+* Pokémon Day 2024: February 27 - February 28, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO 8th Anniversary: June 28 - July 3, 2024 {{Shinystar/GO|Shiny possible}}
+* Holiday Part 1: December 17 - December 22, 2024 {{Shinystar/GO|Shiny possible}}
+** [[Field Research]] encounters only
+* Pokémon GO's 9th Anniversary Party: July 1 - July 6, 2025 {{Shinystar/GO|Shiny possible}}
+** Can appear when tapping on party hats and in Raid Battles
+* 10th Anniversary Party: July 4 - July 6, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0033Jan2020|Nidorino}}
+|
+|
+* Pokémon Day 2020 Raid Day: March 1, 2020{{tt|*|Due to COVID-19 concerns Raid Day was canceled in Japan, South Korea and Italy}} {{Shinystar/GO|Shiny possible}}
+* New Year's 2022: December 31, 2021 - January 4, 2022 {{Shinystar/GO|Shiny possible}}
+* New Year's 2023: December 31, 2022 - January 4, 2023 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+* New Year's 2024: January 1 - January 3, 2024 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+* New Year's 2026: December 31, 2025 - January 4, 2026 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0094Jan2020|Gengar}}
+|
+|
+* Pokémon Day 2020 Raid Day: March 1, 2020{{tt|*|Due to COVID-19 concerns Raid Day was canceled in Japan, South Korea and Italy}} {{Shinystar/GO|Shiny possible}}
+** Knows {{m|Lick}} and {{m|Psychic}}
+* New Year's 2022: December 31, 2021 - January 4, 2022 {{Shinystar/GO|Shiny possible}}
+* New Year's 2023: December 31, 2022 - January 4, 2023 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+* New Year's 2024: January 1 - January 3, 2024 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+* New Year's 2026: December 31, 2025 - January 4, 2026 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0088Party|Grimer}}
+|{{MSP/GO|size=80|0089Party|Muk}}
+|
+* Pokémon GO 8th Anniversary: June 28 - July 3, 2024 {{Shinystar/GO|Shiny possible}}
+* Triumph Together: August 23 - August 30, 2024 {{Shinystar/GO|Shiny possible}}
+** Only found in 7km Eggs
+* Pokémon GO's 9th Anniversary Party: July 1 - July 6, 2025 {{Shinystar/GO|Shiny possible}}
+** Can appear when tapping on party hats
+|- style="background: #fff"
+| rowspan="4" | {{anchor|M01 Clones}}[[Clone]]
+|{{MSP/GO|size=80|0003Copy2019|Venusaur}}
+|
+|
+* Pokémon Day 2020: February 25 - March 2, 2020
+** Knows {{m|Frenzy Plant}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0006Copy2019|Charizard}}
+|
+|
+* Pokémon Day 2020: February 25 - March 2, 2020
+** Knows {{m|Blast Burn}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0009Copy2019|Blastoise}}
+|
+|
+* Pokémon Day 2020: February 25 - March 2, 2020
+** Knows {{m|Hydro Cannon}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025Copy2019|Pikachu}}
+|
+|
+* Pokémon Day 2020: February 25 - March 2, 2020
+|- style="background: #fff"
+| rowspan="4" | [[Cosplay Pikachu]]
+|{{MSP/GO|size=80|0025Li|Pikachu}}
+| 
+| 
+* Since February 28, 2020, Pikachu Libre has served as a Legend rank reward in [[GO Battle League]] {{Shinystar/GO|Shiny possible}}
+** Knows {{m|Flying Press}}
+* During [[GO Battle League#Unrated Seasons|interlude seasons]], Pikachu Libre can be obtained by reaching the top rank, but cannot be Shiny
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025Po|Pikachu}}
+|
+| 
+* Pokémon GO Fest 2021: July 17 - July 18, 2021
+** Knows {{m|Draining Kiss}}
+* Pokémon GO Wild Area: Fukuoka: November 16 - November 17, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Wild Area: Global: November 23 - November 24, 2024 {{Shinystar/GO|Shiny possible}}
+* Special Anniversary Pikachu Celebration: July 13 - July 20, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025Ro|Pikachu}}
+|
+| 
+* Pokémon GO Fest 2021: July 17 - July 18, 2021
+** Knows {{m|Meteor Mash}}
+* Pokémon GO Wild Area: Fukuoka: November 16 - November 17, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Wild Area: Global: November 23 - November 24, 2024 {{Shinystar/GO|Shiny possible}}
+* Special Anniversary Pikachu Celebration: July 13 - July 20, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025PhD|Pikachu}}
+|
+| 
+* Since February 29, 2024, Pikachu Ph. D serves as a platinum Showcase Star [[Medal (GO)|Medal]] reward
+** Knows {{m|Thunder Punch}}
+|- style="background: #fff"
+| Safari hat
+|{{MSP/GO|size=80|0025Safari2020|Pikachu}}
+|
+|
+* GO Safari Zone in {{wp|St. Louis}}, {{wp|United States|USA}}:
+** At home: March 27 - March 29, 2020 {{Shinystar/GO|Shiny possible}}
+** In-person: November 12 - November 14, 2021 {{Shinystar/GO|Shiny possible}}
+* GO Safari Zone in {{wp|Liverpool}}, {{wp|United Kingdom|UK}}:
+** At home: April 17 - April 19, 2020 {{Shinystar/GO|Shiny possible}}
+** In-person: October 15 - October 17, 2021 {{Shinystar/GO|Shiny possible}}
+* GO Safari Zone in {{wp|Philadelphia}}, USA:
+** At home: May 8 - May 10, 2020 {{Shinystar/GO|Shiny possible}}
+** In-person: October 29 - October 31, 2021 {{Shinystar/GO|Shiny possible}}
+* GO Safari Zone in {{wp|Seville}}, {{wp|Spain}}: May 13 - May 15, 2022 {{Shinystar/GO|Shiny possible}}
+* GO Safari Zone in {{wp|Goyang}}, {{wp|South Korea}}: September 23 - September 25, 2022 {{Shinystar/GO|Shiny possible}}
+* GO Safari Zone in {{wp|Taipei}}, {{wp|Taiwan}}: October 21 - October 23, 2022 {{Shinystar/GO|Shiny possible}}
+** [[Field Research]] encounters only
+* Special Anniversary Pikachu Celebration: July 13 - July 20, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from Raid Battles
+|- style="background: #fff"
+| Flower hat
+|{{MSP/GO|size=80|0025April2020|Pikachu}}
+|
+|
+* Spring 2020: April 9 - April 16, 2020 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| {{p|Charizard}} hat
+|{{MSP/GO|size=80|0025Kanto2020|Pikachu}}
+|
+|
+* Throwback Challenge 2020 - Kanto: May 1 - May 8, 2020 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| {{p|Umbreon}} hat
+|{{MSP/GO|size=80|0025Johto2020|Pikachu}}
+|
+| 
+* Throwback Challenge 2020 - Johto: May 8 - May 15, 2020 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| {{p|Rayquaza}} hat
+|{{MSP/GO|size=80|0025Hoenn2020|Pikachu}}
+|
+| 
+* Throwback Challenge 2020 - Hoenn: May 15 - May 22, 2020 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| {{p|Lucario}} hat
+|{{MSP/GO|size=80|0025Sinnoh2020|Pikachu}}
+|
+| 
+* Throwback Challenge 2020 - Sinnoh: May 22 - May 29, 2020 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| rowspan="7" | [[Flying Pikachu]]
+|{{MSP/GO|size=80|0025Fly|Pikachu}}
+|
+| 
+* Pokémon GO 4th Anniversary: July 3 - July 8, 2020 {{Shinystar/GO|Shiny possible}}
+** Knows {{m|Fly}}
+* Pokémon Air Adventures: May 3 - May 8, 2022 {{Shinystar/GO|Shiny possible}}
+* GO Safari Zone in {{wp|Taipei}}, {{wp|Taiwan}}: October 21 - October 23, 2022 {{Shinystar/GO|Shiny possible}}
+* GO Safari Zone in {{wp|Singapore}}: November 18 - November 20, 2022 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025Fly5|Pikachu}}
+|
+| 
+* Pokémon GO 5th Anniversary: July 6 - July 15, 2021 {{Shinystar/GO|Shiny possible}}
+** Knows {{m|Fly}}
+* Special Anniversary Pikachu Celebration: July 13 - July 20, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025FlyOkinawa|Pikachu}}
+|
+| 
+* Pokémon Air Adventures: May 3 - May 8, 2022 {{Shinystar/GO|Shiny possible}}
+** Only in {{wp|Okinawa Prefecture}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025FlyGreen|Pikachu}}
+|
+|
+* Pokémon Air Adventures: October 14 - October 23, 2022{{Shinystar/GO|Shiny possible}}
+** Only in {{wp|Taipei}}
+* GO Safari Zone in {{wp|Taipei}}, {{wp|Taiwan}}: October 21 - October 23, 2022 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025FlyPurple|Pikachu}}
+|
+|
+* Pokémon Air Adventures: November 11 - November 20, 2022{{Shinystar/GO|Shiny possible}}
+** Only in {{wp|Singapore}}
+* GO Safari Zone in {{wp|Singapore}}: November 18 - November 20, 2022 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025FlyOrange|Pikachu}}
+|
+|
+* Pokémon Air Adventures: July 21 - July 27, 2023 {{Shinystar/GO|Shiny possible}}
+** Only in {{wp|Jeju Island}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025FlyRed|Pikachu}}
+|
+|
+* [[Pikachu's Indonesia Journey]] — Bali: March 2 - March 3, 2024 {{Shinystar/GO|Shiny possible}}
+* Pikachu’s Indonesia Journey — Surabaya: May 11 - May 12, 2024 {{Shinystar/GO|Shiny possible}}
+* Pikachu’s Indonesia Journey — Yogyakarta: August 24 - August 25, 2024 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| rowspan="3" | Pikachu visor
+|{{MSP/GO|size=80|0001V20|Bulbasaur}}{{MSP/GO|size=80|0002Visor|Ivysaur}}{{MSP/GO|size=80|0003Visor|Venusaur}}
+|
+| 
+* Pokémon GO Fest 2020: July 25 - July 26, 2020 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Mega Training! Timed Research: November 1, 2025 - January 25, 2026 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2026 — Chicago: June 4 - 7, 2026 {{Shinystar/GO|Shiny possible}}
+** Pikachu visor {{p|Ivysaur}} and {{p|Venusaur}} debut
+* Pokémon GO Fest 2026 — Global: July 11 - 12, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0004Spring2020|Charmander}}{{MSP/GO|size=80|0005Visor|Charmeleon}}{{MSP/GO|size=80|0006Visor|Charizard}}
+|
+|
+* Pokémon GO Fest 2020: July 25 - July 26, 2020 {{Shinystar/GO|Shiny possible}}
+** GO Fest Make Up: August 16, 2020 {{Shinystar/GO|Shiny possible}}
+** GO Fest Second Make Up: August 23, 2020{{tt|*|Australia, New Zealand, and other parts of the Asia Pacific region only}} {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Mega Training! Timed Research: November 1, 2025 - January 25, 2026 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2026 — Copenhagen: June 11 - 14, 2026 {{Shinystar/GO|Shiny possible}}
+** Pikachu visor {{p|Charmeleon}} and {{p|Charizard}} debut
+* Pokémon GO Fest 2026 — Global: July 11 - 12, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0007Spring2020|Squirtle}}{{MSP/GO|size=80|0008Visor|Wartortle}}{{MSP/GO|size=80|0009Visor|Blastoise}}
+|
+|
+* Pokémon GO Fest 2020: July 25 - July 26, 2020 {{Shinystar/GO|Shiny possible}}
+** GO Fest Make Up: August 16, 2020 {{Shinystar/GO|Shiny possible}}
+** GO Fest Second Make Up: August 23, 2020{{tt|*|Australia, New Zealand, and other parts of the Asia Pacific region only}} {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Mega Training! Timed Research: November 1, 2025 - January 25, 2026 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2026 - Tokyo: May 24 - June 1, 2026 {{Shinystar/GO|Shiny possible}}
+** Available in the wild and from 5 km Eggs
+** Pikachu visor {{p|Wartortle}} and {{p|Blastoise}} debut
+* Pokémon GO Fest 2026 — Global: July 11 - 12, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| rowspan="12" | Fashionable costume
+|{{MSP/GO|size=80|0238Fashion2020|Smoochum}}
+|
+|
+* Paris Fashion Week 2020: October 2 - October 9, 2020 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2021: September 21 - September 28, 2021 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2022: September 27 - October 3, 2022 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2023: November 15 - November 19, 2023 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0281Fashion2020|Kirlia}}
+|
+|
+* Paris Fashion Week 2020: October 2 - October 9, 2020
+** Knows {{m|Draining Kiss}}
+* Fashion Week 2021: September 21 - September 28, 2021 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2022: September 27 - October 3, 2022 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2023: November 15 - November 19, 2023 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2025: January 10 - January 19, 2025 {{Shinystar/GO|Shiny possible}}
+* Fashion Raid Day: April 4, 2026 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0403Fashion2020|Shinx}}
+|
+|
+* Paris Fashion Week 2020: October 2 - October 9, 2020 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2021: September 21 - September 28, 2021 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2022: September 27 - October 3, 2022 {{Shinystar/GO|Shiny possible}}
+** Available as a {{OBP|Shadow Pokémon|GO}} from a [[Team GO Rocket Grunt]]
+* Fashion Week 2023: November 15 - November 19, 2023 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2025: January 10 - January 19, 2025 {{Shinystar/GO|Shiny possible}}
+* Fashion Raid Day: April 4, 2026 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0453Fashion2020|Croagunk}}
+|{{MSP/GO|size=80|0454Fashion2022|Toxicroak}}
+|
+* Paris Fashion Week 2020: October 2 - October 9, 2020 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2021: September 21 - September 28, 2021 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2022: September 27 - October 3, 2022 {{Shinystar/GO|Shiny possible}}
+** Fashionable costume {{p|Toxicroak}} debut
+* Fashion Week 2023: November 15 - November 19, 2023 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2025: Taken Over: January 15 - January 19, 2025 {{Shinystar/GO|Shiny possible}}
+* Fashion Raid Day: April 4, 2026 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0012Fashion2021|Butterfree}}
+|
+|
+* Fashion Week 2021: September 21 - September 28, 2021 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2022: September 27 - October 3, 2022 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2023: November 15 - November 19, 2023 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2025: January 10 - January 19, 2025 {{Shinystar/GO|Shiny possible}}
+** Found in Field Research and Raid Battles
+* Fashion Raid Day: April 4, 2026 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0215Fashion2021|Sneasel}}
+|
+|
+* Fashion Week 2021: September 21 - September 28, 2021 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2023: November 15 - November 19, 2023 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2025: Taken Over: January 15 - January 19, 2025 {{Shinystar/GO|Shiny possible}}
+* Fashion Raid Day: April 4, 2026 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0522Fashion2021|Blitzle}}
+|
+|
+* Fashion Week 2021: September 21 - September 28, 2021 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2022: September 27 - October 3, 2022 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2023: November 15 - November 19, 2023 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2025: January 10 - January 19, 2025 {{Shinystar/GO|Shiny possible}}
+* Fashion Raid Day: April 4, 2026 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0050Fashion2022|Diglett}}
+|{{MSP/GO|size=80|0051Fashion2022|Dugtrio}} 
+|
+* Fashion Week 2022: September 27 - October 3, 2022 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2023: November 15 - November 19, 2023 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2025: January 10 - January 19, 2025 {{Shinystar/GO|Shiny possible}}
+* Fashion Raid Day: April 4, 2026 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0359Fashion2022|Absol}}
+| 
+|
+* Fashion Week 2022: September 27 - October 3, 2022 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2023: November 15 - November 19, 2023 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2025: Taken Over: January 15 - January 19, 2025 {{Shinystar/GO|Shiny possible}}
+* Fashion Raid Day: April 4, 2026 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0149Fashion2023|Dragonite}}
+| 
+|
+* Fashion Week 2023: November 15 - November 19, 2023 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2025: January 10 - January 19, 2025 {{Shinystar/GO|Shiny possible}}
+** Found in Field Research and Raid Battles
+* Fashion Raid Day: April 4, 2026 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0194Fashion2023|Wooper}}
+|{{MSP/GO|size=80|0195Fashion2023|Quagsire}}
+|
+* Fashion Week 2023: November 15 - November 19, 2023 {{Shinystar/GO|Shiny possible}}
+* Fashion Week 2025: Taken Over: January 15 - January 19, 2025 {{Shinystar/GO|Shiny possible}}
+* Fashion Raid Day: April 4, 2026 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0572Fashion2025|Minccino}}
+|{{MSP/GO|size=80|0573Fashion2025|Cinccino}}
+|
+* Fashion Week 2025: January 10 - January 19, 2025 {{Shinystar/GO|Shiny possible}}
+** Found in Field Research and Raid Battles
+* Fashion Raid Day: April 4, 2026 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+| Mega {{p|Banette}} costume
+|{{MSP/GO|size=80|0094Costume2020|Gengar}}
+|
+| 
+* Halloween 2020: October 23 - November 3, 2020 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| {{p|Litwick}} costume
+|{{MSP/GO|size=80|0302Costume2020|Sableye}}
+|
+| 
+* Halloween 2020: October 23 - November 3, 2020 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| {{anchor|Explorer Pikachu}}Explorer
+|{{MSP/GO|size=80|0025AdventureHat2020|Pikachu}}
+|
+|
+* [[M23|Secrets of the Jungle]] in Japan: December 14 - December 21, 2020 {{Shinystar/GO|Shiny possible}} 
+* Secrets of the Jungle worldwide release: October 1 - October 10, 2021 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| Winter Carnival
+|{{MSP/GO|size=80|0025Winter2020|Pikachu}}
+|
+|
+* Holiday 2020: December 22 - December 31, 2020 {{Shinystar/GO|Shiny possible}}
+* Winter Holiday 2022 - Part 1: December 15 - December 23, 2022 {{Shinystar/GO|Shiny possible}}
+* Holiday Part 1: December 17 - December 22, 2024 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+* Special Anniversary Pikachu Celebration: July 13 - July 20, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| rowspan="2" | Holiday ribbon
+|{{MSP/GO|size=80|0225Winter2020|Delibird}}
+|
+|
+* Holiday 2020: December 22 - December 31, 2020 {{Shinystar/GO|Shiny possible}}
+* Holiday 2021: December 16 - December 31, 2021 {{Shinystar/GO|Shiny possible}}
+* Winter Holiday 2022 - Part 2: December 23 - December 31, 2022 {{Shinystar/GO|Shiny possible}}
+* Winter Holiday 2023 - Part 2: December 25 - December 31, 2023 {{Shinystar/GO|Shiny possible}}
+* Holiday Part 1: December 17 - December 22, 2024 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0613Winter2020|Cubchoo}}
+|{{MSP/GO|size=80|0614Winter2020|Beartic}}
+|
+* Holiday 2020: December 22 - December 31, 2020 {{Shinystar/GO|Shiny possible}}
+* Holiday 2021: December 16 - December 31, 2021 {{Shinystar/GO|Shiny possible}}
+* Winter Holiday 2022 - Part 2: December 23 - December 31, 2022 {{Shinystar/GO|Shiny possible}}
+** Holiday ribbon {{p|Beartic}} debut
+* Winter Holiday 2023 - Part 2: December 25 - December 31, 2023 {{Shinystar/GO|Shiny possible}}
+* Holiday Part 1: December 17 - December 22, 2024 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Eggs
+* Winter Holiday Part 1: December 18 - December 24, 2025 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Eggs
+|- style="background: #fff"
+| New Year's hat
+|{{MSP/GO|size=80|0172Costume2|Pichu}}{{MSP/GO|size=80|0025Costume2|Pikachu}}
+|{{MSP/GO|size=80|0026Costume2|Raichu}}
+| 
+* New Year's 2021: December 31, 2020 - January 4, 2021 {{Shinystar/GO|Shiny possible}}
+* New Year's 2022: December 31, 2021 - January 4, 2022 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| New Year's outfit
+|{{MSP/GO|size=80|0163Jan2022|Hoothoot}}
+|{{MSP/GO|size=80|0164Jan2022|Noctowl}}
+|
+* New Year's 2022: December 31, 2021 - January 4, 2022 {{Shinystar/GO|Shiny possible}}
+* New Year's 2023: December 31, 2022 - January 4, 2023 {{Shinystar/GO|Shiny possible}}
+** New Year's outfit {{p|Noctowl}} debut
+* New Year's 2024: January 1 - January 3, 2024 {{Shinystar/GO|Shiny possible}}
+* New Year's 2025: December 30, 2024 - January 1, 2025 {{Shinystar/GO|Shiny possible}}
+* New Year's 2026: December 31, 2025 - January 4, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| 2020/2021/2022 glasses
+|{{MSP/GO|size=80|0079Y2020|Slowpoke}}{{MSP/GO|size=80|0199Y2022|Slowking}}
+|{{MSP/GO|size=80|0080Y2021|Slowbro}}
+|
+* New Year's 2021: December 31, 2020 - January 4, 2021 {{Shinystar/GO|Shiny possible}}
+* New Year's 2022: December 31, 2021 - January 4, 2022 {{Shinystar/GO|Shiny possible}}
+** 2022 glasses {{p|Slowking}} debut
+* December 2024 [[Community Day]]: December 21 - December 22, 2024 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Eggs
+|- style="background: #fff"
+| rowspan="5" | {{p|Meloetta}} hat
+|{{MSP/GO|size=80|0025GOFest2021|Pikachu}}
+| 
+| 
+* Pokémon GO Fest 2021: July 17 - July 18, 2021 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2026 - Tokyo: May 24 - June 1, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Chicago: June 4 - 7, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Copenhagen: June 11 - 14, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+|- style="background: #fff"
+|{{MSP/GO|size=80|0077GGOFest2021|Ponyta}}
+|
+| 
+* Pokémon GO Fest 2021: July 17 - July 18, 2021 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0263GGOFest2021|Zigzagoon}}
+|
+| 
+* Pokémon GO Fest 2021: July 17 - July 18, 2021 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0282GOFest2021|Gardevoir}}
+|
+| 
+* Pokémon GO Fest 2021: July 17 - July 18, 2021
+** Knows {{m|Synchronoise}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0330GOFest2021|Flygon}}
+|
+| 
+* Pokémon GO Fest 2021: July 17 - July 18, 2021
+** Knows {{m|Earth Power}}
+|- style="background: #fff"
+| rowspan="3" | Halloween Mischief
+|{{MSP/GO|size=80|0025Halloween2021|Pikachu}}
+|
+|
+* Halloween 2021: October 15 - October 31, 2021 {{Shinystar/GO|Shiny possible}}
+* Halloween 2022 - Part II: October 27 - November 1, 2022 {{Shinystar/GO|Shiny possible}}
+* GO Pass - Halloween 2025: October 21 - November 2, 2025 {{Shinystar/GO|Shiny possible}}
+** Rank 42 Reward
+* Halloween 2025 Part II: October 27 - November 2, 2025 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0393Halloween2021|Piplup}}
+|
+|
+* Halloween 2021: October 15 - October 31, 2021 {{Shinystar/GO|Shiny possible}}
+* Halloween 2022 - Part II: October 27 - November 1, 2022 {{Shinystar/GO|Shiny possible}}
+* Halloween 2023 - Part II: October 26 - October 31, 2023 {{Shinystar/GO|Shiny possible}}
+* Halloween 2024 Part II: October 28 - November 3, 2024 {{Shinystar/GO|Shiny possible}}
+* Halloween 2025 Part II: October 27 - November 2, 2025 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0426Halloween2021|Drifblim}}
+|
+|
+* Halloween 2021: October 15 - October 31, 2021 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles, Field Research, and as a [[GO Battle League]] reward
+* Halloween 2022 - Part II: October 27 - November 1, 2022 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+* Halloween 2024 Part II: October 28 - November 3, 2024 {{Shinystar/GO|Shiny possible}}
+* Halloween 2025 Part II: October 27 - November 2, 2025 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+| rowspan="4" | {{ga|Lucas}}'s hat
+|{{MSP/GO|size=80|0387Gems1|Turtwig}}
+|
+|
+* {{g|Brilliant Diamond and Shining Pearl}} event: November 16 - November 21, 2021 {{Shinystar/GO|Shiny possible}} 
+|- style="background: #fff"
+|{{MSP/GO|size=80|0390Gems1|Chimchar}}
+|
+|
+* Pokémon Brilliant Diamond and Shining Pearl event: November 16 - November 21, 2021 {{Shinystar/GO|Shiny possible}} 
+|- style="background: #fff"
+|{{MSP/GO|size=80|0393Gems1|Piplup}}
+|
+|
+* Pokémon Brilliant Diamond and Shining Pearl event: November 16 - November 21, 2021 {{Shinystar/GO|Shiny possible}} 
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025GoTour2024Lucas|Pikachu}}
+|
+|
+* Pokémon GO Tour: Sinnoh – {{wp|Los Angeles}}: February 17 - February 18, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Tour: Sinnoh – Global: February 24 - February 25, 2024 {{Shinystar/GO|Shiny possible}}
+* Road to Kalos: February 26, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from [[Incense]], Raid Battles, Timed Research, and Field Research
+** May have a [[Background (GO)|Background]] based on either {{g|Diamond}} or {{g|Pearl}} when caught from a Raid Battle.
+* Pokémon 30th Anniversary – All Out: March 7, 2026 - March 9, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles
+|- style="background: #fff"
+| rowspan="4" | {{ga|Dawn}}'s hat
+|{{MSP/GO|size=80|0387Gems2|Turtwig}}
+|
+|
+* Pokémon Brilliant Diamond and Shining Pearl event: November 16 - November 21, 2021 {{Shinystar/GO|Shiny possible}} 
+|- style="background: #fff"
+|{{MSP/GO|size=80|0390Gems2|Chimchar}}
+|
+|
+* Pokémon Brilliant Diamond and Shining Pearl event: November 16 - November 21, 2021 {{Shinystar/GO|Shiny possible}} 
+|- style="background: #fff"
+|{{MSP/GO|size=80|0393Gems2|Piplup}}
+|
+|
+* Pokémon Brilliant Diamond and Shining Pearl event: November 16 - November 21, 2021 {{Shinystar/GO|Shiny possible}} 
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025GoTour2024Dawn|Pikachu}}
+|
+|
+* Pokémon GO Tour: Sinnoh – {{wp|Los Angeles}}: February 17 - February 18, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Tour: Sinnoh – Global: February 24 - February 25, 2024 {{Shinystar/GO|Shiny possible}}
+* Road to Kalos: February 26, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from [[Incense]], Raid Battles, Timed Research, and Field Research
+** May have a [[Background (GO)|Background]] based on either {{g|Diamond}} or {{g|Pearl}} when caught from a Raid Battle.
+* Pokémon 30th Anniversary – All Out: March 7, 2026 - March 9, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles
+|- style="background: #fff"
+| Undersea Holiday
+|{{MSP/GO|size=80|0471Holiday2021|Glaceon}}
+|
+| 
+* Holiday 2021: December 16 - December 31, 2021 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+* Winter Holiday 2022 - Part 1: December 15 - December 23, 2022 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles and Field Research
+* Winter Holiday 2023 - Part 2: December 25 - December 31, 2023 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles and Field Research
+* Holiday Part 1: December 17 - December 22, 2024 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+| Kariyushi shirt
+|{{MSP/GO|size=80|0025Kariyushi|Pikachu}}
+|
+|
+* Pokémon Air Adventures: March 19, 2022{{tt|*|Announced to be released for Pokémon Air Adventures on July 22, 2021, but was postponed due to the COVID-19 pandemic}} - present {{Shinystar/GO|Shiny possible}}
+** Only in {{wp|Okinawa Prefecture}}
+|- style="background: #fff"
+| Scarf
+|{{MSP/GO|size=80|0131Costume2020|Lapras}}
+| 
+| 
+* Water Festival: May 12 - May 20, 2022 {{Shinystar/GO|Shiny possible}}
+** Found in Field Research and Raid Battles
+* Water Festival — Beach Week: June 6 - June 12, 2023 {{Shinystar/GO|Shiny possible}}
+** Found in Field Research and Raid Battles
+* Pokémon GO Fest 2024 — Sendai: May 30 - June 2, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2024 — Madrid: June 14 - June 16, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2024 — New York City: July 5 - July 7, 2024 {{Shinystar/GO|Shiny possible}}
+* Water Festival: June 6 - June 12, 2025 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+** Has a chance of having a [[Background (GO)|Special Background]] when caught 
+|- style="background: #fff"
+| [[Gracidea]] flower
+|{{MSP/GO|size=80|0025GOFest2022|Pikachu}}
+| 
+| 
+* Pokémon GO Fest 2022: June 4 - June 5, 2022 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2026 - Tokyo: May 24 - June 1, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Chicago: June 4 - 7, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Copenhagen: June 11 - 14, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+|- style="background: #fff"
+| [[Pokémon TCG]] hat
+|{{MSP/GO|size=80|0025TCG|Pikachu}}
+| 
+|
+* Pokémon TCG Crossover: June 16 - June 30, 2022 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| Cowboy hat
+|{{MSP/GO|size=80|0143GOFest2022|Snorlax}}
+| 
+|
+* Pokémon GO Fest 2022 — {{wp|Berlin}}: July 1, 2022 - July 3, 2022 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2022 — {{wp|Seattle}}: July 22, 2022 - July 24, 2022 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2022 — {{wp|Sapporo}}: August 5, 2022 - August 7, 2022 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2023 — Global: August 26 - August 27, 2023 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| Cake costume
+|{{MSP/GO|size=80|0025Anniversary2022|Pikachu}}
+| 
+| 
+* Pokémon GO 6th Anniversary: July 6 - July 12, 2022 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO 7th Anniversary: July 6 - July 12, 2023 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO 8th Anniversary: June 28 - July 3, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO's 9th Anniversary Party: July 1 - July 6, 2025 {{Shinystar/GO|Shiny possible}}
+** Raid Battles only
+* 10th Anniversary Party: July 4 - July 6, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| rowspan="3" | [[World Championships]]
+|{{MSP/GO|size=80|0025WCS2022|Pikachu}}
+| 
+| 
+* Pokémon [[2022 World Championships]] Celebration: August 18, 2022 - August 23, 2022 {{Shinystar/GO|Shiny possible}}
+* Special Anniversary Pikachu Celebration: July 13 - July 20, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025WCS2023|Pikachu}}
+| 
+| 
+* Pokémon [[2023 Pokémon World Championships]] Celebration: August 11, 2023 - August 15, 2023 {{Shinystar/GO|Shiny possible}}
+* Special Anniversary Pikachu Celebration: July 13 - July 20, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025WCS2024|Pikachu}}
+| 
+| 
+* Pokémon [[2024 Pokémon World Championships]] Celebration: August 16, 2024 - August 20, 2024 {{Shinystar/GO|Shiny possible}}
+* Special Anniversary Pikachu Celebration: July 13 - July 20, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from Raid Battles
+|- style="background: #fff"
+| {{p|Shaymin}} scarf
+|{{MSP/GO|size=80|0025GOFest2022Finale|Pikachu}}
+| 
+|
+* Pokémon GO Fest 2022 — Finale: August 27, 2022 {{Shinystar/GO|Shiny possible}}
+** Knows {{m|Grass Knot}}
+* Pokémon GO Fest 2026 - Tokyo: May 24 - June 1, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Chicago: June 4 - 7, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Copenhagen: June 11 - 14, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+|- style="background: #fff"
+| rowspan="4" | T-shirt
+|{{MSP/GO|size=80|0025TShirtGreen|Pikachu}}
+| 
+|
+* Pokémon Air Adventures: October 14, 2022 - {{Shinystar/GO|Shiny possible}}
+** Only in {{wp|Taipei}}
+* GO Safari Zone in {{wp|Taipei}}, {{wp|Taiwan}}: October 21 - October 23, 2022 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025TShirtPurple|Pikachu}}
+| 
+|
+* Pokémon Air Adventures: November 11, 2022 - {{Shinystar/GO|Shiny possible}}
+** Only in {{wp|Singapore}}
+* GO Safari Zone in {{wp|Singapore}}: November 18 - November 20, 2022 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025TShirtBlue|Pikachu}}
+| 
+|
+* Pokémon Air Adventures: July 28, 2023 - {{Shinystar/GO|Shiny possible}}
+** Only in {{wp|Jeju Island}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025TShirtBatik|Pikachu}}
+|
+|
+* Pikachu’s Indonesia Journey: March 2, 2024 - {{Shinystar/GO|Shiny possible}}
+** Only in {{wp|Indonesia}}
+|- style="background: #fff"
+| rowspan="3" | Spooky Festival
+|{{MSP/GO|shadow=yes|size=80|0037Halloween2022|Vulpix}}
+|{{MSP/GO|size=80|0038Halloween2022|Ninetales}}
+|
+* Halloween 2022 - Part II: October 27 - November 1, 2022 {{Shinystar/GO|Shiny possible}}
+* Halloween 2023 - Part II: October 26 - October 31, 2023 {{Shinystar/GO|Shiny possible}}
+** Shadow variants of Vulpix could be obtained from [[Team GO Rocket Grunt (Trainer class)|Team GO Rocket Grunts]]
+* Halloween 2024 Part II: October 28 - November 3, 2024 {{Shinystar/GO|Shiny possible}}
+* GO Pass - Halloween 2025: October 21 - November 2, 2025 {{Shinystar/GO|Shiny possible}}
+** Rank 7 Reward
+|- style="background: #fff"
+|{{MSP/GO|size=80|0094Halloween2022|Gengar}}
+|
+|
+* Halloween 2022 - Part II: October 27 - November 1, 2022 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+* Halloween 2024 Part II: October 28 - November 3, 2024 {{Shinystar/GO|Shiny possible}}
+** Only appearing in Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0710SmHalloween2022|Pumpkaboo}}{{MSP/GO|size=80|0710Halloween2022|Pumpkaboo}}<br>{{MSP/GO|size=80|0710LaHalloween2022|Pumpkaboo}}{{MSP/GO|size=80|0710SuHalloween2022|Pumpkaboo}}
+|{{MSP/GO|size=80|0711SmHalloween2022|Gourgeist}}{{MSP/GO|size=80|0711Halloween2022|Gourgeist}}<br>{{MSP/GO|size=80|0711LaHalloween2022|Gourgeist}}{{MSP/GO|size=80|0711SuHalloween2022|Gourgeist}}
+|
+* Halloween 2022 - Part II: October 27 - November 1, 2022 {{Shinystar/GO|Shiny possible}}
+* Halloween 2023 - Part II: October 26 - October 31, 2023 {{Shinystar/GO|Shiny possible}}
+* Halloween 2024 Part II: October 28 - November 3, 2024 {{Shinystar/GO|Shiny possible}}
+* GO Pass - Halloween 2025: October 21 - November 2, 2025 {{Shinystar/GO|Shiny possible}}
+** Reward for Ranks 30 - 33 <small>(Basic & Deluxe)</small>
+|- style="background: #fff"
+| rowspan="2" | Cempasúchil crown
+|{{MSP/GO|size=80|0355DiaDeMuertos2022|Duskull}}
+|{{MSP/GO|size=80|0356DiaDeMuertos2022|Dusclops}}{{MSP/GO|size=80|0477DiaDeMuertos2022|Dusknoir}}
+|
+* Día de Muertos 2022: November 1 - November 2, 2022 {{Shinystar/GO|Shiny possible}}
+* Día de Muertos 2023: November 1 - November 2, 2023 {{Shinystar/GO|Shiny possible}}
+* Día de Muertos 2024: November 1 - November 4, 2024 {{Shinystar/GO|Shiny possible}}
+** Only in {{wp|Latin America}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0104Fall2023|Cubone}}
+|{{MSP/GO|size=80|0105Fall2023|Marowak}}
+|
+* Día de Muertos 2023: November 1 - November 2, 2023 {{Shinystar/GO|Shiny possible}}
+* Día de Muertos 2024: November 1 - November 4, 2024 {{Shinystar/GO|Shiny possible}}
+** Only in Latin America
+|- style="background: #fff"
+| Holiday hat
+|{{MSP/GO|size=80|0133Holiday2022|Eevee}}
+|{{MSP/GO|size=80|0134Holiday2022|Vaporeon}}{{MSP/GO|size=80|0135Holiday2022|Jolteon}}<br>{{MSP/GO|size=80|0136Holiday2022|Flareon}}{{MSP/GO|size=80|0196Holiday2022|Espeon}}<br>{{MSP/GO|size=80|0197Holiday2022|Umbreon}}{{MSP/GO|size=80|0470Holiday2022|Leafeon}}<br>{{MSP/GO|size=80|0471Holiday2022|Glaceon}}{{MSP/GO|size=80|0700Holiday2022|Sylveon}}
+|
+* Winter Holiday 2022 - Part 2: December 23 - December 31, 2022 {{Shinystar/GO|Shiny possible}}
+* Winter Holiday 2023 - Part 2: December 25 - December 31, 2023 {{Shinystar/GO|Shiny possible}}
+* Holiday Part 1: December 17 - December 22, 2024 {{Shinystar/GO|Shiny possible}}
+** [[Field Research]] encounters only
+|- style="background: #fff"
+| Party top hat
+|{{MSP/GO|size=80|0025Jan2023|Pikachu}}
+|
+|
+* New Year's 2023: December 31, 2022 - January 4, 2023 {{Shinystar/GO|Shiny possible}}
+* New Year's 2026: December 31, 2025 - January 4, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| {{ga|Brendan}}'s hat
+|{{MSP/GO|size=80|0025GoTour2023Brendan|Pikachu}}
+|
+|
+* Pokémon GO Tour: Hoenn — {{wp|Las Vegas}}: February 18 - February 19, 2023 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Tour: Hoenn — Global: February 25 - February 26, 2023 {{Shinystar/GO|Shiny possible}}
+** Male only
+* Road to Kalos: February 25, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from [[Incense]], Raid Battles, Timed Research, and Field Research
+** May have a [[Background (GO)|Background]] based on either {{g|Ruby}} or {{g|Sapphire}} when caught from a Raid Battle.
+* Pokémon 30th Anniversary – All Out: March 7, 2026 - March 9, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles
+|- style="background: #fff"
+| {{ga|May}}'s bow
+|{{MSP/GO|size=80|0025GoTour2023May|Pikachu}}
+|
+|
+* Pokémon GO Tour: Hoenn — Las Vegas: February 18 - February 19, 2023 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Tour: Hoenn — Global: February 25 - February 26, 2023 {{Shinystar/GO|Shiny possible}}
+** Female only
+* Road to Kalos: February 25, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from [[Incense]], Raid Battles, Timed Research, and Field Research
+** May have a [[Background (GO)|Background]] based on either {{g|Ruby}} or {{g|Sapphire}} when caught from a Raid Battle.
+* Pokémon 30th Anniversary – All Out: March 7, 2026 - March 9, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles
+|- style="background: #fff"
+| rowspan="2" | Cherry blossoms
+|{{MSP/GO|size=80|0172Spring2023|Pichu}}{{MSP/GO|size=80|0025Spring2023|Pikachu}}
+|{{MSP/GO|size=80|0026Spring2023|Raichu}}
+| 
+* Spring 2023: April 4 - April 10, 2023 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0133Spring2023|Eevee}}
+|{{MSP/GO|size=80|0134Spring2023|Vaporeon}}{{MSP/GO|size=80|0135Spring2023|Jolteon}}<br>{{MSP/GO|size=80|0136Spring2023|Flareon}}{{MSP/GO|size=80|0196Spring2023|Espeon}}<br>{{MSP/GO|size=80|0197Spring2023|Umbreon}}{{MSP/GO|size=80|0470Spring2023|Leafeon}}<br>{{MSP/GO|size=80|0471Spring2023|Glaceon}}{{MSP/GO|size=80|0700Spring2023|Sylveon}}
+|
+* Spring 2023: April 4 - April 10, 2023 {{Shinystar/GO|Shiny possible}}
+* Wonder Ticket Paid Timed Research - part 2: March 1 - June 14, 2024 {{Shinystar/GO|Shiny possible}}
+* Spring Marathon: May 12 - 18, 2026 {{Shinystar/GO|Shiny possible}}
+** Field Research only
+|- style="background: #fff"
+| [[Blanche]]-themed accessory
+|{{MSP/GO|size=80|0131Mystic|Lapras}}
+| 
+|
+* A Mystic Hero: April 13 - April 17, 2023 {{Shinystar/GO|Shiny possible}}
+** A Mystic Hero [[Special Research]] only
+* Triumph Together: August 23 - August 30, 2024 {{Shinystar/GO|Shiny possible}}
+** Timed Research only
+** With a Team Mystic-themed [[Background (GO)|Special Background]]
+* Blanche's Quest for Knowledge: May 26 - June 1, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from GO Pass: Blanche's Quest for Knowledge and GO Pass Deluxe: Blanche's Quest for Knowledge
+** With a Team Mystic-themed [[Background (GO)|Special Background]]
+|- style="background: #fff"
+| [[Spark (GO)|Spark]]-themed accessory
+|{{MSP/GO|size=80|0239Instinct|Elekid}}
+|{{MSP/GO|size=80|0125Instinct|Electabuzz}}{{MSP/GO|size=80|0466Instinct|Electivire}}
+|
+* An Instinctive Hero: May 2 - May 8, 2023 {{Shinystar/GO|Shiny possible}}
+** An Instinctive Hero Special Research only
+* Triumph Together: August 23 - August 30, 2024 {{Shinystar/GO|Shiny possible}}
+** Timed Research only
+** With a Team Instinct-themed Special Background
+* Spark's Caretaking Quest: June 2 - June 8, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from GO Pass: Spark's Caretaking Quest and GO Pass Deluxe: Spark's Caretaking Quest
+** With a Team Instinct-themed [[Background (GO)|Special Background]]
+|- style="background: #fff"
+| [[Candela]]-themed accessory
+|{{MSP/GO|size=80|0077Valor|Ponyta}}
+|{{MSP/GO|size=80|0078Valor|Rapidash}}
+|
+* A Valorous Hero: May 11 - May 17, 2023 {{Shinystar/GO|Shiny possible}}
+** A Valorous Hero Special Research only
+* Triumph Together: August 23 - August 30, 2024 {{Shinystar/GO|Shiny possible}}
+** Timed Research only
+** With a Team Valor-themed Special Background
+* Candela's Quest for Victory: June 9 - June 15, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from GO Pass: Candela's Quest for Victory and GO Pass Deluxe: Candela's Quest for Victory
+** With a Team Valor-themed [[Background (GO)|Special Background]]
+|- style="background: #fff"
+| Nightcap
+|{{MSP/GO|size=80|0143Sleep|Snorlax}}
+|
+|
+* Special Research available when linking the [[Pokémon GO Plus +]] accessory with {{g|GO}}: July 15, 2023 - {{Shinystar/GO|Shiny possible}}
+* Slumbering Sands event: March 5 - March 11, 2024 {{Shinystar/GO|Shiny possible}}
+** Timed Research for linking Pokémon GO Plus + during this event only
+|- style="background: #fff"
+| Satchel
+|{{MSP/GO|size=80|0142Satchel|Aerodactyl}}
+|
+|
+* Pokémon GO Fest 2023 — Osaka: August 4 - August 6, 2023 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2023 — London: August 4 - August 6, 2023 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2023 — New York City: August 18 - August 20, 2023 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| rowspan="2" | Gem crown
+|{{MSP/GO|size=80|0025Amethyst|Pikachu}}
+|
+|
+* Pokémon GO Fest 2023 — Osaka: August 4 - August 6, 2023 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2023 — London: August 4 - August 6, 2023 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2023 — New York City: August 18 - August 20, 2023 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2026 - Tokyo: May 24 - June 1, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Chicago: June 4 - 7, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Copenhagen: June 11 - 14, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Special Anniversary Pikachu Celebration: July 13 - July 20, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from Raid Battles
+|- style="background: #fff"
+|{{MSP/GO|size=80|0025Quartz|Pikachu}}{{MSP/GO|size=80|0025Pyrite|Pikachu}}<br>{{MSP/GO|size=80|0025Malachite|Pikachu}}{{MSP/GO|size=80|0025Aquamarine|Pikachu}}
+|
+|
+* Pokémon GO Fest 2023 — Global: August 26 - August 27, 2023{{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2026 - Tokyo: May 24 - June 1, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Chicago: June 4 - 7, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Copenhagen: June 11 - 14, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+|- style="background: #fff"
+| Hat
+|{{MSP/GO|size=80|0079Hat|Slowpoke}}
+|
+|
+* Detective Pikachu Returns: October 5 - October 9, 2023 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| Explorer hat
+|{{MSP/GO|size=80|0133Explorer|Eevee}}
+|{{MSP/GO|size=80|0134Explorer|Vaporeon}}{{MSP/GO|size=80|0135Explorer|Jolteon}}<br>{{MSP/GO|size=80|0136Explorer|Flareon}}{{MSP/GO|size=80|0196Explorer|Espeon}}<br>{{MSP/GO|size=80|0197Explorer|Umbreon}}{{MSP/GO|size=80|0470Explorer|Leafeon}}<br>{{MSP/GO|size=80|0471Explorer|Glaceon}}{{MSP/GO|size=80|0700Explorer|Sylveon}}
+|
+* Safari Zone in Seoul: October 7 - October 8, 2023 {{Shinystar/GO|Shiny possible}}
+* Safari Zone in Barcelona: October 13 - October 14, 2023 {{Shinystar/GO|Shiny possible}}
+* Safari Zone in Mexico City: November 4 - November 5, 2023 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| rowspan="2" | Tricks & Treats
+|{{MSP/GO|size=80|0025Fall2023|Pikachu}}
+|
+|
+* Halloween 2023 - Part II: October 26 - October 31, 2023 {{Shinystar/GO|Shiny possible}}
+* Special Anniversary Pikachu Celebration: July 13 - July 20, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0094Fall2023|Gengar}}
+|
+|
+* Halloween 2023 - Part II: October 26 - October 31, 2023 {{Shinystar/GO|Shiny possible}}
+* GO Pass Deluxe - Halloween 2025: October 21 - November 2, 2025 {{Shinystar/GO|Shiny possible}}
+** Rank 45 Reward
+* Halloween 2025 Part II: October 27 - November 2, 2025 {{Shinystar/GO|Shiny possible}}
+** Raid Battles only
+|- style="background: #fff"
+| Ribbon
+|{{MSP/GO|size=80|0039Ribbon|Jigglypuff}}
+|{{MSP/GO|size=80|0040Ribbon|Wigglytuff}}
+|
+* New Year's 2024: January 1 - January 3, 2024 {{Shinystar/GO|Shiny possible}}
+* New Year's 2025: December 30, 2024 - January 1, 2025 {{Shinystar/GO|Shiny possible}}
+* New Year's 2026: December 31, 2025 - January 4, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| {{ga|Rei}}'s cap
+|{{MSP/GO|size=80|0025GoTour2024Rei|Pikachu}}
+|
+|
+* Pokémon GO Tour: Sinnoh – {{wp|Los Angeles}}: February 17 - February 18, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Tour: Sinnoh – Global: February 24 - February 25, 2024 {{Shinystar/GO|Shiny possible}}
+* Road to Kalos: February 26, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from [[Incense]], Raid Battles, Timed Research, and Field Research
+** May have a [[Background (GO)|Background]] based on either {{g|Diamond}} or {{g|Pearl}} when caught from a Raid Battle.
+* Pokémon 30th Anniversary – All Out: March 7, 2026 - March 9, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles
+|- style="background: #fff"
+| {{ga|Akari}}'s kerchief
+|{{MSP/GO|size=80|0025GoTour2024Akari|Pikachu}}
+|
+|
+* Pokémon GO Tour: Sinnoh – {{wp|Los Angeles}}: February 17 - February 18, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Tour: Sinnoh – Global: February 24 - February 25, 2024 {{Shinystar/GO|Shiny possible}}
+* Road to Kalos: February 26, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from [[Incense]], Raid Battles, Timed Research, and Field Research
+** May have a [[Background (GO)|Background]] based on either {{g|Diamond}} or {{g|Pearl}} when caught from a Raid Battle.
+* Pokémon 30th Anniversary – All Out: March 7, 2026 - March 9, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles
+|- style="background: #fff"
+| [[Captain Pikachu]]
+|{{MSP/GO|size=80|0025Captain|Pikachu}}
+|
+|
+* [[Pokémon Horizons: The Series]] event: March 5 - March 11, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon Horizons: The Series in India event: June 15 - July 14, 2024 {{Shinystar/GO|Shiny possible}}
+* [[Pokémon Horizons: The Series]] Celebration Event: April 16 - April 22, 2025 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| rowspan="2" | Sun/Moon crown
+|{{MSP/GO|size=80|0025Sun|Pikachu}}{{MSP/GO|size=80|0025Moon|Pikachu}}
+|
+|
+* Pokémon GO Fest 2024 — Sendai: May 30 - June 2, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2024 — Madrid: June 14 - June 16, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2024 — New York City: July 5 - July 7, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2024 — Global: July 13 - July 14, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2026 - Tokyo: May 24 - June 1, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Chicago: June 4 - 7, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Copenhagen: June 11 - 14, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+|- style="background: #fff"
+|{{MSP/GO|size=80|0133Sun|Eevee}}{{MSP/GO|size=80|0133Moon|Eevee}}
+|
+|
+* Pokémon GO Fest 2024 — Sendai: May 30 - June 2, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2024 — Madrid: June 14 - June 16, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2024 — New York City: July 5 - July 7, 2024 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| Sun scarf
+|{{MSP/GO|size=80|0196DayScarf|Espeon}}
+|
+|
+* Pokémon GO Fest 2024 — Sendai: May 30 - June 2, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2024 — Madrid: June 14 - June 16, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2024 — New York City: July 5 - July 7, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2024 — Global: July 13 - July 14, 2024 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| Moon scarf
+|{{MSP/GO|size=80|0197NightScarf|Umbreon}}
+|
+|
+* Pokémon GO Fest 2024 — Sendai: May 30 - June 2, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2024 — Madrid: June 14 - June 16, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2024 — New York City: July 5 - July 7, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2024 — Global: July 13 - July 14, 2024 {{Shinystar/GO|Shiny possible}}
+* Dancing in the Moonlight: October 4 - October 8, 2025 {{Shinystar/GO|Shiny possible}}
+** Timed Research only
+|- style="background: #fff"
+| Visor
+|{{MSP/GO|size=80|0287Visor|Slakoth}}
+|{{MSP/GO|size=80|0288Visor|Vigoroth}}{{MSP/GO|size=80|0289Visor|Slaking}}
+|
+* Slumbering Sands event: June 7 - June 12, 2024 {{Shinystar/GO|Shiny possible}}
+** Additional Timed Research for linking Pokémon GO Plus + during this event
+* Triumph Together: August 23 - August 30, 2024 {{Shinystar/GO|Shiny possible}}
+** Only found in 7km Eggs
+* Sunkissed Shores: August 25 - August 31, 2025 {{Shinystar/GO|Shiny possible}}
+** Raids and Timed Research only
+|- style="background: #fff"
+| rowspan="2" | Halloween costume
+|{{MSP/GO|size=80|0656Halloween|Froakie}}
+|{{MSP/GO|size=80|0657Halloween|Frogadier}}{{MSP/GO|size=80|0658Halloween|Greninja}}
+|
+* Halloween 2024 Part I: October 22 - October 28, 2024 {{Shinystar/GO|Shiny possible}}
+* Halloween 2024 Part II: October 28 - November 3, 2024 {{Shinystar/GO|Shiny possible}}
+* GO Pass - Halloween 2025: October 21 - November 2, 2025 {{Shinystar/GO|Shiny possible}}
+** Rank 22 Reward
+* Halloween 2025 Part II: October 27 - November 2, 2025 {{Shinystar/GO|Shiny possible}}
+** Field Research only
+|- style="background: #fff"
+|{{MSP/GO|size=80|0722Halloween|Rowlet}}
+|{{MSP/GO|size=80|0723Halloween|Dartrix}}{{MSP/GO|size=80|0724Halloween|Decidueye}}
+|
+* Halloween 2024 Part I: October 22 - October 28, 2024 {{Shinystar/GO|Shiny possible}}
+* Halloween 2024 Part II: October 28 - November 3, 2024 {{Shinystar/GO|Shiny possible}}
+* GO Pass - Halloween 2025: October 21 - November 2, 2025 {{Shinystar/GO|Shiny possible}}
+** Rank 17 Reward
+* Halloween 2025 Part II: October 27 - November 2, 2025 {{Shinystar/GO|Shiny possible}}
+** Field Research only
+|- style="background: #fff"
+| Saree
+|{{MSP/GO|size=80|0025Saree|Pikachu}}
+|
+|
+* Festival of Lights: November 1 - November 4, 2024 {{Shinystar/GO|Shiny possible}}
+** Only in {{wp|India}}
+** Raid Battles and Field Research only
+* Festival of Colors 2026: March 4 - March 8, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles from {{wp|India}}
+** May have a [[Background (GO)|Background]]
+|- style="background: #fff"
+| Studded Jacket
+|{{MSP/GO|size=80|0143Jacket|Snorlax}}
+|
+|
+* Pokémon GO Wild Area: Fukuoka: November 16 - November 17, 2024 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Wild Area: Global: November 23 - November 24, 2024 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| rowspan="4" | Holiday Attire
+|{{MSP/GO|size=80|0702Holiday2024|Dedenne}}
+|
+| 
+* Holiday Part 1: December 17 - December 22, 2024 {{Shinystar/GO|Shiny possible}}
+** Raid Battles only
+|- style="background: #fff"
+|{{MSP/GO|size=80|0831Holiday2024|Wooloo}}
+|{{MSP/GO|size=80|0832Holiday2024|Dubwool}}
+| 
+* Holiday Part 2: December 22 - December 27, 2024 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0185Holiday2025|Sudowoodo}}
+|
+| 
+* Winter Holiday Part 1: December 18 - December 24, 2025 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+|{{MSP/GO|size=80|0737Holiday2025|Charjabug}}
+|{{MSP/GO|size=80|0738Holiday2025|Vikavolt}}
+| 
+* Winter Holiday Part 1: December 18 - December 24, 2025 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| {{ga|Hilbert}}'s hat
+|{{MSP/GO|size=80|0025GoTour2025Hilbert|Pikachu}}
+|
+|
+* Pokémon GO Tour: Unova – {{wp|Los Angeles}}: February 21 - February 23, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Tour: Unova – {{wp|New Taipei City}}: February 21 - February 23, 2025 {{Shinystar/GO|Shiny possible}}
+* Pikachu Surprise: February 27, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Tour: Unova – Global: March 1 - March 2, 2025 {{Shinystar/GO|Shiny possible}}
+* Road to Kalos: February 27, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from {{OBP|Incense|GO}}, Raid Battles, Timed Research, and Field Research
+** May have a [[Background (GO)|Background]] based on either {{g|Black}} or {{g|White}} when caught from a Raid Battle.
+* Pokémon 30th Anniversary – All Out: March 7, 2026 - March 9, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles
+|- style="background: #fff"
+| {{ga|Hilda}}'s hat
+|{{MSP/GO|size=80|0025GoTour2025Hilda|Pikachu}}
+|
+|
+* Pokémon GO Tour: Unova – {{wp|Los Angeles}}: February 21 - February 23, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Tour: Unova – {{wp|New Taipei City}}: February 21 - February 23, 2025 {{Shinystar/GO|Shiny possible}}
+* Pikachu Surprise: February 27, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Tour: Unova – Global: March 1 - March 2, 2025 {{Shinystar/GO|Shiny possible}}
+* Road to Kalos: February 27, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from {{OBP|Incense|GO}}, Raid Battles, Timed Research, and Field Research
+** May have a [[Background (GO)|Background]] based on either {{g|Black}} or {{g|White}} when caught from a Raid Battle.
+* Pokémon 30th Anniversary – All Out: March 7, 2026 - March 9, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles
+|- style="background: #fff"
+| {{ga|Nate}}'s visor
+|{{MSP/GO|size=80|0025GoTour2025Nate|Pikachu}}
+|
+|
+* Pokémon GO Tour: Unova – {{wp|Los Angeles}}: February 21 - February 23, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Tour: Unova – {{wp|New Taipei City}}: February 21 - February 23, 2025 {{Shinystar/GO|Shiny possible}}
+* Pikachu Surprise: February 27, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Tour: Unova – Global: March 1 - March 2, 2025 {{Shinystar/GO|Shiny possible}}
+* Road to Kalos: February 27, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from {{OBP|Incense|GO}}, Raid Battles, Timed Research, and Field Research
+** May have a [[Background (GO)|Background]] based on either {{g|Black}} or {{g|White}} when caught from a Raid Battle.
+* Pokémon 30th Anniversary – All Out: March 7, 2026 - March 9, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles
+|- style="background: #fff"
+| {{ga|Rosa}}'s visor
+|{{MSP/GO|size=80|0025GoTour2025Rosa|Pikachu}}
+|
+|
+* Pokémon GO Tour: Unova – {{wp|Los Angeles}}: February 21 - February 23, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Tour: Unova – {{wp|New Taipei City}}: February 21 - February 23, 2025 {{Shinystar/GO|Shiny possible}}
+* Pikachu Surprise: February 27, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Tour: Unova – Global: March 1 - March 2, 2025 {{Shinystar/GO|Shiny possible}}
+* Road to Kalos: February 27, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from {{OBP|Incense|GO}}, Raid Battles, Timed Research, and Field Research
+** May have a [[Background (GO)|Background]] based on either {{g|Black}} or {{g|White}} when caught from a Raid Battle.
+* Pokémon 30th Anniversary – All Out: March 7, 2026 - March 9, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles
+|- style="background: #fff"
+| Kurta
+|{{MSP/GO|size=80|0025Kurta|Pikachu}}
+|
+|
+* Festival of Colors 2025: March 13 - March 17, 2025{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles from {{wp|India}}
+* Festival of Colors 2026: March 4 - March 8, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles from {{wp|India}}
+** May have a [[Background (GO)|Background]]
+|- style="background: #fff"
+| Hat with [[Liko]]'s pin
+|{{MSP/GO|size=80|0907Horizons2025|Floragato}}
+|
+|
+* [[Pokémon Horizons: The Series]] Celebration Event: April 16 - April 22, 2025 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| rowspan="2" |Crown
+| {{MSP/GO|size=80|0031Crown|Nidoqueen}}
+| 
+| 
+* Crown Clash: May 10 - May 18, 2025 {{Shinystar/GO|Shiny possible}}
+** Raid Battles and Field Research only
+* Valentine's Day 2026: February 10 - February 15, 2026 {{Shinystar/GO|Shiny possible}}
+** Raid Battles only
+|- style="background: #fff"
+| {{MSP/GO|size=80|0034Crown|Nidoking}}
+| 
+| 
+* Crown Clash: May 10 - May 18, 2025 {{Shinystar/GO|Shiny possible}}
+** Raid Battles and Field Research only
+* Valentine's Day 2026: February 10 - February 15, 2026 {{Shinystar/GO|Shiny possible}}
+** Raid Battles only
+|- style="background: #fff"
+| Formal Pikachu with red accents
+|{{MSP/GO|size=80|0025RedMonocle|Pikachu}}
+|
+|
+* Pokémon GO Fest 2025 — Osaka: May 29 - June 2, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2025 — Jersey City: June 6 - June 8, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2025 — Paris: June 13 - June 15, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2026 - Tokyo: May 24 - June 1, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Chicago: June 4 - 7, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Copenhagen: June 11 - 14, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+|- style="background: #fff"
+| Formal Pikachu with blue accents
+|{{MSP/GO|size=80|0025BlueMonocle|Pikachu}}
+|
+|
+* Pokémon GO Fest 2025 — Osaka: May 29 - June 2, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2025 — Jersey City: June 6 - June 8, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2025 — Paris: June 13 - June 15, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2026 - Tokyo: May 24 - June 1, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Chicago: June 4 - 7, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Copenhagen: June 11 - 14, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+|- style="background: #fff"
+| Formal Pikachu with yellow accents
+|{{MSP/GO|size=80|0025YellowMonocle|Pikachu}}
+|
+|
+* Pokémon GO Fest 2025 — Osaka: May 29 - June 2, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2025 — Jersey City: June 6 - June 8, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2025 — Paris: June 13 - June 15, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2026 - Tokyo: May 24 - June 1, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Chicago: June 4 - 7, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Copenhagen: June 11 - 14, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+|- style="background: #fff"
+| Falinks in train-ing
+|{{MSP/GO|size=80|0870Train|Falinks}}
+|
+|
+* Pokémon GO Fest 2025 — Osaka: May 29 - June 2, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2025 — Jersey City: June 6 - June 8, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2025 — Paris: June 13 - June 15, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2025 — Global: June 28 - June 29, 2025 {{Shinystar/GO|Shiny possible}}
+** Raid Battles and Field Research only
+* Pokémon GO Fest 2025 Max Finale: August 23 - August 24, 2025 {{Shinystar/GO|Shiny possible}}
+** Raid Battles only
+|- style="background: #fff"
+| Dapper Pikachu with red accents
+|{{MSP/GO|size=80|0025RedGoggles|Pikachu}}
+|
+|
+* GO Pass - Ancients Recovered: June 23 - June 29, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2025 — Global: June 28 - June 29, 2025 {{Shinystar/GO|Shiny possible}}
+** Raid Battles and Field Research only
+* Pokémon GO Fest 2025 Max Finale: August 23 - August 24, 2025 {{Shinystar/GO|Shiny possible}}
+** Raid Battles only
+* Pokémon GO Fest 2026 - Tokyo: May 24 - June 1, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Chicago: June 4 - 7, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Copenhagen: June 11 - 14, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Special Anniversary Pikachu Celebration: July 13 - July 20, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from Raid Battles
+|- style="background: #fff"
+| Dapper Pikachu with blue accents
+|{{MSP/GO|size=80|0025BlueGoggles|Pikachu}}
+|
+|
+* GO Pass - Ancients Recovered: June 23 - June 29, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2025 — Global: June 28 - June 29, 2025 {{Shinystar/GO|Shiny possible}}
+** Raid Battles and Field Research only
+* Pokémon GO Fest 2025 Max Finale: August 23 - August 24, 2025 {{Shinystar/GO|Shiny possible}}
+** Raid Battles only
+* Pokémon GO Fest 2026 - Tokyo: May 24 - June 1, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Chicago: June 4 - 7, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Copenhagen: June 11 - 14, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Special Anniversary Pikachu Celebration: July 13 - July 20, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from Raid Battles
+|- style="background: #fff"
+| Dapper Pikachu with yellow accents
+|{{MSP/GO|size=80|0025YellowGoggles|Pikachu}}
+|
+|
+* GO Pass - Ancients Recovered: June 23 - June 29, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2025 — Global: June 28 - June 29, 2025 {{Shinystar/GO|Shiny possible}}
+** Raid Battles and Field Research only
+* Pokémon GO Fest 2025 Max Finale: August 23 - August 24, 2025 {{Shinystar/GO|Shiny possible}}
+** Raid Battles only
+* Pokémon GO Fest 2026 - Tokyo: May 24 - June 1, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Chicago: June 4 - 7, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Pokémon GO Fest 2026 — Copenhagen: June 11 - 14, 2026 {{Shinystar/GO|Shiny possible}}
+** Snapshots only
+* Special Anniversary Pikachu Celebration: July 13 - July 20, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from Raid Battles
+|- style="background: #fff"
+| 9th Anniversary Coin
+|{{MSP/GO|size=80|0999Anniversary9|Gimmighoul}}
+|
+|
+* Pokémon GO's 9th Anniversary Party: July 1 - July 6, 2025 {{Shinystar/GO|Shiny possible}}
+** Available from [[Coin Bag]], Field Research, and Timed Research
+** Guaranteed to have a [[Background (GO)|Special Background]]
+|- style="background: #fff"
+| Indonesia Football Jersey
+|{{MSP/GO|size=80|0025IndonesiaJersey|Pikachu}}
+|
+|
+* Goal Time with Pikachu: August 4, 2025 - August 9, 2025 {{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles and Field Research from {{wp|Indonesia}}
+|- style="background: #fff"
+| Varsity Jacket
+|{{MSP/GO|size=80|0025WCS2025|Pikachu}}
+|
+|
+* Pokémon [[2025 Pokémon World Championships]] Celebration: August 15, 2025 - August 17, 2025 {{Shinystar/GO|Shiny possible}}
+** Raid Battles and Field Research only
+* Special Anniversary Pikachu Celebration: July 13 - July 20, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from Raid Battles
+|- style="background: #fff"
+| Swim Ring
+|{{MSP/GO|size=80|0054SwimRing|Psyduck}}
+|
+|
+* Pokémon Concierge Celebration Event: September 9, 2025 - September 14, 2025 {{Shinystar/GO|Shiny possible}}
+** May have a [[Background (GO)|Special Background]]
+|- style="background: #fff"
+| Headband
+|{{MSP/GO|size=80|0714Halloween|Noibat}}
+|{{MSP/GO|size=80|0715Halloween|Noivern}}
+|
+* GO Pass - Halloween 2025: October 21 - November 2, 2025 {{Shinystar/GO|Shiny possible}}
+** Reward for Rank 14 <small>(Deluxe)</small> and Rank 39 <small>(Basic & Deluxe)</small>
+* Halloween 2025 Part II: October 27 - November 2, 2025 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| Wilderness Cape
+|{{MSP/GO|size=80|0760Cape|Bewear}}
+|
+|
+* Pokémon GO Wild Area — Nagasaki: November 7, 2025 - November 7, 2025 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Wild Area — Global: November 15, 2025 - November 16, 2025 {{Shinystar/GO|Shiny possible}}
+** Raid Battles only
+|- style="background: #fff"
+| {{ga|Calem}}'s hat
+|{{MSP/GO|size=80|0025GoTour2026Calem|Pikachu}}
+|
+|
+* Pokémon GO Tour: Kalos – Los Angeles: February 20, 2026 - February 22, 2026 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Tour: Kalos – Tainan: February 20, 2026 - February 22, 2026 {{Shinystar/GO|Shiny possible}}
+* GO Pass - Road to Kalos: February 23 - March 1, 2026 {{Shinystar/GO|Shiny possible}}
+** Rank 82 Reward
+* Pokémon GO Tour: Kalos – Global: February 28, 2026 - March 1, 2026 {{Shinystar/GO|Shiny possible}}
+** May have a [[Background (GO)|Background]] based on either {{g|X}} or {{g|Y}} when caught from a Raid Battle.
+* Pokémon 30th Anniversary – All Out: March 7, 2026 - March 9, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles
+|- style="background: #fff"
+| {{ga|Serena}}'s hat
+|{{MSP/GO|size=80|0025GoTour2026Serena|Pikachu}}
+|
+|
+* Pokémon GO Tour: Kalos – Los Angeles: February 20, 2026 - February 22, 2026 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Tour: Kalos – Tainan: February 20, 2026 - February 22, 2026 {{Shinystar/GO|Shiny possible}}
+* GO Pass - Road to Kalos: February 23 - March 1, 2026 {{Shinystar/GO|Shiny possible}}
+** Rank 81 Reward
+* Pokémon GO Tour: Kalos – Global: February 28, 2026 - March 1, 2026 {{Shinystar/GO|Shiny possible}}
+** May have a [[Background (GO)|Background]] based on either {{g|X}} or {{g|Y}} when caught from a Raid Battle.
+* Pokémon 30th Anniversary – All Out: March 7, 2026 - March 9, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles
+|- style="background: #fff"
+| {{ga|Red}}'s hat
+|{{MSP/GO|size=80|0025Red|Pikachu}}
+|
+|
+* Road to Kalos: February 23, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from {{OBP|Incense|GO}}, Raid Battles, Timed Research, and Field Research
+** May have a [[Background (GO)|Background]] based on either [[Team Mystic]], [[Team Instinct]], or [[Team Valor]] when caught from a Raid Battle.
+* Pokémon 30th Anniversary: March 3, 2026 - March 9, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles
+|- style="background: #fff"
+| {{ga|Leaf}}'s hat
+|{{MSP/GO|size=80|0025Leaf|Pikachu}}
+|
+|
+* Road to Kalos: February 23, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from {{OBP|Incense|GO}}, Raid Battles, Timed Research, and Field Research
+** May have a [[Background (GO)|Background]] based on either [[Team Mystic]], [[Team Instinct]], or [[Team Valor]] when caught from a Raid Battle.
+* Pokémon 30th Anniversary: March 3, 2026 - March 9, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles
+|- style="background: #fff"
+| {{ga|Ethan}}'s hat
+|{{MSP/GO|size=80|0025Ethan|Pikachu}}
+|
+|
+* Road to Kalos: February 24, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from {{OBP|Incense|GO}}, Raid Battles, Timed Research, and Field Research
+** May have a [[Background (GO)|Background]] based on either {{g|Gold}} or {{g|Silver}} when caught from a Raid Battle.
+* Pokémon 30th Anniversary – All Out: March 7, 2026 - March 9, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles
+|- style="background: #fff"
+| {{ga|Lyra}}'s hat
+|{{MSP/GO|size=80|0025Lyra|Pikachu}}
+|
+|
+* Road to Kalos: February 24, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from {{OBP|Incense|GO}}, Raid Battles, Timed Research, and Field Research
+** May have a [[Background (GO)|Background]] based on either {{g|Gold}} or {{g|Silver}} when caught from a Raid Battle.
+* Pokémon 30th Anniversary – All Out: March 7, 2026 - March 9, 2026{{Shinystar/GO|Shiny possible}}
+** Only in Raid Battles
+|- style="background: #fff"
+| [[Ditto (Pokopia)|Pokopia Hat]]
+| {{MSP/GO|size=80|0132PokopiaHat|Ditto}}
+|
+|
+* [[Pokémon Pokopia]] Celebration Event: March 10 - March 16, 2026 {{Shinystar/GO|Shiny possible}}
+** May have a [[Background (GO)|Background]] based on Pokémon Pokopia when caught.
+|- style="background: #fff"
+| [[Ditto (Pokopia)|Pokopia Cap]]
+| {{MSP/GO|size=80|0132PokopiaCap|Ditto}}
+|
+|
+* [[Pokémon Pokopia]] Celebration Event: March 10 - March 16, 2026 {{Shinystar/GO|Shiny possible}}
+** May have a [[Background (GO)|Background]] based on Pokémon Pokopia when caught.
+|- style="background: #fff"
+| Baseball Shirt
+|{{MSP/GO|size=80|0025BaseballJersey|Pikachu}}
+|
+|
+* Nippon Professional Baseball collaboration: April 3 - August 23, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from Timed Research and in-person Raid Battles
+|-style="background: #fff"
+| Pink Sunglasses
+|{{MSP/GO|size=80|0222GSunglasses|Corsola}}
+|
+|
+* Sustainability Week: April 14 - 20, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from 7 km Eggs, {{GO|Route}}s, and GO Pass: Sustainability Week
+|- style="background: #fff"
+| Pikachu wearing a Marathon Visor
+|{{MSP/GO|size=80|0025MarathonVisor|Pikachu}}
+|
+|
+* Spring Marathon: May 12 - 18, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from Timed Research
+|- style="background: #fff"
+| Excavator Pikachu
+|{{MSP/GO|size=80|0025Fossil|Pikachu}}
+|
+|
+* Pokémon Fossil Museum – Chicago: May 22, 2026 - April 11, 2027 {{Shinystar/GO|Shiny possible}}
+** Available from Timed Research, Field Research, and in-person Raid Battles
+|- style="background: #fff"
+| Caterpie wearing a Poké Ball Hat
+|{{MSP/GO|size=80|0010GOFest2026|Caterpie}}
+|
+|
+* Pokémon GO Fest 2026 - Tokyo: May 24 - June 1, 2026 {{Shinystar/GO|Shiny possible}}
+** Available in the wild and from 5 km Eggs
+* Pokémon GO Fest 2026 — Chicago: June 4 - 7, 2026 {{Shinystar/GO|Shiny possible}}
+** Available in the wild and from 5 km Eggs
+* Pokémon GO Fest 2026 — Copenhagen: June 11 - 14, 2026 {{Shinystar/GO|Shiny possible}}
+** Available in the wild and from 5 km Eggs
+* Pokémon GO Fest 2026 — Global: July 11 - 12, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| Pikachu wearing a Team Mystic hat
+|{{MSP/GO|size=80|0025MysticHat|Pikachu}}
+|
+|
+* Pokémon GO Fest 2026 — Tokyo: May 24 - June 1, 2026 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2026 — Global: July 11 - 12, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| Pikachu wearing a Team Instinct hat
+|{{MSP/GO|size=80|0025InstinctHat|Pikachu}}
+|
+|
+* Pokémon GO Fest 2026 — Chicago: June 4 - 7, 2026 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2026 — Global: July 11 - 12, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| Pikachu wearing a Team Valor hat
+|{{MSP/GO|size=80|0025ValorHat|Pikachu}}
+|
+|
+* Pokémon GO Fest 2026 — Copenhagen: June 11 - 14, 2026 {{Shinystar/GO|Shiny possible}}
+* Pokémon GO Fest 2026 — Global: July 11 - 12, 2026 {{Shinystar/GO|Shiny possible}}
+|- style="background: #fff"
+| 10th Anniversary Coin
+|{{MSP/GO|size=80|0999Anniversary10|Gimmighoul}}
+|
+|
+* 10th Anniversary Party: July 4 - July 6, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from [[Coin Bag]], [[Golden Lure Module]]s, and Timed Research
+** May have a [[Background (GO)|Special Background]]
+* GO Pass - July: July 7 - August 4, 2026 {{Shinystar/GO|Shiny possible}}
+** Rank 101 and 200 Reward
+|- style="background: #fff"
+| [[Professor Willow]]'s Assistant
+|{{MSP/GO|size=80|0025Willow|Pikachu}}
+|
+|
+* Willow's Birthday Research: July 21, 2026 {{Shinystar/GO|Shiny possible}}
+** Available from Field Research, Timed Research, Snapshots, and Raid Battles 
+** May have a [[Background (GO)|Background]] based on either [[Team Mystic]], [[Team Instinct]], or [[Team Valor]] when caught from a Raid Battle.
+|}
+
+==Trivia==
+* {{p|Mewtwo}} is currently the only [[Legendary Pokémon]] in {{g|GO}} to have an event-exclusive form.
+** Armored Mewtwo is also the only event-exclusive form in the game to have different base stats from its normal form, being more defense-weighted than regular Mewtwo.
+* {{p|Lugia}} caught at GO Fest 2017 in Chicago and {{p|Mewtwo}} caught at Pokémon GO Stadium in Yokohama appear when searching "Costume" in the list of a player's caught Pokémon. They do not appear in the Event Pokédex.
+
+==See also==
+* [[List of Pokémon with form differences in Pokémon GO]]
+
+{{M22 navbox|collapse=yes}}
+{{M23 navbox|collapse=yes}}
+{{DetPikMov navbox|collapse=yes}}
+{{Project Sidegames notice}}
+
+[[Category:Pokémon GO]]
+
+[[de:Kostümierte Pokémon]]
+[[fr:Liste des différents Pokémon disponibles dans Pokémon GO#Pokémon costumés]]
+[[ja:特殊なポケモン]]
+[[zh:扮裝寶可夢（Pokémon GO）]]
