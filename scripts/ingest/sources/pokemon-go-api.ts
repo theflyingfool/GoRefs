@@ -1,11 +1,20 @@
-// Typed, parse-only accessors over pokemon-go-api.github.io's four cached
-// JSON files (pokedex.json, raidboss.json, types.json, mega.json). Same
-// convention as sources/game-master.ts: each `createXSource` here takes the
-// already-`JSON.parse()`d content, not a file path -- reading bytes off
-// disk is ingest.ts's job (its `loadJson` helper calls
+// Typed, parse-only accessors over pokemon-go-api.github.io's three cached
+// JSON files (pokedex.json, types.json, mega.json). Same convention as
+// sources/game-master.ts: each `createXSource` here takes the already-
+// `JSON.parse()`d content, not a file path -- reading bytes off disk is
+// ingest.ts's job (its `loadJson` helper calls
 // `JSON.parse(readFileSync(...))` and hands the result to these factories).
 // This keeps the module trivially testable against small fixture objects
 // and keeps "read cache" and "understand the shape" separate concerns.
+//
+// raidboss.json is deliberately NOT fetched or cached here: Task 3 dropped
+// raid-boss ingestion entirely (ingest.ts emits raidBosses: [] and no
+// transform module reads raid data), and raid rotations change upstream
+// constantly and independently of anything this pipeline actually builds --
+// fetching/hashing it would just be a false-positive generator for
+// `ingest:check`. RaidBossEntry/RaidBossSource types below are kept only
+// because nothing else references pokemon-go-api's raid shape yet; there is
+// no source URL or cache path for it.
 //
 // Field sets below are deliberately narrow -- only what this pipeline
 // reads today, matching game-master.ts's per-record convention -- with an
@@ -13,10 +22,9 @@
 
 const PGAPI_BASE = "https://pokemon-go-api.github.io/pokemon-go-api/api";
 
-/** The 4 pgapi files this pipeline caches, and the URLs they come from -- the single source of truth ingest.ts's fetch step and write/manifest.ts both read for what pgapi data this pipeline consumes. Relative paths are cache-root-relative, matching CACHE_V2_ROOT's existing "pgapi/<file>" convention. */
+/** The pgapi files this pipeline caches, and the URLs they come from -- the single source of truth ingest.ts's fetch step and write/manifest.ts both read for what pgapi data this pipeline consumes. Relative paths are cache-root-relative, matching CACHE_V2_ROOT's existing "pgapi/<file>" convention. raidboss.json is intentionally excluded -- see header comment. */
 export const PGAPI_FILES: Record<string, string> = {
   "pgapi/pokedex.json": `${PGAPI_BASE}/pokedex.json`,
-  "pgapi/raidboss.json": `${PGAPI_BASE}/raidboss.json`,
   "pgapi/types.json": `${PGAPI_BASE}/types.json`,
   "pgapi/mega.json": `${PGAPI_BASE}/pokedex/mega.json`,
 };

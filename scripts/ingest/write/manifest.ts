@@ -9,7 +9,8 @@
 //   - pokemon-go-api: the content hash http-cache.ts's fetchToCache now
 //     computes on every fetch (hash-on-write sidecar), one per cached file.
 //   - shiny sheet: same content-hash approach, single file.
-// `ingest.ts --check` fetches fresh, writes a new manifest, and diffs it
+// `ingest.ts --check` fetches fresh, builds a manifest *in memory only*
+// (never written to disk -- see buildManifest's doc comment), and diffs it
 // against the last *committed* one (git show HEAD:...) to answer "did any
 // upstream source change since the reference data currently shipped was
 // built" without running the (much slower) build/slug-check/sprite steps.
@@ -49,11 +50,20 @@ async function fetchGameMasterCommitSha(): Promise<string> {
 }
 
 /**
- * Builds and writes the manifest from what's currently in the cache (i.e.
- * call this AFTER the fetch step, not before) plus a fresh GAME_MASTER
- * commit-SHA lookup.
+ * Builds (but does NOT write to disk) the manifest from what's currently in
+ * the cache (i.e. call this AFTER the fetch step, not before) plus a fresh
+ * GAME_MASTER commit-SHA lookup.
+ *
+ * `--check` mode calls this directly and diffs the in-memory result against
+ * the last *committed* manifest -- it must never write
+ * ingestion-manifest.json to disk, since every call produces a different
+ * `fetchedAt` even when nothing upstream actually changed. Writing on every
+ * `--check` run would make a routine `git add`/commit after checking commit
+ * a manifest describing a fetch that never produced a corresponding
+ * reference.json rebuild, permanently defeating the next check's diff. Only
+ * `writeManifest` (the real ingest/build path) should touch disk.
  */
-export async function writeManifest(): Promise<IngestionManifest> {
+export async function buildManifest(): Promise<IngestionManifest> {
   const fetchedAt = new Date().toISOString();
   const commitSha = await fetchGameMasterCommitSha();
 
@@ -64,13 +74,22 @@ export async function writeManifest(): Promise<IngestionManifest> {
 
   const shinySheetHash = readCachedHash(resolve(CACHE_V2_ROOT, SHINY_SHEET_CACHE_PATH)) ?? "";
 
-  const manifest: IngestionManifest = {
+  return {
     gameMaster: { commitSha, fetchedAt },
     pokemonGoApi: { files, fetchedAt },
     shinySheet: { contentHash: shinySheetHash, fetchedAt },
   };
+}
 
-  writeFileSync(MANIFEST_PATH, JSON.stringify(manifest, null, 2));
+/** Thin disk-write step, kept separate from `buildManifest` so `--check` mode can build a manifest for its diff without ever writing it. Only the real ingest/build path (ingest.ts's `manifest` step) should call this. `path` defaults to the real tracked manifest path; overridable so tests can target a scratch file instead of the tracked one. */
+export function writeManifestToDisk(manifest: IngestionManifest, path: string = MANIFEST_PATH): void {
+  writeFileSync(path, JSON.stringify(manifest, null, 2));
+}
+
+/** Builds the manifest and writes it to disk -- the real ingest/build path's convenience wrapper around `buildManifest` + `writeManifestToDisk`. Never call this from `--check` mode. */
+export async function writeManifest(): Promise<IngestionManifest> {
+  const manifest = await buildManifest();
+  writeManifestToDisk(manifest);
   return manifest;
 }
 

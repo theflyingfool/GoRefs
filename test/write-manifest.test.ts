@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-import { diffManifests, writeManifest, type IngestionManifest } from "../scripts/ingest/write/manifest";
+import { buildManifest, diffManifests, writeManifest, writeManifestToDisk, MANIFEST_PATH, type IngestionManifest } from "../scripts/ingest/write/manifest";
 import { CACHE_V2_ROOT, hashPathFor } from "../scripts/ingest/http-cache";
 import { PGAPI_FILES } from "../scripts/ingest/sources/pokemon-go-api";
 import { SHINY_SHEET_CACHE_PATH } from "../scripts/ingest/sources/shiny-sheet";
@@ -115,6 +115,83 @@ test("writeManifest reads GAME_MASTER commit SHA from the GitHub commits API, an
     });
     if (manifestSnapshot === undefined) rmSync(manifestPath, { force: true });
     else writeFileSync(manifestPath, manifestSnapshot, "utf-8");
+  }
+});
+
+test("buildManifest never writes ingestion-manifest.json to disk, even though its result differs from what's already there (--check mode's use case)", async () => {
+  // Simulates the --check scenario the review flagged: a manifest already
+  // sits on disk (e.g. from a prior real `ingest` run) with different
+  // values than what buildManifest is about to compute (a "diff would be
+  // detected" case) -- buildManifest must still leave the file untouched.
+  const manifestExistedBefore = existsSync(MANIFEST_PATH);
+  const priorContent = manifestExistedBefore ? readFileSync(MANIFEST_PATH, "utf-8") : undefined;
+
+  try {
+    mkdirSync(resolve(MANIFEST_PATH, ".."), { recursive: true });
+    const staleManifest = manifestAt({ gameMaster: { commitSha: "stale-sha", fetchedAt: "2020-01-01T00:00:00.000Z" } });
+    writeFileSync(MANIFEST_PATH, JSON.stringify(staleManifest, null, 2));
+    const beforeCall = readFileSync(MANIFEST_PATH, "utf-8");
+
+    await withFetchStub(
+      (async () =>
+        ({
+          ok: true,
+          status: 200,
+          statusText: "OK",
+          // Deliberately different from staleManifest's commitSha, so a
+          // real diff exists between what's on disk and what buildManifest
+          // computes -- the exact case where a careless implementation
+          // would be tempted to "helpfully" write the fresh result.
+          json: async () => [{ sha: "fresh-sha-that-differs" }],
+        }) as unknown as Response) as typeof fetch,
+      () => buildManifest(),
+    );
+
+    const afterCall = readFileSync(MANIFEST_PATH, "utf-8");
+    assert.equal(afterCall, beforeCall, "buildManifest must not write to disk under any circumstance");
+  } finally {
+    if (priorContent === undefined) rmSync(MANIFEST_PATH, { force: true });
+    else writeFileSync(MANIFEST_PATH, priorContent, "utf-8");
+  }
+});
+
+test("writeManifestToDisk writes exactly the manifest object it's given", () => {
+  // Targets a scratch path (not the real tracked MANIFEST_PATH) via the
+  // optional `path` param, so this test can't touch tracked repo state even
+  // on a hard process abort.
+  const scratchPath = resolve(CACHE_V2_ROOT, "ingestion-manifest.test-scratch.json");
+  try {
+    const manifest = manifestAt({ gameMaster: { commitSha: "written-sha", fetchedAt: "2026-03-03T00:00:00.000Z" } });
+    writeManifestToDisk(manifest, scratchPath);
+    const onDisk = JSON.parse(readFileSync(scratchPath, "utf-8")) as IngestionManifest;
+    assert.deepEqual(onDisk, manifest);
+  } finally {
+    rmSync(scratchPath, { force: true });
+  }
+});
+
+test("writeManifest (the real ingest/build path) still writes the manifest it computed to disk", async () => {
+  const manifestExistedBefore = existsSync(MANIFEST_PATH);
+  const priorContent = manifestExistedBefore ? readFileSync(MANIFEST_PATH, "utf-8") : undefined;
+
+  try {
+    const returned = await withFetchStub(
+      (async () =>
+        ({
+          ok: true,
+          status: 200,
+          statusText: "OK",
+          json: async () => [{ sha: "build-path-sha" }],
+        }) as unknown as Response) as typeof fetch,
+      () => writeManifest(),
+    );
+
+    const onDisk = JSON.parse(readFileSync(MANIFEST_PATH, "utf-8")) as IngestionManifest;
+    assert.deepEqual(onDisk, returned);
+    assert.equal(onDisk.gameMaster.commitSha, "build-path-sha");
+  } finally {
+    if (priorContent === undefined) rmSync(MANIFEST_PATH, { force: true });
+    else writeFileSync(MANIFEST_PATH, priorContent, "utf-8");
   }
 });
 

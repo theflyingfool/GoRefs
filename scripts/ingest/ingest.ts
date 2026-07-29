@@ -12,7 +12,8 @@
 //                                                 # slug-check, sprites, manifest
 //   tsx scripts/ingest/ingest.ts --skip-sprites   # skip the sprite fetch/build step
 //   tsx scripts/ingest/ingest.ts --skip-sqlite    # reserved for a later task, no-op today
-//   tsx scripts/ingest/ingest.ts --check          # fetch + write manifest + diff against
+//   tsx scripts/ingest/ingest.ts --check          # fetch + build an in-memory manifest
+//                                                 # (never written to disk) + diff against
 //                                                 # the last committed manifest only;
 //                                                 # exits non-zero if upstream changed
 
@@ -35,7 +36,7 @@ import { buildPvp } from "./transform/pvp";
 
 import { writeReferenceJson } from "./write/reference-json";
 import { writeSpriteManifest } from "./write/sprite-manifest";
-import { writeManifest, loadCommittedManifest, diffManifests, MANIFEST_REPO_RELATIVE_PATH } from "./write/manifest";
+import { writeManifest, buildManifest, loadCommittedManifest, diffManifests, MANIFEST_REPO_RELATIVE_PATH } from "./write/manifest";
 
 import { fetchSprites } from "./fetch-sprites";
 import { buildSprites } from "./build-sprites";
@@ -276,7 +277,15 @@ async function runCheckMode(): Promise<void> {
   await fetchAll();
 
   console.log("=== check: manifest ===");
-  const freshManifest = await writeManifest();
+  // Built in-memory only -- never written to disk. Writing here would stamp
+  // a fresh `fetchedAt` into ingestion-manifest.json on every --check run
+  // even when nothing upstream changed, and if that gets committed (the
+  // file is tracked via a .gitignore negation), the next --check would diff
+  // against a manifest describing a fetch that never produced a
+  // corresponding reference.json rebuild -- permanently wrong until
+  // upstream moves again. Only the real ingest/build path's `manifest` step
+  // below calls writeManifest and touches disk.
+  const freshManifest = await buildManifest();
   const committed = loadCommittedManifest();
 
   if (!committed) {

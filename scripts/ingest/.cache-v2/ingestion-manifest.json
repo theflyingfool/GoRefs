@@ -6,7 +6,6 @@
   "pokemonGoApi": {
     "files": {
       "pgapi/pokedex.json": "d8cf0eb6",
-      "pgapi/raidboss.json": "4126bd1c",
       "pgapi/types.json": "e202f52f",
       "pgapi/mega.json": "90f5dad4"
     },

@@ -12,10 +12,9 @@ import {
   type TypeMatchup,
 } from "../scripts/ingest/sources/pokemon-go-api";
 
-test("PGAPI_FILES names all 4 cached pgapi files against their real URLs", () => {
+test("PGAPI_FILES names the 3 cached pgapi files this pipeline consumes against their real URLs (raidboss.json is deliberately excluded -- unused by any transform, see the module's header comment)", () => {
   assert.deepEqual(PGAPI_FILES, {
     "pgapi/pokedex.json": "https://pokemon-go-api.github.io/pokemon-go-api/api/pokedex.json",
-    "pgapi/raidboss.json": "https://pokemon-go-api.github.io/pokemon-go-api/api/raidboss.json",
     "pgapi/types.json": "https://pokemon-go-api.github.io/pokemon-go-api/api/types.json",
     "pgapi/mega.json": "https://pokemon-go-api.github.io/pokemon-go-api/api/pokedex/mega.json",
   });

@@ -17,8 +17,11 @@ step-by-step equivalent of the old per-script npm commands any more. Its
 internal steps, in order:
 
 1. **fetch** — pulls fresh GAME_MASTER (`alexelgt/game_masters`),
-   `pokemon-go-api.github.io`'s pokedex/types/mega/raidboss files, and the
-   pokemongo-shiny community sheet into `scripts/ingest/.cache-v2/`. Always
+   `pokemon-go-api.github.io`'s pokedex/types/mega files, and the
+   pokemongo-shiny community sheet into `scripts/ingest/.cache-v2/`
+   (`raidboss.json` is deliberately not fetched — raid-boss ingestion was
+   dropped and nothing consumes it, so fetching/hashing it would only feed
+   `ingest:check` false positives on raid-rotation churn). Always
    re-fetches (no live pogoapi.net dependency any more — the one thing it
    used to supply that GAME_MASTER doesn't, medal display names, comes from
    the committed `vendor/pogoapi-snapshot/badges.json` snapshot instead).
