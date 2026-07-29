@@ -89,20 +89,33 @@ phase should be finished and confirmed before the next starts.
 
 ### Phase 0 — Ingestion & Reference Data Overhaul
 
-Runs first: richer backend data makes it easier to see which follow-on
-features are cheapest to build.
+**The sourcing-swap portion of this phase has shipped** (not a verdict on
+every bullet below — footgun fixes and the broader-field-capture goal
+aren't re-verified here). The ingestion pipeline was rebuilt around a single
+`npm run ingest` orchestrator (`scripts/ingest/ingest.ts`) sourcing species,
+forms, moves, and player-progression data from GAME_MASTER
+(`alexelgt/game_masters`) and shiny availability from the pokemongo-shiny
+community sheet — see [ingestion-runbook.md](ingestion-runbook.md) for the
+shipped pipeline and [v2-data-source-findings.md](v2-data-source-findings.md)'s
+§12 addendum for how this differs from the spike's original "current read"
+below (pogoapi.net turned out to be stale enough — missing 222
+Shadow-eligible species GAME_MASTER has — that it was dropped as a live
+source entirely, kept only as a vendored one-time snapshot for medal
+name/description text `badgeSettings` doesn't carry). Runs first: richer
+backend data makes it easier to see which follow-on features are cheapest
+to build.
 
-- Spike: pull data from [pogoapi.net](https://pogoapi.net/documentation/) and
+- Spike (historical — see outcome note above): pull data from
+  [pogoapi.net](https://pogoapi.net/documentation/) and
   [pokemon-go-api/pokemon-go-api](https://github.com/pokemon-go-api/pokemon-go-api),
-  and compare field coverage/quality/freshness against the current
-  PokeAPI + CSV + wikitext pipeline (see [ingestion-runbook.md](ingestion-runbook.md)).
-  Spike findings, sample payloads, and a table-design starting point:
-  [v2-data-source-findings.md](v2-data-source-findings.md). Current read:
-  pogoapi.net covers species/forms/costumes *and* the previously-uncovered
-  player-progression data (XP, levels, medals, friendship, battle league);
-  sprites are not in pogoapi.net at all but are available from
-  pokemon-go-api's companion `assets` repo — likely both sources end up used,
-  each for what it's actually good at.
+  and compare field coverage/quality/freshness against the former
+  PokeAPI + CSV + wikitext pipeline. Spike findings, sample payloads, and a
+  table-design starting point: [v2-data-source-findings.md](v2-data-source-findings.md).
+  Original read: pogoapi.net covers species/forms/costumes *and* the
+  previously-uncovered player-progression data (XP, levels, medals,
+  friendship, battle league); sprites are not in pogoapi.net at all but are
+  available from pokemon-go-api's companion `assets` repo — likely both
+  sources end up used, each for what it's actually good at.
 - Decision gate: replace the current pipeline if the new sources are
   equal-or-better coverage and simpler to maintain; otherwise use them as
   supplemental sources for fields we currently lack. Don't assume the
@@ -287,8 +300,8 @@ and `docs/data-model.md`'s "Future direction" section (git history at
 - **Mega level column**: A `Base`/`High`/`Max` mega-level column is not yet
   modeled anywhere in the schema. Deferred pending real in-game data on how
   mega levels should factor into completion lenses.
-- **Z-A megas ingestion-filter update**: `build-reference.ts`'s mega-variant
-  filter needs a follow-up pass once *Legends: Z-A*'s new Mega Evolutions
+- **Z-A megas ingestion-filter update**: `scripts/ingest/transform/species.ts`'s
+  mega-variant filter needs a follow-up pass once *Legends: Z-A*'s new Mega Evolutions
   actually ship in GO (they're official DLC content, not fan content — see
   the ingestion pipeline notes) so they get picked up rather than filtered
   out by the current mainline-`version_group` matching rule.
@@ -377,7 +390,8 @@ Known rough edges, not release blockers. Recovered from the pre-restructure
   this is an in-place `form_slug` update or a new row replacing the old one.
   Owner-reported 2026-07-24, explicitly deferred (not urgent).
 - **`form.imageRef` cross-referencing**: the reserved `form.imageRef` column
-  is still not wired up into `build-reference.ts`'s ingestion output — the
+  is still not wired up into `scripts/ingest/transform/species.ts`'s ingestion
+  output — the
   sprite-slug manifest (`src/data/form-sprite-slugs.json`) currently serves
   the same "does this form have art" purpose without needing it. Revisit
   once `costume-lookup.json` has more real entries and the extra-images
