@@ -2,7 +2,14 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 
 import { buildPlayerProgression } from "../scripts/ingest/transform/player-progression";
+import { loadVendorBadgeDisplayNames } from "../scripts/ingest/sources/pogoapi-badges";
 import { gameMasterFrom } from "./transform-fixtures";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import type { ReferenceData } from "../src/db/reference-data";
+
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 const PLAYER_LEVEL_CURVE = Array.from({ length: 80 }, (_, i) => i * 1000);
 
@@ -22,7 +29,7 @@ function withoutWarnings<T>(fn: () => T): T {
 }
 
 test("player levels come from GAME_MASTER's full level-80 XP curve, index 0 = level 1", () => {
-  const { playerLevels } = buildPlayerProgression(gameMasterFrom([playerLevel(PLAYER_LEVEL_CURVE)]));
+  const { playerLevels } = buildPlayerProgression(gameMasterFrom([playerLevel(PLAYER_LEVEL_CURVE)]), []);
 
   assert.equal(playerLevels.length, 80);
   assert.deepEqual(playerLevels[0], { level: 1, cumulativeXp: 0 });
@@ -34,7 +41,7 @@ test("player levels come from GAME_MASTER's full level-80 XP curve, index 0 = le
 });
 
 test("levels the curve doesn't cover are still emitted with a null XP so the FK target exists", () => {
-  const { playerLevels } = buildPlayerProgression(gameMasterFrom([playerLevel([0, 1000, 3000])]));
+  const { playerLevels } = buildPlayerProgression(gameMasterFrom([playerLevel([0, 1000, 3000])]), []);
 
   assert.equal(playerLevels.length, 80);
   assert.deepEqual(playerLevels[2], { level: 3, cumulativeXp: 3000 });
@@ -58,7 +65,7 @@ test("level-up rewards pair items with their counts and get a per-level running 
     ]),
   );
 
-  const { playerLevelRewards } = buildPlayerProgression(gameMaster);
+  const { playerLevelRewards } = buildPlayerProgression(gameMaster, []);
 
   assert.deepEqual(playerLevelRewards, [
     { level: 2, sortOrder: 0, itemName: "Poke Ball", amount: 10 },
@@ -67,20 +74,22 @@ test("level-up rewards pair items with their counts and get a per-level running 
   ]);
 });
 
-test("medals derive slug and name from the badge id, with tier targets", () => {
+test("with no vendored badge data, medals fall back to a slug/name derived from the badge id", () => {
   const { medals, medalTiers } = buildPlayerProgression(
     gameMasterFrom([
       playerLevel(PLAYER_LEVEL_CURVE),
       ["badgeSettings", { templateId: "BADGE_7_DAY_STREAKS", badgeType: "BADGE_7_DAY_STREAKS", badgeRank: 5, targets: [1, 10, 50, 100] }],
       ["badgeSettings", { templateId: "BADGE_AA_2023_JEJU_DAY_00", badgeType: "BADGE_AA_2023_JEJU_DAY_00", badgeRank: 2, eventBadge: true }],
     ]),
+    // Empty vendorBadges: every badge falls back to the id-derived name.
+    // This is also what happens for badges added to GAME_MASTER after the
+    // vendored snapshot was taken (see the "index beyond the vendored
+    // array" test below).
+    [],
   );
 
   assert.deepEqual(medals, [
     { slug: "7-day-streaks", name: "7 Day Streaks", description: "", isEventMedal: false },
-    // GAME_MASTER publishes no display strings, so the real name
-    // ("Triathlete") and description are not recoverable — see this task's
-    // report; both are derived from the badge id instead.
     { slug: "aa-2023-jeju-day-00", name: "Aa 2023 Jeju Day 00", description: "", isEventMedal: true },
   ]);
   assert.deepEqual(medalTiers, [
@@ -92,6 +101,81 @@ test("medals derive slug and name from the badge id, with tier targets", () => {
   ]);
 });
 
+test("with vendored badge data, medal name/description come from the snapshot (via alignVendorBadges), not the badge id", () => {
+  const { medals } = buildPlayerProgression(
+    gameMasterFrom([
+      playerLevel(PLAYER_LEVEL_CURVE),
+      ["badgeSettings", { templateId: "BADGE_7_DAY_STREAKS", badgeType: "BADGE_7_DAY_STREAKS", badgeRank: 5, targets: [1, 10, 50, 100] }],
+    ]),
+    [{ name: "Triathlete", description: "Achieve a seven-day catch/spin streak.", rank: 5 }],
+  );
+
+  assert.deepEqual(medals, [{ slug: "triathlete", name: "Triathlete", description: "Achieve a seven-day catch/spin streak.", isEventMedal: false }]);
+});
+
+test("a vendored candidate whose rank never matches the badges present is never consumed by alignVendorBadges, so the medal falls back to the id-derived name", () => {
+  // alignVendorBadges itself (test/pogoapi-badges-source.test.ts) is where
+  // the join logic lives and is unit-tested directly; this just confirms
+  // buildPlayerProgression wires that result through to the medal it
+  // builds rather than trusting the vendored array positionally.
+  const { medals } = buildPlayerProgression(
+    gameMasterFrom([
+      playerLevel(PLAYER_LEVEL_CURVE),
+      ["badgeSettings", { templateId: "BADGE_7_DAY_STREAKS", badgeType: "BADGE_7_DAY_STREAKS", badgeRank: 5, targets: [1, 10, 50, 100] }],
+    ]),
+    // rank 2 never appears among the one badge present (rank 5), so
+    // alignVendorBadges never consumes it.
+    [{ name: "Triathlete", description: "Achieve a seven-day catch/spin streak.", rank: 2 }],
+  );
+
+  assert.deepEqual(medals, [{ slug: "7-day-streaks", name: "7 Day Streaks", description: "", isEventMedal: false }]);
+});
+
+test("badges past the end of the vendored array (added to GAME_MASTER since the snapshot) still fall back to the id-derived name", () => {
+  const { medals } = buildPlayerProgression(
+    gameMasterFrom([
+      playerLevel(PLAYER_LEVEL_CURVE),
+      ["badgeSettings", { templateId: "BADGE_KNOWN", badgeType: "BADGE_KNOWN", badgeRank: 1, targets: [1] }],
+      ["badgeSettings", { templateId: "BADGE_NEWER_THAN_SNAPSHOT", badgeType: "BADGE_NEWER_THAN_SNAPSHOT", badgeRank: 1, targets: [1] }],
+    ]),
+    // Only one vendored entry — index 1 (the second badge) has nothing to
+    // look up and must fall back, not throw or silently reuse index 0.
+    [{ name: "Known Badge", description: "A real name.", rank: 1 }],
+  );
+
+  assert.deepEqual(medals, [
+    { slug: "known-badge", name: "Known Badge", description: "A real name.", isEventMedal: false },
+    { slug: "newer-than-snapshot", name: "Newer Than Snapshot", description: "", isEventMedal: false },
+  ]);
+});
+
+test("real vendored snapshot: BADGE_7_DAY_STREAKS at index 0 round-trips to the production 'Triathlete' medal slug", () => {
+  const vendorBadges = loadVendorBadgeDisplayNames();
+  assert.ok(vendorBadges.length > 0, "vendor/pogoapi-snapshot/badges.json should not be empty");
+
+  // BADGE_7_DAY_STREAKS is GAME_MASTER's real index-0 badge (see
+  // .superpowers/sdd/task-3-fix-medals-report.md); the vendored snapshot is
+  // positionally aligned, so index 0 there must be the same badge.
+  const { medals } = buildPlayerProgression(
+    gameMasterFrom([playerLevel(PLAYER_LEVEL_CURVE), ["badgeSettings", { templateId: "BADGE_7_DAY_STREAKS", badgeType: "BADGE_7_DAY_STREAKS", badgeRank: 5, targets: [1, 10, 50, 100] }]]),
+    vendorBadges,
+  );
+
+  assert.equal(medals.length, 1);
+  assert.equal(medals[0].slug, "triathlete");
+  assert.equal(medals[0].name, "Triathlete");
+  assert.notEqual(medals[0].description, "");
+
+  // Cross-check against the currently-committed reference.json: the slug
+  // this fix produces must be the exact slug already live in production
+  // (and referenced by real medal_progress_personal rows), not a new one.
+  const referencePath = resolve(__dirname, "../src/data/reference.json");
+  const reference: ReferenceData = JSON.parse(readFileSync(referencePath, "utf-8"));
+  const committedTriathlete = reference.medals.find((m) => m.slug === "triathlete");
+  assert.ok(committedTriathlete, "src/data/reference.json should already have a 'triathlete' medal slug");
+  assert.equal(medals[0].name, committedTriathlete?.name);
+});
+
 test("same-slug badges collapse to one medal and one targetless tier row", () => {
   const { medals, medalTiers } = buildPlayerProgression(
     gameMasterFrom([
@@ -99,10 +183,36 @@ test("same-slug badges collapse to one medal and one targetless tier row", () =>
       ["badgeSettings", { templateId: "BADGE_EVENT", badgeType: "BADGE_EVENT", badgeRank: 2, eventBadge: true }],
       ["badgeSettings", { templateId: "BADGE_EVENT_2", badgeType: "BADGE_EVENT", badgeRank: 2, eventBadge: true }],
     ]),
+    [],
   );
 
   assert.equal(medals.length, 1);
   assert.equal(medalTiers.length, 1);
+  assert.equal(new Set(medalTiers.map((t) => `${t.medalSlug}|${t.rank}`)).size, medalTiers.length);
+});
+
+test("same-slug badges that BOTH carry targets still collapse to one medal's tier rows, not duplicate (slug, rank) rows", () => {
+  // Real-world shape: GAME_MASTER's four BADGE_AA_2023_JEJU_DAY_0{0..3}
+  // event badges all resolve to the same vendored name ("Pokémon Air
+  // Adventures") and each individually carries `targets`. Before this
+  // fix's isFirstForSlug guard on the `targets` branch, every one of them
+  // would have pushed a (medalSlug, rank) row, colliding on the medal_tier
+  // primary key.
+  const { medals, medalTiers } = buildPlayerProgression(
+    gameMasterFrom([
+      playerLevel(PLAYER_LEVEL_CURVE),
+      ["badgeSettings", { templateId: "BADGE_AA_2023_JEJU_DAY_00", badgeType: "BADGE_AA_2023_JEJU_DAY_00", badgeRank: 2, eventBadge: true, targets: [100] }],
+      ["badgeSettings", { templateId: "BADGE_AA_2023_JEJU_DAY_01", badgeType: "BADGE_AA_2023_JEJU_DAY_01", badgeRank: 2, eventBadge: true, targets: [100] }],
+    ]),
+    [
+      { name: "Pokemon Air Adventures", description: "Jeju Island, 2023", rank: 2 },
+      { name: "Pokemon Air Adventures", description: "Jeju Island, July 28, 2023", rank: 2 },
+    ],
+  );
+
+  assert.equal(medals.length, 1);
+  assert.equal(medalTiers.length, 1);
+  assert.deepEqual(medalTiers, [{ medalSlug: "pokemon-air-adventures", rank: 1, target: 100 }]);
   assert.equal(new Set(medalTiers.map((t) => `${t.medalSlug}|${t.rank}`)).size, medalTiers.length);
 });
 
@@ -116,6 +226,7 @@ test("friendship levels take their number from the templateId and keep productio
       // never carried — deliberately not emitted.
       ["friendshipMilestoneSettings", { templateId: "FRIENDSHIP_LEVEL_5", minPointsToReach: 90, milestoneXpReward: 150000, attackBonusPercentage: 1.12 }],
     ]),
+    [],
   );
 
   assert.deepEqual(friendshipLevels, [

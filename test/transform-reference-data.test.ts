@@ -12,6 +12,7 @@ import { buildSpecies, GEN_TO_REGION } from "../scripts/ingest/transform/species
 import { buildFormMoves, buildMoves, buildTypeEffectivenessAndWeather } from "../scripts/ingest/transform/moves";
 import { buildSpeciesEvolutions } from "../scripts/ingest/transform/evolutions";
 import { buildPlayerProgression } from "../scripts/ingest/transform/player-progression";
+import { loadVendorBadgeDisplayNames } from "../scripts/ingest/sources/pogoapi-badges";
 import { buildPvp } from "../scripts/ingest/transform/pvp";
 import type { ReferenceData } from "../src/db/reference-data";
 import { gameMasterFrom, genderSettings, pokedexEntry, pokedexFrom, pokemonSettings, shinySheetFrom } from "./transform-fixtures";
@@ -47,7 +48,11 @@ function buildAll(): ReferenceData {
   const speciesResult = buildSpecies({ pokedex, gameMaster, shinySheet });
   const { moves, slugByMovementId } = buildMoves(gameMaster, pokedex);
   const { typeEffectiveness, weatherBoosts } = buildTypeEffectivenessAndWeather(gameMaster);
-  const progression = buildPlayerProgression(gameMaster);
+  // Real vendored data (not a fixture) — this is the template Task 4 should
+  // copy for the orchestrator, and buildPlayerProgression's second argument
+  // is required precisely so a call site can't silently drop it and
+  // regenerate the id-derived-medal regression this task fixed.
+  const progression = buildPlayerProgression(gameMaster, loadVendorBadgeDisplayNames());
   const pvp = buildPvp(gameMaster);
 
   const allTypeSlugs = new Set([

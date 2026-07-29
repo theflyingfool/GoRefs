@@ -6,6 +6,7 @@
 
 import { slugify } from "../slug";
 import type { GameMasterIndex } from "../sources/game-master";
+import { alignVendorBadges, type VendorBadgeDisplay } from "../sources/pogoapi-badges";
 import type { FriendshipLevel, Medal, MedalTier, PlayerLevel, PlayerLevelReward } from "../../../src/db/types";
 import { titleCaseEnumToken } from "./moves";
 
@@ -25,16 +26,20 @@ function itemDisplayName(itemId: string): string {
 }
 
 // GAME_MASTER's badgeSettings carries no display strings at all — only the
-// `BADGE_*` enum id, its rank and its tier targets. The previous source
-// published a real name and description per badge ("Triathlete" for
-// BADGE_7_DAY_STREAKS), which is NOT derivable from the token, so both the
-// medal names shown on the Trainer/Stats pages and the medal slugs
-// (medal_progress_personal.medal_slug references them) change under this
-// re-sourcing. Flagged in this task's report as an open decision rather than
-// silently accepted; the fallback here is a readable token-derived name so
-// the table is still populated and internally consistent.
-function medalDisplayName(badgeType: string): string {
-  return titleCaseEnumToken(badgeType.replace(/^BADGE_/, ""));
+// `BADGE_*` enum id, its rank and its tier targets. The vendored
+// pogoapi.net snapshot (see sources/pogoapi-badges.ts, including why a
+// two-pointer subsequence realignment is needed rather than plain
+// positional indexing) supplies the real name/description for the ~597
+// badges it captured, preserving the original medal slugs (and keeping
+// medal_progress_personal.medal_slug, a live FK, intact). Badges
+// GAME_MASTER has added since that snapshot was taken have no recoverable
+// name and fall back to a token-derived one, same as before this fix.
+// `alignVendorBadges` already enforces rank agreement as its match
+// condition, so a `vendored` value reaching here is trusted by
+// construction — there is no second, weaker join to re-verify.
+function medalDisplayName(badgeType: string, vendored: VendorBadgeDisplay | undefined): Pick<Medal, "name" | "description"> {
+  if (vendored) return { name: vendored.name, description: vendored.description };
+  return { name: titleCaseEnumToken(badgeType.replace(/^BADGE_/, "")), description: "" };
 }
 
 // friendshipMilestoneSettings has no display name and no numeric level field
@@ -61,7 +66,14 @@ export interface PlayerProgressionBuildResult {
   friendshipLevels: FriendshipLevel[];
 }
 
-export function buildPlayerProgression(gameMaster: GameMasterIndex): PlayerProgressionBuildResult {
+/**
+ * `vendorBadges` is the vendored snapshot in its own natural order (e.g.
+ * straight from `loadVendorBadgeDisplayNames()`) — this function aligns it
+ * against `gameMaster`'s badgeSettings itself (`alignVendorBadges`) rather
+ * than expecting the caller to have already indexed it positionally, since
+ * plain positional indexing does not hold (see sources/pogoapi-badges.ts).
+ */
+export function buildPlayerProgression(gameMaster: GameMasterIndex, vendorBadges: VendorBadgeDisplay[]): PlayerProgressionBuildResult {
   // requiredExperience is a parallel array with index 0 = level 1.
   const levelSettings = gameMaster.getPlayerLevelSettings();
   const playerLevels: PlayerLevel[] = (levelSettings?.requiredExperience ?? []).map((xp, i) => ({ level: i + 1, cumulativeXp: xp }));
@@ -101,31 +113,36 @@ export function buildPlayerProgression(gameMaster: GameMasterIndex): PlayerProgr
   const medals: Medal[] = [];
   const medalTiers: MedalTier[] = [];
   const seenMedalSlugs = new Set<string>();
-  for (const badge of gameMaster.allBadgeSettings()) {
-    const name = medalDisplayName(badge.badgeType);
+  const badgeSettings = gameMaster.allBadgeSettings();
+  const alignedVendorBadges = alignVendorBadges(badgeSettings, vendorBadges);
+  badgeSettings.forEach((badge, index) => {
+    const targets = badge.targets as number[] | undefined;
+    const rank = badge.badgeRank as number | undefined;
+    const { name, description } = medalDisplayName(badge.badgeType, alignedVendorBadges[index]);
     const slug = slugify(name);
     const isFirstForSlug = !seenMedalSlugs.has(slug);
     if (isFirstForSlug) {
       seenMedalSlugs.add(slug);
-      medals.push({ slug, name, description: "", isEventMedal: Boolean(badge.eventBadge) });
+      medals.push({ slug, name, description, isEventMedal: Boolean(badge.eventBadge) });
     }
-    const targets = badge.targets as number[] | undefined;
-    const rank = badge.badgeRank as number | undefined;
-    if (targets) {
+    // Event badges reuse a generic display name across many records (every
+    // "Pokémon GO Fest" city/year is its own badge, and — now that names come
+    // from the vendored snapshot instead of the badge id — so are the four
+    // BADGE_AA_2023_JEJU_DAY_0{0..3} records, which all resolve to
+    // "Pokémon Air Adventures"). The `medals` table above already collapses
+    // those to one canonical medal per slug; pushing a tier row for every
+    // same-named record — whether it carries `targets` or just a `rank` —
+    // produced duplicate (medal_slug, rank) primary keys. Both branches are
+    // gated on `isFirstForSlug` for that reason, at the cost of not being
+    // able to tell individual event medals apart — a real, pre-existing
+    // data-model gap worth a product call on later if per-event medal
+    // tracking ever matters.
+    if (targets && isFirstForSlug) {
       targets.forEach((target, i) => medalTiers.push({ medalSlug: slug, rank: i + 1, target }));
     } else if (rank !== undefined && isFirstForSlug) {
-      // Event badges reuse a generic display name across many records (every
-      // "Pokémon GO Fest" city/year is its own badge). The `medals` table
-      // above already collapses those to one canonical medal per slug;
-      // pushing a tier row for every same-named record produced duplicate
-      // (medal_slug, rank) primary keys, since they mostly share rank 2.
-      // Following the same first-seen collapse keeps this table consistent
-      // with `medals`, at the cost of not being able to tell individual
-      // event medals apart — a real, pre-existing data-model gap worth a
-      // product call on later if per-event medal tracking ever matters.
       medalTiers.push({ medalSlug: slug, rank, target: null });
     }
-  }
+  });
 
   const friendshipLevels: FriendshipLevel[] = [];
   for (const record of gameMaster.allFriendshipMilestoneSettings()) {
