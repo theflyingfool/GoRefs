@@ -1,0 +1,19 @@
+{
+  "gameMaster": {
+    "commitSha": "3b49df8633f2733903d8fa7b75ca85f5ac67c359",
+    "fetchedAt": "2026-07-29T22:03:26.382Z"
+  },
+  "pokemonGoApi": {
+    "files": {
+      "pgapi/pokedex.json": "d8cf0eb6",
+      "pgapi/raidboss.json": "4126bd1c",
+      "pgapi/types.json": "e202f52f",
+      "pgapi/mega.json": "90f5dad4"
+    },
+    "fetchedAt": "2026-07-29T22:03:26.382Z"
+  },
+  "shinySheet": {
+    "contentHash": "f70795ab",
+    "fetchedAt": "2026-07-29T22:03:26.382Z"
+  }
+}

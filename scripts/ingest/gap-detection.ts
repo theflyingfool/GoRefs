@@ -1,18 +1,16 @@
-// Gap checks that are purely a function of the CURRENT reference.json
+// Gap checks that are purely a function of a ReferenceData value's own
 // contents — no PokeAPI fetch, no Forms-CSV skeleton, no Bulbapedia
-// wikitext needed to (re)derive them. build-reference.ts calls these once
-// at the end of a full ingest; csv-authoring.ts's `import` command calls
-// them again after every manual CSV fix, so a gap a human just fixed by
-// hand stops showing up in the Coverage Report without needing a full
-// `npm run ingest:build` re-run (see TODO.md's "Coverage Report was stale"
-// entry — this closes that standing gap for the stateless kinds below).
+// wikitext needed to (re)derive them. write/reference-json.ts calls these
+// once at the end of a full ingest (see TODO.md's "Coverage Report was
+// stale" entry for why this split matters: the stateless kinds below can be
+// recomputed cheaply, without a full pipeline run).
 //
 // Other ReferenceGap kinds (mega-discrepancy, possible-bogus-form,
 // guessed-costume-name) depend on external sources reference.json doesn't
 // carry (PokeAPI's mega varieties, the Forms CSV's raw tokens, Bulbapedia's
-// sprite codes) — those are NOT recomputed here, and are left untouched by
-// csv-authoring.ts; only re-running the script that originally produced
-// them can refresh those entries.
+// sprite codes) — those are NOT recomputed here; nothing in the current
+// pipeline produces them any more (the old CSV-authoring workflow that once
+// refreshed them was removed).
 
 import type { Form, FormType, Species } from "../../src/db/types";
 import type { ReferenceGap } from "../../src/db/reference-data";

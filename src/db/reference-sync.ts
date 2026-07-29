@@ -11,7 +11,7 @@
 //
 // The "has it changed" check compares against REFERENCE_DATA_VERSION, a hash
 // baked into src/data/reference-version.ts at build time (see
-// scripts/ingest/build-reference.ts) rather than computed here — a runtime
+// scripts/ingest/write/reference-json.ts) rather than computed here — a runtime
 // JSON.stringify + hash of the full multi-thousand-row reference dataset ran
 // on every single boot even when nothing had changed, purely to answer a
 // question the build already knows the answer to.

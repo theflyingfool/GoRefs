@@ -2,8 +2,7 @@
 // JSON files (pokedex.json, raidboss.json, types.json, mega.json). Same
 // convention as sources/game-master.ts: each `createXSource` here takes the
 // already-`JSON.parse()`d content, not a file path -- reading bytes off
-// disk is the caller's job (currently fetch-reference-data.ts; a later
-// task is expected to replace that with a small loader that calls
+// disk is ingest.ts's job (its `loadJson` helper calls
 // `JSON.parse(readFileSync(...))` and hands the result to these factories).
 // This keeps the module trivially testable against small fixture objects
 // and keeps "read cache" and "understand the shape" separate concerns.
@@ -14,7 +13,7 @@
 
 const PGAPI_BASE = "https://pokemon-go-api.github.io/pokemon-go-api/api";
 
-/** The 4 pgapi files this pipeline caches, and the URLs they come from -- moved here from fetch-reference-data.ts (scheduled for deletion) so this module stays the single source of truth for what pgapi data this pipeline consumes. Relative paths are cache-root-relative, matching CACHE_V2_ROOT's existing "pgapi/<file>" convention. */
+/** The 4 pgapi files this pipeline caches, and the URLs they come from -- the single source of truth ingest.ts's fetch step and write/manifest.ts both read for what pgapi data this pipeline consumes. Relative paths are cache-root-relative, matching CACHE_V2_ROOT's existing "pgapi/<file>" convention. */
 export const PGAPI_FILES: Record<string, string> = {
   "pgapi/pokedex.json": `${PGAPI_BASE}/pokedex.json`,
   "pgapi/raidboss.json": `${PGAPI_BASE}/raidboss.json`,

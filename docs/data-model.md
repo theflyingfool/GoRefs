@@ -367,8 +367,8 @@ for the active specs and the future roadmap trackers.
 
 ### Build-time SQLite generation
 
-The CSV→`reference.json` ingestion pipeline described above already exists
-and runs at *authoring* time (`npm run ingest:build`). A further step —
+The ingestion pipeline described above already exists and runs at
+*authoring* time (`npm run ingest`). A further step —
 pre-baking an actual on-device SQLite file at *app build* time, instead of
 the app performing ~8,100 sequential inserts on first boot/reference-data
 update — is a separate, deferred optimization.

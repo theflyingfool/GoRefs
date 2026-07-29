@@ -116,13 +116,14 @@ CREATE TABLE IF NOT EXISTS weather_boost (
   PRIMARY KEY (weather, type_slug)
 );
 
--- cumulative_xp is nullable: pogoapi.net's player_xp_requirements only
--- covers levels 1-50 (verified against a live fetch, not just a stale
--- cache -- see scripts/ingest/build-reference.ts's buildPlayerProgression
--- comment). Levels 51-80 are real, valid levels (the in-game cap is 80)
--- seeded here so player_progress_personal.current_level's FK has
--- somewhere to point for a real trainer above level 50, but with an
--- honestly-absent XP figure rather than a fabricated one.
+-- cumulative_xp is nullable: GAME_MASTER's playerLevel template now
+-- publishes the full level-1-80 XP curve directly (see
+-- scripts/ingest/transform/player-progression.ts's buildPlayerProgression),
+-- so every level 1-80 row currently has a real figure -- nullable is kept as
+-- a defensive fallback (not dead code) so player_progress_personal
+-- .current_level's FK always has somewhere to point even if a future source
+-- ever stops covering the full curve, with an honestly-absent XP figure
+-- rather than a fabricated one.
 CREATE TABLE IF NOT EXISTS player_level (
   level INTEGER PRIMARY KEY,
   cumulative_xp INTEGER

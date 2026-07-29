@@ -1,11 +1,13 @@
-// Generic fetch-and-cache helper for the V2 sourcing spike (pogoapi.net +
-// pokemon-go-api). Same idea as pokeapi-client.ts's disk-cache-by-id
-// pattern, generalized to an arbitrary URL -> arbitrary cache file path,
-// since these sources aren't one-resource-per-id like PokeAPI.
+// Generic fetch-and-cache helper for the ingestion pipeline (GAME_MASTER,
+// pokemon-go-api, the shiny sheet, and sprite binaries) — ingest.ts's own
+// fetch step, and fetch-sprites.ts, both call this. Same idea as
+// pokeapi-client.ts's disk-cache-by-id pattern, generalized to an arbitrary
+// URL -> arbitrary cache file path, since these sources aren't
+// one-resource-per-id like PokeAPI.
 //
-// Not part of the real ingestion pipeline — see docs/v2-schema-design.md
-// and the V2 ingestion plan. Cache root: scripts/ingest/.cache-v2/
-// (gitignored, same convention as .cache/).
+// Cache root: scripts/ingest/.cache-v2/ (gitignored, except for the
+// committed ingestion-manifest.json write/manifest.ts writes there — see
+// its own header comment).
 //
 // Default behavior is always-fetch-fresh, not skip-if-cached — see
 // fetchToCache's doc comment for why (ingestion-manifest.json change

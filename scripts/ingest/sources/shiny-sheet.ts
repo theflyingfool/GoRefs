@@ -37,6 +37,9 @@
 // list) rather than falling back to a numeric index.
 export const SHINY_SHEET_URL = "https://opensheet.elk.sh/1l1CXHdge8_2F2ifjMY71f23DJ_98Ei2QNZ9rPdBd8jQ/'pm2026'";
 
+/** Cache-relative path, same "<source>/<file>"-ish convention as PGAPI_FILES/GAME_MASTER_CACHE_PATH. */
+export const SHINY_SHEET_CACHE_PATH = "shiny-sheet.json";
+
 export interface ShinySheetRecord {
   /** National-ish family/dex grouping id, as a string (e.g. "1", "999"). Not necessarily a Pokémon GO dex number for every row -- see `group` for the human-readable family name. */
   family_dex: string;

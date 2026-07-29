@@ -22,7 +22,15 @@ playwright-report/
 test-results/
 dummy.sqlite
 scripts/ingest/.cache/
-scripts/ingest/.cache-v2/
+# .cache-v2/ is otherwise gitignored (it's fetched-source scratch data), but
+# ingestion-manifest.json (write/manifest.ts) is deliberately committed --
+# `ingest.ts --check` diffs a fresh fetch's manifest against the last
+# *committed* one to detect upstream changes without running a full build.
+# `.cache-v2/*` (not a bare trailing-slash `.cache-v2/`) is required for the
+# negation below to work -- git can't re-include a file whose parent
+# directory is itself excluded.
+scripts/ingest/.cache-v2/*
+!scripts/ingest/.cache-v2/ingestion-manifest.json
 data-authoring/reference-export.csv
 
 # V2 exploration DB (data-authoring/v2-explore/) — raw third-party pulls and

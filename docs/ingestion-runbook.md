@@ -9,66 +9,63 @@ does*, see [architecture.md](architecture.md)'s "Scripts" table — this doc is
 ## Order
 
 ```sh
-npm run ingest:all   # runs everything below in order, in one shot
+npm run ingest   # fetch, build, slug-check, sprites, manifest -- runs everything in order, in one shot
 ```
 
-Or step by step, when you only need part of the chain:
+`scripts/ingest/ingest.ts` is the only ingestion entry point — there is no
+step-by-step equivalent of the old per-script npm commands any more. Its
+internal steps, in order:
+
+1. **fetch** — pulls fresh GAME_MASTER (`alexelgt/game_masters`),
+   `pokemon-go-api.github.io`'s pokedex/types/mega/raidboss files, and the
+   pokemongo-shiny community sheet into `scripts/ingest/.cache-v2/`. Always
+   re-fetches (no live pogoapi.net dependency any more — the one thing it
+   used to supply that GAME_MASTER doesn't, medal display names, comes from
+   the committed `vendor/pogoapi-snapshot/badges.json` snapshot instead).
+2. **build** — runs the `scripts/ingest/transform/*.ts` modules over that
+   cache and writes `src/data/reference.json`, `src/data/reference-gaps.json`,
+   `src/data/reference-version.ts`, and the sprite manifest
+   (`scripts/ingest/write/*.ts`).
+3. **slug-check** — inline port of the old `check-slug-stability.ts`: fails
+   loudly if a species/form/mega-variant/medal slug the last *committed*
+   `reference.json` had has vanished, unaccounted for.
+4. **sprites** — `fetch-sprites.ts` downloads sprite art referenced by the
+   cache (skip-if-cached), then `build-sprites.ts` converts it to WebP into
+   `public/sprites/`. Skip with `npm run ingest -- --skip-sprites` (the extra
+   `--` is required for npm to forward the flag instead of swallowing it).
+5. **manifest** — writes `scripts/ingest/.cache-v2/ingestion-manifest.json`
+   (per-source fetch fingerprints: GAME_MASTER's latest commit SHA, content
+   hashes for the pokemon-go-api files and the shiny sheet). This one file is
+   committed (see `.gitignore`), unlike the rest of `.cache-v2/`.
 
 ```sh
-npm run ingest:fetch          # 1. pull/cache pokemon-go-api + pogoapi.net data (resumable)
-npm run ingest:fetch-sprites  # 2. download sprite art referenced by that cache (resumable)
-npm run ingest:build          # 3. build src/data/reference.json + reference-gaps.json + the sprite manifest
-npm run ingest:build-sprites  # 4. convert the cached sprites to WebP into public/sprites/
-npm run ingest:check-slugs    # 5. fail loudly if a slug vanished without a rename
+npm run ingest:check   # fetch + write manifest + diff against the last committed
+                        # manifest only -- skips build/sprites/slug-check entirely,
+                        # exits non-zero if any upstream source changed
 ```
 
-Then, only if you have manual corrections to apply (a new costume, a slug
-fix, a data-quality correction found via Coverage Report):
+Use `ingest:check` to answer "has anything upstream changed since the
+reference data currently shipped was built" without paying for a full build.
 
-```sh
-npm run ingest:csv:export     # dump current reference data to CSV for review
-npm run ingest:csv:template   # blank CSV with the right headers, if adding new rows
-npm run ingest:csv:import     # merge a filled-in CSV back into reference.json
-```
-
-## Why this order
-
-- `ingest:fetch` populates the disk cache (`scripts/ingest/.cache-v2/`) that
-  everything else reads from — running any later step first just reuses
-  whatever's already cached (or errors if nothing's cached yet).
-- `ingest:fetch-sprites` walks that cache for every sprite URL (species,
-  region forms, costumes, mega/Gigantamax) and downloads the originals —
-  independent of `ingest:build`, but both read the `ingest:fetch` cache.
-  Already-downloaded files are skipped on re-run.
-- `ingest:build` must run before `ingest:build-sprites` — it's what writes
-  `sprite-manifest.json` (slug → source image URLs), which
-  `ingest:build-sprites` reads to know which cached file promotes to which
-  `public/sprites/` path.
-- `ingest:build-sprites` converts each cached PNG to WebP (smaller, natively
-  supported everywhere this app ships) into `public/sprites/` — the only
-  thing that should ever write there. It skips a `.webp` file that's already
-  present, so re-running after adding a handful of new sprites doesn't
-  re-encode the other ~7,000.
-- The CSV round-trip (`export` → hand-edit → `import`) is a separate,
-  optional path for corrections that don't come from the automated sources
-  at all — run it after `ingest:build`, not instead of it, since
-  `ingest:build` regenerates `reference.json` wholesale and doesn't know
-  about your hand-edits.
+There is no manual-CSV-correction workflow any more — `ingest:csv:export/
+template/import` (`scripts/ingest/csv-authoring.ts`) was removed along with
+the rest of the old per-script pipeline. `src/data/reference-csv-format.ts`
+still exists, but only as the in-app Coverage Report's own export/read
+format now — it has no ingestion-side writer.
 
 ## Known pitfalls
 
-- **Silent skip**: a hand-edited CSV re-imported via `ingest:csv:import` only
-  updates fields the CSV format actually covers
-  (`src/data/reference-csv-format.ts`) — a correction to a field outside that
-  shape won't error, it just won't apply. Check the field is in that column
-  list before trusting a CSV-based fix.
-- **Slug stability**: `npm run ingest:check-slugs`
-  (`scripts/ingest/check-slug-stability.ts`) diffs the working tree's
+- **Slug stability**: the inline slug-check step diffs the freshly-built
   `reference.json` slugs against the last committed version and fails if a
-  species or form slug vanished without a matching
-  `src/db/slug-renames.ts` entry, or if any mega-variant slug vanished at
-  all (no rename mechanism exists for those). Run it as part of every
-  ingestion pass, before committing.
+  species, form, mega-variant, or **medal** slug vanished without a matching
+  `src/db/slug-renames.ts` entry (species/form only — mega variants and
+  medals have no rename mechanism, so any disappearance there fails the
+  build every time). Medal slugs matter here because they depend on a
+  subsequence-alignment join between GAME_MASTER and the vendored
+  `badges.json` snapshot (`scripts/ingest/sources/pogoapi-badges.ts`) — if
+  that alignment ever degrades, `medal_progress_personal.medal_slug` (a live
+  FK with no other automated drift detection) would silently break sync for
+  any user with medal progress.
 - **Costume-form renames don't auto-generate**: `src/db/slug-renames.ts` is
   only ever auto-populated for non-costume forms (Standard/region/Gigantamax),
   matched by dex number + form name + gender against the previously-committed

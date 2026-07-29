@@ -16,6 +16,17 @@ export interface GameMasterEntry {
   data?: Record<string, unknown>;
 }
 
+// --- Fetch -------------------------------------------------------------
+// The raw dump is hosted by alexelgt/game_masters (see
+// docs/ingestion-runbook.md's "pokemon-go-api submodule is reference-only"
+// section for how that repo relates to the pokemon-go-api project this
+// pipeline also consumes) — confirmed live: `master` returns 200,
+// `main` 404s, this repo has no `main` branch. Cache-relative path follows
+// the same "<source>/<file>" convention as PGAPI_FILES in
+// sources/pokemon-go-api.ts.
+export const GAME_MASTER_URL = "https://raw.githubusercontent.com/alexelgt/game_masters/master/GAME_MASTER.json";
+export const GAME_MASTER_CACHE_PATH = "game-master/GAME_MASTER.json";
+
 // --- Per-category record shapes -------------------------------------------
 // Deliberately narrow: only the fields this pipeline reads. Every record
 // also carries a `templateId` (from `data.templateId`) for traceability and,

@@ -1946,8 +1946,20 @@
   },
   {
     "kind": "inherited-availability",
+    "speciesSlug": "frillish",
+    "formSlug": "frillish-female-female",
+    "note": "Shadow/Dynamax/Gigantamax/evolves availability inherited from the species row, not verified per-form (the source CSV only varies Shiny at this granularity)."
+  },
+  {
+    "kind": "inherited-availability",
     "speciesSlug": "jellicent",
     "formSlug": "jellicent-female-male",
+    "note": "Shadow/Dynamax/Gigantamax/evolves availability inherited from the species row, not verified per-form (the source CSV only varies Shiny at this granularity)."
+  },
+  {
+    "kind": "inherited-availability",
+    "speciesSlug": "jellicent",
+    "formSlug": "jellicent-female-female",
     "note": "Shadow/Dynamax/Gigantamax/evolves availability inherited from the species row, not verified per-form (the source CSV only varies Shiny at this granularity)."
   },
   {
@@ -2792,6 +2804,12 @@
   },
   {
     "kind": "inherited-availability",
+    "speciesSlug": "pyroar",
+    "formSlug": "pyroar-female-female",
+    "note": "Shadow/Dynamax/Gigantamax/evolves availability inherited from the species row, not verified per-form (the source CSV only varies Shiny at this granularity)."
+  },
+  {
+    "kind": "inherited-availability",
     "speciesSlug": "flabebe",
     "formSlug": "flabebe-blue-female",
     "note": "Shadow/Dynamax/Gigantamax/evolves availability inherited from the species row, not verified per-form (the source CSV only varies Shiny at this granularity)."
@@ -3004,6 +3022,12 @@
     "kind": "inherited-availability",
     "speciesSlug": "meowstic",
     "formSlug": "meowstic-female-male",
+    "note": "Shadow/Dynamax/Gigantamax/evolves availability inherited from the species row, not verified per-form (the source CSV only varies Shiny at this granularity)."
+  },
+  {
+    "kind": "inherited-availability",
+    "speciesSlug": "meowstic",
+    "formSlug": "meowstic-female-female",
     "note": "Shadow/Dynamax/Gigantamax/evolves availability inherited from the species row, not verified per-form (the source CSV only varies Shiny at this granularity)."
   },
   {
@@ -3705,7 +3729,19 @@
   {
     "kind": "inherited-availability",
     "speciesSlug": "indeedee",
+    "formSlug": "indeedee-female-male",
+    "note": "Shadow/Dynamax/Gigantamax/evolves availability inherited from the species row, not verified per-form (the source CSV only varies Shiny at this granularity)."
+  },
+  {
+    "kind": "inherited-availability",
+    "speciesSlug": "indeedee",
     "formSlug": "indeedee-female-female",
+    "note": "Shadow/Dynamax/Gigantamax/evolves availability inherited from the species row, not verified per-form (the source CSV only varies Shiny at this granularity)."
+  },
+  {
+    "kind": "inherited-availability",
+    "speciesSlug": "indeedee",
+    "formSlug": "indeedee-male-male",
     "note": "Shadow/Dynamax/Gigantamax/evolves availability inherited from the species row, not verified per-form (the source CSV only varies Shiny at this granularity)."
   },
   {
@@ -3814,6 +3850,12 @@
     "kind": "inherited-availability",
     "speciesSlug": "oinkologne",
     "formSlug": "oinkologne-female-male",
+    "note": "Shadow/Dynamax/Gigantamax/evolves availability inherited from the species row, not verified per-form (the source CSV only varies Shiny at this granularity)."
+  },
+  {
+    "kind": "inherited-availability",
+    "speciesSlug": "oinkologne",
+    "formSlug": "oinkologne-female-female",
     "note": "Shadow/Dynamax/Gigantamax/evolves availability inherited from the species row, not verified per-form (the source CSV only varies Shiny at this granularity)."
   },
   {
@@ -3999,7 +4041,7 @@
   {
     "kind": "missing-species",
     "speciesSlug": "dex-902",
-    "note": "Species #902 is not reproducible from the current V2 sources — see docs/v2-data-source-findings.md."
+    "note": "Species #902 is not reproducible from the current sources — see docs/v2-data-source-findings.md."
   },
   {
     "kind": "gigantamax-mismatch",
