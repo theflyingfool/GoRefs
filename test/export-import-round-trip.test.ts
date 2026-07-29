@@ -32,6 +32,7 @@ const referenceData: ReferenceData = {
       gender: "male",
       evolves: true,
       shinyAvailable: true,
+      shinyReleasedAt: "2018-03-25",
       shadowAvailable: false,
       dynamaxAvailable: false,
       regionalExclusive: false,

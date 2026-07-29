@@ -118,9 +118,6 @@ async function build(): Promise<ReferenceData> {
     ...weatherBoosts.map((wb) => wb.typeSlug),
   ]);
 
-  // FormWithShinyDebut's extra shinyReleasedAt field is dropped here — the
-  // schema doesn't have a column for it yet (see transform/species.ts's
-  // header comment: a later schema task adds it and stops dropping it).
   const forms: Form[] = speciesResult.forms.map((f) => ({
     slug: f.slug,
     speciesSlug: f.speciesSlug,
@@ -129,6 +126,7 @@ async function build(): Promise<ReferenceData> {
     gender: f.gender,
     evolves: f.evolves,
     shinyAvailable: f.shinyAvailable,
+    shinyReleasedAt: f.shinyReleasedAt,
     shadowAvailable: f.shadowAvailable,
     dynamaxAvailable: f.dynamaxAvailable,
     regionalExclusive: f.regionalExclusive,

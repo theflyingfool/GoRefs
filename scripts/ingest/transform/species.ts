@@ -14,14 +14,12 @@ import type { ShinySheetSource } from "../sources/shiny-sheet";
 import type { Form, FormType, Gender, MegaVariant, Rarity, Species } from "../../../src/db/types";
 import type { ReferenceData, ReferenceGap } from "../../../src/db/reference-data";
 
-// A Form plus the shiny *debut date* the pokemongo-shiny sheet publishes.
-// `shinyAvailable` is derived from it (never set independently) so the two
-// can't disagree. The extra field is dropped by whoever writes reference.json
-// until the schema task adds the real column.
-export interface FormWithShinyDebut extends Form {
-  /** ISO date (YYYY-MM-DD) the shiny form was released, or null if never released. */
-  shinyReleasedAt: string | null;
-}
+// Form already carries shinyReleasedAt (the shiny *debut date* the
+// pokemongo-shiny sheet publishes); `shinyAvailable` is derived from it
+// (never set independently) so the two can't disagree. This alias is kept
+// so call sites built against the pre-schema-column name don't need to
+// change; it's structurally identical to Form now.
+export type FormWithShinyDebut = Form;
 
 export interface SpeciesBuildResult {
   species: Species[];

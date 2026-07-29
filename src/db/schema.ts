@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS form (
   gender TEXT NOT NULL CHECK (gender IN ('male', 'female', 'unknown')),
   evolves INTEGER NOT NULL CHECK (evolves IN (0, 1)),
   shiny_available INTEGER NOT NULL CHECK (shiny_available IN (0, 1)),
+  shiny_released_at TEXT,
   shadow_available INTEGER NOT NULL CHECK (shadow_available IN (0, 1)),
   dynamax_available INTEGER NOT NULL CHECK (dynamax_available IN (0, 1)),
   regional_exclusive INTEGER NOT NULL CHECK (regional_exclusive IN (0, 1)),
