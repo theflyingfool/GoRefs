@@ -11,7 +11,7 @@
 //   tsx scripts/ingest/ingest.ts                 # full run: fetch, build,
 //                                                 # slug-check, sprites, manifest
 //   tsx scripts/ingest/ingest.ts --skip-sprites   # skip the sprite fetch/build step
-//   tsx scripts/ingest/ingest.ts --skip-sqlite    # reserved for a later task, no-op today
+//   tsx scripts/ingest/ingest.ts --skip-sqlite    # skip materializing reference.sqlite
 //   tsx scripts/ingest/ingest.ts --check          # fetch + build an in-memory manifest
 //                                                 # (never written to disk) + diff against
 //                                                 # the last committed manifest only;
@@ -36,6 +36,7 @@ import { buildPvp } from "./transform/pvp";
 
 import { writeReferenceJson } from "./write/reference-json";
 import { writeSpriteManifest } from "./write/sprite-manifest";
+import { writeReferenceSqlite } from "./write/sqlite";
 import { writeManifest, buildManifest, loadCommittedManifest, diffManifests, MANIFEST_REPO_RELATIVE_PATH } from "./write/manifest";
 
 import { fetchSprites } from "./fetch-sprites";
@@ -61,7 +62,7 @@ interface Flags {
   check: boolean;
 }
 
-function parseFlags(argv: string[]): Flags {
+export function parseFlags(argv: string[]): Flags {
   return {
     skipSprites: argv.includes("--skip-sprites"),
     skipSqlite: argv.includes("--skip-sqlite"),
@@ -261,6 +262,13 @@ async function sprites(): Promise<void> {
   await buildSprites();
 }
 
+// --- SQLite ----------------------------------------------------------------
+
+async function sqlite(referenceData: ReferenceData): Promise<void> {
+  const outPath = writeReferenceSqlite(referenceData);
+  console.log(`Wrote reference SQLite file -> ${outPath}`);
+}
+
 // --- Manifest --------------------------------------------------------------
 
 async function manifest(): Promise<void> {
@@ -305,10 +313,24 @@ async function runCheckMode(): Promise<void> {
 
 // --- Orchestrator --------------------------------------------------------
 
-interface PipelineStep {
+export interface PipelineStep {
   name: string;
   run: () => Promise<void>;
   skip?: (flags: Flags) => boolean;
+}
+
+// Exported (not inlined into main()) so a test can exercise the actual
+// skip/run wiring with fake steps and assert a skipped step's `run` is truly
+// never called -- not just that a "(skipped)" line gets logged.
+export async function runPipeline(steps: PipelineStep[], flags: Flags): Promise<void> {
+  for (const step of steps) {
+    if (step.skip?.(flags)) {
+      console.log(`\n=== ${step.name} (skipped) ===`);
+      continue;
+    }
+    console.log(`\n=== ${step.name} ===`);
+    await step.run();
+  }
 }
 
 async function main(): Promise<void> {
@@ -337,28 +359,28 @@ async function main(): Promise<void> {
       },
     },
     { name: "sprites", run: sprites, skip: (f) => f.skipSprites },
+    {
+      name: "sqlite",
+      run: async () => {
+        if (!referenceData) throw new Error("sqlite step ran before build");
+        await sqlite(referenceData);
+      },
+      skip: (f) => f.skipSqlite,
+    },
     { name: "manifest", run: manifest },
   ];
 
-  if (flags.skipSqlite) {
-    // Reserved for a later task (SQLite output step) — no-op today, just
-    // acknowledged so the flag doesn't error as unrecognized.
-    console.log("--skip-sqlite: no-op (no SQLite output step exists yet).");
-  }
-
-  for (const step of steps) {
-    if (step.skip?.(flags)) {
-      console.log(`\n=== ${step.name} (skipped) ===`);
-      continue;
-    }
-    console.log(`\n=== ${step.name} ===`);
-    await step.run();
-  }
+  await runPipeline(steps, flags);
 
   console.log("\nIngest complete.");
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+// Guarded so `import`-ing this module (e.g. from a test, to reach
+// parseFlags/runPipeline/PipelineStep) doesn't also kick off a real fetch --
+// only running it directly (`tsx scripts/ingest/ingest.ts`) does.
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}

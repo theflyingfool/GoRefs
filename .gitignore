@@ -21,6 +21,7 @@ src-tauri/target/
 playwright-report/
 test-results/
 dummy.sqlite
+reference.sqlite
 scripts/ingest/.cache/
 # .cache-v2/ is otherwise gitignored (it's fetched-source scratch data), but
 # ingestion-manifest.json (write/manifest.ts) is deliberately committed --
