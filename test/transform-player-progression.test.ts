@@ -113,22 +113,27 @@ test("with vendored badge data, medal name/description come from the snapshot (v
   assert.deepEqual(medals, [{ slug: "triathlete", name: "Triathlete", description: "Achieve a seven-day catch/spin streak.", isEventMedal: false }]);
 });
 
-test("a vendored candidate whose rank never matches the badges present is never consumed by alignVendorBadges, so the medal falls back to the id-derived name", () => {
+test("a vendored candidate whose rank never matches any badge present makes buildPlayerProgression throw instead of silently falling back", () => {
   // alignVendorBadges itself (test/pogoapi-badges-source.test.ts) is where
   // the join logic lives and is unit-tested directly; this just confirms
-  // buildPlayerProgression wires that result through to the medal it
-  // builds rather than trusting the vendored array positionally.
-  const { medals } = buildPlayerProgression(
-    gameMasterFrom([
-      playerLevel(PLAYER_LEVEL_CURVE),
-      ["badgeSettings", { templateId: "BADGE_7_DAY_STREAKS", badgeType: "BADGE_7_DAY_STREAKS", badgeRank: 5, targets: [1, 10, 50, 100] }],
-    ]),
-    // rank 2 never appears among the one badge present (rank 5), so
-    // alignVendorBadges never consumes it.
-    [{ name: "Triathlete", description: "Achieve a seven-day catch/spin streak.", rank: 2 }],
+  // buildPlayerProgression propagates alignVendorBadges' now-hard failure
+  // rather than swallowing it and trusting a partial result. (Before the
+  // consumed-everything assertion was added, this silently fell back to
+  // the id-derived medal name instead — exactly the misalignment risk the
+  // assertion exists to catch.)
+  assert.throws(
+    () =>
+      buildPlayerProgression(
+        gameMasterFrom([
+          playerLevel(PLAYER_LEVEL_CURVE),
+          ["badgeSettings", { templateId: "BADGE_7_DAY_STREAKS", badgeType: "BADGE_7_DAY_STREAKS", badgeRank: 5, targets: [1, 10, 50, 100] }],
+        ]),
+        // rank 2 never appears among the one badge present (rank 5), so
+        // alignVendorBadges never consumes it.
+        [{ name: "Triathlete", description: "Achieve a seven-day catch/spin streak.", rank: 2 }],
+      ),
+    /alignVendorBadges: stalled at vendored index 0 of 1/,
   );
-
-  assert.deepEqual(medals, [{ slug: "7-day-streaks", name: "7 Day Streaks", description: "", isEventMedal: false }]);
 });
 
 test("badges past the end of the vendored array (added to GAME_MASTER since the snapshot) still fall back to the id-derived name", () => {
@@ -155,10 +160,15 @@ test("real vendored snapshot: BADGE_7_DAY_STREAKS at index 0 round-trips to the 
 
   // BADGE_7_DAY_STREAKS is GAME_MASTER's real index-0 badge (see
   // .superpowers/sdd/task-3-fix-medals-report.md); the vendored snapshot is
-  // positionally aligned, so index 0 there must be the same badge.
+  // positionally aligned, so index 0 there must be the same badge. Only
+  // that first (real, not fabricated) entry is passed through here — the
+  // fixture badgeSettings below deliberately carries just the one matching
+  // badge, and alignVendorBadges now throws unless every vendored entry it's
+  // given gets consumed, so passing the full 597-entry snapshot against a
+  // one-badge fixture would stall instead of testing what this test is for.
   const { medals } = buildPlayerProgression(
     gameMasterFrom([playerLevel(PLAYER_LEVEL_CURVE), ["badgeSettings", { templateId: "BADGE_7_DAY_STREAKS", badgeType: "BADGE_7_DAY_STREAKS", badgeRank: 5, targets: [1, 10, 50, 100] }]]),
-    vendorBadges,
+    [vendorBadges[0]],
   );
 
   assert.equal(medals.length, 1);

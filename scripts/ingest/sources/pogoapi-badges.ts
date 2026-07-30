@@ -36,8 +36,19 @@
 // what's actually happened so far), that vendored entry — and everything
 // vendored after it — would stop matching. Confirmed this doesn't occur in
 // practice (all 597 vendored entries matched against real data), but it's
-// a real edge the algorithm doesn't defend against; see
+// a real edge the algorithm doesn't defend against on its own — which is
+// why `alignVendorBadges` now asserts every vendored entry got consumed
+// and throws instead of returning a partial/misaligned result; see
 // test/pogoapi-badges-source.test.ts.
+//
+// Why this needs a hard assertion rather than just "fewer matches": a stall
+// partway through the walk does NOT necessarily shrink the matched slug
+// set — the walk can still consume a plausible-looking (but wrong)
+// subsequence for everything after the stall, meaning the medal slug list
+// stays byte-identical (the slug-stability check in ingest.ts passes
+// clean, and medal_progress_personal's FK stays safe) while every medal's
+// name/description past that point silently attaches to the wrong badge.
+// Nothing else in the pipeline would catch that.
 
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
@@ -80,6 +91,10 @@ export function loadVendorBadgeDisplayNames(): VendorBadgeDisplay[] {
  * vendored entry matched (a badge added to GAME_MASTER after the snapshot
  * was taken). See the module comment for why positional indexing alone
  * doesn't work and why this does.
+ *
+ * Throws if the walk stalls before consuming every vendored entry — see
+ * the module comment's "Why this needs a hard assertion" note for why a
+ * silent partial alignment is worse than a loud failure here.
  */
 export function alignVendorBadges(badgeSettings: BadgeSettingsRecord[], vendorBadges: VendorBadgeDisplay[]): (VendorBadgeDisplay | undefined)[] {
   const aligned: (VendorBadgeDisplay | undefined)[] = new Array(badgeSettings.length).fill(undefined);
@@ -90,6 +105,17 @@ export function alignVendorBadges(badgeSettings: BadgeSettingsRecord[], vendorBa
       aligned[gmIndex] = candidate;
       vendorIndex++;
     }
+  }
+  if (vendorIndex !== vendorBadges.length) {
+    const stalled = vendorBadges[vendorIndex];
+    throw new Error(
+      `alignVendorBadges: stalled at vendored index ${vendorIndex} of ${vendorBadges.length} ` +
+        `("${stalled.name}", rank ${stalled.rank}) — no remaining badgeSettings entry matched its rank in order. ` +
+        `This means the vendored snapshot is no longer a subsequence of GAME_MASTER's badgeSettings ` +
+        `(a vendored badge was likely removed from GAME_MASTER, not just had new badges inserted around it — ` +
+        `see the module comment's "Known limitation"). Refusing to return a partial/misaligned result: past this ` +
+        `point, medal name/description could silently attach to the wrong badge while the slug set stays identical.`,
+    );
   }
   return aligned;
 }

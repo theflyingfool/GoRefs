@@ -68,14 +68,32 @@ test("alignVendorBadges never consumes the same vendored entry twice, and stops 
 // 597 vendored entries matched in order (see
 // .superpowers/sdd/task-3-fix-medals-report.md). Recovering from a genuine
 // deletion would need a real key (or a fuzzier match), which is out of
-// scope for this fix.
-test("a vendored entry whose rank matches nothing remaining blocks its own match and every match after it", () => {
+// scope for this fix — but silently returning a misaligned result for that
+// case is worse than failing loudly, so `alignVendorBadges` now asserts
+// every vendored entry was consumed and throws if the walk stalled.
+test("a vendored entry whose rank matches nothing remaining throws instead of silently misaligning everything after it", () => {
   const badgeSettings = [badge("BADGE_A", 5)];
   const vendorBadges = [vendor("Alpha", 2), vendor("Beta", 5)];
 
-  const aligned = alignVendorBadges(badgeSettings, vendorBadges);
+  assert.throws(() => alignVendorBadges(badgeSettings, vendorBadges), /stalled at vendored index 0 of 2/);
+});
 
-  assert.equal(aligned[0], undefined);
+// The specific failure mode the review flagged: a stall *partway through*
+// the walk doesn't necessarily shrink the matched count in an obviously
+// wrong-looking way — everything before the stall still matches cleanly,
+// and (per the limitation above) once the pointer sticks, nothing after it
+// gets a chance to re-sync even if a later rank would otherwise have
+// matched. Confirms the assertion catches this mid-walk case too, not just
+// a stall at index 0.
+test("a stall partway through the walk (a gap the walk can't consume) throws, naming the stalled index", () => {
+  const badgeSettings = [badge("BADGE_A", 5), badge("BADGE_B", 9), badge("BADGE_C", 2)];
+  // "Beta" (rank 7) matches nothing remaining after "Alpha" is consumed —
+  // BADGE_B is rank 9, BADGE_C is rank 2 — so the walk stalls with "Beta"
+  // and "Gamma" both unconsumed, even though 1 of 3 vendored entries did
+  // match.
+  const vendorBadges = [vendor("Alpha", 5), vendor("Beta", 7), vendor("Gamma", 2)];
+
+  assert.throws(() => alignVendorBadges(badgeSettings, vendorBadges), /stalled at vendored index 1 of 3/);
 });
 
 test("loadVendorBadgeDisplayNames reads the real committed snapshot in its own file order, index 0 is Triathlete", () => {

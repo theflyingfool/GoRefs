@@ -47,8 +47,11 @@ export function detectMissingTypesGaps(forms: Form[], formTypes: FormType[]): Re
 }
 
 export function detectInheritedAvailabilityGaps(forms: Form[]): ReferenceGap[] {
-  // Fires for every non-base form (by design — the source CSV only varies
-  // Shiny per form, everything else is inherited from the species row).
+  // Fires for every non-base form (by design — transform/species.ts sets
+  // Dynamax/Gigantamax and evolves availability by form category
+  // (costume/region/Gigantamax), not from a per-form source, for every form
+  // but Standard. Shiny is the exception: it's looked up per form from the
+  // shiny sheet for all form kinds.
   return forms
     .filter((f) => f.formName !== "Standard")
     .map(
@@ -56,7 +59,7 @@ export function detectInheritedAvailabilityGaps(forms: Form[]): ReferenceGap[] {
         kind: "inherited-availability",
         speciesSlug: f.speciesSlug,
         formSlug: f.slug,
-        note: "Shadow/Dynamax/Gigantamax/evolves availability inherited from the species row, not verified per-form (the source CSV only varies Shiny at this granularity).",
+        note: "Shadow/Dynamax/Gigantamax/evolves availability for this form defaults by form category rather than being individually sourced (only Shiny is looked up per form).",
       }),
     );
 }

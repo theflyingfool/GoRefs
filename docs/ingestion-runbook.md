@@ -9,7 +9,7 @@ does*, see [architecture.md](architecture.md)'s "Scripts" table — this doc is
 ## Order
 
 ```sh
-npm run ingest   # fetch, build, slug-check, sprites, manifest -- runs everything in order, in one shot
+npm run ingest   # fetch, build, slug-check, sprites, sqlite, manifest -- runs everything in order, in one shot
 ```
 
 `scripts/ingest/ingest.ts` is the only ingestion entry point — there is no
@@ -36,15 +36,19 @@ internal steps, in order:
    cache (skip-if-cached), then `build-sprites.ts` converts it to WebP into
    `public/sprites/`. Skip with `npm run ingest -- --skip-sprites` (the extra
    `--` is required for npm to forward the flag instead of swallowing it).
-5. **manifest** — writes `scripts/ingest/.cache-v2/ingestion-manifest.json`
+5. **sqlite** — materializes `reference.sqlite` from the same in-memory
+   `ReferenceData` the build step produced. Skip with
+   `npm run ingest -- --skip-sqlite`.
+6. **manifest** — writes `scripts/ingest/.cache-v2/ingestion-manifest.json`
    (per-source fetch fingerprints: GAME_MASTER's latest commit SHA, content
    hashes for the pokemon-go-api files and the shiny sheet). This one file is
    committed (see `.gitignore`), unlike the rest of `.cache-v2/`.
 
 ```sh
-npm run ingest:check   # fetch + write manifest + diff against the last committed
-                        # manifest only -- skips build/sprites/slug-check entirely,
-                        # exits non-zero if any upstream source changed
+npm run ingest:check   # fetch + build an in-memory manifest (never written to disk)
+                        # + diff against the last committed manifest only -- skips
+                        # build/sprites/slug-check entirely, exits non-zero if any
+                        # upstream source changed
 ```
 
 Use `ingest:check` to answer "has anything upstream changed since the
@@ -80,7 +84,7 @@ format now — it has no ingestion-side writer.
 
 ## Checkpoint before committing
 
-Open the in-app **Coverage Report** (or re-run `ingest:build` and check
+Open the in-app **Coverage Report** (or re-run `npm run ingest` and check
 `src/data/reference-gaps.json`) and confirm the gap count moved the
 direction you expect — a correction pass that *increases* gaps somewhere you
 didn't touch usually means an ordering mistake above, not new missing data.

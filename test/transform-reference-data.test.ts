@@ -51,8 +51,12 @@ function buildAll(): ReferenceData {
   // Real vendored data (not a fixture) — this is the template Task 4 should
   // copy for the orchestrator, and buildPlayerProgression's second argument
   // is required precisely so a call site can't silently drop it and
-  // regenerate the id-derived-medal regression this task fixed.
-  const progression = buildPlayerProgression(gameMaster, loadVendorBadgeDisplayNames());
+  // regenerate the id-derived-medal regression this task fixed. Trimmed to
+  // just the one real entry ("Triathlete", rank 5) that matches the single
+  // BADGE_7_DAY_STREAKS fixture badge above — alignVendorBadges now throws
+  // unless every vendored entry it's given gets consumed, so the full
+  // 597-entry snapshot against this one-badge fixture would stall.
+  const progression = buildPlayerProgression(gameMaster, [loadVendorBadgeDisplayNames()[0]]);
   const pvp = buildPvp(gameMaster);
 
   const allTypeSlugs = new Set([
