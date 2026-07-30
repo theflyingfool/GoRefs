@@ -11,7 +11,7 @@
 //
 // The "has it changed" check compares against REFERENCE_DATA_VERSION, a hash
 // baked into src/data/reference-version.ts at build time (see
-// scripts/ingest/build-reference.ts) rather than computed here — a runtime
+// scripts/ingest/write/reference-json.ts) rather than computed here — a runtime
 // JSON.stringify + hash of the full multi-thousand-row reference dataset ran
 // on every single boot even when nothing had changed, purely to answer a
 // question the build already knows the answer to.
@@ -244,6 +244,15 @@ export async function syncReferenceData(db: SQLiteDBConnection, referenceData: R
         gender: f.gender,
         evolves: f.evolves,
         shinyAvailable: f.shinyAvailable,
+        // `?? null`, not a straight passthrough: the reference.json committed
+        // on this branch predates this field (built before this task), so
+        // `f.shinyReleasedAt` reads as `undefined` there today, not `null`.
+        // Verified drizzle already binds an undefined field to SQL NULL here
+        // (a test with the key deleted entirely passes either way), so this
+        // isn't fixing a crash — it's making the "absent key means never
+        // released" contract explicit instead of relying on drizzle's
+        // undefined-handling as an implementation detail.
+        shinyReleasedAt: f.shinyReleasedAt ?? null,
         shadowAvailable: f.shadowAvailable,
         dynamaxAvailable: f.dynamaxAvailable,
         regionalExclusive: f.regionalExclusive,

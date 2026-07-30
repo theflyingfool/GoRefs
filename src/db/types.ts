@@ -65,6 +65,8 @@ export interface Form {
   gender: Gender;
   evolves: boolean;
   shinyAvailable: boolean;
+  /** ISO date (YYYY-MM-DD) the shiny form was released, or null if never released. Derives shinyAvailable (shinyReleasedAt !== null); never set independently. */
+  shinyReleasedAt: string | null;
   shadowAvailable: boolean;
   dynamaxAvailable: boolean;
   regionalExclusive: boolean;

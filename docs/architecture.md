@@ -57,7 +57,7 @@ instead, linked from here.*
 | `in-memory-store.ts` | Query/filter engine behind `sqlite-repository.ts`; personal-data mutations call a hook that writes through to real SQLite. |
 | `personal-demo-seed.ts` | Hand-written demo toggles seeding `scripts/build-dummy-db.ts`'s generated `dummy.sqlite` fixture — never used by the real on-device backend. |
 | `completion-stats-sql.ts` | Real parameterized SQL for the completion-stats feature, one query shape per lens kind. |
-| `reference-csv-format.ts` | The flat CSV column shape shared by the ingestion pipeline's authoring round-trip and the in-app Coverage Report, so a hand-edited export round-trips through `npm run ingest:csv:import` unchanged. |
+| `reference-csv-format.ts` | The flat CSV column shape the in-app Coverage Report reads/writes. The ingestion pipeline's own CSV authoring round-trip (`ingest/csv-authoring.ts`) was removed — this file is now solely a Coverage Report dependency. |
 | `reference.json` / `reference-gaps.json` | Generated build artifacts — see "Scripts" below, not hand-authored. |
 
 ## UI helpers (`src/ui/`) and shared (`src/shared/`)
@@ -74,14 +74,16 @@ instead, linked from here.*
 |---|---|
 | `bump-version.ts` (`npm run version:bump`) | Bumps `package.json` semver + `android/app/build.gradle` `versionName`/`versionCode` together, per docs/release-checklist.md's release workflow. |
 | `build-dummy-db.ts` (`npm run build:dummy-db`) | Generates a real `dummy.sqlite` file at the repo root for inspecting the schema with an external SQLite tool. |
-| `ingest/build-reference.ts` (`npm run ingest:build`) | Orchestrator: builds species/forms/megas plus the Tier-1 tables (moves, evolutions, type effectiveness, player progression, PvP, raids, community days) from the `ingest:fetch` cache, emits `src/data/reference.json` and `reference-gaps.json`. Slugs are built from `pokemon-go-api`'s enum ids (`id`/`formId`), not display names — see [v2-schema-design.md](v2-schema-design.md)'s slug-generation section. |
-| `ingest/fetch-reference-data.ts` (`npm run ingest:fetch`) | Pulls every `pokemon-go-api` + pogoapi.net endpoint into a disk cache (`scripts/ingest/.cache-v2/`, resumable). |
-| `ingest/fetch-sprites.ts` (`npm run ingest:fetch-sprites`) | Downloads every sprite URL referenced by the cached `pokedex.json` (species, region forms, costumes, mega/Gigantamax). |
-| `ingest/build-sprites.ts` (`npm run ingest:build-sprites`) | Converts cached sprite downloads to WebP into `public/sprites/`, using the slug → URL manifest `build-reference.ts` writes. |
-| `ingest/http-cache.ts` | Generic fetch-and-cache helper shared by the two fetch scripts above. |
-| `ingest/csv-authoring.ts` (`npm run ingest:csv:*`) | Manual-correction workflow: export current data to CSV, emit a blank template, or import a filled CSV back into `reference.json` — independent of which ingestion source produced the data. |
-| `ingest/gap-detection.ts` | Stateless checks over the current `reference.json` for missing key fields — no external fetch. |
-| `ingest/check-slug-stability.ts` (`npm run ingest:check-slugs`) | Diffs the working tree's `reference.json` slugs against the last commit; fails if one vanished without a `src/db/slug-renames.ts` entry. |
+| `ingest/ingest.ts` (`npm run ingest`, `npm run ingest:check`) | The orchestrator — the only ingestion entry point. Runs fetch → build → slug-check → sprites → sqlite → manifest as a `PipelineStep[]` list (`npm run ingest -- --skip-sprites`/`--skip-sqlite` skip individual steps — note the `--` npm needs to forward flags; `npm run ingest:check` fetches + builds an in-memory-only manifest (never written to disk) and diffs it against the last *committed* manifest, skipping build/sprites/sqlite/slug-check, exiting non-zero if any upstream source changed). Consumes only GAME_MASTER (`alexelgt/game_masters`), `pokemon-go-api.github.io`'s pokedex/types/mega files, and the pokemongo-shiny community sheet — no live pogoapi.net fetch. `raidboss.json` is deliberately not fetched (raid-boss ingestion was dropped; nothing consumes it, so fetching/hashing it would only feed `ingest:check` false positives on raid-rotation churn). |
+| `ingest/sources/game-master.ts`, `sources/pokemon-go-api.ts`, `sources/shiny-sheet.ts`, `sources/pogoapi-badges.ts` | Typed, parse-only accessors over each raw source (already-`JSON.parse()`d content in, indexed lookups out) — no file I/O beyond `pogoapi-badges.ts`'s read of the committed `vendor/pogoapi-snapshot/badges.json` (medal display names GAME_MASTER doesn't publish). `ingest.ts` owns fetching the bytes these wrap. |
+| `ingest/transform/species.ts`, `transform/moves.ts`, `transform/evolutions.ts`, `transform/player-progression.ts`, `transform/pvp.ts` | Pure functions: typed source data in, typed reference-table rows out. `transform/species.ts` also owns the comparative-gap constants (`buildComparativeGaps`, `FAMILY_ROOT_GAP_NOTES`, `KNOWN_MISSING_SPECIES_DEX`, `KNOWN_GIGANTAMAX_MISMATCH_DEX`) and slug helpers (`slugFor`, `formTokenFromFormId`). Slugs are built from `pokemon-go-api`'s enum ids (`id`/`formId`), not display names — see [v2-schema-design.md](v2-schema-design.md)'s slug-generation section. Raid bosses and Community Days are dropped entirely — no transform builds them; those `ReferenceData` fields stay empty arrays. |
+| `ingest/write/reference-json.ts` | Serializes a built `ReferenceData` to `src/data/reference.json` + `src/data/reference-gaps.json` (stateless gaps from `gap-detection.ts` + comparative gaps from `transform/species.ts`) + bakes a content hash into `src/data/reference-version.ts`. |
+| `ingest/write/sprite-manifest.ts` | Writes the slug → sprite-source-URL manifest (`scripts/ingest/.cache-v2/sprite-manifest.json`) that `build-sprites.ts` reads. |
+| `ingest/write/sqlite.ts` | Materializes `reference.sqlite` at the repo root from a built `ReferenceData` — real ingested data, reference tables only (no personal tables, no demo seed). Gitignored, regenerated by every `npm run ingest` (skippable with `--skip-sqlite`). Browse it with `npm run studio` (`drizzle.config.studio.ts`) or any SQLite tool. |
+| `ingest/write/manifest.ts` | Writes `scripts/ingest/.cache-v2/ingestion-manifest.json` — per-source fetch fingerprints (GAME_MASTER's latest commit SHA touching `GAME_MASTER.json`; content hashes for the pokemon-go-api files and the shiny sheet) plus a fetch timestamp. This one file is deliberately committed (see `.gitignore`'s negation) so `ingest:check` has something to diff a fresh fetch against. |
+| `ingest/fetch-sprites.ts`, `build-sprites.ts` | Exported functions `ingest.ts`'s sprites step calls (not standalone scripts). `fetchSprites()` downloads every sprite URL referenced by the cached `pokedex.json`, skip-if-cached. `buildSprites()` converts cached PNGs to WebP into `public/sprites/`, using the sprite manifest above — the only thing that should ever write there. |
+| `ingest/http-cache.ts` | Generic fetch-and-cache helper (`fetchToCache`, always-fresh by default; `{ skipIfExists: true }` for sprites) with hash-on-write sidecars (`readCachedHash`) that `write/manifest.ts` reads. |
+| `ingest/gap-detection.ts` | Stateless checks over a `ReferenceData` value for missing key fields — no external fetch. |
 | `ingest/slug.ts` | Shared slug generator (`slugify(name/form/costume/gender)`) — used to assemble the final form/mega slug string from already-typo-proof tokens. |
 
 For details on scripts and command execution, see
@@ -113,7 +115,7 @@ lint + typecheck + this suite on every PR and push to `master`.
 
 - Root-level `Blank Pokedex Project (Living Column) - Forms w_ Dynamax.csv` — the species/form skeleton.
 - `data-authoring/event-pokemon.csv`, `data-authoring/gigantamax-species.json` — tracked authoring inputs.
-- `data-authoring/reference-export.csv` — gitignored, regenerated via `npm run ingest:csv:export`.
+- `data-authoring/reference-export.csv` — gitignored. The `ingest:csv:export` writer that regenerated it was removed with the rest of the old ingestion CSV round-trip; this path is now only ever produced by the in-app Coverage Report.
 
 ## Key patterns
 

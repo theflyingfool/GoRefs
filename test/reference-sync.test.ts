@@ -33,6 +33,7 @@ function fixture(speciesSlugs: string[]): ReferenceData {
       gender: "male",
       evolves: false,
       shinyAvailable: true,
+      shinyReleasedAt: "2018-03-25",
       shadowAvailable: false,
       dynamaxAvailable: false,
       regionalExclusive: false,
@@ -82,6 +83,59 @@ test("syncReferenceData populates reference tables from scratch", async () => {
     forms.map((f) => f.slug),
     ["bulbasaur-standard", "charmander-standard"],
   );
+});
+
+test("syncReferenceData round-trips shinyReleasedAt, including the null (never released) case", async () => {
+  const db = await freshlyMigratedDb();
+  const data = fixture(["bulbasaur"]);
+  // A second form on the same species with no shiny-sheet debut match —
+  // must persist as SQL NULL, not crash or coerce to a string.
+  data.forms.push({
+    slug: "bulbasaur-costume-unreleased",
+    speciesSlug: "bulbasaur",
+    formName: "Costume",
+    costumeName: "unreleased-test",
+    gender: "male",
+    evolves: false,
+    shinyAvailable: false,
+    shinyReleasedAt: null,
+    shadowAvailable: false,
+    dynamaxAvailable: false,
+    regionalExclusive: false,
+    imageRef: null,
+  });
+
+  await syncReferenceData(nodeSqliteConnection(db), data);
+
+  const rows = (
+    db.prepare("SELECT slug, shiny_released_at FROM form ORDER BY slug").all() as {
+      slug: string;
+      shiny_released_at: string | null;
+    }[]
+  ).map((row) => ({ ...row }));
+  assert.deepEqual(rows, [
+    { slug: "bulbasaur-costume-unreleased", shiny_released_at: null },
+    { slug: "bulbasaur-standard", shiny_released_at: "2018-03-25" },
+  ]);
+});
+
+test("syncReferenceData treats a missing shinyReleasedAt key (pre-this-field reference.json shape) as null, not a crash", async () => {
+  const db = await freshlyMigratedDb();
+  const data = fixture(["bulbasaur"]);
+  // Simulate the real committed src/data/reference.json, which predates this
+  // field entirely and so has no shinyReleasedAt key at all (not even
+  // `null`) — `as unknown as ReferenceData` in sqlite-repository.ts means
+  // nothing catches this at the type level either.
+  const legacyForm = { ...data.forms[0] } as Partial<{ shinyReleasedAt: string | null }> & Record<string, unknown>;
+  delete legacyForm.shinyReleasedAt;
+  data.forms = [legacyForm as unknown as (typeof data.forms)[number]];
+
+  await syncReferenceData(nodeSqliteConnection(db), data);
+
+  const row = db.prepare("SELECT shiny_released_at FROM form WHERE slug = 'bulbasaur-standard'").get() as {
+    shiny_released_at: string | null;
+  };
+  assert.equal(row.shiny_released_at, null);
 });
 
 test("syncReferenceData is a no-op when reference.json content hasn't changed", async () => {

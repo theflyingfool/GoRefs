@@ -43,6 +43,7 @@ export const form = sqliteTable("form", {
   gender: text("gender", { enum: ["male", "female", "unknown"] }).notNull(),
   evolves: integer("evolves", { mode: "boolean" }).notNull(),
   shinyAvailable: integer("shiny_available", { mode: "boolean" }).notNull(),
+  shinyReleasedAt: text("shiny_released_at"),
   shadowAvailable: integer("shadow_available", { mode: "boolean" }).notNull(),
   dynamaxAvailable: integer("dynamax_available", { mode: "boolean" }).notNull(),
   regionalExclusive: integer("regional_exclusive", { mode: "boolean" }).notNull(),

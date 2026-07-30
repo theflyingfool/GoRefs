@@ -3,7 +3,7 @@ import type { Form, FormPersonal, SpeciesPersonal } from "../../db/types";
 type FormField = keyof Omit<FormPersonal, "formSlug" | "bestShiny" | "bestNonShiny" | "bestLucky" | "updatedAt">;
 
 // Gigantamax form rows carry dynamaxAvailable: true (Gigantamax is
-// fundamentally a Dynamax variant — scripts/ingest/build-reference.ts), but
+// fundamentally a Dynamax variant — scripts/ingest/transform/species.ts), but
 // showing the Dynamax/Lucky Dynamax sections on one would ask the user to
 // mark the *same* catch event twice: the row's own Standard section
 // (caught/shiny/floor/fourStar/shundo) already *is* the Gigantamax

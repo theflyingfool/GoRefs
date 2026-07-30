@@ -1,5 +1,5 @@
 // Hand-maintained registry of slug corrections. formSlug()/species slugs
-// (see scripts/ingest/slug.ts, scripts/ingest/build-reference.ts) are
+// (see scripts/ingest/slug.ts, scripts/ingest/transform/species.ts) are
 // generated from a form/species' current identity data, not assigned once
 // and remembered — so fixing a mis-parsed name or switching the identity
 // source (e.g. the V2 cutover to pokemon-go-api's enum ids, which fixed

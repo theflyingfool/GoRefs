@@ -10,9 +10,9 @@
 // hand-place a sprite there, or a future re-run of this script won't know
 // it exists and won't be able to reason about what's stale.
 //
-// Requires: npm run ingest:fetch && npm run ingest:fetch-sprites && npm run
-// ingest:build (build-reference.ts writes the sprite-manifest.json this
-// reads). Run with: npm run ingest:build-sprites
+// Called by ingest.ts's sprites step, after fetchSprites() and the build
+// step (write/sprite-manifest.ts writes the manifest this reads) — not a
+// standalone script.
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { basename, resolve } from "node:path";
@@ -32,33 +32,40 @@ interface AssetPair {
   shinyImage?: string;
 }
 
-let converted = 0;
-let skippedExisting = 0;
-let missingSource = 0;
-
-// Skips re-encoding a WebP that's already there — this is the "don't
-// re-grab/re-process what's already local" step for the promoted assets,
-// same idea as fetchToCache's skip-if-exists but one layer up.
-async function writeWebp(sourceUrl: string | undefined, outPath: string): Promise<boolean> {
-  if (!sourceUrl) return false;
-  if (existsSync(outPath)) {
-    skippedExisting++;
-    return true;
-  }
-  const cachedFile = resolve(SPRITE_CACHE_DIR, basename(sourceUrl));
-  if (!existsSync(cachedFile)) {
-    missingSource++;
-    return false;
-  }
-  await sharp(cachedFile).webp({ lossless: true }).toFile(outPath);
-  converted++;
-  return true;
+export interface BuildSpritesResult {
+  converted: number;
+  skippedExisting: number;
+  missingSource: number;
+  formSlugsWithArt: string[];
+  megaSlugsWithArt: string[];
 }
 
-async function main() {
+export async function buildSprites(): Promise<BuildSpritesResult> {
   if (!existsSync(MANIFEST_PATH)) {
-    console.error(`Missing ${MANIFEST_PATH} — run "npm run ingest:build" first.`);
-    process.exit(1);
+    throw new Error(`Missing ${MANIFEST_PATH} — run the build step first.`);
+  }
+
+  let converted = 0;
+  let skippedExisting = 0;
+  let missingSource = 0;
+
+  // Skips re-encoding a WebP that's already there — this is the "don't
+  // re-grab/re-process what's already local" step for the promoted assets,
+  // same idea as fetchToCache's skip-if-exists but one layer up.
+  async function writeWebp(sourceUrl: string | undefined, outPath: string): Promise<boolean> {
+    if (!sourceUrl) return false;
+    if (existsSync(outPath)) {
+      skippedExisting++;
+      return true;
+    }
+    const cachedFile = resolve(SPRITE_CACHE_DIR, basename(sourceUrl));
+    if (!existsSync(cachedFile)) {
+      missingSource++;
+      return false;
+    }
+    await sharp(cachedFile).webp({ lossless: true }).toFile(outPath);
+    converted++;
+    return true;
   }
 
   const reference: ReferenceData = JSON.parse(readFileSync(REFERENCE_PATH, "utf-8"));
@@ -97,11 +104,8 @@ async function main() {
   writeFileSync(FORM_MANIFEST_OUT, JSON.stringify(formSlugsWithArt.sort()));
   writeFileSync(MEGA_MANIFEST_OUT, JSON.stringify(megaSlugsWithArt.sort()));
 
-  console.log(`Converted ${converted}, skipped ${skippedExisting} already-present, ${missingSource} missing from the sprite cache (re-run ingest:fetch-sprites to retry).`);
+  console.log(`Converted ${converted}, skipped ${skippedExisting} already-present, ${missingSource} missing from the sprite cache (re-run the fetch step to retry).`);
   console.log(`Form art: ${formSlugsWithArt.length}/${reference.forms.length} forms. Mega art: ${megaSlugsWithArt.length}/${reference.megaVariants.length} variants.`);
-}
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+  return { converted, skippedExisting, missingSource, formSlugsWithArt, megaSlugsWithArt };
+}

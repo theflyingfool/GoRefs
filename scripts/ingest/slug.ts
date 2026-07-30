@@ -1,6 +1,6 @@
-// Shared slug generation — used by build-reference.ts and csv-authoring.ts
-// so a manually-added CSV row and an automated ingestion row never collide
-// or diverge on how a slug gets built.
+// Shared slug generation — used throughout the ingestion pipeline
+// (scripts/ingest/transform/*.ts, scripts/ingest/ingest.ts) so every slug in
+// reference.json is built the same way.
 
 const COMBINING_DIACRITICS = /[̀-ͯ]/g;
 

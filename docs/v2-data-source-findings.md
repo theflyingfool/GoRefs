@@ -633,3 +633,83 @@ theory that our 32 is the full canonical list while a real source reflects
 actual in-game rollout — but the exact cutoff logic (event-gated vs.
 simply-not-added-yet vs. `pokemon-go-api` lagging reality) still needs a
 manual sanity check before this replaces our current data.
+
+---
+
+## 12. Addendum (2026-07-29) — pogoapi.net dropped; GAME_MASTER + pokemongo-shiny is the shipped source
+
+The species/form/moves/player-progression/PvP re-sourcing work this doc's
+Phase 0 spike scoped out has since actually shipped (the ingestion
+consolidation branch — `scripts/ingest/sources/game-master.ts`,
+`transform/*.ts`). This section records the two findings from that build
+that supersede §§1–11 above rather than editing them in place, per this
+repo's "archive obsolete info, don't let it drift" documentation rule.
+
+**pogoapi.net confirmed stale, not just theoretically supersedable.** The
+spike above (§1) treated pogoapi.net as the strong candidate on breadth
+grounds; building against it directly surfaced that its shadow-availability
+list is now materially out of date. Checked directly this session: the
+vendored `vendor/pogoapi-snapshot/shadow_pokemon.json` snapshot (dict keyed
+by National Dex number, per §7's sample payload) lists 245 species as
+Shadow-eligible; the live GAME_MASTER dump
+(`scripts/ingest/.cache-v2/game-master/GAME_MASTER.json`, ~18.7k entries)
+marks 467 species Shadow-eligible via `pokemonSettings[].shadow` presence
+per form (see `shadowAvailableFor` in `scripts/ingest/transform/species.ts`).
+Joined on the numeric dex-number key both sides actually share — GAME_MASTER's
+`pokemonId` resolved to a dex number via the cached `pgapi/pokedex.json`'s
+`id`→`dexNr` mapping, per §10's "prefer the numeric join key, not a
+string-vocabulary join" finding, not a display-name string match — gives
+exactly **222 species GAME_MASTER shows as Shadow-eligible that the
+pogoapi.net snapshot has no record of at all** (Caterpie, Metapod,
+Butterfree, Pidgey, Pidgeotto, Pidgeot, Mankey, Primeape, Tentacool,
+Tentacruel, Ponyta, Rapidash, Farfetch'd, Seel, Dewgong, and so on — a broad,
+unpatterned mix, not one release wave). The reverse direction confirms this
+is a pure staleness gap, not a vocabulary mismatch: every one of the 245
+vendored dex numbers is also in GAME_MASTER's 467-species shadow set (zero
+species the vendored snapshot has that GAME_MASTER doesn't). The snapshot
+was vendored onto this branch fresh from a live pogoapi.net pull
+(`2dfdc514`, "Vendor a full pogoapi.net snapshot (all 47 endpoints)",
+2026-07-28) — so this 222-species gap is pogoapi.net's actual current state,
+not a stale copy of it. No acquisition-method breakdown (wild/raid/
+Rocket-only, etc.) is available from either GAME_MASTER (its `shadow` block
+carries only purification cost/move fields, no method) or the
+pokemongo-shiny sheet (`scripts/ingest/.cache-v2/shiny-sheet.json`'s fields
+are `family_dex`/`debut`/`pid`/`group`/`tag`/`order`/`suffix` — no method
+field either, and it's shiny-scoped, not shadow-scoped) that replaced
+pogoapi.net's `shiny_pokemon.json` for shiny data — that finer-grained field
+simply isn't part of the sourcing swap; only availability (yes/no) carried
+over.
+
+**Sourcing decision that replaced it**: species/forms/gender/shadow
+availability now come from GAME_MASTER (`alexelgt/game_masters`) directly,
+and shiny availability/debut dates come from the pokemongo-shiny community
+sheet (`shiny.debut`), not pogoapi.net's `shiny_pokemon.json` presence
+check — see `scripts/ingest/transform/species.ts`'s `shadowAvailableFor`
+and the `ShinyLookup` docstring in `scripts/ingest/sources/game-master.ts`
+for the field-level reasoning (in particular why shiny sourcing moved off
+sprite-presence: Eternatus has a shiny sprite in `pokemon-go-api`'s assets
+but is not actually shiny-released, which a presence check alone would get
+wrong). Both are load-bearing choices `docs/ingestion-runbook.md` and
+`docs/architecture.md`'s Scripts table now document as the live pipeline,
+not a proposal.
+
+**Medal data resolution.** A related gap surfaced during the same build:
+GAME_MASTER's `badgeSettings` carries no medal display name or description
+text at all — confirmed by direct inspection of the raw dump (a
+`badgeSettings` record has only `badgeType`, `badgeRank`, and `targets`;
+no `name`/`description` field exists anywhere in the category). pogoapi.net
+was the prior source for that text, but per the staleness finding above
+isn't trustworthy for a live fetch, and never published a badge id to join
+on regardless. The resolution: a **committed, one-time vendored snapshot**
+(`vendor/pogoapi-snapshot/badges.json`, 597 entries) supplies just the
+name/description strings, joined against live GAME_MASTER `badgeSettings`
+via a subsequence-alignment algorithm
+(`scripts/ingest/sources/pogoapi-badges.ts`'s `alignVendorBadges`) that
+tolerates GAME_MASTER having grown ~400 more badges since the snapshot was
+taken, inserted alphabetically among the vendored ones rather than
+appended after them. This is a narrower, more defensible use of a stale
+source than a live fetch would be: the snapshot only needs to supply text
+that doesn't change once a badge exists, not track which badges currently
+exist or their live rank targets (those still come from GAME_MASTER).
+See `docs/ingestion-runbook.md`'s "Known pitfalls" section for the
+operational risk this alignment carries if it ever degrades.

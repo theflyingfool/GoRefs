@@ -1,18 +1,16 @@
-// Gap checks that are purely a function of the CURRENT reference.json
+// Gap checks that are purely a function of a ReferenceData value's own
 // contents — no PokeAPI fetch, no Forms-CSV skeleton, no Bulbapedia
-// wikitext needed to (re)derive them. build-reference.ts calls these once
-// at the end of a full ingest; csv-authoring.ts's `import` command calls
-// them again after every manual CSV fix, so a gap a human just fixed by
-// hand stops showing up in the Coverage Report without needing a full
-// `npm run ingest:build` re-run (see TODO.md's "Coverage Report was stale"
-// entry — this closes that standing gap for the stateless kinds below).
+// wikitext needed to (re)derive them. write/reference-json.ts calls these
+// once at the end of a full ingest (see TODO.md's "Coverage Report was
+// stale" entry for why this split matters: the stateless kinds below can be
+// recomputed cheaply, without a full pipeline run).
 //
 // Other ReferenceGap kinds (mega-discrepancy, possible-bogus-form,
 // guessed-costume-name) depend on external sources reference.json doesn't
 // carry (PokeAPI's mega varieties, the Forms CSV's raw tokens, Bulbapedia's
-// sprite codes) — those are NOT recomputed here, and are left untouched by
-// csv-authoring.ts; only re-running the script that originally produced
-// them can refresh those entries.
+// sprite codes) — those are NOT recomputed here; nothing in the current
+// pipeline produces them any more (the old CSV-authoring workflow that once
+// refreshed them was removed).
 
 import type { Form, FormType, Species } from "../../src/db/types";
 import type { ReferenceGap } from "../../src/db/reference-data";
@@ -49,8 +47,11 @@ export function detectMissingTypesGaps(forms: Form[], formTypes: FormType[]): Re
 }
 
 export function detectInheritedAvailabilityGaps(forms: Form[]): ReferenceGap[] {
-  // Fires for every non-base form (by design — the source CSV only varies
-  // Shiny per form, everything else is inherited from the species row).
+  // Fires for every non-base form (by design — transform/species.ts sets
+  // Dynamax/Gigantamax and evolves availability by form category
+  // (costume/region/Gigantamax), not from a per-form source, for every form
+  // but Standard. Shiny is the exception: it's looked up per form from the
+  // shiny sheet for all form kinds.
   return forms
     .filter((f) => f.formName !== "Standard")
     .map(
@@ -58,7 +59,7 @@ export function detectInheritedAvailabilityGaps(forms: Form[]): ReferenceGap[] {
         kind: "inherited-availability",
         speciesSlug: f.speciesSlug,
         formSlug: f.slug,
-        note: "Shadow/Dynamax/Gigantamax/evolves availability inherited from the species row, not verified per-form (the source CSV only varies Shiny at this granularity).",
+        note: "Shadow/Dynamax/Gigantamax/evolves availability for this form defaults by form category rather than being individually sourced (only Shiny is looked up per form).",
       }),
     );
 }

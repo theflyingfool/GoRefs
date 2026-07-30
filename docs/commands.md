@@ -44,19 +44,25 @@ Developer commands for running, building, testing, and managing data in PoGo Bud
 
 ## Data Ingestion & Maintenance
 
-- Fetch reference data from PokeAPI and rebuild local database inputs:
+- Run the full reference-data ingestion pipeline (fetch, build, slug-check, sprites, sqlite, manifest — see [docs/ingestion-runbook.md](ingestion-runbook.md)):
 
   ```sh
-  npm run ingest:fetch && npm run ingest:build
+  npm run ingest
   ```
 
-- Verify slug stability against previous git commit:
+- Check whether any upstream source has changed since the last committed ingest, without running the full pipeline:
 
   ```sh
-  npm run ingest:check-slugs
+  npm run ingest:check
   ```
 
-- Build inspectable dummy SQLite database at root:
+- Browse the real ingested reference data (`reference.sqlite`, written by `npm run ingest`'s `sqlite` step) in a UI:
+
+  ```sh
+  npm run studio
+  ```
+
+- Build inspectable dummy SQLite database at root (real reference data plus a hand-written personal-table demo seed — see `scripts/build-dummy-db.ts`):
 
   ```sh
   npm run build:dummy-db
