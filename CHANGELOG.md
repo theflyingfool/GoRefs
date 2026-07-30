@@ -9,6 +9,31 @@ Each entry corresponds to a `package.json`/`android/app/build.gradle`
 version bump (see [docs/release-checklist.md](docs/release-checklist.md)'s release workflow), and
 covers the commits between that bump and the previous one. Full historical content states can be checked out directly from git history.
 
+## [1.2.0] — 2026-07-29
+
+- Replaced pogoapi.net as an ingestion data source (stale/unmaintained;
+  confirmed missing 222 species GAME_MASTER shows as shadow-eligible) with
+  GAME_MASTER (`alexelgt/game_masters`) and the pokemongo-shiny community
+  sheet for shiny release dates. Vendored a full pogoapi.net snapshot
+  (`vendor/pogoapi-snapshot/`) before cutting the live dependency, since it
+  uniquely had medal/badge display names GAME_MASTER doesn't publish.
+- Consolidated the 9-script `scripts/ingest/` pipeline into one command,
+  `npm run ingest` (flags: `--skip-sprites`, `--skip-sqlite`, `--check`).
+  Removed the old `ingest:fetch`/`ingest:build`/`ingest:fetch-sprites`/
+  `ingest:build-sprites`/`ingest:check-slugs`/`ingest:all`/`ingest:csv:*`
+  scripts and the CSV manual-correction workflow.
+- Added `form.shinyReleasedAt`: a real per-form shiny release date, not
+  just a boolean, sourced from the pokemongo-shiny sheet's release-date
+  tracking instead of an asset-presence heuristic confirmed to produce
+  false positives.
+- Added `npm run studio` — a dev tool that opens `drizzle-kit studio`
+  against a freshly-regenerated `reference.sqlite` (real ingested
+  reference data, no personal-table demo seed) for browsing ingested data
+  directly.
+- See [docs/ingestion-consolidation/summary.md](docs/ingestion-consolidation/summary.md)
+  for the full writeup, including data differences accepted as intentional
+  trade-offs and remaining follow-up items.
+
 ## [1.0.0] — 2026-07-19
 
 - First tagged release. Both `docs/pre_launch_checklist.md` and
