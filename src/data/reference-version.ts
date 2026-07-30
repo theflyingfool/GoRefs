@@ -2,4 +2,4 @@
 // A content hash of reference.json, baked in at build time so
 // src/db/reference-sync.ts can compare against it without re-hashing
 // the full reference dataset on every app boot.
-export const REFERENCE_DATA_VERSION = "94651525";
+export const REFERENCE_DATA_VERSION = "893cd912";
