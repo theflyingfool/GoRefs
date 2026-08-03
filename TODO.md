@@ -28,18 +28,29 @@ just spread across many smaller files instead of one. Needs a policy before
 it becomes a real problem: e.g. keep only the last N snapshots per source,
 or squash/prune older ones on each `--build`. Not started.
 
-## Expose a last-updated / build timestamp for consumers
+## Add a `_meta` table: last-pulled-per-source + last-built-at
 
 2026-08-03: flagged from the GoBuddy side while designing its ingestion swap
-to pull from this project (`vendor/reference/GoRefs` submodule + `--serve`,
-see GoBuddy's `docs/superpowers/specs/2026-08-03-gorefs-ingestion-swap-design.md`
-once written). Consumers hitting `--serve`'s HTTP endpoint have no cheap way
-to check "has this database actually changed since I last read it" without
-downloading/querying the whole `GoRefs_Master.duckdb` file. Needs something
-like a small `/meta` (or similar) endpoint or a `last_built_at` value exposed
-alongside the served DB — populated by `--build` — so a downstream
-consumer's own freshness/manifest check can stay cheap. Not started; no
-endpoint or metadata table exists yet.
+to pull from this project (`vendor/reference/GoRefs`, vendored as a git
+subtree + `--serve` — see GoBuddy's
+`docs/superpowers/specs/2026-08-03-gorefs-ingestion-source-swap-design.md`).
+Consumers hitting `--serve`'s HTTP endpoint have no cheap way to check "has
+this database actually changed since I last read it" without
+downloading/querying the whole `GoRefs_Master.duckdb` file — GoBuddy's own
+`ingest:check` needs exactly this signal to replace the upstream
+fingerprinting it loses once its direct GAME_MASTER/pokemon-go-api fetchers
+are retired.
+
+**Confirmed small** — the raw ingredients already exist, this is mostly
+persisting data that's already computed:
+- Every `raw_dumps/<source>/<timestamp>/.meta.json` already records
+  `{source, etag, timestamp}` per fetch.
+- `builder.py` already computes a build timestamp (`src/builder.py:1380`).
+
+Add a `_meta` table to `output/GoRefs_Master.duckdb`: one row per source with
+its most recent `last_pulled_at` (sourced from the `.meta.json` files above),
+plus a single row (or separate scalar) for `last_built_at`. Populated by
+`--build`. Not started; no table exists yet.
 
 ## Add a `--publish` step: GitHub Release for `output/GoRefs_Master.duckdb`
 
