@@ -1,1 +1,0 @@
-# GoRefs package initialization
