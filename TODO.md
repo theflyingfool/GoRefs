@@ -1,5 +1,60 @@
 # TODO
 
+## `assets` source is defined but barely populated (20 sprites, no manifest)
+
+2026-08-03: noticed while implementation-planning GoBuddy's ingestion swap.
+`config/sources.yml` already defines `assets_base_url`
+(`raw.githubusercontent.com/pokemon-go-api/assets`) and `asset_dump_dir`
+(`raw_dumps/assets`) — the same underlying sprite source GoBuddy's own
+sprite pipeline downloads from (indirectly, via pokemon-go-api's pokedex.json
+image URLs). But `raw_dumps/assets/` currently has only 20 files
+(`pm1.icon.png`-`pm20.icon.png`, base species icons only — no forms,
+costumes, region variants, mega, or shiny art), no `.meta.json` tracking it
+like every other source has, and no slug/species manifest mapping files to
+species. Not usable as a real sprite source today. If this gets built out to
+full coverage + a manifest, GoRefs could eventually become the sprite source
+for consumers too (not just reference data), removing the need for a
+downstream app to fetch sprites separately. Not started; flagged only as a
+possibility worth not losing.
+
+## Port GoBuddy's transform logic into GoRefs' own canonical processing
+
+2026-08-03: flagged from the GoBuddy side while implementation-planning its
+ingestion swap to pull from this project. Right now, five-plus domains
+(`forms`, `megaVariants`, `moves`, `formMoves`, `speciesEvolutions`, `medals`/
+`medalTiers`, `playerLevels`/`playerLevelRewards`, `pvpRankRewards`/
+`pvpRankRequirements`, and for this first cut `species`/`typeEffectiveness`/
+`weatherBoosts` too) only reach real parity with GoBuddy's `reference.json`
+via the `refjson_*` shim — a wholesale dump of GoBuddy's own already-processed
+output, not independent GoRefs processing. That's fine as a stopgap, but it's
+circular: GoBuddy currently processes all its sources itself (slug
+generation, gap detection, comparative-gap rules, gender-split forms, etc.
+in `scripts/ingest/transform/*.ts`), and GoRefs is just re-serving that
+processed result back.
+
+The real target: port that processing *logic* (not just consume its output)
+into GoRefs' own Python pipeline (`src/builder.py` and friends), so GoRefs'
+canonical tables converge on correctness using the same proven rules GoBuddy
+already worked out, applied to GoRefs' own 7 independently-ingested sources
+— not by copying GoBuddy's output forever. Each domain currently on the
+`refjson_*` shim is a candidate for this, one at a time (matches the
+existing "one-line swap once canonical catches up" pattern already used for
+the shim-fallback domains). Big, not scoped, not started — logged so it
+isn't lost.
+
+## `--fetch` should skip sources with no upstream change
+
+2026-08-03: flagged from the GoBuddy side alongside the "expose a
+last-updated timestamp" item below, while designing its ingestion swap to
+pull from this project. `--fetch` currently always re-fetches every source
+fresh, unconditionally. It should check whether a source's upstream has
+actually changed (e.g. via a cheap HEAD/ETag/hash check, source-dependent)
+and skip writing a new `raw_dumps/<source>/<timestamp>/` snapshot when
+nothing changed. Two motivations: (1) avoids redundant network calls on
+every fetch, (2) directly reduces the `raw_dumps/` unbounded-growth problem
+in the item just below — most of its ~20 accumulated snapshot dirs likely
+represent runs where nothing upstream actually changed. Not started.
+
 ## `raw_dumps/` needs a retention policy before it grows unbounded
 
 2026-08-03: `raw_dumps/` was just un-gitignored and committed (previously
@@ -15,18 +70,29 @@ just spread across many smaller files instead of one. Needs a policy before
 it becomes a real problem: e.g. keep only the last N snapshots per source,
 or squash/prune older ones on each `--build`. Not started.
 
-## Expose a last-updated / build timestamp for consumers
+## Add a `_meta` table: last-pulled-per-source + last-built-at
 
 2026-08-03: flagged from the GoBuddy side while designing its ingestion swap
-to pull from this project (`vendor/reference/GoRefs` submodule + `--serve`,
-see GoBuddy's `docs/superpowers/specs/2026-08-03-gorefs-ingestion-swap-design.md`
-once written). Consumers hitting `--serve`'s HTTP endpoint have no cheap way
-to check "has this database actually changed since I last read it" without
-downloading/querying the whole `GoRefs_Master.duckdb` file. Needs something
-like a small `/meta` (or similar) endpoint or a `last_built_at` value exposed
-alongside the served DB — populated by `--build` — so a downstream
-consumer's own freshness/manifest check can stay cheap. Not started; no
-endpoint or metadata table exists yet.
+to pull from this project (`vendor/reference/GoRefs`, vendored as a git
+subtree + `--serve` — see GoBuddy's
+`docs/superpowers/specs/2026-08-03-gorefs-ingestion-source-swap-design.md`).
+Consumers hitting `--serve`'s HTTP endpoint have no cheap way to check "has
+this database actually changed since I last read it" without
+downloading/querying the whole `GoRefs_Master.duckdb` file — GoBuddy's own
+`ingest:check` needs exactly this signal to replace the upstream
+fingerprinting it loses once its direct GAME_MASTER/pokemon-go-api fetchers
+are retired.
+
+**Confirmed small** — the raw ingredients already exist, this is mostly
+persisting data that's already computed:
+- Every `raw_dumps/<source>/<timestamp>/.meta.json` already records
+  `{source, etag, timestamp}` per fetch.
+- `builder.py` already computes a build timestamp (`src/builder.py:1380`).
+
+Add a `_meta` table to `output/GoRefs_Master.duckdb`: one row per source with
+its most recent `last_pulled_at` (sourced from the `.meta.json` files above),
+plus a single row (or separate scalar) for `last_built_at`. Populated by
+`--build`. Not started; no table exists yet.
 
 ## Add a `--publish` step: GitHub Release for `output/GoRefs_Master.duckdb`
 
