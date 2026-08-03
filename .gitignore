@@ -1,60 +1,26 @@
-node_modules/
-dist/
-*.apk
-tsconfig.tsbuildinfo
-src-tauri/target/
+# Python virtual environments & bytecode
+.venv/
+__pycache__/
+*.pyc
+*.pyo
 
-# Tauri's Android/iOS "gen" projects (src-tauri/gen/android, src-tauri/gen/ios)
-# are meant to be committed, like a React Native app's native android/ios
-# dirs — they contain the real native project including files a developer
-# may hand-edit. Their generated build outputs are excluded by the nested
-# .gitignore files that `cargo tauri android/ios init` scaffolds inside them
-# (e.g. src-tauri/gen/android/app/.gitignore ignores `build`, `.gradle`,
-# `local.properties`, etc.), so no blanket ignore is needed here.
-
-# Release-signing secrets — these live outside the repo entirely, at
-# ~/.android-keystores/, and the build only ever reads them from there.
-# These patterns are just a backstop against one ending up in a working
-# tree by accident.
-*.jks
-*.keystore
-playwright-report/
-test-results/
-dummy.sqlite
-reference.sqlite
-scripts/ingest/.cache/
-# .cache-v2/ is otherwise gitignored (it's fetched-source scratch data), but
-# ingestion-manifest.json (write/manifest.ts) is deliberately committed --
-# `ingest.ts --check` diffs a fresh fetch's manifest against the last
-# *committed* one to detect upstream changes without running a full build.
-# `.cache-v2/*` (not a bare trailing-slash `.cache-v2/`) is required for the
-# negation below to work -- git can't re-include a file whose parent
-# directory is itself excluded.
-scripts/ingest/.cache-v2/*
-!scripts/ingest/.cache-v2/ingestion-manifest.json
-data-authoring/reference-export.csv
-
-# V2 exploration DB (data-authoring/v2-explore/) — raw third-party pulls and
-# a throwaway SQLite file for ad hoc join exploration, not a real ingestion
-# artifact. See docs/v2-schema-design.md.
-data-authoring/v2-explore/raw/
-data-authoring/v2-explore/*.sqlite
-data-authoring/v2-explore/reference-v2-candidate.json
-
-# Loose reference material (old Obsidian vault exports, full-size sprite
-# images) already mined into src/data/reference.json and public/sprites/ —
-# ~245MB, not worth version-controlling.
-Refs from Obsidian/
-
-# Editor lock files
-.~lock.*
-
-# Local Claude Code harness config/state — machine-specific, not shared project config
-.claude/
-
-# IDE project files (Android Studio/IntelliJ) — machine-local, not shared
-# config.
+# IDE & OS files
+.DS_Store
 .idea/
+.vscode/
 
-# Obsidian vault config — machine-local, not shared config.
-.obsidian/
+# Large temporary build databases
+*.duckdb.wal
+
+# Regenerated export artifacts -- never meant to be committed
+# (output/source_coverage_report.md IS committed by convention)
+output/parquet/
+
+# Master DB build output -- too large to push to GitHub (grows past the
+# 100MB per-blob hard limit / free LFS quota as more sources are added).
+# Not committed while a scalable storage/distribution approach is worked out.
+output/GoRefs_Master.duckdb
+
+# Personal, unverified investigation scratchpad -- local-only by design (2026-08-02)
+POSSIBLE_ISSUES.md
+

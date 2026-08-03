@@ -1,6 +1,0 @@
-#!/bin/sh
-# Activated via `git config core.hooksPath .githooks`, which `npm install`
-# runs automatically (see package.json's "prepare" script). Blocks the commit
-# if lint fails. Skip once with `git commit --no-verify` if truly needed.
-
-npm run lint
