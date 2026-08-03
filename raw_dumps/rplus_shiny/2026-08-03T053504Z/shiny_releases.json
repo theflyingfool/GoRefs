@@ -1,0 +1,9319 @@
+[
+  {
+    "index": "0",
+    "debut": "2018/03/25",
+    "pid": "pm1",
+    "src": "",
+    "group": "Bulbasaur"
+  },
+  {
+    "index": "1",
+    "debut": "2019/10/17",
+    "pid": "pm1.fFALL_2019",
+    "src": "",
+    "group": "Bulbasaur_f19"
+  },
+  {
+    "index": "2",
+    "debut": "2020/02/25",
+    "pid": "pm1.cJAN_2020_NOEVOLVE",
+    "src": "",
+    "group": "Bulbasaur_11"
+  },
+  {
+    "index": "3",
+    "debut": "2020/07/25",
+    "pid": "pm1.cSPRING_2020_NOEVOLVE",
+    "src": "",
+    "group": "Bulbasaur_14"
+  },
+  {
+    "index": "4",
+    "debut": "2018/03/25",
+    "pid": "pm2",
+    "src": "",
+    "group": "Bulbasaur"
+  },
+  {
+    "index": "5",
+    "debut": "2018/03/25",
+    "pid": "pm3",
+    "src": "https://www.serebii.net/pokemongo/pokemon/shiny/003.png",
+    "group": "Bulbasaur"
+  },
+  {
+    "index": "6",
+    "debut": "2018/03/25",
+    "pid": "pm3.fMEGA",
+    "src": "https://archives.bulbagarden.net/media/upload/6/66/GO0003M_s.png",
+    "group": "Bulbasaur"
+  },
+  {
+    "index": "7",
+    "debut": "2018/05/19",
+    "pid": "pm4",
+    "src": "",
+    "group": "Charmander"
+  },
+  {
+    "index": "8",
+    "debut": "2019/10/17",
+    "pid": "pm4.fFALL_2019",
+    "src": "",
+    "group": "Charmander_f19"
+  },
+  {
+    "index": "9",
+    "debut": "2020/02/25",
+    "pid": "pm4.cJAN_2020_NOEVOLVE",
+    "src": "",
+    "group": "Charmander_11"
+  },
+  {
+    "index": "10",
+    "debut": "2022/07/06",
+    "pid": "pm5.cJAN_2020_NOEVOLVE",
+    "src": "",
+    "group": "Charmander_11"
+  },
+  {
+    "index": "11",
+    "debut": "2022/07/06",
+    "pid": "pm6.cJAN_2020_NOEVOLVE",
+    "src": "",
+    "group": "Charmander_11"
+  },
+  {
+    "index": "12",
+    "debut": "2020/07/25",
+    "pid": "pm4.cSPRING_2020_NOEVOLVE",
+    "src": "",
+    "group": "Charmander_14"
+  },
+  {
+    "index": "13",
+    "debut": "2018/05/19",
+    "pid": "pm5",
+    "src": "",
+    "group": "Charmander"
+  },
+  {
+    "index": "14",
+    "debut": "2018/05/19",
+    "pid": "pm6",
+    "src": "",
+    "group": "Charmander"
+  },
+  {
+    "index": "15",
+    "debut": "2018/05/19",
+    "pid": "pm6.fMEGA_X",
+    "src": "",
+    "group": "Charmander"
+  },
+  {
+    "index": "16",
+    "debut": "2018/05/19",
+    "pid": "pm6.fMEGA_Y",
+    "src": "",
+    "group": "Charmander"
+  },
+  {
+    "index": "17",
+    "debut": "2018/07/08",
+    "pid": "pm7",
+    "src": "",
+    "group": "Squirtle"
+  },
+  {
+    "index": "18",
+    "debut": "2018/07/08",
+    "pid": "pm8",
+    "src": "",
+    "group": "Squirtle"
+  },
+  {
+    "index": "19",
+    "debut": "2018/07/08",
+    "pid": "pm9",
+    "src": "",
+    "group": "Squirtle"
+  },
+  {
+    "index": "20",
+    "debut": "2018/07/08",
+    "pid": "pm9.fMEGA",
+    "src": "",
+    "group": "Squirtle"
+  },
+  {
+    "index": "21",
+    "debut": "2018/07/08",
+    "pid": "pm7.cSUMMER_2018",
+    "src": "",
+    "group": "Squirtle_05"
+  },
+  {
+    "index": "22",
+    "debut": "2018/07/08",
+    "pid": "pm8.cSUMMER_2018",
+    "src": "",
+    "group": "Squirtle_05"
+  },
+  {
+    "index": "23",
+    "debut": "2018/07/08",
+    "pid": "pm9.cSUMMER_2018",
+    "src": "",
+    "group": "Squirtle_05"
+  },
+  {
+    "index": "24",
+    "debut": "2019/10/17",
+    "pid": "pm7.fFALL_2019",
+    "src": "",
+    "group": "Squirtle_f19"
+  },
+  {
+    "index": "25",
+    "debut": "2020/02/25",
+    "pid": "pm7.cJAN_2020_NOEVOLVE",
+    "src": "",
+    "group": "Squirtle_11"
+  },
+  {
+    "index": "26",
+    "debut": "2023/07/03",
+    "pid": "pm8.cJAN_2020_NOEVOLVE",
+    "src": "",
+    "group": "Squirtle_11"
+  },
+  {
+    "index": "27",
+    "debut": "2023/07/03",
+    "pid": "pm9.cJAN_2020_NOEVOLVE",
+    "src": "",
+    "group": "Squirtle_11"
+  },
+  {
+    "index": "28",
+    "debut": "2020/07/25",
+    "pid": "pm7.cSPRING_2020_NOEVOLVE",
+    "src": "",
+    "group": "Squirtle_14"
+  },
+  {
+    "index": "29",
+    "debut": "2018/11/01",
+    "pid": "pm10",
+    "src": "",
+    "group": "Caterpie"
+  },
+  {
+    "index": "30",
+    "debut": "2018/11/01",
+    "pid": "pm11",
+    "src": "",
+    "group": "Caterpie"
+  },
+  {
+    "index": "31",
+    "debut": "2018/11/01",
+    "pid": "pm12",
+    "src": "",
+    "group": "Caterpie"
+  },
+  {
+    "index": "32",
+    "debut": "2021/09/21",
+    "pid": "pm12.cFASHION_2021_NOEVOLVE",
+    "src": "",
+    "group": "Caterpie_2021_FASHION"
+  },
+  {
+    "index": "33",
+    "debut": "2020/06/19",
+    "pid": "pm13",
+    "src": "",
+    "group": "Weedle"
+  },
+  {
+    "index": "34",
+    "debut": "2020/06/19",
+    "pid": "pm14",
+    "src": "",
+    "group": "Weedle"
+  },
+  {
+    "index": "35",
+    "debut": "2020/06/19",
+    "pid": "pm15",
+    "src": "",
+    "group": "Weedle"
+  },
+  {
+    "index": "36",
+    "debut": "2020/06/19",
+    "pid": "pm15.fMEGA",
+    "src": "",
+    "group": "Weedle"
+  },
+  {
+    "index": "37",
+    "debut": "2019/02/26",
+    "pid": "pm16",
+    "src": "",
+    "group": "Pidgey"
+  },
+  {
+    "index": "38",
+    "debut": "2019/02/26",
+    "pid": "pm17",
+    "src": "",
+    "group": "Pidgey"
+  },
+  {
+    "index": "39",
+    "debut": "2019/02/26",
+    "pid": "pm18",
+    "src": "",
+    "group": "Pidgey"
+  },
+  {
+    "index": "40",
+    "debut": "2019/02/26",
+    "pid": "pm18.fMEGA",
+    "src": "",
+    "group": "Pidgey"
+  },
+  {
+    "index": "41",
+    "debut": "2019/02/26",
+    "pid": "pm19",
+    "src": "",
+    "group": "Rattata"
+  },
+  {
+    "index": "42",
+    "debut": "2019/02/26",
+    "pid": "pm20",
+    "src": "",
+    "group": "Rattata"
+  },
+  {
+    "index": "43",
+    "debut": "2019/02/26",
+    "pid": "pm20.cJAN_2020_NOEVOLVE",
+    "src": "",
+    "group": "Rattata"
+  },
+  {
+    "index": "44",
+    "debut": "2019/06/28",
+    "pid": "pm19.fALOLA",
+    "src": "",
+    "group": "Rattata_61"
+  },
+  {
+    "index": "45",
+    "debut": "2019/06/28",
+    "pid": "pm20.fALOLA",
+    "src": "",
+    "group": "Rattata_61"
+  },
+  {
+    "index": "46",
+    "debut": "2021/02/20",
+    "pid": "pm21",
+    "src": "",
+    "group": "Spearow"
+  },
+  {
+    "index": "47",
+    "debut": "2021/02/20",
+    "pid": "pm22",
+    "src": "",
+    "group": "Spearow"
+  },
+  {
+    "index": "48",
+    "debut": "2019/07/25",
+    "pid": "pm23",
+    "src": "",
+    "group": "Ekans"
+  },
+  {
+    "index": "49",
+    "debut": "2019/07/25",
+    "pid": "pm24",
+    "src": "",
+    "group": "Ekans"
+  },
+  {
+    "index": "50",
+    "debut": "2017/08/15",
+    "pid": "pm25",
+    "src": "",
+    "group": "Pikachu"
+  },
+  {
+    "index": "51",
+    "debut": "2017/08/15",
+    "pid": "pm26",
+    "src": "",
+    "group": "Pikachu"
+  },
+  {
+    "index": "52",
+    "debut": "2017/02/26",
+    "pid": "pm25.cANNIVERSARY",
+    "src": "",
+    "group": "Pikachu_02"
+  },
+  {
+    "index": "53",
+    "debut": "2017/02/26",
+    "pid": "pm26.cANNIVERSARY",
+    "src": "",
+    "group": "Pikachu_02"
+  },
+  {
+    "index": "54",
+    "debut": "2017/06/06",
+    "pid": "pm25.cONE_YEAR_ANNIVERSARY",
+    "src": "",
+    "group": "Pikachu_03"
+  },
+  {
+    "index": "55",
+    "debut": "2019/06/06",
+    "pid": "pm26.cONE_YEAR_ANNIVERSARY",
+    "src": "",
+    "group": "Pikachu_03"
+  },
+  {
+    "index": "56",
+    "debut": "2018/10/05",
+    "pid": "pm25.cFALL_2018",
+    "src": "",
+    "group": "Pikachu_06"
+  },
+  {
+    "index": "57",
+    "debut": "2018/10/05",
+    "pid": "pm26.cFALL_2018",
+    "src": "",
+    "group": "Pikachu_06"
+  },
+  {
+    "index": "58",
+    "debut": "2017/10/20",
+    "pid": "pm25.cHALLOWEEN_2017",
+    "src": "",
+    "group": "Pikachu_04"
+  },
+  {
+    "index": "59",
+    "debut": "2017/10/20",
+    "pid": "pm26.cHALLOWEEN_2017",
+    "src": "",
+    "group": "Pikachu_04"
+  },
+  {
+    "index": "60",
+    "debut": "2016/12/25",
+    "pid": "pm25.cHOLIDAY_2016",
+    "src": "",
+    "group": "Pikachu_01"
+  },
+  {
+    "index": "61",
+    "debut": "2016/12/25",
+    "pid": "pm26.cHOLIDAY_2016",
+    "src": "",
+    "group": "Pikachu_01"
+  },
+  {
+    "index": "62",
+    "debut": "2018/07/05",
+    "pid": "pm25.cSUMMER_2018",
+    "src": "",
+    "group": "Pikachu_05"
+  },
+  {
+    "index": "63",
+    "debut": "2018/07/05",
+    "pid": "pm26.cSUMMER_2018",
+    "src": "",
+    "group": "Pikachu_05"
+  },
+  {
+    "index": "64",
+    "debut": "2019/02/26",
+    "pid": "pm25.cNOVEMBER_2018",
+    "src": "",
+    "group": "Pikachu_07"
+  },
+  {
+    "index": "65",
+    "debut": "2019/02/26",
+    "pid": "pm26.cNOVEMBER_2018",
+    "src": "",
+    "group": "Pikachu_07"
+  },
+  {
+    "index": "66",
+    "debut": "2019/12/24",
+    "pid": "pm25.cWINTER_2018",
+    "src": "",
+    "group": "Pikachu_08"
+  },
+  {
+    "index": "67",
+    "debut": "2019/12/24",
+    "pid": "pm26.cWINTER_2018",
+    "src": "",
+    "group": "Pikachu_08"
+  },
+  {
+    "index": "68",
+    "debut": "2019/07/22",
+    "pid": "pm25.cMAY_2019_NOEVOLVE",
+    "src": "",
+    "group": "Pikachu_10"
+  },
+  {
+    "index": "69",
+    "debut": "2019/10/17",
+    "pid": "pm25.fFALL_2019",
+    "src": "",
+    "group": "Pikachu_f19"
+  },
+  {
+    "index": "70",
+    "debut": "2018/11/23",
+    "pid": "pm26.fALOLA",
+    "src": "",
+    "group": "Pikachu_61"
+  },
+  {
+    "index": "71",
+    "debut": "2020/02/25",
+    "pid": "pm25.cJAN_2020_NOEVOLVE",
+    "src": "",
+    "group": "Pikachu_11"
+  },
+  {
+    "index": "72",
+    "debut": "2020/03/27",
+    "pid": "pm25.cSAFARI_2020_NOEVOLVE",
+    "src": "",
+    "group": "Pikachu_13"
+  },
+  {
+    "index": "73",
+    "debut": "2020/04/09",
+    "pid": "pm25.cAPRIL_2020_NOEVOLVE",
+    "src": "",
+    "group": "Pikachu_12"
+  },
+  {
+    "index": "74",
+    "debut": "2020/05/01",
+    "pid": "pm25.cKANTO_2020_NOEVOLVE",
+    "src": "",
+    "group": "Pikachu_22"
+  },
+  {
+    "index": "75",
+    "debut": "2020/05/08",
+    "pid": "pm25.cJOHTO_2020_NOEVOLVE",
+    "src": "",
+    "group": "Pikachu_23"
+  },
+  {
+    "index": "76",
+    "debut": "2020/05/15",
+    "pid": "pm25.cHOENN_2020_NOEVOLVE",
+    "src": "",
+    "group": "Pikachu_24"
+  },
+  {
+    "index": "77",
+    "debut": "2020/05/22",
+    "pid": "pm25.cSINNOH_2020_NOEVOLVE",
+    "src": "",
+    "group": "Pikachu_25"
+  },
+  {
+    "index": "78",
+    "debut": "2020/05/22",
+    "pid": "pm25.fCOSTUME_2020",
+    "src": "",
+    "group": "Pikachu_4thY"
+  },
+  {
+    "index": "79",
+    "debut": "2020/10/06",
+    "pid": "pm25.cCOSTUME_1",
+    "src": "",
+    "group": "Pikachu_27"
+  },
+  {
+    "index": "80",
+    "debut": "2020/10/06",
+    "pid": "pm26.cCOSTUME_1",
+    "src": "",
+    "group": "Pikachu_27"
+  },
+  {
+    "index": "81",
+    "debut": "2020/12/14",
+    "pid": "pm25.fADVENTURE_HAT_2020",
+    "src": "",
+    "group": "Pikachu_m2020"
+  },
+  {
+    "index": "82",
+    "debut": "2020/12/22",
+    "pid": "pm25.fWINTER_2020",
+    "src": "",
+    "group": "Pikachu_winter2020"
+  },
+  {
+    "index": "83",
+    "debut": "2020/12/29",
+    "pid": "pm25.cCOSTUME_2",
+    "src": "",
+    "group": "Pikachu_28"
+  },
+  {
+    "index": "84",
+    "debut": "2020/12/29",
+    "pid": "pm26.cCOSTUME_2",
+    "src": "",
+    "group": "Pikachu_28"
+  },
+  {
+    "index": "85",
+    "debut": "2020/12/29",
+    "pid": "pm25.fVS_2019",
+    "src": "",
+    "group": "Pikachu_16"
+  },
+  {
+    "index": "86",
+    "debut": "2021/07/06",
+    "pid": "pm25.fFLYING_5TH_ANNIV",
+    "src": "",
+    "group": "Pikachu_5thY"
+  },
+  {
+    "index": "87",
+    "debut": "2021/07/17",
+    "pid": "pm25.cGOFEST_2021_NOEVOLVE",
+    "src": "",
+    "group": "Pikachu_47"
+  },
+  {
+    "index": "88",
+    "debut": "2021/10/15",
+    "pid": "pm25.cHALLOWEEN_2021_NOEVOLVE",
+    "src": "",
+    "group": "Pikachu_21Ha"
+  },
+  {
+    "index": "89",
+    "debut": "2022/03/19",
+    "pid": "pm25.fKARIYUSHI",
+    "src": "",
+    "group": "Pikachu_KARIYUSHI"
+  },
+  {
+    "index": "90",
+    "debut": "2022/05/03",
+    "pid": "pm25.fFLYING_OKINAWA",
+    "src": "",
+    "group": "Pikachu_FLYING_OKINAWA"
+  },
+  {
+    "index": "91",
+    "debut": "2022/06/04",
+    "pid": "pm25.cGOFEST_2022_NOEVOLVE",
+    "src": "",
+    "group": "Pikachu_GOFEST_2022"
+  },
+  {
+    "index": "92",
+    "debut": "2022/06/16",
+    "pid": "pm25.cTCG_2022_NOEVOLVE",
+    "src": "",
+    "group": "Pikachu_TCG"
+  },
+  {
+    "index": "93",
+    "debut": "2022/07/06",
+    "pid": "pm25.cANNIVERSARY_2022_NOEVOLVE",
+    "src": "",
+    "group": "Pikachu_22an"
+  },
+  {
+    "index": "94",
+    "debut": "2022/08/27",
+    "pid": "pm25.fGOFEST_2022",
+    "src": "",
+    "group": "Pikachu_22FEST"
+  },
+  {
+    "index": "95",
+    "debut": "2022/08/27",
+    "pid": "pm25.fWCS_2022",
+    "src": "",
+    "group": "Pikachu_22fWCS"
+  },
+  {
+    "index": "96",
+    "debut": "2022/10/20",
+    "pid": "pm25.fFLYING_01",
+    "src": "",
+    "group": "Pikachu_f01"
+  },
+  {
+    "index": "97",
+    "debut": "2022/10/20",
+    "pid": "pm25.fTSHIRT_01",
+    "src": "",
+    "group": "Pikachu_t01"
+  },
+  {
+    "index": "98",
+    "debut": "2022/11/24",
+    "pid": "pm25.fTSHIRT_02",
+    "src": "",
+    "group": "Pikachu_t02"
+  },
+  {
+    "index": "99",
+    "debut": "2022/11/24",
+    "pid": "pm25.fFLYING_02",
+    "src": "",
+    "group": "Pikachu_f02"
+  },
+  {
+    "index": "100",
+    "debut": "2022/12/31",
+    "pid": "pm25.cJAN_2023_NOEVOLVE",
+    "src": "",
+    "group": "Pikachu_j23"
+  },
+  {
+    "index": "101",
+    "debut": "2022/12/31",
+    "pid": "pm25.cGOTOUR_2023_HAT",
+    "src": "",
+    "group": "Pikachu_gotour_hat"
+  },
+  {
+    "index": "102",
+    "debut": "2022/12/31",
+    "pid": "pm25.cGOTOUR_2023_BANDANA",
+    "src": "",
+    "group": "Pikachu_gotour_bandana"
+  },
+  {
+    "index": "103",
+    "debut": "2023/04/04",
+    "pid": "pm25.cSPRING_2023",
+    "src": "",
+    "group": "Pikachu_23s"
+  },
+  {
+    "index": "104",
+    "debut": "2023/07/28",
+    "pid": "pm25.fJEJU",
+    "src": "",
+    "group": "Pikachu_23j"
+  },
+  {
+    "index": "105",
+    "debut": "2023/08/04",
+    "pid": "pm25.fSUMMER_2023_E",
+    "src": "",
+    "group": "Pikachu_23sun"
+  },
+  {
+    "index": "106",
+    "debut": "2023/08/04",
+    "pid": "pm25.fSUMMER_2023_A",
+    "src": "",
+    "group": "Pikachu_23sun"
+  },
+  {
+    "index": "107",
+    "debut": "2023/08/04",
+    "pid": "pm25.fSUMMER_2023_B",
+    "src": "",
+    "group": "Pikachu_23sun"
+  },
+  {
+    "index": "108",
+    "debut": "2023/08/04",
+    "pid": "pm25.fSUMMER_2023_C",
+    "src": "",
+    "group": "Pikachu_23sun"
+  },
+  {
+    "index": "109",
+    "debut": "2023/08/04",
+    "pid": "pm25.fSUMMER_2023_D",
+    "src": "",
+    "group": "Pikachu_23sun"
+  },
+  {
+    "index": "110",
+    "debut": "2023/04/04",
+    "pid": "pm26.cSPRING_2023",
+    "src": "",
+    "group": "Pikachu_23s"
+  },
+  {
+    "index": "111",
+    "debut": "2018/12/06",
+    "pid": "pm27",
+    "src": "",
+    "group": "Sandshrew"
+  },
+  {
+    "index": "112",
+    "debut": "2018/12/06",
+    "pid": "pm28",
+    "src": "",
+    "group": "Sandshrew"
+  },
+  {
+    "index": "113",
+    "debut": "2019/06/28",
+    "pid": "pm27.fALOLA",
+    "src": "",
+    "group": "Sandshrew_61"
+  },
+  {
+    "index": "114",
+    "debut": "2019/06/28",
+    "pid": "pm28.fALOLA",
+    "src": "",
+    "group": "Sandshrew_61"
+  },
+  {
+    "index": "115",
+    "debut": "2018/10/11",
+    "pid": "pm29",
+    "src": "",
+    "group": "Nidoran_Female"
+  },
+  {
+    "index": "116",
+    "debut": "2018/10/11",
+    "pid": "pm30",
+    "src": "",
+    "group": "Nidoran_Female"
+  },
+  {
+    "index": "117",
+    "debut": "2018/10/11",
+    "pid": "pm31",
+    "src": "",
+    "group": "Nidoran_Female"
+  },
+  {
+    "index": "118",
+    "debut": "2019/07/04",
+    "pid": "pm32",
+    "src": "",
+    "group": "Nidoran_Male"
+  },
+  {
+    "index": "119",
+    "debut": "2019/07/04",
+    "pid": "pm33",
+    "src": "",
+    "group": "Nidoran_Male"
+  },
+  {
+    "index": "120",
+    "debut": "2020/03/01",
+    "pid": "pm33.cJAN_2020_NOEVOLVE",
+    "src": "",
+    "group": "Nidoran_Male_11"
+  },
+  {
+    "index": "121",
+    "debut": "2019/07/04",
+    "pid": "pm34",
+    "src": "",
+    "group": "Nidoran_Male"
+  },
+  {
+    "index": "122",
+    "debut": "2019/02/13",
+    "pid": "pm35",
+    "src": "",
+    "group": "Clefairy"
+  },
+  {
+    "index": "123",
+    "debut": "2019/02/13",
+    "pid": "pm36",
+    "src": "",
+    "group": "Clefairy"
+  },
+  {
+    "index": "124",
+    "debut": "2020/10/09",
+    "pid": "pm37",
+    "src": "",
+    "group": "Vulpix"
+  },
+  {
+    "index": "125",
+    "debut": "2020/10/09",
+    "pid": "pm38",
+    "src": "",
+    "group": "Vulpix"
+  },
+  {
+    "index": "126",
+    "debut": "2019/06/28",
+    "pid": "pm37.fALOLA",
+    "src": "",
+    "group": "Vulpix_61"
+  },
+  {
+    "index": "127",
+    "debut": "2019/06/28",
+    "pid": "pm38.fALOLA",
+    "src": "",
+    "group": "Vulpix_61"
+  },
+  {
+    "index": "128",
+    "debut": "2022/10/27",
+    "pid": "pm37.cFALL_2022",
+    "src": "",
+    "group": "Vulpix_2022"
+  },
+  {
+    "index": "129",
+    "debut": "2022/10/27",
+    "pid": "pm38.cFALL_2022",
+    "src": "",
+    "group": "Vulpix_2022"
+  },
+  {
+    "index": "130",
+    "debut": "2019/04/16",
+    "pid": "pm39",
+    "src": "",
+    "group": "Jigglypuff"
+  },
+  {
+    "index": "131",
+    "debut": "2019/04/16",
+    "pid": "pm40",
+    "src": "",
+    "group": "Jigglypuff"
+  },
+  {
+    "index": "132",
+    "debut": "2019/07/25",
+    "pid": "pm41",
+    "src": "",
+    "group": "Zubat"
+  },
+  {
+    "index": "133",
+    "debut": "2019/07/25",
+    "pid": "pm42",
+    "src": "",
+    "group": "Zubat"
+  },
+  {
+    "index": "134",
+    "debut": "2019/10/03",
+    "pid": "pm43",
+    "src": "",
+    "group": "Oddish"
+  },
+  {
+    "index": "135",
+    "debut": "2019/10/03",
+    "pid": "pm44",
+    "src": "",
+    "group": "Oddish"
+  },
+  {
+    "index": "136",
+    "debut": "2019/10/03",
+    "pid": "pm45",
+    "src": "",
+    "group": "Oddish"
+  },
+  {
+    "index": "137",
+    "debut": "2021/02/20",
+    "pid": "pm46",
+    "src": "",
+    "group": "Paras"
+  },
+  {
+    "index": "138",
+    "debut": "2021/02/20",
+    "pid": "pm47",
+    "src": "",
+    "group": "Paras"
+  },
+  {
+    "index": "139",
+    "debut": "2020/05/01",
+    "pid": "pm48",
+    "src": "",
+    "group": "Venonat"
+  },
+  {
+    "index": "140",
+    "debut": "2020/05/01",
+    "pid": "pm49",
+    "src": "",
+    "group": "Venonat"
+  },
+  {
+    "index": "141",
+    "debut": "2019/04/29",
+    "pid": "pm50",
+    "src": "",
+    "group": "Diglett"
+  },
+  {
+    "index": "142",
+    "debut": "2019/04/29",
+    "pid": "pm51",
+    "src": "",
+    "group": "Diglett"
+  },
+  {
+    "index": "143",
+    "debut": "2019/06/28",
+    "pid": "pm50.fALOLA",
+    "src": "",
+    "group": "Diglett_61"
+  },
+  {
+    "index": "144",
+    "debut": "2019/06/28",
+    "pid": "pm51.fALOLA",
+    "src": "",
+    "group": "Diglett_61"
+  },
+  {
+    "index": "145",
+    "debut": "2022/09/27",
+    "pid": "pm50.cFALL_2022",
+    "src": "",
+    "group": "Diglett_22n"
+  },
+  {
+    "index": "146",
+    "debut": "2022/09/27",
+    "pid": "pm51.cFALL_2022",
+    "src": "",
+    "group": "Diglett_22n"
+  },
+  {
+    "index": "147",
+    "debut": "2019/11/07",
+    "pid": "pm52",
+    "src": "",
+    "group": "Meowth"
+  },
+  {
+    "index": "148",
+    "debut": "2019/11/07",
+    "pid": "pm53",
+    "src": "",
+    "group": "Meowth"
+  },
+  {
+    "index": "149",
+    "debut": "2019/06/28",
+    "pid": "pm52.fALOLA",
+    "src": "",
+    "group": "Meowth_61"
+  },
+  {
+    "index": "150",
+    "debut": "2019/06/28",
+    "pid": "pm53.fALOLA",
+    "src": "",
+    "group": "Meowth_61"
+  },
+  {
+    "index": "151",
+    "debut": "2021/08/20",
+    "pid": "pm52.fGALARIAN",
+    "src": "",
+    "group": "Meowth_31"
+  },
+  {
+    "index": "152",
+    "debut": "2021/08/20",
+    "pid": "pm863",
+    "src": "",
+    "group": "Meowth_31"
+  },
+  {
+    "index": "153",
+    "debut": "2019/01/25",
+    "pid": "pm54",
+    "src": "",
+    "group": "Psyduck"
+  },
+  {
+    "index": "154",
+    "debut": "2019/01/25",
+    "pid": "pm55",
+    "src": "",
+    "group": "Psyduck"
+  },
+  {
+    "index": "155",
+    "debut": "2019/03/05",
+    "pid": "pm56",
+    "src": "",
+    "group": "Mankey"
+  },
+  {
+    "index": "156",
+    "debut": "2019/03/05",
+    "pid": "pm57",
+    "src": "",
+    "group": "Mankey"
+  },
+  {
+    "index": "157",
+    "debut": "2018/09/01",
+    "pid": "pm58",
+    "src": "",
+    "group": "Growlithe"
+  },
+  {
+    "index": "158",
+    "debut": "2018/09/01",
+    "pid": "pm59",
+    "src": "",
+    "group": "Growlithe"
+  },
+  {
+    "index": "159",
+    "debut": "2019/08/06",
+    "pid": "pm60",
+    "src": "",
+    "group": "Poliwag"
+  },
+  {
+    "index": "160",
+    "debut": "2019/08/06",
+    "pid": "pm61",
+    "src": "",
+    "group": "Poliwag"
+  },
+  {
+    "index": "161",
+    "debut": "2019/08/06",
+    "pid": "pm62",
+    "src": "",
+    "group": "Poliwag"
+  },
+  {
+    "index": "162",
+    "debut": "2019/06/13",
+    "pid": "pm63",
+    "src": "",
+    "group": "Abra"
+  },
+  {
+    "index": "163",
+    "debut": "2019/06/13",
+    "pid": "pm64",
+    "src": "",
+    "group": "Abra"
+  },
+  {
+    "index": "164",
+    "debut": "2019/06/13",
+    "pid": "pm65",
+    "src": "",
+    "group": "Abra"
+  },
+  {
+    "index": "165",
+    "debut": "2022/09/06",
+    "pid": "pm65.fMEGA",
+    "src": "",
+    "group": "Abra"
+  },
+  {
+    "index": "166",
+    "debut": "2019/03/05",
+    "pid": "pm66",
+    "src": "",
+    "group": "Machop"
+  },
+  {
+    "index": "167",
+    "debut": "2019/03/05",
+    "pid": "pm67",
+    "src": "",
+    "group": "Machop"
+  },
+  {
+    "index": "168",
+    "debut": "2019/03/05",
+    "pid": "pm68",
+    "src": "",
+    "group": "Machop"
+  },
+  {
+    "index": "169",
+    "debut": "2020/07/16",
+    "pid": "pm69",
+    "src": "",
+    "group": "Bellsprout"
+  },
+  {
+    "index": "170",
+    "debut": "2020/07/16",
+    "pid": "pm70",
+    "src": "",
+    "group": "Bellsprout"
+  },
+  {
+    "index": "171",
+    "debut": "2020/07/16",
+    "pid": "pm71",
+    "src": "",
+    "group": "Bellsprout"
+  },
+  {
+    "index": "172",
+    "debut": "2019/11/19",
+    "pid": "pm72",
+    "src": "",
+    "group": "Tentacool"
+  },
+  {
+    "index": "173",
+    "debut": "2019/11/19",
+    "pid": "pm73",
+    "src": "",
+    "group": "Tentacool"
+  },
+  {
+    "index": "174",
+    "debut": "2018/09/13",
+    "pid": "pm74",
+    "src": "",
+    "group": "Geodude"
+  },
+  {
+    "index": "175",
+    "debut": "2018/09/13",
+    "pid": "pm75",
+    "src": "",
+    "group": "Geodude"
+  },
+  {
+    "index": "176",
+    "debut": "2018/09/13",
+    "pid": "pm76",
+    "src": "",
+    "group": "Geodude"
+  },
+  {
+    "index": "177",
+    "debut": "2019/06/28",
+    "pid": "pm74.fALOLA",
+    "src": "",
+    "group": "Geodude_61"
+  },
+  {
+    "index": "178",
+    "debut": "2019/06/28",
+    "pid": "pm75.fALOLA",
+    "src": "",
+    "group": "Geodude_61"
+  },
+  {
+    "index": "179",
+    "debut": "2019/06/28",
+    "pid": "pm76.fALOLA",
+    "src": "",
+    "group": "Geodude_61"
+  },
+  {
+    "index": "180",
+    "debut": "2018/11/05",
+    "pid": "pm77",
+    "src": "",
+    "group": "Ponyta"
+  },
+  {
+    "index": "181",
+    "debut": "2018/11/05",
+    "pid": "pm78",
+    "src": "",
+    "group": "Ponyta"
+  },
+  {
+    "index": "182",
+    "debut": "2021/05/11",
+    "pid": "pm77.fGALARIAN",
+    "src": "",
+    "group": "Ponyta_31"
+  },
+  {
+    "index": "183",
+    "debut": "2021/05/11",
+    "pid": "pm78.fGALARIAN",
+    "src": "",
+    "group": "Ponyta_31"
+  },
+  {
+    "index": "184",
+    "debut": "2021/07/17",
+    "pid": "pm77.fGALARIAN.cGOFEST_2021_NOEVOLVE",
+    "src": "",
+    "group": "Ponyta_31_47"
+  },
+  {
+    "index": "185",
+    "debut": "2023/05/11",
+    "pid": "pm77.cSPRING_2023_VALOR",
+    "src": "",
+    "group": "Ponyta_23s"
+  },
+  {
+    "index": "186",
+    "debut": "2023/05/11",
+    "pid": "pm78.cSPRING_2023_VALOR",
+    "src": "",
+    "group": "Ponyta_23s"
+  },
+  {
+    "index": "187",
+    "debut": "2020/11/16",
+    "pid": "pm79",
+    "src": "",
+    "group": "Slowpoke"
+  },
+  {
+    "index": "188",
+    "debut": "2020/11/16",
+    "pid": "pm80",
+    "src": "",
+    "group": "Slowpoke"
+  },
+  {
+    "index": "189",
+    "debut": "2021/06/08",
+    "pid": "pm80.fMEGA",
+    "src": "",
+    "group": "Slowpoke"
+  },
+  {
+    "index": "190",
+    "debut": "",
+    "pid": "pm79.f2020",
+    "src": "",
+    "group": "Slowpoke_2020"
+  },
+  {
+    "index": "191",
+    "debut": "",
+    "pid": "pm80.f2021",
+    "src": "",
+    "group": "Slowpoke_2020"
+  },
+  {
+    "index": "192",
+    "debut": "2023/03/18",
+    "pid": "pm79.fGALARIAN",
+    "src": "",
+    "group": "Slowpoke_51"
+  },
+  {
+    "index": "193",
+    "debut": "2023/03/18",
+    "pid": "pm80.fGALARIAN",
+    "src": "",
+    "group": "Slowpoke_51"
+  },
+  {
+    "index": "194",
+    "debut": "2018/11/16",
+    "pid": "pm81",
+    "src": "",
+    "group": "Magnemite"
+  },
+  {
+    "index": "195",
+    "debut": "2018/11/16",
+    "pid": "pm82",
+    "src": "",
+    "group": "Magnemite"
+  },
+  {
+    "index": "196",
+    "debut": "2019/09/09",
+    "pid": "pm83",
+    "src": "",
+    "group": "Farfetchd"
+  },
+  {
+    "index": "197",
+    "debut": "2021/08/20",
+    "pid": "pm83.fGALARIAN",
+    "src": "",
+    "group": "Farfetchd_31"
+  },
+  {
+    "index": "198",
+    "debut": "2021/08/20",
+    "pid": "pm865",
+    "src": "",
+    "group": "Farfetchd_31"
+  },
+  {
+    "index": "199",
+    "debut": "2020/09/21",
+    "pid": "pm84",
+    "src": "",
+    "group": "Doduo"
+  },
+  {
+    "index": "200",
+    "debut": "2020/09/21",
+    "pid": "pm85",
+    "src": "",
+    "group": "Doduo"
+  },
+  {
+    "index": "201",
+    "debut": "2019/05/01",
+    "pid": "pm86",
+    "src": "",
+    "group": "Seel"
+  },
+  {
+    "index": "202",
+    "debut": "2019/05/01",
+    "pid": "pm87",
+    "src": "",
+    "group": "Seel"
+  },
+  {
+    "index": "203",
+    "debut": "2018/09/13",
+    "pid": "pm88",
+    "src": "",
+    "group": "Grimer"
+  },
+  {
+    "index": "204",
+    "debut": "2018/09/13",
+    "pid": "pm89",
+    "src": "",
+    "group": "Grimer"
+  },
+  {
+    "index": "205",
+    "debut": "2019/06/28",
+    "pid": "pm88.fALOLA",
+    "src": "",
+    "group": "Grimer_61"
+  },
+  {
+    "index": "206",
+    "debut": "2019/06/28",
+    "pid": "pm89.fALOLA",
+    "src": "",
+    "group": "Grimer_61"
+  },
+  {
+    "index": "207",
+    "debut": "2018/06/07",
+    "pid": "pm90",
+    "src": "",
+    "group": "Shellder"
+  },
+  {
+    "index": "208",
+    "debut": "2018/06/07",
+    "pid": "pm91",
+    "src": "",
+    "group": "Shellder"
+  },
+  {
+    "index": "209",
+    "debut": "2018/11/03",
+    "pid": "pm92",
+    "src": "",
+    "group": "Gastly"
+  },
+  {
+    "index": "210",
+    "debut": "2018/11/03",
+    "pid": "pm93",
+    "src": "",
+    "group": "Gastly"
+  },
+  {
+    "index": "211",
+    "debut": "2018/11/03",
+    "pid": "pm94",
+    "src": "",
+    "group": "Gastly"
+  },
+  {
+    "index": "212",
+    "debut": "2018/11/03",
+    "pid": "pm94.fMEGA",
+    "src": "",
+    "group": "Gastly"
+  },
+  {
+    "index": "213",
+    "debut": "2020/03/01",
+    "pid": "pm94.cJAN_2020_NOEVOLVE",
+    "src": "",
+    "group": "Gastly_11"
+  },
+  {
+    "index": "214",
+    "debut": "2020/10/23",
+    "pid": "pm94.fCOSTUME_2020",
+    "src": "",
+    "group": "Gastly_26"
+  },
+  {
+    "index": "215",
+    "debut": "2022/10/27",
+    "pid": "pm94.cFALL_2022_NOEVOLVE",
+    "src": "",
+    "group": "Gastly_2022"
+  },
+  {
+    "index": "216",
+    "debut": "2019/06/04",
+    "pid": "pm95",
+    "src": "",
+    "group": "Onix"
+  },
+  {
+    "index": "217",
+    "debut": "2018/10/05",
+    "pid": "pm96",
+    "src": "",
+    "group": "Drowzee"
+  },
+  {
+    "index": "218",
+    "debut": "2018/10/05",
+    "pid": "pm97",
+    "src": "",
+    "group": "Drowzee"
+  },
+  {
+    "index": "219",
+    "debut": "2018/10/01",
+    "pid": "pm98",
+    "src": "",
+    "group": "Krabby"
+  },
+  {
+    "index": "220",
+    "debut": "2018/10/01",
+    "pid": "pm99",
+    "src": "",
+    "group": "Krabby"
+  },
+  {
+    "index": "221",
+    "debut": "2020/05/08",
+    "pid": "pm100",
+    "src": "",
+    "group": "Voltorb"
+  },
+  {
+    "index": "222",
+    "debut": "2020/05/08",
+    "pid": "pm101",
+    "src": "",
+    "group": "Voltorb"
+  },
+  {
+    "index": "223",
+    "debut": "2020/04/08",
+    "pid": "pm102",
+    "src": "",
+    "group": "Exeggcute"
+  },
+  {
+    "index": "224",
+    "debut": "2020/04/08",
+    "pid": "pm103",
+    "src": "",
+    "group": "Exeggcute"
+  },
+  {
+    "index": "225",
+    "debut": "2020/04/08",
+    "pid": "pm103.fALOLA",
+    "src": "",
+    "group": "Exeggcute"
+  },
+  {
+    "index": "226",
+    "debut": "2018/11/05",
+    "pid": "pm104",
+    "src": "",
+    "group": "Cubone"
+  },
+  {
+    "index": "227",
+    "debut": "2018/11/05",
+    "pid": "pm105",
+    "src": "",
+    "group": "Cubone"
+  },
+  {
+    "index": "228",
+    "debut": "2018/11/05",
+    "pid": "pm105.fALOLA",
+    "src": "",
+    "group": "Cubone"
+  },
+  {
+    "index": "229",
+    "debut": "2021/02/20",
+    "pid": "pm106",
+    "src": "",
+    "group": "Tyrogue"
+  },
+  {
+    "index": "230",
+    "debut": "2021/02/20",
+    "pid": "pm107",
+    "src": "",
+    "group": "Tyrogue"
+  },
+  {
+    "index": "231",
+    "debut": "2020/02/15",
+    "pid": "pm108",
+    "src": "",
+    "group": "Lickitung"
+  },
+  {
+    "index": "232",
+    "debut": "2019/07/25",
+    "pid": "pm109",
+    "src": "",
+    "group": "Koffing"
+  },
+  {
+    "index": "233",
+    "debut": "2019/07/25",
+    "pid": "pm110",
+    "src": "",
+    "group": "Koffing"
+  },
+  {
+    "index": "234",
+    "debut": "2021/08/20",
+    "pid": "pm110.fGALARIAN",
+    "src": "",
+    "group": "Koffing_31"
+  },
+  {
+    "index": "235",
+    "debut": "2020/02/22",
+    "pid": "pm111",
+    "src": "",
+    "group": "Rhyhorn"
+  },
+  {
+    "index": "236",
+    "debut": "2020/02/22",
+    "pid": "pm112",
+    "src": "",
+    "group": "Rhyhorn"
+  },
+  {
+    "index": "237",
+    "debut": "2020/02/13",
+    "pid": "pm113",
+    "src": "",
+    "group": "Chansey"
+  },
+  {
+    "index": "238",
+    "debut": "2021/04/04",
+    "pid": "pm113.cNOVEMBER_2018",
+    "src": "",
+    "group": "Chansey_07"
+  },
+  {
+    "index": "239",
+    "debut": "2020/07/24",
+    "pid": "pm114",
+    "src": "",
+    "group": "Tangela"
+  },
+  {
+    "index": "240",
+    "debut": "2019/09/09",
+    "pid": "pm115",
+    "src": "",
+    "group": "Kangaskhan"
+  },
+  {
+    "index": "241",
+    "debut": "2022/04/29",
+    "pid": "pm115.fMEGA",
+    "src": "",
+    "group": "Kangaskhan"
+  },
+  {
+    "index": "242",
+    "debut": "2019/06/13",
+    "pid": "pm116",
+    "src": "",
+    "group": "Horsea"
+  },
+  {
+    "index": "243",
+    "debut": "2019/06/13",
+    "pid": "pm117",
+    "src": "",
+    "group": "Horsea"
+  },
+  {
+    "index": "244",
+    "debut": "2020/11/23",
+    "pid": "pm118",
+    "src": "",
+    "group": "Goldeen"
+  },
+  {
+    "index": "245",
+    "debut": "2020/11/23",
+    "pid": "pm119",
+    "src": "",
+    "group": "Goldeen"
+  },
+  {
+    "index": "246",
+    "debut": "2020/08/07",
+    "pid": "pm120",
+    "src": "",
+    "group": "Staryu"
+  },
+  {
+    "index": "247",
+    "debut": "2020/08/07",
+    "pid": "pm121",
+    "src": "",
+    "group": "Staryu"
+  },
+  {
+    "index": "248",
+    "debut": "2019/09/09",
+    "pid": "pm122",
+    "src": "",
+    "group": "Mr_Mime"
+  },
+  {
+    "index": "249",
+    "debut": "2022/12/01",
+    "pid": "pm122.fGALARIAN",
+    "src": "",
+    "group": "Mr_Mime_31"
+  },
+  {
+    "index": "250",
+    "debut": "2019/04/02",
+    "pid": "pm123",
+    "src": "",
+    "group": "Scyther"
+  },
+  {
+    "index": "251",
+    "debut": "2019/02/13",
+    "pid": "pm124",
+    "src": "",
+    "group": "Jynx"
+  },
+  {
+    "index": "252",
+    "debut": "2018/11/15",
+    "pid": "pm125",
+    "src": "",
+    "group": "Electabuzz"
+  },
+  {
+    "index": "253",
+    "debut": "2023/05/02",
+    "pid": "pm125.cSPRING_2023_INSTINCT",
+    "src": "",
+    "group": "Electabuzz_23s"
+  },
+  {
+    "index": "254",
+    "debut": "2018/03/22",
+    "pid": "pm126",
+    "src": "",
+    "group": "Magmar"
+  },
+  {
+    "index": "255",
+    "debut": "2018/11/01",
+    "pid": "pm127",
+    "src": "",
+    "group": "Pinsir"
+  },
+  {
+    "index": "256",
+    "debut": "2023/05/11",
+    "pid": "pm127.fMEGA",
+    "src": "",
+    "group": "Pinsir"
+  },
+  {
+    "index": "257",
+    "debut": "2019/09/09",
+    "pid": "pm128",
+    "src": "",
+    "group": "Tauros"
+  },
+  {
+    "index": "258",
+    "debut": "2017/03/22",
+    "pid": "pm129",
+    "src": "",
+    "group": "Magikarp"
+  },
+  {
+    "index": "259",
+    "debut": "2017/03/22",
+    "pid": "pm130",
+    "src": "",
+    "group": "Magikarp"
+  },
+  {
+    "index": "260",
+    "debut": "2017/03/22",
+    "pid": "pm130.fMEGA",
+    "src": "",
+    "group": "Magikarp"
+  },
+  {
+    "index": "261",
+    "debut": "2019/04/18",
+    "pid": "pm131",
+    "src": "",
+    "group": "Lapras"
+  },
+  {
+    "index": "262",
+    "debut": "2022/05/12",
+    "pid": "pm131.fCOSTUME_2020",
+    "src": "",
+    "group": "Lapras"
+  },
+  {
+    "index": "263",
+    "debut": "2023/04/13",
+    "pid": "pm131.cSPRING_2023_MYSTIC",
+    "src": "",
+    "group": "Lapras"
+  },
+  {
+    "index": "264",
+    "debut": "2021/02/20",
+    "pid": "pm132",
+    "src": "",
+    "group": "Ditto"
+  },
+  {
+    "index": "265",
+    "debut": "2018/08/11",
+    "pid": "pm133",
+    "src": "",
+    "group": "Eevee"
+  },
+  {
+    "index": "266",
+    "debut": "2019/02/26",
+    "pid": "pm133.cNOVEMBER_2018",
+    "src": "",
+    "group": "Eevee_07"
+  },
+  {
+    "index": "267",
+    "debut": "2022/12/31",
+    "pid": "pm133.cHOLIDAY_2022",
+    "src": "",
+    "group": "Eevee_2022h"
+  },
+  {
+    "index": "268",
+    "debut": "2020/02/25",
+    "pid": "pm133.cJAN_2020_NOEVOLVE",
+    "src": "",
+    "group": "Eevee_11"
+  },
+  {
+    "index": "269",
+    "debut": "2023/04/04",
+    "pid": "pm133.cSPRING_2023",
+    "src": "",
+    "group": "Eevee_23s"
+  },
+  {
+    "index": "270",
+    "debut": "2018/08/11",
+    "pid": "pm134",
+    "src": "",
+    "group": "Eevee"
+  },
+  {
+    "index": "271",
+    "debut": "2019/02/26",
+    "pid": "pm134.cNOVEMBER_2018",
+    "src": "",
+    "group": "Eevee_07"
+  },
+  {
+    "index": "272",
+    "debut": "2022/12/31",
+    "pid": "pm134.cHOLIDAY_2022",
+    "src": "",
+    "group": "Eevee_2022h"
+  },
+  {
+    "index": "273",
+    "debut": "2023/04/04",
+    "pid": "pm134.cSPRING_2023",
+    "src": "",
+    "group": "Eevee_23s"
+  },
+  {
+    "index": "274",
+    "debut": "2018/08/11",
+    "pid": "pm135",
+    "src": "",
+    "group": "Eevee"
+  },
+  {
+    "index": "275",
+    "debut": "2019/02/26",
+    "pid": "pm135.cNOVEMBER_2018",
+    "src": "",
+    "group": "Eevee_07"
+  },
+  {
+    "index": "276",
+    "debut": "2022/12/31",
+    "pid": "pm135.cHOLIDAY_2022",
+    "src": "",
+    "group": "Eevee_2022h"
+  },
+  {
+    "index": "277",
+    "debut": "2023/04/04",
+    "pid": "pm135.cSPRING_2023",
+    "src": "",
+    "group": "Eevee_23s"
+  },
+  {
+    "index": "278",
+    "debut": "2018/08/11",
+    "pid": "pm136",
+    "src": "",
+    "group": "Eevee"
+  },
+  {
+    "index": "279",
+    "debut": "2019/02/26",
+    "pid": "pm136.cNOVEMBER_2018",
+    "src": "",
+    "group": "Eevee_07"
+  },
+  {
+    "index": "280",
+    "debut": "2022/12/31",
+    "pid": "pm136.cHOLIDAY_2022",
+    "src": "",
+    "group": "Eevee_2022h"
+  },
+  {
+    "index": "281",
+    "debut": "2023/04/04",
+    "pid": "pm136.cSPRING_2023",
+    "src": "",
+    "group": "Eevee_23s"
+  },
+  {
+    "index": "282",
+    "debut": "2020/09/19",
+    "pid": "pm137",
+    "src": "",
+    "group": "Porygon"
+  },
+  {
+    "index": "283",
+    "debut": "2018/05/24",
+    "pid": "pm138",
+    "src": "",
+    "group": "Omanyte"
+  },
+  {
+    "index": "284",
+    "debut": "2018/05/24",
+    "pid": "pm139",
+    "src": "",
+    "group": "Omanyte"
+  },
+  {
+    "index": "285",
+    "debut": "2018/05/24",
+    "pid": "pm140",
+    "src": "",
+    "group": "Kabuto"
+  },
+  {
+    "index": "286",
+    "debut": "2018/05/24",
+    "pid": "pm141",
+    "src": "",
+    "group": "Kabuto"
+  },
+  {
+    "index": "287",
+    "debut": "2018/05/02",
+    "pid": "pm142",
+    "src": "",
+    "group": "Aerodactyl"
+  },
+  {
+    "index": "288",
+    "debut": "2023/01/25",
+    "pid": "pm142.fMEGA",
+    "src": "",
+    "group": "Aerodactyl"
+  },
+  {
+    "index": "289",
+    "debut": "2021/02/20",
+    "pid": "pm143",
+    "src": "",
+    "group": "Snorlax"
+  },
+  {
+    "index": "290",
+    "debut": "2022/07/16",
+    "pid": "pm143.cGOFEST_2022_NOEVOLVE",
+    "src": "",
+    "group": "Snorlax"
+  },
+  {
+    "index": "291",
+    "debut": "2023/07/15",
+    "pid": "pm143.cNIGHTCAP",
+    "src": "",
+    "group": "Snorlax"
+  },
+  {
+    "index": "292",
+    "debut": "2018/07/07",
+    "pid": "pm144",
+    "src": "",
+    "group": "Articuno"
+  },
+  {
+    "index": "293",
+    "debut": "2018/07/21",
+    "pid": "pm145",
+    "src": "",
+    "group": "Zapdos"
+  },
+  {
+    "index": "294",
+    "debut": "2018/09/08",
+    "pid": "pm146",
+    "src": "",
+    "group": "Moltres"
+  },
+  {
+    "index": "295",
+    "debut": "2018/02/24",
+    "pid": "pm147",
+    "src": "",
+    "group": "Dratini"
+  },
+  {
+    "index": "296",
+    "debut": "2018/02/24",
+    "pid": "pm148",
+    "src": "",
+    "group": "Dratini"
+  },
+  {
+    "index": "297",
+    "debut": "2018/02/24",
+    "pid": "pm149",
+    "src": "",
+    "group": "Dratini"
+  },
+  {
+    "index": "298",
+    "debut": "2019/09/16",
+    "pid": "pm150",
+    "src": "",
+    "group": "Mewtwo"
+  },
+  {
+    "index": "299",
+    "debut": "2021/02/20",
+    "pid": "pm151",
+    "src": "",
+    "group": "Mew"
+  },
+  {
+    "index": "300",
+    "debut": "2018/09/22",
+    "pid": "pm152",
+    "src": "",
+    "group": "Chikorita"
+  },
+  {
+    "index": "301",
+    "debut": "2018/09/22",
+    "pid": "pm153",
+    "src": "",
+    "group": "Chikorita"
+  },
+  {
+    "index": "302",
+    "debut": "2018/09/22",
+    "pid": "pm154",
+    "src": "",
+    "group": "Chikorita"
+  },
+  {
+    "index": "303",
+    "debut": "2018/11/10",
+    "pid": "pm155",
+    "src": "",
+    "group": "Cyndaquil"
+  },
+  {
+    "index": "304",
+    "debut": "2018/11/10",
+    "pid": "pm156",
+    "src": "",
+    "group": "Cyndaquil"
+  },
+  {
+    "index": "305",
+    "debut": "2018/11/10",
+    "pid": "pm157",
+    "src": "",
+    "group": "Cyndaquil"
+  },
+  {
+    "index": "306",
+    "debut": "2019/01/12",
+    "pid": "pm158",
+    "src": "",
+    "group": "Totodile"
+  },
+  {
+    "index": "307",
+    "debut": "2019/01/12",
+    "pid": "pm159",
+    "src": "",
+    "group": "Totodile"
+  },
+  {
+    "index": "308",
+    "debut": "2019/01/12",
+    "pid": "pm160",
+    "src": "",
+    "group": "Totodile"
+  },
+  {
+    "index": "309",
+    "debut": "2019/09/02",
+    "pid": "pm161",
+    "src": "",
+    "group": "Sentret"
+  },
+  {
+    "index": "310",
+    "debut": "2019/09/02",
+    "pid": "pm162",
+    "src": "",
+    "group": "Sentret"
+  },
+  {
+    "index": "311",
+    "debut": "2022/01/01",
+    "pid": "pm163",
+    "src": "",
+    "group": "Hoothoot"
+  },
+  {
+    "index": "312",
+    "debut": "2022/01/01",
+    "pid": "pm163.cJAN_2022_NOEVOLVE",
+    "src": "",
+    "group": "Hoothoot_2022"
+  },
+  {
+    "index": "313",
+    "debut": "2022/01/01",
+    "pid": "pm164",
+    "src": "",
+    "group": "Hoothoot"
+  },
+  {
+    "index": "314",
+    "debut": "2022/12/31",
+    "pid": "pm164.cJAN_2022_NOEVOLVE",
+    "src": "",
+    "group": "Hoothoot_2022"
+  },
+  {
+    "index": "315",
+    "debut": "2020/09/10",
+    "pid": "pm165",
+    "src": "",
+    "group": "Ledyba"
+  },
+  {
+    "index": "316",
+    "debut": "2020/09/10",
+    "pid": "pm166",
+    "src": "",
+    "group": "Ledyba"
+  },
+  {
+    "index": "317",
+    "debut": "2021/10/15",
+    "pid": "pm167",
+    "src": "",
+    "group": "Spinarak"
+  },
+  {
+    "index": "318",
+    "debut": "2021/10/15",
+    "pid": "pm168",
+    "src": "",
+    "group": "Spinarak"
+  },
+  {
+    "index": "319",
+    "debut": "2019/07/25",
+    "pid": "pm169",
+    "src": "",
+    "group": "Zubat"
+  },
+  {
+    "index": "320",
+    "debut": "2020/04/17",
+    "pid": "pm170",
+    "src": "",
+    "group": "Chinchou"
+  },
+  {
+    "index": "321",
+    "debut": "2020/04/17",
+    "pid": "pm171",
+    "src": "",
+    "group": "Chinchou"
+  },
+  {
+    "index": "322",
+    "debut": "2017/08/15",
+    "pid": "pm172",
+    "src": "",
+    "group": "Pikachu"
+  },
+  {
+    "index": "323",
+    "debut": "2017/02/26",
+    "pid": "pm172.cANNIVERSARY",
+    "src": "",
+    "group": "Pikachu_02"
+  },
+  {
+    "index": "324",
+    "debut": "2017/06/06",
+    "pid": "pm172.cONE_YEAR_ANNIVERSARY",
+    "src": "",
+    "group": "Pikachu_03"
+  },
+  {
+    "index": "325",
+    "debut": "2017/10/20",
+    "pid": "pm172.cHALLOWEEN_2017",
+    "src": "",
+    "group": "Pikachu_04"
+  },
+  {
+    "index": "326",
+    "debut": "2018/07/05",
+    "pid": "pm172.cSUMMER_2018",
+    "src": "",
+    "group": "Pikachu_05"
+  },
+  {
+    "index": "327",
+    "debut": "2019/12/24",
+    "pid": "pm172.cWINTER_2018",
+    "src": "",
+    "group": "Pikachu_08"
+  },
+  {
+    "index": "328",
+    "debut": "2016/12/25",
+    "pid": "pm172.cHOLIDAY_2016",
+    "src": "",
+    "group": "Pikachu_01"
+  },
+  {
+    "index": "329",
+    "debut": "2019/02/26",
+    "pid": "pm172.cNOVEMBER_2018",
+    "src": "",
+    "group": "Pikachu_07"
+  },
+  {
+    "index": "330",
+    "debut": "2020/12/29",
+    "pid": "pm172.cCOSTUME_2",
+    "src": "",
+    "group": "Pikachu_28"
+  },
+  {
+    "index": "331",
+    "debut": "2023/04/04",
+    "pid": "pm172.cSPRING_2023",
+    "src": "",
+    "group": "Pikachu_23s"
+  },
+  {
+    "index": "332",
+    "debut": "2019/02/13",
+    "pid": "pm173",
+    "src": "",
+    "group": "Clefairy"
+  },
+  {
+    "index": "333",
+    "debut": "2019/04/16",
+    "pid": "pm174",
+    "src": "",
+    "group": "Jigglypuff"
+  },
+  {
+    "index": "334",
+    "debut": "2018/03/22",
+    "pid": "pm175",
+    "src": "",
+    "group": "Togepi"
+  },
+  {
+    "index": "335",
+    "debut": "2018/03/22",
+    "pid": "pm175.cAPRIL_2020_NOEVOLVE",
+    "src": "",
+    "group": "Togepi"
+  },
+  {
+    "index": "336",
+    "debut": "2018/03/22",
+    "pid": "pm176",
+    "src": "",
+    "group": "Togepi"
+  },
+  {
+    "index": "337",
+    "debut": "2022/04/12",
+    "pid": "pm176.cAPRIL_2020_NOEVOLVE",
+    "src": "",
+    "group": "Togepi"
+  },
+  {
+    "index": "338",
+    "debut": "2018/08/20",
+    "pid": "pm177",
+    "src": "",
+    "group": "Natu"
+  },
+  {
+    "index": "339",
+    "debut": "2018/08/20",
+    "pid": "pm178",
+    "src": "",
+    "group": "Natu"
+  },
+  {
+    "index": "340",
+    "debut": "2018/04/15",
+    "pid": "pm179",
+    "src": "",
+    "group": "Mareep"
+  },
+  {
+    "index": "341",
+    "debut": "2018/04/15",
+    "pid": "pm180",
+    "src": "",
+    "group": "Mareep"
+  },
+  {
+    "index": "342",
+    "debut": "2018/04/15",
+    "pid": "pm181",
+    "src": "",
+    "group": "Mareep"
+  },
+  {
+    "index": "343",
+    "debut": "2018/04/15",
+    "pid": "pm181.fMEGA",
+    "src": "",
+    "group": "Mareep"
+  },
+  {
+    "index": "344",
+    "debut": "2019/10/03",
+    "pid": "pm182",
+    "src": "",
+    "group": "Oddish"
+  },
+  {
+    "index": "345",
+    "debut": "2018/12/18",
+    "pid": "pm183",
+    "src": "",
+    "group": "Marill"
+  },
+  {
+    "index": "346",
+    "debut": "2018/12/18",
+    "pid": "pm184",
+    "src": "",
+    "group": "Marill"
+  },
+  {
+    "index": "347",
+    "debut": "2019/08/05",
+    "pid": "pm185",
+    "src": "",
+    "group": "Sudowoodo"
+  },
+  {
+    "index": "348",
+    "debut": "2019/08/06",
+    "pid": "pm186",
+    "src": "",
+    "group": "Poliwag"
+  },
+  {
+    "index": "349",
+    "debut": "2022/02/12",
+    "pid": "pm187",
+    "src": "",
+    "group": "Hoppip"
+  },
+  {
+    "index": "350",
+    "debut": "2022/02/12",
+    "pid": "pm188",
+    "src": "",
+    "group": "Hoppip"
+  },
+  {
+    "index": "351",
+    "debut": "2022/02/12",
+    "pid": "pm189",
+    "src": "",
+    "group": "Hoppip"
+  },
+  {
+    "index": "352",
+    "debut": "2019/05/07",
+    "pid": "pm190",
+    "src": "",
+    "group": "Aipom"
+  },
+  {
+    "index": "353",
+    "debut": "2018/08/20",
+    "pid": "pm191",
+    "src": "",
+    "group": "Sunkern"
+  },
+  {
+    "index": "354",
+    "debut": "2018/08/20",
+    "pid": "pm192",
+    "src": "",
+    "group": "Sunkern"
+  },
+  {
+    "index": "355",
+    "debut": "2019/09/20",
+    "pid": "pm193",
+    "src": "",
+    "group": "Yanma"
+  },
+  {
+    "index": "356",
+    "debut": "2020/12/11",
+    "pid": "pm194",
+    "src": "",
+    "group": "Wooper"
+  },
+  {
+    "index": "357",
+    "debut": "2020/12/11",
+    "pid": "pm195",
+    "src": "",
+    "group": "Wooper"
+  },
+  {
+    "index": "358",
+    "debut": "2018/08/11",
+    "pid": "pm196",
+    "src": "",
+    "group": "Eevee"
+  },
+  {
+    "index": "359",
+    "debut": "2019/02/26",
+    "pid": "pm196.cNOVEMBER_2018",
+    "src": "",
+    "group": "Eevee_07"
+  },
+  {
+    "index": "360",
+    "debut": "2022/12/31",
+    "pid": "pm196.cHOLIDAY_2022",
+    "src": "",
+    "group": "Eevee_2022h"
+  },
+  {
+    "index": "361",
+    "debut": "2023/04/04",
+    "pid": "pm196.cSPRING_2023",
+    "src": "",
+    "group": "Eevee_23s"
+  },
+  {
+    "index": "362",
+    "debut": "2018/08/11",
+    "pid": "pm197",
+    "src": "",
+    "group": "Eevee"
+  },
+  {
+    "index": "363",
+    "debut": "2019/02/26",
+    "pid": "pm197.cNOVEMBER_2018",
+    "src": "",
+    "group": "Eevee_07"
+  },
+  {
+    "index": "364",
+    "debut": "2022/12/31",
+    "pid": "pm197.cHOLIDAY_2022",
+    "src": "",
+    "group": "Eevee_2022h"
+  },
+  {
+    "index": "365",
+    "debut": "2023/04/04",
+    "pid": "pm197.cSPRING_2023",
+    "src": "",
+    "group": "Eevee_23s"
+  },
+  {
+    "index": "366",
+    "debut": "2018/03/31",
+    "pid": "pm198",
+    "src": "",
+    "group": "Murkrow"
+  },
+  {
+    "index": "367",
+    "debut": "2020/11/16",
+    "pid": "pm199",
+    "src": "",
+    "group": "Slowpoke"
+  },
+  {
+    "index": "368",
+    "debut": "2022/01/01",
+    "pid": "pm199.f2022",
+    "src": "",
+    "group": "Slowpoke_2020"
+  },
+  {
+    "index": "369",
+    "debut": "2023/03/18",
+    "pid": "pm199.fGALARIAN",
+    "src": "",
+    "group": "Slowpoke_51"
+  },
+  {
+    "index": "370",
+    "debut": "2018/12/01",
+    "pid": "pm200",
+    "src": "",
+    "group": "Misdreavus"
+  },
+  {
+    "index": "371",
+    "debut": "2020/08/07",
+    "pid": "pm201.fUNOWN_A",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "372",
+    "debut": "2022/06/04",
+    "pid": "pm201.fUNOWN_B",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "373",
+    "debut": "2020/11/22",
+    "pid": "pm201.fUNOWN_C",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "374",
+    "debut": "2022/08/17",
+    "pid": "pm201.fUNOWN_D",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "375",
+    "debut": "2022/05/13",
+    "pid": "pm201.fUNOWN_E",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "376",
+    "debut": "2021/07/17",
+    "pid": "pm201.fUNOWN_F",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "377",
+    "debut": "2020/07/25",
+    "pid": "pm201.fUNOWN_G",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "378",
+    "debut": "2023/02/18",
+    "pid": "pm201.fUNOWN_H",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "379",
+    "debut": "2022/05/13",
+    "pid": "pm201.fUNOWN_I",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "380",
+    "debut": "2022/02/26",
+    "pid": "pm201.fUNOWN_J",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "381",
+    "debut": "",
+    "pid": "pm201.fUNOWN_K",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "382",
+    "debut": "2020/08/07",
+    "pid": "pm201.fUNOWN_L",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "383",
+    "debut": "2023/08/04",
+    "pid": "pm201.fUNOWN_M",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "384",
+    "debut": "2022/08/27",
+    "pid": "pm201.fUNOWN_N",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "385",
+    "debut": "2020/07/25",
+    "pid": "pm201.fUNOWN_O",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "386",
+    "debut": "2022/08/27",
+    "pid": "pm201.fUNOWN_P",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "387",
+    "debut": "",
+    "pid": "pm201.fUNOWN_Q",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "388",
+    "debut": "2020/08/07",
+    "pid": "pm201.fUNOWN_R",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "389",
+    "debut": "2022/05/13",
+    "pid": "pm201.fUNOWN_S",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "390",
+    "debut": "2020/08/07",
+    "pid": "pm201.fUNOWN_T",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "391",
+    "debut": "2020/08/07",
+    "pid": "pm201.fUNOWN_U",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "392",
+    "debut": "2022/05/13",
+    "pid": "pm201.fUNOWN_V",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "393",
+    "debut": "",
+    "pid": "pm201.fUNOWN_W",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "394",
+    "debut": "2022/08/27",
+    "pid": "pm201.fUNOWN_X",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "395",
+    "debut": "2022/09/24",
+    "pid": "pm201.fUNOWN_Y",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "396",
+    "debut": "",
+    "pid": "pm201.fUNOWN_Z",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "397",
+    "debut": "2023/08/04",
+    "pid": "pm201.fUNOWN_EXCLAMATION_POINT",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "398",
+    "debut": "",
+    "pid": "pm201.fUNOWN_QUESTION_MARK",
+    "src": "",
+    "group": "Unown"
+  },
+  {
+    "index": "399",
+    "debut": "2018/03/22",
+    "pid": "pm202",
+    "src": "",
+    "group": "Wobbuffet"
+  },
+  {
+    "index": "400",
+    "debut": "2018/03/22",
+    "pid": "pm202.g2",
+    "src": "",
+    "group": "Wobbuffet"
+  },
+  {
+    "index": "401",
+    "debut": "2018/03/22",
+    "pid": "pm202.cJAN_2020_NOEVOLVE",
+    "src": "",
+    "group": "Wobbuffet"
+  },
+  {
+    "index": "402",
+    "debut": "2018/03/22",
+    "pid": "pm202.cJAN_2020_NOEVOLVE.g2",
+    "src": "",
+    "group": "Wobbuffet"
+  },
+  {
+    "index": "403",
+    "debut": "2022/02/26",
+    "pid": "pm203",
+    "src": "",
+    "group": "Girafarig"
+  },
+  {
+    "index": "404",
+    "debut": "2018/08/20",
+    "pid": "pm204",
+    "src": "",
+    "group": "Pineco"
+  },
+  {
+    "index": "405",
+    "debut": "2018/08/20",
+    "pid": "pm205",
+    "src": "",
+    "group": "Pineco"
+  },
+  {
+    "index": "406",
+    "debut": "2020/05/08",
+    "pid": "pm206",
+    "src": "",
+    "group": "Dunsparce"
+  },
+  {
+    "index": "407",
+    "debut": "2019/09/02",
+    "pid": "pm207",
+    "src": "",
+    "group": "Gligar"
+  },
+  {
+    "index": "408",
+    "debut": "2019/06/04",
+    "pid": "pm208",
+    "src": "",
+    "group": "Onix"
+  },
+  {
+    "index": "409",
+    "debut": "2021/12/01",
+    "pid": "pm208.fMEGA",
+    "src": "",
+    "group": "Onix"
+  },
+  {
+    "index": "410",
+    "debut": "2018/08/01",
+    "pid": "pm209",
+    "src": "",
+    "group": "Snubbull"
+  },
+  {
+    "index": "411",
+    "debut": "2018/08/01",
+    "pid": "pm210",
+    "src": "",
+    "group": "Snubbull"
+  },
+  {
+    "index": "412",
+    "debut": "2020/07/25",
+    "pid": "pm211",
+    "src": "",
+    "group": "Qwilfish"
+  },
+  {
+    "index": "413",
+    "debut": "2019/04/02",
+    "pid": "pm212",
+    "src": "",
+    "group": "Scyther"
+  },
+  {
+    "index": "414",
+    "debut": "2022/08/10",
+    "pid": "pm212.fMEGA",
+    "src": "",
+    "group": "Scyther"
+  },
+  {
+    "index": "415",
+    "debut": "2019/04/18",
+    "pid": "pm213",
+    "src": "",
+    "group": "Shuckle"
+  },
+  {
+    "index": "416",
+    "debut": "2021/08/06",
+    "pid": "pm214",
+    "src": "",
+    "group": "Heracross"
+  },
+  {
+    "index": "417",
+    "debut": "2021/08/06",
+    "pid": "pm214.g2",
+    "src": "",
+    "group": "Heracross"
+  },
+  {
+    "index": "418",
+    "debut": "2019/07/25",
+    "pid": "pm215",
+    "src": "",
+    "group": "Sneasel"
+  },
+  {
+    "index": "419",
+    "debut": "2021/09/21",
+    "pid": "pm215.cFASHION_2021_NOEVOLVE",
+    "src": "",
+    "group": "Sneasel_2021_FASHION"
+  },
+  {
+    "index": "420",
+    "debut": "2020/03/26",
+    "pid": "pm216",
+    "src": "",
+    "group": "Teddiursa"
+  },
+  {
+    "index": "421",
+    "debut": "2020/03/26",
+    "pid": "pm217",
+    "src": "",
+    "group": "Teddiursa"
+  },
+  {
+    "index": "422",
+    "debut": "2022/11/12",
+    "pid": "pm901",
+    "src": "",
+    "group": "Teddiursa"
+  },
+  {
+    "index": "423",
+    "debut": "2021/01/07",
+    "pid": "pm218",
+    "src": "",
+    "group": "Slugma"
+  },
+  {
+    "index": "424",
+    "debut": "2021/01/07",
+    "pid": "pm219",
+    "src": "",
+    "group": "Slugma"
+  },
+  {
+    "index": "425",
+    "debut": "2019/02/16",
+    "pid": "pm220",
+    "src": "",
+    "group": "Swinub"
+  },
+  {
+    "index": "426",
+    "debut": "2019/02/16",
+    "pid": "pm221",
+    "src": "",
+    "group": "Swinub"
+  },
+  {
+    "index": "427",
+    "debut": "2022/02/26",
+    "pid": "pm222",
+    "src": "",
+    "group": "Corsola"
+  },
+  {
+    "index": "428",
+    "debut": "2022/02/26",
+    "pid": "pm223",
+    "src": "",
+    "group": "Remoraid"
+  },
+  {
+    "index": "429",
+    "debut": "2022/02/26",
+    "pid": "pm224",
+    "src": "",
+    "group": "Remoraid"
+  },
+  {
+    "index": "430",
+    "debut": "2018/12/18",
+    "pid": "pm225",
+    "src": "",
+    "group": "Delibird"
+  },
+  {
+    "index": "431",
+    "debut": "2020/12/22",
+    "pid": "pm225.fWINTER_2020",
+    "src": "",
+    "group": "Delibird"
+  },
+  {
+    "index": "432",
+    "debut": "2022/02/26",
+    "pid": "pm226",
+    "src": "",
+    "group": "Mantine"
+  },
+  {
+    "index": "433",
+    "debut": "2019/11/01",
+    "pid": "pm227",
+    "src": "",
+    "group": "Skarmory"
+  },
+  {
+    "index": "434",
+    "debut": "2018/08/01",
+    "pid": "pm228",
+    "src": "",
+    "group": "Houndour"
+  },
+  {
+    "index": "435",
+    "debut": "2018/08/01",
+    "pid": "pm229",
+    "src": "",
+    "group": "Houndour"
+  },
+  {
+    "index": "436",
+    "debut": "2018/08/01",
+    "pid": "pm229.fMEGA",
+    "src": "",
+    "group": "Houndour"
+  },
+  {
+    "index": "437",
+    "debut": "2019/06/13",
+    "pid": "pm230",
+    "src": "",
+    "group": "Horsea"
+  },
+  {
+    "index": "438",
+    "debut": "2022/02/26",
+    "pid": "pm231",
+    "src": "",
+    "group": "Phanpy"
+  },
+  {
+    "index": "439",
+    "debut": "2022/02/26",
+    "pid": "pm232",
+    "src": "",
+    "group": "Phanpy"
+  },
+  {
+    "index": "440",
+    "debut": "2020/09/19",
+    "pid": "pm233",
+    "src": "",
+    "group": "Porygon"
+  },
+  {
+    "index": "441",
+    "debut": "2019/12/24",
+    "pid": "pm234",
+    "src": "",
+    "group": "Stantler"
+  },
+  {
+    "index": "442",
+    "debut": "2019/12/24",
+    "pid": "pm234.cWINTER_2018",
+    "src": "",
+    "group": "Stantler"
+  },
+  {
+    "index": "443",
+    "debut": "2021/04/29",
+    "pid": "pm235",
+    "src": "",
+    "group": "Smeargle"
+  },
+  {
+    "index": "444",
+    "debut": "2022/02/26",
+    "pid": "pm236",
+    "src": "",
+    "group": "Tyrogue"
+  },
+  {
+    "index": "445",
+    "debut": "2022/02/26",
+    "pid": "pm237",
+    "src": "",
+    "group": "Tyrogue"
+  },
+  {
+    "index": "446",
+    "debut": "2019/02/13",
+    "pid": "pm238",
+    "src": "",
+    "group": "Jynx"
+  },
+  {
+    "index": "447",
+    "debut": "2019/02/13",
+    "pid": "pm238.cFALL_2020_NOEVOLVE",
+    "src": "",
+    "group": "Jynx"
+  },
+  {
+    "index": "448",
+    "debut": "2018/11/15",
+    "pid": "pm239",
+    "src": "",
+    "group": "Electabuzz"
+  },
+  {
+    "index": "449",
+    "debut": "2023/05/02",
+    "pid": "pm239.cSPRING_2023_INSTINCT",
+    "src": "",
+    "group": "Electabuzz_23s"
+  },
+  {
+    "index": "450",
+    "debut": "2018/03/22",
+    "pid": "pm240",
+    "src": "",
+    "group": "Magmar"
+  },
+  {
+    "index": "451",
+    "debut": "2021/01/26",
+    "pid": "pm241",
+    "src": "",
+    "group": "Miltank"
+  },
+  {
+    "index": "452",
+    "debut": "2020/02/13",
+    "pid": "pm242",
+    "src": "",
+    "group": "Chansey"
+  },
+  {
+    "index": "453",
+    "debut": "2021/04/04",
+    "pid": "pm242.cNOVEMBER_2018",
+    "src": "",
+    "group": "Chansey_07"
+  },
+  {
+    "index": "454",
+    "debut": "2019/06/29",
+    "pid": "pm243",
+    "src": "",
+    "group": "Raikou"
+  },
+  {
+    "index": "455",
+    "debut": "2019/07/14",
+    "pid": "pm244",
+    "src": "",
+    "group": "Entei"
+  },
+  {
+    "index": "456",
+    "debut": "2019/08/17",
+    "pid": "pm245",
+    "src": "",
+    "group": "Suicune"
+  },
+  {
+    "index": "457",
+    "debut": "2018/06/16",
+    "pid": "pm246",
+    "src": "",
+    "group": "Larvitar"
+  },
+  {
+    "index": "458",
+    "debut": "2018/06/16",
+    "pid": "pm247",
+    "src": "",
+    "group": "Larvitar"
+  },
+  {
+    "index": "459",
+    "debut": "2018/06/16",
+    "pid": "pm248",
+    "src": "",
+    "group": "Larvitar"
+  },
+  {
+    "index": "460",
+    "debut": "2023/07/27",
+    "pid": "pm248.fMEGA",
+    "src": "",
+    "group": "Larvitar"
+  },
+  {
+    "index": "461",
+    "debut": "2018/03/16",
+    "pid": "pm249",
+    "src": "",
+    "group": "Lugia"
+  },
+  {
+    "index": "462",
+    "debut": "2018/05/19",
+    "pid": "pm250",
+    "src": "",
+    "group": "Ho_Oh"
+  },
+  {
+    "index": "463",
+    "debut": "2020/12/14",
+    "pid": "pm251",
+    "src": "",
+    "group": "Celebi"
+  },
+  {
+    "index": "464",
+    "debut": "2019/03/23",
+    "pid": "pm252",
+    "src": "",
+    "group": "Treecko"
+  },
+  {
+    "index": "465",
+    "debut": "2019/03/23",
+    "pid": "pm253",
+    "src": "",
+    "group": "Treecko"
+  },
+  {
+    "index": "466",
+    "debut": "2019/03/23",
+    "pid": "pm254",
+    "src": "",
+    "group": "Treecko"
+  },
+  {
+    "index": "467",
+    "debut": "2022/12/02",
+    "pid": "pm254.fMEGA",
+    "src": "",
+    "group": "Treecko"
+  },
+  {
+    "index": "468",
+    "debut": "2019/05/19",
+    "pid": "pm255",
+    "src": "",
+    "group": "Torchic"
+  },
+  {
+    "index": "469",
+    "debut": "2019/05/19",
+    "pid": "pm256",
+    "src": "",
+    "group": "Torchic"
+  },
+  {
+    "index": "470",
+    "debut": "2019/05/19",
+    "pid": "pm257",
+    "src": "",
+    "group": "Torchic"
+  },
+  {
+    "index": "471",
+    "debut": "2022/12/02",
+    "pid": "pm257.fMEGA",
+    "src": "",
+    "group": "Torchic"
+  },
+  {
+    "index": "472",
+    "debut": "2019/07/21",
+    "pid": "pm258",
+    "src": "",
+    "group": "Mudkip"
+  },
+  {
+    "index": "473",
+    "debut": "2019/07/21",
+    "pid": "pm259",
+    "src": "",
+    "group": "Mudkip"
+  },
+  {
+    "index": "474",
+    "debut": "2019/07/21",
+    "pid": "pm260",
+    "src": "",
+    "group": "Mudkip"
+  },
+  {
+    "index": "475",
+    "debut": "2022/12/02",
+    "pid": "pm260.fMEGA",
+    "src": "",
+    "group": "Mudkip"
+  },
+  {
+    "index": "476",
+    "debut": "2018/02/15",
+    "pid": "pm261",
+    "src": "",
+    "group": "Poochyena"
+  },
+  {
+    "index": "477",
+    "debut": "2018/02/15",
+    "pid": "pm262",
+    "src": "",
+    "group": "Poochyena"
+  },
+  {
+    "index": "478",
+    "debut": "2019/01/15",
+    "pid": "pm263",
+    "src": "",
+    "group": "Zigzagoon"
+  },
+  {
+    "index": "479",
+    "debut": "2019/01/15",
+    "pid": "pm264",
+    "src": "",
+    "group": "Zigzagoon"
+  },
+  {
+    "index": "480",
+    "debut": "2020/05/25",
+    "pid": "pm263.fGALARIAN",
+    "src": "",
+    "group": "Zigzagoon_31"
+  },
+  {
+    "index": "481",
+    "debut": "2020/05/25",
+    "pid": "pm264.fGALARIAN",
+    "src": "",
+    "group": "Zigzagoon_31"
+  },
+  {
+    "index": "482",
+    "debut": "2021/07/17",
+    "pid": "pm263.fGALARIAN.cGOFEST_2021_NOEVOLVE",
+    "src": "",
+    "group": "Zigzagoon_31_47"
+  },
+  {
+    "index": "483",
+    "debut": "2020/01/02",
+    "pid": "pm265",
+    "src": "",
+    "group": "Wurmple"
+  },
+  {
+    "index": "484",
+    "debut": "2020/01/02",
+    "pid": "pm265.cJAN_2020_NOEVOLVE",
+    "src": "",
+    "group": "Wurmple"
+  },
+  {
+    "index": "485",
+    "debut": "2020/01/02",
+    "pid": "pm266",
+    "src": "",
+    "group": "Wurmple"
+  },
+  {
+    "index": "486",
+    "debut": "2020/01/02",
+    "pid": "pm267",
+    "src": "",
+    "group": "Wurmple"
+  },
+  {
+    "index": "487",
+    "debut": "2020/01/02",
+    "pid": "pm268",
+    "src": "",
+    "group": "Wurmple"
+  },
+  {
+    "index": "488",
+    "debut": "2020/01/02",
+    "pid": "pm269",
+    "src": "",
+    "group": "Wurmple"
+  },
+  {
+    "index": "489",
+    "debut": "2019/03/29",
+    "pid": "pm270",
+    "src": "",
+    "group": "Lotad"
+  },
+  {
+    "index": "490",
+    "debut": "2019/03/29",
+    "pid": "pm271",
+    "src": "",
+    "group": "Lotad"
+  },
+  {
+    "index": "491",
+    "debut": "2019/03/29",
+    "pid": "pm272",
+    "src": "",
+    "group": "Lotad"
+  },
+  {
+    "index": "492",
+    "debut": "2020/05/23",
+    "pid": "pm273",
+    "src": "",
+    "group": "Seedot"
+  },
+  {
+    "index": "493",
+    "debut": "2020/05/23",
+    "pid": "pm274",
+    "src": "",
+    "group": "Seedot"
+  },
+  {
+    "index": "494",
+    "debut": "2020/05/23",
+    "pid": "pm275",
+    "src": "",
+    "group": "Seedot"
+  },
+  {
+    "index": "495",
+    "debut": "2019/01/15",
+    "pid": "pm276",
+    "src": "",
+    "group": "Taillow"
+  },
+  {
+    "index": "496",
+    "debut": "2019/01/15",
+    "pid": "pm277",
+    "src": "",
+    "group": "Taillow"
+  },
+  {
+    "index": "497",
+    "debut": "2018/08/29",
+    "pid": "pm278",
+    "src": "",
+    "group": "Wingull"
+  },
+  {
+    "index": "498",
+    "debut": "2018/08/29",
+    "pid": "pm279",
+    "src": "",
+    "group": "Wingull"
+  },
+  {
+    "index": "499",
+    "debut": "2019/08/03",
+    "pid": "pm280",
+    "src": "",
+    "group": "Ralts"
+  },
+  {
+    "index": "500",
+    "debut": "2019/08/03",
+    "pid": "pm281",
+    "src": "",
+    "group": "Ralts"
+  },
+  {
+    "index": "501",
+    "debut": "2019/08/03",
+    "pid": "pm281.cFALL_2020_NOEVOLVE",
+    "src": "",
+    "group": "Ralts"
+  },
+  {
+    "index": "502",
+    "debut": "2019/08/03",
+    "pid": "pm282",
+    "src": "",
+    "group": "Ralts"
+  },
+  {
+    "index": "503",
+    "debut": "2023/02/08",
+    "pid": "pm282.fMEGA",
+    "src": "",
+    "group": "Ralts"
+  },
+  {
+    "index": "504",
+    "debut": "2023/02/18",
+    "pid": "pm283",
+    "src": "",
+    "group": "Surskit"
+  },
+  {
+    "index": "505",
+    "debut": "2023/02/18",
+    "pid": "pm284",
+    "src": "",
+    "group": "Surskit"
+  },
+  {
+    "index": "506",
+    "debut": "2022/06/04",
+    "pid": "pm285",
+    "src": "",
+    "group": "Shroomish"
+  },
+  {
+    "index": "507",
+    "debut": "2022/06/04",
+    "pid": "pm286",
+    "src": "",
+    "group": "Shroomish"
+  },
+  {
+    "index": "508",
+    "debut": "2019/06/08",
+    "pid": "pm287",
+    "src": "",
+    "group": "Slakoth"
+  },
+  {
+    "index": "509",
+    "debut": "2019/06/08",
+    "pid": "pm288",
+    "src": "",
+    "group": "Slakoth"
+  },
+  {
+    "index": "510",
+    "debut": "2019/06/08",
+    "pid": "pm289",
+    "src": "",
+    "group": "Slakoth"
+  },
+  {
+    "index": "511",
+    "debut": "2020/03/19",
+    "pid": "pm290",
+    "src": "",
+    "group": "Nincada"
+  },
+  {
+    "index": "512",
+    "debut": "2020/03/19",
+    "pid": "pm291",
+    "src": "",
+    "group": "Nincada"
+  },
+  {
+    "index": "513",
+    "debut": "2022/10/01",
+    "pid": "pm292",
+    "src": "",
+    "group": "Nincada"
+  },
+  {
+    "index": "514",
+    "debut": "2021/07/17",
+    "pid": "pm293",
+    "src": "",
+    "group": "Whismur"
+  },
+  {
+    "index": "515",
+    "debut": "2021/07/17",
+    "pid": "pm294",
+    "src": "",
+    "group": "Whismur"
+  },
+  {
+    "index": "516",
+    "debut": "2021/07/17",
+    "pid": "pm295",
+    "src": "",
+    "group": "Whismur"
+  },
+  {
+    "index": "517",
+    "debut": "2018/05/01",
+    "pid": "pm296",
+    "src": "",
+    "group": "Makuhita"
+  },
+  {
+    "index": "518",
+    "debut": "2018/05/01",
+    "pid": "pm297",
+    "src": "",
+    "group": "Makuhita"
+  },
+  {
+    "index": "519",
+    "debut": "2018/12/18",
+    "pid": "pm298",
+    "src": "",
+    "group": "Marill"
+  },
+  {
+    "index": "520",
+    "debut": "2021/03/09",
+    "pid": "pm299",
+    "src": "",
+    "group": "Nosepass"
+  },
+  {
+    "index": "521",
+    "debut": "2020/05/15",
+    "pid": "pm300",
+    "src": "",
+    "group": "Skitty"
+  },
+  {
+    "index": "522",
+    "debut": "2020/05/15",
+    "pid": "pm301",
+    "src": "",
+    "group": "Skitty"
+  },
+  {
+    "index": "523",
+    "debut": "2017/10/20",
+    "pid": "pm302",
+    "src": "",
+    "group": "Sableye"
+  },
+  {
+    "index": "524",
+    "debut": "2020/10/23",
+    "pid": "pm302.fCOSTUME_2020",
+    "src": "",
+    "group": "Sableye"
+  },
+  {
+    "index": "525",
+    "debut": "2023/06/29",
+    "pid": "pm302.fMEGA",
+    "src": "",
+    "group": "Sableye"
+  },
+  {
+    "index": "526",
+    "debut": "2017/12/08",
+    "pid": "pm303",
+    "src": "",
+    "group": "Mawile"
+  },
+  {
+    "index": "527",
+    "debut": "2018/01/23",
+    "pid": "pm304",
+    "src": "",
+    "group": "Aron"
+  },
+  {
+    "index": "528",
+    "debut": "2018/01/23",
+    "pid": "pm305",
+    "src": "",
+    "group": "Aron"
+  },
+  {
+    "index": "529",
+    "debut": "2018/01/23",
+    "pid": "pm306",
+    "src": "",
+    "group": "Aron"
+  },
+  {
+    "index": "530",
+    "debut": "2022/09/16",
+    "pid": "pm306.fMEGA",
+    "src": "",
+    "group": "Aron"
+  },
+  {
+    "index": "531",
+    "debut": "2018/05/01",
+    "pid": "pm307",
+    "src": "",
+    "group": "Meditite"
+  },
+  {
+    "index": "532",
+    "debut": "2018/05/01",
+    "pid": "pm308",
+    "src": "",
+    "group": "Meditite"
+  },
+  {
+    "index": "533",
+    "debut": "2023/03/08",
+    "pid": "pm308.fMEGA",
+    "src": "",
+    "group": "Meditite"
+  },
+  {
+    "index": "534",
+    "debut": "2019/09/01",
+    "pid": "pm309",
+    "src": "",
+    "group": "Electrike"
+  },
+  {
+    "index": "535",
+    "debut": "2019/09/01",
+    "pid": "pm310",
+    "src": "",
+    "group": "Electrike"
+  },
+  {
+    "index": "536",
+    "debut": "2021/03/16",
+    "pid": "pm310.fMEGA",
+    "src": "",
+    "group": "Electrike"
+  },
+  {
+    "index": "537",
+    "debut": "2018/07/14",
+    "pid": "pm311",
+    "src": "",
+    "group": "Plusle"
+  },
+  {
+    "index": "538",
+    "debut": "2018/07/14",
+    "pid": "pm312",
+    "src": "",
+    "group": "Minun"
+  },
+  {
+    "index": "539",
+    "debut": "2020/04/21",
+    "pid": "pm313",
+    "src": "",
+    "group": "Volbeat"
+  },
+  {
+    "index": "540",
+    "debut": "2020/04/21",
+    "pid": "pm314",
+    "src": "",
+    "group": "Illumise"
+  },
+  {
+    "index": "541",
+    "debut": "2018/06/30",
+    "pid": "pm315",
+    "src": "",
+    "group": "Roselia"
+  },
+  {
+    "index": "542",
+    "debut": "2023/02/18",
+    "pid": "pm316",
+    "src": "",
+    "group": "Gulpin"
+  },
+  {
+    "index": "543",
+    "debut": "2023/02/18",
+    "pid": "pm317",
+    "src": "",
+    "group": "Gulpin"
+  },
+  {
+    "index": "544",
+    "debut": "2019/08/23",
+    "pid": "pm318",
+    "src": "",
+    "group": "Carvanha"
+  },
+  {
+    "index": "545",
+    "debut": "2019/08/23",
+    "pid": "pm319",
+    "src": "",
+    "group": "Carvanha"
+  },
+  {
+    "index": "546",
+    "debut": "2018/04/23",
+    "pid": "pm320",
+    "src": "",
+    "group": "Wailmer"
+  },
+  {
+    "index": "547",
+    "debut": "2018/04/23",
+    "pid": "pm321",
+    "src": "",
+    "group": "Wailmer"
+  },
+  {
+    "index": "548",
+    "debut": "2022/06/04",
+    "pid": "pm322",
+    "src": "",
+    "group": "Numel"
+  },
+  {
+    "index": "549",
+    "debut": "2022/06/04",
+    "pid": "pm323",
+    "src": "",
+    "group": "Numel"
+  },
+  {
+    "index": "550",
+    "debut": "2023/02/18",
+    "pid": "pm324",
+    "src": "",
+    "group": "Torkoal"
+  },
+  {
+    "index": "551",
+    "debut": "2019/02/04",
+    "pid": "pm325",
+    "src": "",
+    "group": "Spoink"
+  },
+  {
+    "index": "552",
+    "debut": "2019/02/04",
+    "pid": "pm326",
+    "src": "",
+    "group": "Spoink"
+  },
+  {
+    "index": "553",
+    "debut": "",
+    "pid": "pm327",
+    "src": "",
+    "group": "Spinda"
+  },
+  {
+    "index": "554",
+    "debut": "2019/11/01",
+    "pid": "pm327.f00",
+    "src": "",
+    "group": "Spinda"
+  },
+  {
+    "index": "555",
+    "debut": "2020/09/01",
+    "pid": "pm327.f01",
+    "src": "",
+    "group": "Spinda"
+  },
+  {
+    "index": "556",
+    "debut": "2019/09/01",
+    "pid": "pm327.f02",
+    "src": "",
+    "group": "Spinda"
+  },
+  {
+    "index": "557",
+    "debut": "2020/11/01",
+    "pid": "pm327.f03",
+    "src": "",
+    "group": "Spinda"
+  },
+  {
+    "index": "558",
+    "debut": "2020/06/01",
+    "pid": "pm327.f04",
+    "src": "",
+    "group": "Spinda"
+  },
+  {
+    "index": "559",
+    "debut": "2020/03/01",
+    "pid": "pm327.f05",
+    "src": "",
+    "group": "Spinda"
+  },
+  {
+    "index": "560",
+    "debut": "2020/01/01",
+    "pid": "pm327.f06",
+    "src": "",
+    "group": "Spinda"
+  },
+  {
+    "index": "561",
+    "debut": "2019/07/01",
+    "pid": "pm327.f07",
+    "src": "",
+    "group": "Spinda"
+  },
+  {
+    "index": "562",
+    "debut": "2021/02/14",
+    "pid": "pm327.f08",
+    "src": "",
+    "group": "Spinda"
+  },
+  {
+    "index": "563",
+    "debut": "2019/10/11",
+    "pid": "pm328",
+    "src": "",
+    "group": "Trapinch"
+  },
+  {
+    "index": "564",
+    "debut": "2019/10/11",
+    "pid": "pm329",
+    "src": "",
+    "group": "Trapinch"
+  },
+  {
+    "index": "565",
+    "debut": "2019/10/11",
+    "pid": "pm330",
+    "src": "",
+    "group": "Trapinch"
+  },
+  {
+    "index": "566",
+    "debut": "2023/02/18",
+    "pid": "pm331",
+    "src": "",
+    "group": "Cacnea"
+  },
+  {
+    "index": "567",
+    "debut": "2023/02/18",
+    "pid": "pm332",
+    "src": "",
+    "group": "Cacnea"
+  },
+  {
+    "index": "568",
+    "debut": "2018/02/09",
+    "pid": "pm333",
+    "src": "",
+    "group": "Swablu"
+  },
+  {
+    "index": "569",
+    "debut": "2018/02/09",
+    "pid": "pm334",
+    "src": "",
+    "group": "Swablu"
+  },
+  {
+    "index": "570",
+    "debut": "2021/05/15",
+    "pid": "pm334.fMEGA",
+    "src": "",
+    "group": "Swablu"
+  },
+  {
+    "index": "571",
+    "debut": "2019/09/26",
+    "pid": "pm335",
+    "src": "",
+    "group": "Zangoose"
+  },
+  {
+    "index": "572",
+    "debut": "2019/09/28",
+    "pid": "pm336",
+    "src": "",
+    "group": "Seviper"
+  },
+  {
+    "index": "573",
+    "debut": "2019/03/19",
+    "pid": "pm337",
+    "src": "",
+    "group": "Lunatone"
+  },
+  {
+    "index": "574",
+    "debut": "2019/03/19",
+    "pid": "pm338",
+    "src": "",
+    "group": "Solrock"
+  },
+  {
+    "index": "575",
+    "debut": "2019/08/23",
+    "pid": "pm339",
+    "src": "",
+    "group": "Barboach"
+  },
+  {
+    "index": "576",
+    "debut": "2019/08/23",
+    "pid": "pm340",
+    "src": "",
+    "group": "Barboach"
+  },
+  {
+    "index": "577",
+    "debut": "2022/05/13",
+    "pid": "pm341",
+    "src": "",
+    "group": "Corphish"
+  },
+  {
+    "index": "578",
+    "debut": "2022/05/13",
+    "pid": "pm342",
+    "src": "",
+    "group": "Corphish"
+  },
+  {
+    "index": "579",
+    "debut": "2020/03/27",
+    "pid": "pm343",
+    "src": "",
+    "group": "Baltoy"
+  },
+  {
+    "index": "580",
+    "debut": "2020/03/27",
+    "pid": "pm344",
+    "src": "",
+    "group": "Baltoy"
+  },
+  {
+    "index": "581",
+    "debut": "2019/06/04",
+    "pid": "pm345",
+    "src": "",
+    "group": "Lileep"
+  },
+  {
+    "index": "582",
+    "debut": "2019/06/04",
+    "pid": "pm346",
+    "src": "",
+    "group": "Lileep"
+  },
+  {
+    "index": "583",
+    "debut": "2019/06/04",
+    "pid": "pm347",
+    "src": "",
+    "group": "Anorith"
+  },
+  {
+    "index": "584",
+    "debut": "2019/06/04",
+    "pid": "pm348",
+    "src": "",
+    "group": "Anorith"
+  },
+  {
+    "index": "585",
+    "debut": "2019/01/19",
+    "pid": "pm349",
+    "src": "",
+    "group": "Feebas"
+  },
+  {
+    "index": "586",
+    "debut": "2019/01/19",
+    "pid": "pm350",
+    "src": "",
+    "group": "Feebas"
+  },
+  {
+    "index": "587",
+    "debut": "2019/03/30",
+    "pid": "pm351",
+    "src": "",
+    "group": "Castform"
+  },
+  {
+    "index": "588",
+    "debut": "2022/12/01",
+    "pid": "pm351.fSUNNY",
+    "src": "",
+    "group": "Castform"
+  },
+  {
+    "index": "589",
+    "debut": "2021/03/24",
+    "pid": "pm351.fRAINY",
+    "src": "",
+    "group": "Castform"
+  },
+  {
+    "index": "590",
+    "debut": "2022/12/01",
+    "pid": "pm351.fSNOWY",
+    "src": "",
+    "group": "Castform"
+  },
+  {
+    "index": "591",
+    "debut": "2023/02/18",
+    "pid": "pm352",
+    "src": "",
+    "group": "Kecleon"
+  },
+  {
+    "index": "592",
+    "debut": "2017/10/31",
+    "pid": "pm353",
+    "src": "",
+    "group": "Shuppet"
+  },
+  {
+    "index": "593",
+    "debut": "2017/10/31",
+    "pid": "pm354",
+    "src": "",
+    "group": "Shuppet"
+  },
+  {
+    "index": "594",
+    "debut": "2022/10/20",
+    "pid": "pm354.fMEGA",
+    "src": "",
+    "group": "Shuppet"
+  },
+  {
+    "index": "595",
+    "debut": "2017/10/26",
+    "pid": "pm355",
+    "src": "",
+    "group": "Duskull"
+  },
+  {
+    "index": "596",
+    "debut": "2017/10/26",
+    "pid": "pm356",
+    "src": "",
+    "group": "Duskull"
+  },
+  {
+    "index": "597",
+    "debut": "2022/11/01",
+    "pid": "pm355.cFALL_2022_NOEVOLVE",
+    "src": "",
+    "group": "Duskull_f22"
+  },
+  {
+    "index": "598",
+    "debut": "2022/11/01",
+    "pid": "pm356.cFALL_2022_NOEVOLVE",
+    "src": "",
+    "group": "Duskull_f22"
+  },
+  {
+    "index": "599",
+    "debut": "2023/02/18",
+    "pid": "pm357",
+    "src": "",
+    "group": "Tropius"
+  },
+  {
+    "index": "600",
+    "debut": "2021/07/17",
+    "pid": "pm358",
+    "src": "",
+    "group": "Chimecho"
+  },
+  {
+    "index": "601",
+    "debut": "2017/12/08",
+    "pid": "pm359",
+    "src": "",
+    "group": "Absol"
+  },
+  {
+    "index": "602",
+    "debut": "2022/09/27",
+    "pid": "pm359.cFALL_2022_NOEVOLVE",
+    "src": "",
+    "group": "Absol"
+  },
+  {
+    "index": "603",
+    "debut": "2021/10/21",
+    "pid": "pm359.fMEGA",
+    "src": "",
+    "group": "Absol"
+  },
+  {
+    "index": "604",
+    "debut": "2018/03/22",
+    "pid": "pm360",
+    "src": "",
+    "group": "Wobbuffet"
+  },
+  {
+    "index": "605",
+    "debut": "2017/12/21",
+    "pid": "pm361",
+    "src": "",
+    "group": "Snorunt"
+  },
+  {
+    "index": "606",
+    "debut": "2017/12/21",
+    "pid": "pm362",
+    "src": "",
+    "group": "Snorunt"
+  },
+  {
+    "index": "607",
+    "debut": "2022/12/15",
+    "pid": "pm362.fMEGA",
+    "src": "",
+    "group": "Snorunt"
+  },
+  {
+    "index": "608",
+    "debut": "2021/12/16",
+    "pid": "pm363",
+    "src": "",
+    "group": "Spheal"
+  },
+  {
+    "index": "609",
+    "debut": "2021/12/16",
+    "pid": "pm364",
+    "src": "",
+    "group": "Spheal"
+  },
+  {
+    "index": "610",
+    "debut": "2021/12/16",
+    "pid": "pm365",
+    "src": "",
+    "group": "Spheal"
+  },
+  {
+    "index": "611",
+    "debut": "2021/12/16",
+    "pid": "pm363.cHOLIDAY_2021_NOEVOLVE",
+    "src": "",
+    "group": "Spheal"
+  },
+  {
+    "index": "612",
+    "debut": "2019/02/23",
+    "pid": "pm366",
+    "src": "",
+    "group": "Clamperl"
+  },
+  {
+    "index": "613",
+    "debut": "2019/02/23",
+    "pid": "pm367",
+    "src": "",
+    "group": "Clamperl"
+  },
+  {
+    "index": "614",
+    "debut": "2019/02/23",
+    "pid": "pm368",
+    "src": "",
+    "group": "Clamperl"
+  },
+  {
+    "index": "615",
+    "debut": "2023/02/18",
+    "pid": "pm369",
+    "src": "",
+    "group": "Relicanth"
+  },
+  {
+    "index": "616",
+    "debut": "2018/02/13",
+    "pid": "pm370",
+    "src": "",
+    "group": "Luvdisc"
+  },
+  {
+    "index": "617",
+    "debut": "2019/04/13",
+    "pid": "pm371",
+    "src": "",
+    "group": "Bagon"
+  },
+  {
+    "index": "618",
+    "debut": "2019/04/13",
+    "pid": "pm372",
+    "src": "",
+    "group": "Bagon"
+  },
+  {
+    "index": "619",
+    "debut": "2019/04/13",
+    "pid": "pm373",
+    "src": "",
+    "group": "Bagon"
+  },
+  {
+    "index": "620",
+    "debut": "2023/01/10",
+    "pid": "pm373.fMEGA",
+    "src": "",
+    "group": "Bagon"
+  },
+  {
+    "index": "621",
+    "debut": "2018/10/21",
+    "pid": "pm374",
+    "src": "",
+    "group": "Beldum"
+  },
+  {
+    "index": "622",
+    "debut": "2018/10/21",
+    "pid": "pm375",
+    "src": "",
+    "group": "Beldum"
+  },
+  {
+    "index": "623",
+    "debut": "2018/10/21",
+    "pid": "pm376",
+    "src": "",
+    "group": "Beldum"
+  },
+  {
+    "index": "624",
+    "debut": "2019/11/01",
+    "pid": "pm377",
+    "src": "",
+    "group": "Regirock"
+  },
+  {
+    "index": "625",
+    "debut": "2019/11/01",
+    "pid": "pm378",
+    "src": "",
+    "group": "Regice"
+  },
+  {
+    "index": "626",
+    "debut": "2019/11/01",
+    "pid": "pm379",
+    "src": "",
+    "group": "Registeel"
+  },
+  {
+    "index": "627",
+    "debut": "2019/02/22",
+    "pid": "pm380",
+    "src": "",
+    "group": "Latias"
+  },
+  {
+    "index": "628",
+    "debut": "2022/05/03",
+    "pid": "pm380.fMEGA",
+    "src": "",
+    "group": "Latias"
+  },
+  {
+    "index": "629",
+    "debut": "2019/04/15",
+    "pid": "pm381",
+    "src": "",
+    "group": "Latios"
+  },
+  {
+    "index": "630",
+    "debut": "2022/05/03",
+    "pid": "pm381.fMEGA",
+    "src": "",
+    "group": "Latios"
+  },
+  {
+    "index": "631",
+    "debut": "2018/06/07",
+    "pid": "pm382",
+    "src": "",
+    "group": "Kyogre"
+  },
+  {
+    "index": "632",
+    "debut": "2023/02/18",
+    "pid": "pm382.fPRIMAL",
+    "src": "",
+    "group": "Kyogre"
+  },
+  {
+    "index": "633",
+    "debut": "2019/01/15",
+    "pid": "pm383",
+    "src": "",
+    "group": "Groudon"
+  },
+  {
+    "index": "634",
+    "debut": "2023/02/18",
+    "pid": "pm383.fPRIMAL",
+    "src": "",
+    "group": "Groudon"
+  },
+  {
+    "index": "635",
+    "debut": "2019/07/31",
+    "pid": "pm384",
+    "src": "",
+    "group": "Rayquaza"
+  },
+  {
+    "index": "636",
+    "debut": "2023/08/04",
+    "pid": "pm384.fMEGA",
+    "src": "",
+    "group": "Rayquaza"
+  },
+  {
+    "index": "637",
+    "debut": "2023/02/18",
+    "pid": "pm385",
+    "src": "",
+    "group": "Jirachi"
+  },
+  {
+    "index": "638",
+    "debut": "2020/08/07",
+    "pid": "pm386",
+    "src": "",
+    "group": "Deoxys"
+  },
+  {
+    "index": "639",
+    "debut": "2022/02/19",
+    "pid": "pm386.fATTACK",
+    "src": "",
+    "group": "Deoxys"
+  },
+  {
+    "index": "640",
+    "debut": "2022/02/22",
+    "pid": "pm386.fDEFENSE",
+    "src": "",
+    "group": "Deoxys"
+  },
+  {
+    "index": "641",
+    "debut": "2022/02/25",
+    "pid": "pm386.fSPEED",
+    "src": "",
+    "group": "Deoxys"
+  },
+  {
+    "index": "642",
+    "debut": "2019/09/14",
+    "pid": "pm387",
+    "src": "",
+    "group": "Turtwig"
+  },
+  {
+    "index": "643",
+    "debut": "2021/11/16",
+    "pid": "pm387.cGEMS_1_2021_NOEVOLVE",
+    "src": "",
+    "group": "Turtwig_21gems"
+  },
+  {
+    "index": "644",
+    "debut": "2021/11/16",
+    "pid": "pm387.cGEMS_2_2021_NOEVOLVE",
+    "src": "",
+    "group": "Turtwig_21gems"
+  },
+  {
+    "index": "645",
+    "debut": "2019/09/14",
+    "pid": "pm388",
+    "src": "",
+    "group": "Turtwig"
+  },
+  {
+    "index": "646",
+    "debut": "2019/09/14",
+    "pid": "pm389",
+    "src": "",
+    "group": "Turtwig"
+  },
+  {
+    "index": "647",
+    "debut": "2019/11/15",
+    "pid": "pm390",
+    "src": "",
+    "group": "Chimchar"
+  },
+  {
+    "index": "648",
+    "debut": "2021/11/16",
+    "pid": "pm390.cGEMS_1_2021_NOEVOLVE",
+    "src": "",
+    "group": "Chimchar_21gems"
+  },
+  {
+    "index": "649",
+    "debut": "2021/11/16",
+    "pid": "pm390.cGEMS_2_2021_NOEVOLVE",
+    "src": "",
+    "group": "Chimchar_21gems"
+  },
+  {
+    "index": "650",
+    "debut": "2019/11/15",
+    "pid": "pm391",
+    "src": "",
+    "group": "Chimchar"
+  },
+  {
+    "index": "651",
+    "debut": "2019/11/15",
+    "pid": "pm392",
+    "src": "",
+    "group": "Chimchar"
+  },
+  {
+    "index": "652",
+    "debut": "2020/01/18",
+    "pid": "pm393",
+    "src": "",
+    "group": "Piplup"
+  },
+  {
+    "index": "653",
+    "debut": "2021/10/15",
+    "pid": "pm393.cHALLOWEEN_2021_NOEVOLVE",
+    "src": "",
+    "group": "Piplup_21Ha"
+  },
+  {
+    "index": "654",
+    "debut": "2021/11/16",
+    "pid": "pm393.cGEMS_1_2021_NOEVOLVE",
+    "src": "",
+    "group": "Piplup_21gems"
+  },
+  {
+    "index": "655",
+    "debut": "2021/11/16",
+    "pid": "pm393.cGEMS_2_2021_NOEVOLVE",
+    "src": "",
+    "group": "Piplup_21gems"
+  },
+  {
+    "index": "656",
+    "debut": "2020/01/18",
+    "pid": "pm394",
+    "src": "",
+    "group": "Piplup"
+  },
+  {
+    "index": "657",
+    "debut": "2020/01/18",
+    "pid": "pm395",
+    "src": "",
+    "group": "Piplup"
+  },
+  {
+    "index": "658",
+    "debut": "2022/07/17",
+    "pid": "pm396",
+    "src": "",
+    "group": "Starly"
+  },
+  {
+    "index": "659",
+    "debut": "2022/07/17",
+    "pid": "pm397",
+    "src": "",
+    "group": "Starly"
+  },
+  {
+    "index": "660",
+    "debut": "2022/07/17",
+    "pid": "pm398",
+    "src": "",
+    "group": "Starly"
+  },
+  {
+    "index": "661",
+    "debut": "2021/06/25",
+    "pid": "pm399",
+    "src": "",
+    "group": "Bidoof"
+  },
+  {
+    "index": "662",
+    "debut": "2021/06/25",
+    "pid": "pm400",
+    "src": "",
+    "group": "Bidoof"
+  },
+  {
+    "index": "663",
+    "debut": "2020/10/02",
+    "pid": "pm401",
+    "src": "",
+    "group": "Kricketot"
+  },
+  {
+    "index": "664",
+    "debut": "2020/10/02",
+    "pid": "pm402",
+    "src": "",
+    "group": "Kricketot"
+  },
+  {
+    "index": "665",
+    "debut": "2018/10/16",
+    "pid": "pm403",
+    "src": "",
+    "group": "Shinx"
+  },
+  {
+    "index": "666",
+    "debut": "2018/10/16",
+    "pid": "pm403.cFALL_2020_NOEVOLVE",
+    "src": "",
+    "group": "Shinx"
+  },
+  {
+    "index": "667",
+    "debut": "2018/10/16",
+    "pid": "pm404",
+    "src": "",
+    "group": "Shinx"
+  },
+  {
+    "index": "668",
+    "debut": "2018/10/16",
+    "pid": "pm405",
+    "src": "",
+    "group": "Shinx"
+  },
+  {
+    "index": "669",
+    "debut": "2018/11/06",
+    "pid": "pm406",
+    "src": "",
+    "group": "Roselia"
+  },
+  {
+    "index": "670",
+    "debut": "2018/11/14",
+    "pid": "pm407",
+    "src": "",
+    "group": "Roselia"
+  },
+  {
+    "index": "671",
+    "debut": "2021/07/23",
+    "pid": "pm408",
+    "src": "",
+    "group": "Cranidos"
+  },
+  {
+    "index": "672",
+    "debut": "2021/07/23",
+    "pid": "pm409",
+    "src": "",
+    "group": "Cranidos"
+  },
+  {
+    "index": "673",
+    "debut": "2021/07/23",
+    "pid": "pm410",
+    "src": "",
+    "group": "Shieldon"
+  },
+  {
+    "index": "674",
+    "debut": "2021/07/23",
+    "pid": "pm411",
+    "src": "",
+    "group": "Shieldon"
+  },
+  {
+    "index": "675",
+    "debut": "2019/12/05",
+    "pid": "pm412.fBURMY_PLANT",
+    "src": "",
+    "group": "Burmy"
+  },
+  {
+    "index": "676",
+    "debut": "2019/12/05",
+    "pid": "pm412.fBURMY_SANDY",
+    "src": "",
+    "group": "Burmy"
+  },
+  {
+    "index": "677",
+    "debut": "2019/12/05",
+    "pid": "pm412.fBURMY_TRASH",
+    "src": "",
+    "group": "Burmy"
+  },
+  {
+    "index": "678",
+    "debut": "2019/12/05",
+    "pid": "pm413.fWORMADAM_PLANT",
+    "src": "",
+    "group": "Burmy"
+  },
+  {
+    "index": "679",
+    "debut": "2019/12/05",
+    "pid": "pm413.fWORMADAM_SANDY",
+    "src": "",
+    "group": "Burmy"
+  },
+  {
+    "index": "680",
+    "debut": "2019/12/05",
+    "pid": "pm413.fWORMADAM_TRASH",
+    "src": "",
+    "group": "Burmy"
+  },
+  {
+    "index": "681",
+    "debut": "2019/12/05",
+    "pid": "pm414",
+    "src": "",
+    "group": "Burmy"
+  },
+  {
+    "index": "682",
+    "debut": "2022/07/22",
+    "pid": "pm415",
+    "src": "",
+    "group": "Combee"
+  },
+  {
+    "index": "683",
+    "debut": "2022/07/22",
+    "pid": "pm415.g2",
+    "src": "",
+    "group": "Combee"
+  },
+  {
+    "index": "684",
+    "debut": "2022/07/22",
+    "pid": "pm416",
+    "src": "",
+    "group": "Combee"
+  },
+  {
+    "index": "685",
+    "debut": "",
+    "pid": "pm417",
+    "src": "",
+    "group": "Pachirisu"
+  },
+  {
+    "index": "686",
+    "debut": "2021/01/12",
+    "pid": "pm418",
+    "src": "",
+    "group": "Buizel"
+  },
+  {
+    "index": "687",
+    "debut": "2021/01/12",
+    "pid": "pm419",
+    "src": "",
+    "group": "Buizel"
+  },
+  {
+    "index": "688",
+    "debut": "2022/04/20",
+    "pid": "pm420",
+    "src": "",
+    "group": "Cherubi"
+  },
+  {
+    "index": "689",
+    "debut": "2022/04/20",
+    "pid": "pm421.fOVERCAST",
+    "src": "",
+    "group": "Cherubi"
+  },
+  {
+    "index": "690",
+    "debut": "2022/04/20",
+    "pid": "pm421.fSUNNY",
+    "src": "",
+    "group": "Cherubi"
+  },
+  {
+    "index": "691",
+    "debut": "2023/08/27",
+    "pid": "pm422.fEAST_SEA",
+    "src": "",
+    "group": "Shellos"
+  },
+  {
+    "index": "692",
+    "debut": "2023/08/27",
+    "pid": "pm422.fWEST_SEA",
+    "src": "",
+    "group": "Shellos"
+  },
+  {
+    "index": "693",
+    "debut": "2023/08/27",
+    "pid": "pm423.fEAST_SEA",
+    "src": "",
+    "group": "Shellos"
+  },
+  {
+    "index": "694",
+    "debut": "2023/08/27",
+    "pid": "pm423.fWEST_SEA",
+    "src": "",
+    "group": "Shellos"
+  },
+  {
+    "index": "695",
+    "debut": "2019/05/07",
+    "pid": "pm424",
+    "src": "",
+    "group": "Aipom"
+  },
+  {
+    "index": "696",
+    "debut": "2018/10/23",
+    "pid": "pm425",
+    "src": "",
+    "group": "Drifloon"
+  },
+  {
+    "index": "697",
+    "debut": "2018/10/23",
+    "pid": "pm426",
+    "src": "",
+    "group": "Drifloon"
+  },
+  {
+    "index": "698",
+    "debut": "2021/10/15",
+    "pid": "pm426.cHALLOWEEN_2021_NOEVOLVE",
+    "src": "",
+    "group": "Drifloon_21Ha"
+  },
+  {
+    "index": "699",
+    "debut": "2019/04/16",
+    "pid": "pm427",
+    "src": "",
+    "group": "Buneary"
+  },
+  {
+    "index": "700",
+    "debut": "2019/04/16",
+    "pid": "pm428",
+    "src": "",
+    "group": "Buneary"
+  },
+  {
+    "index": "701",
+    "debut": "2022/04/12",
+    "pid": "pm428.cAPRIL_2020_NOEVOLVE",
+    "src": "",
+    "group": "Buneary"
+  },
+  {
+    "index": "702",
+    "debut": "2021/04/04",
+    "pid": "pm428.fMEGA",
+    "src": "",
+    "group": "Buneary"
+  },
+  {
+    "index": "703",
+    "debut": "2019/04/16",
+    "pid": "pm427.cAPRIL_2020_NOEVOLVE",
+    "src": "",
+    "group": "Buneary"
+  },
+  {
+    "index": "704",
+    "debut": "2018/12/01",
+    "pid": "pm429",
+    "src": "",
+    "group": "Misdreavus"
+  },
+  {
+    "index": "705",
+    "debut": "2018/11/14",
+    "pid": "pm430",
+    "src": "",
+    "group": "Murkrow"
+  },
+  {
+    "index": "706",
+    "debut": "2020/05/22",
+    "pid": "pm431",
+    "src": "",
+    "group": "Glameow"
+  },
+  {
+    "index": "707",
+    "debut": "2020/05/22",
+    "pid": "pm432",
+    "src": "",
+    "group": "Glameow"
+  },
+  {
+    "index": "708",
+    "debut": "",
+    "pid": "pm433",
+    "src": "",
+    "group": "Chimecho"
+  },
+  {
+    "index": "709",
+    "debut": "",
+    "pid": "pm434",
+    "src": "",
+    "group": "Stunky"
+  },
+  {
+    "index": "710",
+    "debut": "",
+    "pid": "pm435",
+    "src": "",
+    "group": "Stunky"
+  },
+  {
+    "index": "711",
+    "debut": "2019/05/21",
+    "pid": "pm436",
+    "src": "",
+    "group": "Bronzor"
+  },
+  {
+    "index": "712",
+    "debut": "2019/05/21",
+    "pid": "pm437",
+    "src": "",
+    "group": "Bronzor"
+  },
+  {
+    "index": "713",
+    "debut": "2019/08/05",
+    "pid": "pm438",
+    "src": "",
+    "group": "Sudowoodo"
+  },
+  {
+    "index": "714",
+    "debut": "2019/09/26",
+    "pid": "pm439",
+    "src": "",
+    "group": "Mr_Mime"
+  },
+  {
+    "index": "715",
+    "debut": "2020/02/13",
+    "pid": "pm440",
+    "src": "",
+    "group": "Chansey"
+  },
+  {
+    "index": "716",
+    "debut": "2021/04/04",
+    "pid": "pm440.cNOVEMBER_2018",
+    "src": "",
+    "group": "Chansey_07"
+  },
+  {
+    "index": "717",
+    "debut": "",
+    "pid": "pm441",
+    "src": "",
+    "group": "Chatot"
+  },
+  {
+    "index": "718",
+    "debut": "2020/10/24",
+    "pid": "pm442",
+    "src": "",
+    "group": "Spiritomb"
+  },
+  {
+    "index": "719",
+    "debut": "2019/12/17",
+    "pid": "pm443",
+    "src": "",
+    "group": "Gible"
+  },
+  {
+    "index": "720",
+    "debut": "2019/12/17",
+    "pid": "pm444",
+    "src": "",
+    "group": "Gible"
+  },
+  {
+    "index": "721",
+    "debut": "2019/12/17",
+    "pid": "pm445",
+    "src": "",
+    "group": "Gible"
+  },
+  {
+    "index": "722",
+    "debut": "2022/11/09",
+    "pid": "pm446",
+    "src": "",
+    "group": "Snorlax"
+  },
+  {
+    "index": "723",
+    "debut": "2020/02/06",
+    "pid": "pm447",
+    "src": "",
+    "group": "Riolu"
+  },
+  {
+    "index": "724",
+    "debut": "2020/02/06",
+    "pid": "pm448",
+    "src": "",
+    "group": "Riolu"
+  },
+  {
+    "index": "725",
+    "debut": "2020/02/07",
+    "pid": "pm449",
+    "src": "",
+    "group": "Hippowdon"
+  },
+  {
+    "index": "726",
+    "debut": "2020/02/07",
+    "pid": "pm450",
+    "src": "",
+    "group": "Hippowdon"
+  },
+  {
+    "index": "727",
+    "debut": "2020/02/07",
+    "pid": "pm449.g2",
+    "src": "",
+    "group": "Hippowdon_01"
+  },
+  {
+    "index": "728",
+    "debut": "2020/02/07",
+    "pid": "pm450.g2",
+    "src": "",
+    "group": "Hippowdon_01"
+  },
+  {
+    "index": "729",
+    "debut": "2020/03/05",
+    "pid": "pm451",
+    "src": "",
+    "group": "Skorupi"
+  },
+  {
+    "index": "730",
+    "debut": "2020/03/05",
+    "pid": "pm452",
+    "src": "",
+    "group": "Skorupi"
+  },
+  {
+    "index": "731",
+    "debut": "2020/03/31",
+    "pid": "pm453",
+    "src": "",
+    "group": "Croagunk"
+  },
+  {
+    "index": "732",
+    "debut": "2020/03/31",
+    "pid": "pm454",
+    "src": "",
+    "group": "Croagunk"
+  },
+  {
+    "index": "733",
+    "debut": "2020/03/31",
+    "pid": "pm453.cFALL_2020_NOEVOLVE",
+    "src": "",
+    "group": "Croagunk_16"
+  },
+  {
+    "index": "734",
+    "debut": "2022/09/27",
+    "pid": "pm454.cFALL_2020_NOEVOLVE",
+    "src": "",
+    "group": "Croagunk_16"
+  },
+  {
+    "index": "735",
+    "debut": "",
+    "pid": "pm455",
+    "src": "",
+    "group": "Carnivine"
+  },
+  {
+    "index": "736",
+    "debut": "2022/01/21",
+    "pid": "pm456",
+    "src": "",
+    "group": "Finneon"
+  },
+  {
+    "index": "737",
+    "debut": "2022/01/21",
+    "pid": "pm457",
+    "src": "",
+    "group": "Finneon"
+  },
+  {
+    "index": "738",
+    "debut": "2023/05/02",
+    "pid": "pm458",
+    "src": "",
+    "group": "Mantine"
+  },
+  {
+    "index": "739",
+    "debut": "2019/12/24",
+    "pid": "pm459",
+    "src": "",
+    "group": "Snover"
+  },
+  {
+    "index": "740",
+    "debut": "2019/12/24",
+    "pid": "pm460",
+    "src": "",
+    "group": "Snover"
+  },
+  {
+    "index": "741",
+    "debut": "2019/12/24",
+    "pid": "pm460.fMEGA",
+    "src": "",
+    "group": "Snover"
+  },
+  {
+    "index": "742",
+    "debut": "2019/07/25",
+    "pid": "pm461",
+    "src": "",
+    "group": "Sneasel"
+  },
+  {
+    "index": "743",
+    "debut": "2018/11/16",
+    "pid": "pm462",
+    "src": "",
+    "group": "Magnemite"
+  },
+  {
+    "index": "744",
+    "debut": "2020/02/15",
+    "pid": "pm463",
+    "src": "",
+    "group": "Lickitung"
+  },
+  {
+    "index": "745",
+    "debut": "2020/02/22",
+    "pid": "pm464",
+    "src": "",
+    "group": "Rhyhorn"
+  },
+  {
+    "index": "746",
+    "debut": "2020/07/24",
+    "pid": "pm465",
+    "src": "",
+    "group": "Tangela"
+  },
+  {
+    "index": "747",
+    "debut": "2018/11/15",
+    "pid": "pm466",
+    "src": "",
+    "group": "Electabuzz"
+  },
+  {
+    "index": "748",
+    "debut": "2023/05/02",
+    "pid": "pm466.cSPRING_2023_INSTINCT",
+    "src": "",
+    "group": "Electabuzz_23s"
+  },
+  {
+    "index": "749",
+    "debut": "2018/03/22",
+    "pid": "pm467",
+    "src": "",
+    "group": "Magmar"
+  },
+  {
+    "index": "750",
+    "debut": "2018/03/22",
+    "pid": "pm468",
+    "src": "",
+    "group": "Togepi"
+  },
+  {
+    "index": "751",
+    "debut": "2022/04/12",
+    "pid": "pm468.cAPRIL_2020_NOEVOLVE",
+    "src": "",
+    "group": "Togepi"
+  },
+  {
+    "index": "752",
+    "debut": "2019/09/20",
+    "pid": "pm469",
+    "src": "",
+    "group": "Yanma"
+  },
+  {
+    "index": "753",
+    "debut": "2018/08/11",
+    "pid": "pm470",
+    "src": "",
+    "group": "Eevee"
+  },
+  {
+    "index": "754",
+    "debut": "2019/05/17",
+    "pid": "pm470.cNOVEMBER_2018",
+    "src": "",
+    "group": "Eevee_07"
+  },
+  {
+    "index": "755",
+    "debut": "2022/12/31",
+    "pid": "pm470.cHOLIDAY_2022",
+    "src": "",
+    "group": "Eevee_2022h"
+  },
+  {
+    "index": "756",
+    "debut": "2023/04/04",
+    "pid": "pm470.cSPRING_2023",
+    "src": "",
+    "group": "Eevee_23s"
+  },
+  {
+    "index": "757",
+    "debut": "2018/08/11",
+    "pid": "pm471",
+    "src": "",
+    "group": "Eevee"
+  },
+  {
+    "index": "758",
+    "debut": "2019/05/17",
+    "pid": "pm471.cNOVEMBER_2018",
+    "src": "",
+    "group": "Eevee_07"
+  },
+  {
+    "index": "759",
+    "debut": "2021/12/16",
+    "pid": "pm471.cHOLIDAY_2021_NOEVOLVE",
+    "src": "",
+    "group": "Eevee_11"
+  },
+  {
+    "index": "760",
+    "debut": "2022/12/31",
+    "pid": "pm471.cHOLIDAY_2022",
+    "src": "",
+    "group": "Eevee_2022h"
+  },
+  {
+    "index": "761",
+    "debut": "2023/04/04",
+    "pid": "pm471.cSPRING_2023",
+    "src": "",
+    "group": "Eevee_23s"
+  },
+  {
+    "index": "762",
+    "debut": "2019/09/02",
+    "pid": "pm472",
+    "src": "",
+    "group": "Gligar"
+  },
+  {
+    "index": "763",
+    "debut": "2019/02/16",
+    "pid": "pm473",
+    "src": "",
+    "group": "Swinub"
+  },
+  {
+    "index": "764",
+    "debut": "2020/09/19",
+    "pid": "pm474",
+    "src": "",
+    "group": "Porygon"
+  },
+  {
+    "index": "765",
+    "debut": "2019/08/03",
+    "pid": "pm475",
+    "src": "",
+    "group": "Ralts"
+  },
+  {
+    "index": "766",
+    "debut": "2021/03/09",
+    "pid": "pm476",
+    "src": "",
+    "group": "Nosepass"
+  },
+  {
+    "index": "767",
+    "debut": "2017/10/26",
+    "pid": "pm477",
+    "src": "",
+    "group": "Duskull"
+  },
+  {
+    "index": "768",
+    "debut": "2022/11/01",
+    "pid": "pm477.cFALL_2022_NOEVOLVE",
+    "src": "",
+    "group": "Duskull_f22"
+  },
+  {
+    "index": "769",
+    "debut": "2019/01/31",
+    "pid": "pm478",
+    "src": "",
+    "group": "Snorunt"
+  },
+  {
+    "index": "770",
+    "debut": "",
+    "pid": "pm479",
+    "src": "",
+    "group": "Rotom"
+  },
+  {
+    "index": "771",
+    "debut": "2021/09/14",
+    "pid": "pm480",
+    "src": "",
+    "group": "Uxie"
+  },
+  {
+    "index": "772",
+    "debut": "2021/09/14",
+    "pid": "pm481",
+    "src": "",
+    "group": "Mesprit"
+  },
+  {
+    "index": "773",
+    "debut": "2021/09/14",
+    "pid": "pm482",
+    "src": "",
+    "group": "Azelf"
+  },
+  {
+    "index": "774",
+    "debut": "2021/07/23",
+    "pid": "pm483",
+    "src": "",
+    "group": "Dialga"
+  },
+  {
+    "index": "775",
+    "debut": "2021/08/06",
+    "pid": "pm484",
+    "src": "",
+    "group": "Palkia"
+  },
+  {
+    "index": "776",
+    "debut": "2020/01/07",
+    "pid": "pm485",
+    "src": "",
+    "group": "Heatran"
+  },
+  {
+    "index": "777",
+    "debut": "2021/06/17",
+    "pid": "pm486",
+    "src": "",
+    "group": "Regigigas"
+  },
+  {
+    "index": "778",
+    "debut": "2020/10/09",
+    "pid": "pm487.fORIGIN",
+    "src": "",
+    "group": "Giratina"
+  },
+  {
+    "index": "779",
+    "debut": "2019/09/23",
+    "pid": "pm487.fALTERED",
+    "src": "",
+    "group": "Giratina"
+  },
+  {
+    "index": "780",
+    "debut": "2019/05/27",
+    "pid": "pm488",
+    "src": "",
+    "group": "Cresselia"
+  },
+  {
+    "index": "781",
+    "debut": "",
+    "pid": "pm489",
+    "src": "",
+    "group": "Phione"
+  },
+  {
+    "index": "782",
+    "debut": "",
+    "pid": "pm490",
+    "src": "",
+    "group": "Manaphy"
+  },
+  {
+    "index": "783",
+    "debut": "2020/03/06",
+    "pid": "pm491",
+    "src": "",
+    "group": "Darkrai"
+  },
+  {
+    "index": "784",
+    "debut": "",
+    "pid": "pm492",
+    "src": "",
+    "group": "Shaymin"
+  },
+  {
+    "index": "785",
+    "debut": "",
+    "pid": "pm493",
+    "src": "",
+    "group": "Arceus"
+  },
+  {
+    "index": "786",
+    "debut": "",
+    "pid": "pm494",
+    "src": "",
+    "group": "Victini"
+  },
+  {
+    "index": "787",
+    "debut": "2021/01/04",
+    "pid": "pm495",
+    "src": "",
+    "group": "Snivy"
+  },
+  {
+    "index": "788",
+    "debut": "2021/01/04",
+    "pid": "pm496",
+    "src": "",
+    "group": "Snivy"
+  },
+  {
+    "index": "789",
+    "debut": "2021/01/04",
+    "pid": "pm497",
+    "src": "",
+    "group": "Snivy"
+  },
+  {
+    "index": "790",
+    "debut": "2021/07/03",
+    "pid": "pm498",
+    "src": "",
+    "group": "Tepig"
+  },
+  {
+    "index": "791",
+    "debut": "2021/07/03",
+    "pid": "pm499",
+    "src": "",
+    "group": "Tepig"
+  },
+  {
+    "index": "792",
+    "debut": "2021/07/03",
+    "pid": "pm500",
+    "src": "",
+    "group": "Tepig"
+  },
+  {
+    "index": "793",
+    "debut": "2021/09/19",
+    "pid": "pm501",
+    "src": "",
+    "group": "Oshawott"
+  },
+  {
+    "index": "794",
+    "debut": "2021/09/19",
+    "pid": "pm502",
+    "src": "",
+    "group": "Oshawott"
+  },
+  {
+    "index": "795",
+    "debut": "2021/09/19",
+    "pid": "pm503",
+    "src": "",
+    "group": "Oshawott"
+  },
+  {
+    "index": "796",
+    "debut": "2019/09/16",
+    "pid": "pm504",
+    "src": "",
+    "group": "Patrat"
+  },
+  {
+    "index": "797",
+    "debut": "2019/09/16",
+    "pid": "pm505",
+    "src": "",
+    "group": "Patrat"
+  },
+  {
+    "index": "798",
+    "debut": "2019/09/16",
+    "pid": "pm506",
+    "src": "",
+    "group": "Lillipup"
+  },
+  {
+    "index": "799",
+    "debut": "2019/09/16",
+    "pid": "pm507",
+    "src": "",
+    "group": "Lillipup"
+  },
+  {
+    "index": "800",
+    "debut": "2019/09/16",
+    "pid": "pm508",
+    "src": "",
+    "group": "Lillipup"
+  },
+  {
+    "index": "801",
+    "debut": "2022/11/24",
+    "pid": "pm509",
+    "src": "",
+    "group": "Purrloin"
+  },
+  {
+    "index": "802",
+    "debut": "2022/11/24",
+    "pid": "pm510",
+    "src": "",
+    "group": "Purrloin"
+  },
+  {
+    "index": "803",
+    "debut": "2022/08/05",
+    "pid": "pm511",
+    "src": "",
+    "group": "Pansage"
+  },
+  {
+    "index": "804",
+    "debut": "2022/08/05",
+    "pid": "pm512",
+    "src": "",
+    "group": "Pansage"
+  },
+  {
+    "index": "805",
+    "debut": "2022/07/01",
+    "pid": "pm513",
+    "src": "",
+    "group": "Pansear"
+  },
+  {
+    "index": "806",
+    "debut": "2022/07/01",
+    "pid": "pm514",
+    "src": "",
+    "group": "Pansear"
+  },
+  {
+    "index": "807",
+    "debut": "2022/07/22",
+    "pid": "pm515",
+    "src": "",
+    "group": "Panpour"
+  },
+  {
+    "index": "808",
+    "debut": "2022/07/22",
+    "pid": "pm516",
+    "src": "",
+    "group": "Panpour"
+  },
+  {
+    "index": "809",
+    "debut": "2022/08/27",
+    "pid": "pm517",
+    "src": "",
+    "group": "Munna"
+  },
+  {
+    "index": "810",
+    "debut": "2022/08/27",
+    "pid": "pm518",
+    "src": "",
+    "group": "Munna"
+  },
+  {
+    "index": "811",
+    "debut": "2020/07/02",
+    "pid": "pm519",
+    "src": "",
+    "group": "Pidove"
+  },
+  {
+    "index": "812",
+    "debut": "2020/07/02",
+    "pid": "pm520",
+    "src": "",
+    "group": "Pidove"
+  },
+  {
+    "index": "813",
+    "debut": "2020/07/02",
+    "pid": "pm521",
+    "src": "",
+    "group": "Pidove"
+  },
+  {
+    "index": "814",
+    "debut": "2020/07/02",
+    "pid": "pm521.g2",
+    "src": "",
+    "group": "Pidove"
+  },
+  {
+    "index": "815",
+    "debut": "2021/09/28",
+    "pid": "pm522",
+    "src": "",
+    "group": "Blitzle"
+  },
+  {
+    "index": "816",
+    "debut": "2021/09/28",
+    "pid": "pm523",
+    "src": "",
+    "group": "Blitzle"
+  },
+  {
+    "index": "817",
+    "debut": "2021/09/21",
+    "pid": "pm522.cFASHION_2021_NOEVOLVE",
+    "src": "",
+    "group": "Blitzle_2021_FASHION"
+  },
+  {
+    "index": "818",
+    "debut": "2020/08/14",
+    "pid": "pm524",
+    "src": "",
+    "group": "Roggenrola"
+  },
+  {
+    "index": "819",
+    "debut": "2020/08/14",
+    "pid": "pm525",
+    "src": "",
+    "group": "Roggenrola"
+  },
+  {
+    "index": "820",
+    "debut": "2020/08/14",
+    "pid": "pm526",
+    "src": "",
+    "group": "Roggenrola"
+  },
+  {
+    "index": "821",
+    "debut": "2020/07/24",
+    "pid": "pm527",
+    "src": "",
+    "group": "Woobat"
+  },
+  {
+    "index": "822",
+    "debut": "2020/07/24",
+    "pid": "pm528",
+    "src": "",
+    "group": "Woobat"
+  },
+  {
+    "index": "823",
+    "debut": "2023/04/20",
+    "pid": "pm529",
+    "src": "",
+    "group": "Drilbur"
+  },
+  {
+    "index": "824",
+    "debut": "2023/04/20",
+    "pid": "pm530",
+    "src": "",
+    "group": "Drilbur"
+  },
+  {
+    "index": "825",
+    "debut": "2021/07/17",
+    "pid": "pm531",
+    "src": "",
+    "group": "Audino"
+  },
+  {
+    "index": "826",
+    "debut": "2020/03/13",
+    "pid": "pm532",
+    "src": "",
+    "group": "Timburr"
+  },
+  {
+    "index": "827",
+    "debut": "2020/03/13",
+    "pid": "pm533",
+    "src": "",
+    "group": "Timburr"
+  },
+  {
+    "index": "828",
+    "debut": "2020/03/13",
+    "pid": "pm534",
+    "src": "",
+    "group": "Timburr"
+  },
+  {
+    "index": "829",
+    "debut": "2021/07/17",
+    "pid": "pm535",
+    "src": "",
+    "group": "Tympole"
+  },
+  {
+    "index": "830",
+    "debut": "2021/07/17",
+    "pid": "pm536",
+    "src": "",
+    "group": "Tympole"
+  },
+  {
+    "index": "831",
+    "debut": "2021/07/17",
+    "pid": "pm537",
+    "src": "",
+    "group": "Tympole"
+  },
+  {
+    "index": "832",
+    "debut": "2021/07/17",
+    "pid": "pm538",
+    "src": "",
+    "group": "Throh"
+  },
+  {
+    "index": "833",
+    "debut": "2021/07/17",
+    "pid": "pm539",
+    "src": "",
+    "group": "Sawk"
+  },
+  {
+    "index": "834",
+    "debut": "",
+    "pid": "pm540",
+    "src": "",
+    "group": "Sewaddle"
+  },
+  {
+    "index": "835",
+    "debut": "",
+    "pid": "pm541",
+    "src": "",
+    "group": "Sewaddle"
+  },
+  {
+    "index": "836",
+    "debut": "",
+    "pid": "pm542",
+    "src": "",
+    "group": "Sewaddle"
+  },
+  {
+    "index": "837",
+    "debut": "2022/08/10",
+    "pid": "pm543",
+    "src": "",
+    "group": "Venipede"
+  },
+  {
+    "index": "838",
+    "debut": "2022/08/10",
+    "pid": "pm544",
+    "src": "",
+    "group": "Venipede"
+  },
+  {
+    "index": "839",
+    "debut": "2022/08/10",
+    "pid": "pm545",
+    "src": "",
+    "group": "Venipede"
+  },
+  {
+    "index": "840",
+    "debut": "2022/03/22",
+    "pid": "pm546",
+    "src": "",
+    "group": "Cottonee"
+  },
+  {
+    "index": "841",
+    "debut": "2022/03/22",
+    "pid": "pm547",
+    "src": "",
+    "group": "Cottonee"
+  },
+  {
+    "index": "842",
+    "debut": "2023/08/04",
+    "pid": "pm548",
+    "src": "",
+    "group": "Petilil"
+  },
+  {
+    "index": "843",
+    "debut": "2023/08/04",
+    "pid": "pm549",
+    "src": "",
+    "group": "Petilil"
+  },
+  {
+    "index": "844",
+    "debut": "",
+    "pid": "pm550",
+    "src": "",
+    "group": "Basculin"
+  },
+  {
+    "index": "845",
+    "debut": "",
+    "pid": "pm551",
+    "src": "",
+    "group": "Sandile"
+  },
+  {
+    "index": "846",
+    "debut": "",
+    "pid": "pm552",
+    "src": "",
+    "group": "Sandile"
+  },
+  {
+    "index": "847",
+    "debut": "",
+    "pid": "pm553",
+    "src": "",
+    "group": "Sandile"
+  },
+  {
+    "index": "848",
+    "debut": "2021/07/06",
+    "pid": "pm554",
+    "src": "",
+    "group": "Darumaka"
+  },
+  {
+    "index": "849",
+    "debut": "2021/07/06",
+    "pid": "pm555.fSTANDARD",
+    "src": "",
+    "group": "Darumaka"
+  },
+  {
+    "index": "850",
+    "debut": "2021/12/23",
+    "pid": "pm554.fGALARIAN",
+    "src": "",
+    "group": "Darumaka_31"
+  },
+  {
+    "index": "851",
+    "debut": "2021/12/23",
+    "pid": "pm555.fGALARIAN_STANDARD",
+    "src": "",
+    "group": "Darumaka_31"
+  },
+  {
+    "index": "852",
+    "debut": "",
+    "pid": "pm556",
+    "src": "",
+    "group": "Maractus"
+  },
+  {
+    "index": "853",
+    "debut": "2020/06/25",
+    "pid": "pm557",
+    "src": "",
+    "group": "Dwebble"
+  },
+  {
+    "index": "854",
+    "debut": "2020/06/25",
+    "pid": "pm558",
+    "src": "",
+    "group": "Dwebble"
+  },
+  {
+    "index": "855",
+    "debut": "",
+    "pid": "pm559",
+    "src": "",
+    "group": "Scraggy"
+  },
+  {
+    "index": "856",
+    "debut": "",
+    "pid": "pm560",
+    "src": "",
+    "group": "Scraggy"
+  },
+  {
+    "index": "857",
+    "debut": "",
+    "pid": "pm561",
+    "src": "",
+    "group": "Sigilyph"
+  },
+  {
+    "index": "858",
+    "debut": "2019/10/17",
+    "pid": "pm562",
+    "src": "",
+    "group": "Yamask"
+  },
+  {
+    "index": "859",
+    "debut": "2022/10/20",
+    "pid": "pm562.fGALARIAN",
+    "src": "",
+    "group": "Yamask_31"
+  },
+  {
+    "index": "860",
+    "debut": "2019/10/17",
+    "pid": "pm563",
+    "src": "",
+    "group": "Yamask"
+  },
+  {
+    "index": "861",
+    "debut": "2022/06/07",
+    "pid": "pm564",
+    "src": "",
+    "group": "Tirtouga"
+  },
+  {
+    "index": "862",
+    "debut": "2022/06/07",
+    "pid": "pm565",
+    "src": "",
+    "group": "Tirtouga"
+  },
+  {
+    "index": "863",
+    "debut": "2022/06/07",
+    "pid": "pm566",
+    "src": "",
+    "group": "Archen"
+  },
+  {
+    "index": "864",
+    "debut": "2022/06/07",
+    "pid": "pm567",
+    "src": "",
+    "group": "Archen"
+  },
+  {
+    "index": "865",
+    "debut": "2021/04/20",
+    "pid": "pm568",
+    "src": "",
+    "group": "Trubbish"
+  },
+  {
+    "index": "866",
+    "debut": "2021/04/20",
+    "pid": "pm569",
+    "src": "",
+    "group": "Trubbish"
+  },
+  {
+    "index": "867",
+    "debut": "",
+    "pid": "pm570",
+    "src": "",
+    "group": "Zorua"
+  },
+  {
+    "index": "868",
+    "debut": "",
+    "pid": "pm571",
+    "src": "",
+    "group": "Zorua"
+  },
+  {
+    "index": "869",
+    "debut": "2020/02/02",
+    "pid": "pm572",
+    "src": "",
+    "group": "Minccino"
+  },
+  {
+    "index": "870",
+    "debut": "2020/02/02",
+    "pid": "pm573",
+    "src": "",
+    "group": "Minccino"
+  },
+  {
+    "index": "871",
+    "debut": "",
+    "pid": "pm574",
+    "src": "",
+    "group": "Gothita"
+  },
+  {
+    "index": "872",
+    "debut": "",
+    "pid": "pm575",
+    "src": "",
+    "group": "Gothita"
+  },
+  {
+    "index": "873",
+    "debut": "",
+    "pid": "pm576",
+    "src": "",
+    "group": "Gothita"
+  },
+  {
+    "index": "874",
+    "debut": "",
+    "pid": "pm577",
+    "src": "",
+    "group": "Solosis"
+  },
+  {
+    "index": "875",
+    "debut": "",
+    "pid": "pm578",
+    "src": "",
+    "group": "Solosis"
+  },
+  {
+    "index": "876",
+    "debut": "",
+    "pid": "pm579",
+    "src": "",
+    "group": "Solosis"
+  },
+  {
+    "index": "877",
+    "debut": "",
+    "pid": "pm580",
+    "src": "",
+    "group": "Ducklett"
+  },
+  {
+    "index": "878",
+    "debut": "",
+    "pid": "pm581",
+    "src": "",
+    "group": "Ducklett"
+  },
+  {
+    "index": "879",
+    "debut": "",
+    "pid": "pm582",
+    "src": "",
+    "group": "Vanillite"
+  },
+  {
+    "index": "880",
+    "debut": "",
+    "pid": "pm583",
+    "src": "",
+    "group": "Vanillite"
+  },
+  {
+    "index": "881",
+    "debut": "",
+    "pid": "pm584",
+    "src": "",
+    "group": "Vanillite"
+  },
+  {
+    "index": "882",
+    "debut": "",
+    "pid": "pm585",
+    "src": "",
+    "group": "Deerling"
+  },
+  {
+    "index": "883",
+    "debut": "",
+    "pid": "pm586",
+    "src": "",
+    "group": "Deerling"
+  },
+  {
+    "index": "884",
+    "debut": "",
+    "pid": "pm587",
+    "src": "",
+    "group": "Emolga"
+  },
+  {
+    "index": "885",
+    "debut": "2022/06/04",
+    "pid": "pm588",
+    "src": "",
+    "group": "Karrablast"
+  },
+  {
+    "index": "886",
+    "debut": "2022/06/04",
+    "pid": "pm589",
+    "src": "",
+    "group": "Karrablast"
+  },
+  {
+    "index": "887",
+    "debut": "2022/07/01",
+    "pid": "pm590",
+    "src": "",
+    "group": "Foongus"
+  },
+  {
+    "index": "888",
+    "debut": "2022/07/01",
+    "pid": "pm591",
+    "src": "",
+    "group": "Foongus"
+  },
+  {
+    "index": "889",
+    "debut": "2023/02/08",
+    "pid": "pm592",
+    "src": "",
+    "group": "Frillish"
+  },
+  {
+    "index": "890",
+    "debut": "2023/02/08",
+    "pid": "pm593",
+    "src": "",
+    "group": "Frillish"
+  },
+  {
+    "index": "891",
+    "debut": "2023/02/08",
+    "pid": "pm592.fFEMALE",
+    "src": "",
+    "group": "Frillish"
+  },
+  {
+    "index": "892",
+    "debut": "2023/02/08",
+    "pid": "pm593.fFEMALE",
+    "src": "",
+    "group": "Frillish"
+  },
+  {
+    "index": "893",
+    "debut": "2021/02/14",
+    "pid": "pm594",
+    "src": "",
+    "group": "Alomomola"
+  },
+  {
+    "index": "894",
+    "debut": "2023/08/27",
+    "pid": "pm595",
+    "src": "",
+    "group": "Joltik"
+  },
+  {
+    "index": "895",
+    "debut": "2023/08/27",
+    "pid": "pm596",
+    "src": "",
+    "group": "Joltik"
+  },
+  {
+    "index": "896",
+    "debut": "2020/11/07",
+    "pid": "pm597",
+    "src": "",
+    "group": "Ferroseed"
+  },
+  {
+    "index": "897",
+    "debut": "2020/11/07",
+    "pid": "pm598",
+    "src": "",
+    "group": "Ferroseed"
+  },
+  {
+    "index": "898",
+    "debut": "2019/09/16",
+    "pid": "pm599",
+    "src": "",
+    "group": "Klink"
+  },
+  {
+    "index": "899",
+    "debut": "2019/09/16",
+    "pid": "pm600",
+    "src": "",
+    "group": "Klink"
+  },
+  {
+    "index": "900",
+    "debut": "2019/09/16",
+    "pid": "pm601",
+    "src": "",
+    "group": "Klink"
+  },
+  {
+    "index": "901",
+    "debut": "",
+    "pid": "pm602",
+    "src": "",
+    "group": "Tynamo"
+  },
+  {
+    "index": "902",
+    "debut": "",
+    "pid": "pm603",
+    "src": "",
+    "group": "Tynamo"
+  },
+  {
+    "index": "903",
+    "debut": "",
+    "pid": "pm604",
+    "src": "",
+    "group": "Tynamo"
+  },
+  {
+    "index": "904",
+    "debut": "2022/09/06",
+    "pid": "pm605",
+    "src": "",
+    "group": "Elgyem"
+  },
+  {
+    "index": "905",
+    "debut": "2022/09/06",
+    "pid": "pm606",
+    "src": "",
+    "group": "Elgyem"
+  },
+  {
+    "index": "906",
+    "debut": "2022/10/15",
+    "pid": "pm607",
+    "src": "",
+    "group": "Litwick"
+  },
+  {
+    "index": "907",
+    "debut": "2022/10/15",
+    "pid": "pm608",
+    "src": "",
+    "group": "Litwick"
+  },
+  {
+    "index": "908",
+    "debut": "2022/10/15",
+    "pid": "pm609",
+    "src": "",
+    "group": "Litwick"
+  },
+  {
+    "index": "909",
+    "debut": "2022/06/04",
+    "pid": "pm610",
+    "src": "",
+    "group": "Axew"
+  },
+  {
+    "index": "910",
+    "debut": "2022/06/04",
+    "pid": "pm611",
+    "src": "",
+    "group": "Axew"
+  },
+  {
+    "index": "911",
+    "debut": "2022/06/04",
+    "pid": "pm612",
+    "src": "",
+    "group": "Axew"
+  },
+  {
+    "index": "912",
+    "debut": "2020/12/18",
+    "pid": "pm613",
+    "src": "",
+    "group": "Cubchoo"
+  },
+  {
+    "index": "913",
+    "debut": "2020/12/18",
+    "pid": "pm614",
+    "src": "",
+    "group": "Cubchoo"
+  },
+  {
+    "index": "914",
+    "debut": "2020/12/18",
+    "pid": "pm613.fWINTER_2020",
+    "src": "",
+    "group": "Cubchoo_winter"
+  },
+  {
+    "index": "915",
+    "debut": "2022/12/23",
+    "pid": "pm614.fWINTER_2020",
+    "src": "",
+    "group": "Cubchoo_winter"
+  },
+  {
+    "index": "916",
+    "debut": "",
+    "pid": "pm615",
+    "src": "",
+    "group": "Cryogonal"
+  },
+  {
+    "index": "917",
+    "debut": "2022/06/04",
+    "pid": "pm616",
+    "src": "",
+    "group": "Shelmet"
+  },
+  {
+    "index": "918",
+    "debut": "2022/06/04",
+    "pid": "pm617",
+    "src": "",
+    "group": "Shelmet"
+  },
+  {
+    "index": "919",
+    "debut": "2023/04/23",
+    "pid": "pm618",
+    "src": "",
+    "group": "Stunfisk"
+  },
+  {
+    "index": "920",
+    "debut": "2021/08/20",
+    "pid": "pm618.fGALARIAN",
+    "src": "",
+    "group": "Stunfisk_31"
+  },
+  {
+    "index": "921",
+    "debut": "",
+    "pid": "pm619",
+    "src": "",
+    "group": "Mienfoo"
+  },
+  {
+    "index": "922",
+    "debut": "",
+    "pid": "pm620",
+    "src": "",
+    "group": "Mienfoo"
+  },
+  {
+    "index": "923",
+    "debut": "2021/12/07",
+    "pid": "pm621",
+    "src": "",
+    "group": "Druddigon"
+  },
+  {
+    "index": "924",
+    "debut": "2023/08/18",
+    "pid": "pm622",
+    "src": "",
+    "group": "Golett"
+  },
+  {
+    "index": "925",
+    "debut": "2023/08/18",
+    "pid": "pm623",
+    "src": "",
+    "group": "Golett"
+  },
+  {
+    "index": "926",
+    "debut": "2022/11/14",
+    "pid": "pm624",
+    "src": "",
+    "group": "Pawniard"
+  },
+  {
+    "index": "927",
+    "debut": "2022/11/14",
+    "pid": "pm625",
+    "src": "",
+    "group": "Pawniard"
+  },
+  {
+    "index": "928",
+    "debut": "",
+    "pid": "pm626",
+    "src": "",
+    "group": "Bouffalant"
+  },
+  {
+    "index": "929",
+    "debut": "2020/12/13",
+    "pid": "pm627",
+    "src": "",
+    "group": "Rufflet"
+  },
+  {
+    "index": "930",
+    "debut": "2020/12/13",
+    "pid": "pm628",
+    "src": "",
+    "group": "Rufflet"
+  },
+  {
+    "index": "931",
+    "debut": "2022/07/31",
+    "pid": "pm628.fHISUIAN",
+    "src": "",
+    "group": "Rufflet"
+  },
+  {
+    "index": "932",
+    "debut": "2021/11/09",
+    "pid": "pm629",
+    "src": "",
+    "group": "Vullaby"
+  },
+  {
+    "index": "933",
+    "debut": "2021/11/09",
+    "pid": "pm630",
+    "src": "",
+    "group": "Vullaby"
+  },
+  {
+    "index": "934",
+    "debut": "2020/07/25",
+    "pid": "pm631",
+    "src": "",
+    "group": "Heatmor"
+  },
+  {
+    "index": "935",
+    "debut": "2020/07/25",
+    "pid": "pm632",
+    "src": "",
+    "group": "Durant"
+  },
+  {
+    "index": "936",
+    "debut": "2020/08/01",
+    "pid": "pm633",
+    "src": "",
+    "group": "Deino"
+  },
+  {
+    "index": "937",
+    "debut": "2020/08/01",
+    "pid": "pm634",
+    "src": "",
+    "group": "Deino"
+  },
+  {
+    "index": "938",
+    "debut": "2020/08/01",
+    "pid": "pm635",
+    "src": "",
+    "group": "Deino"
+  },
+  {
+    "index": "939",
+    "debut": "",
+    "pid": "pm636",
+    "src": "",
+    "group": "Larvesta"
+  },
+  {
+    "index": "940",
+    "debut": "",
+    "pid": "pm637",
+    "src": "",
+    "group": "Larvesta"
+  },
+  {
+    "index": "941",
+    "debut": "2020/05/18",
+    "pid": "pm638",
+    "src": "",
+    "group": "Cobalion"
+  },
+  {
+    "index": "942",
+    "debut": "2020/05/19",
+    "pid": "pm639",
+    "src": "",
+    "group": "Terrakion"
+  },
+  {
+    "index": "943",
+    "debut": "2020/05/13",
+    "pid": "pm640",
+    "src": "",
+    "group": "Virizion"
+  },
+  {
+    "index": "944",
+    "debut": "2021/03/06",
+    "pid": "pm641.fINCARNATE",
+    "src": "",
+    "group": "Tornadus"
+  },
+  {
+    "index": "945",
+    "debut": "2022/03/14",
+    "pid": "pm641.fTHERIAN",
+    "src": "",
+    "group": "Tornadus"
+  },
+  {
+    "index": "946",
+    "debut": "2021/03/11",
+    "pid": "pm642.fINCARNATE",
+    "src": "",
+    "group": "Thundurus"
+  },
+  {
+    "index": "947",
+    "debut": "2022/04/05",
+    "pid": "pm642.fTHERIAN",
+    "src": "",
+    "group": "Thundurus"
+  },
+  {
+    "index": "948",
+    "debut": "2021/12/01",
+    "pid": "pm643",
+    "src": "",
+    "group": "Reshiram"
+  },
+  {
+    "index": "949",
+    "debut": "2021/12/01",
+    "pid": "pm644",
+    "src": "",
+    "group": "Zekrom"
+  },
+  {
+    "index": "950",
+    "debut": "2021/03/01",
+    "pid": "pm645.fINCARNATE",
+    "src": "",
+    "group": "Landorus"
+  },
+  {
+    "index": "951",
+    "debut": "2022/04/26",
+    "pid": "pm645.fTHERIAN",
+    "src": "",
+    "group": "Landorus"
+  },
+  {
+    "index": "952",
+    "debut": "2021/12/16",
+    "pid": "pm646.fNORMAL",
+    "src": "",
+    "group": "Kyurem"
+  },
+  {
+    "index": "953",
+    "debut": "",
+    "pid": "pm647",
+    "src": "",
+    "group": "Keldeo"
+  },
+  {
+    "index": "954",
+    "debut": "",
+    "pid": "pm648",
+    "src": "",
+    "group": "Meloetta"
+  },
+  {
+    "index": "955",
+    "debut": "2020/08/15",
+    "pid": "pm649.fNORMAL",
+    "src": "",
+    "group": "Genesect"
+  },
+  {
+    "index": "956",
+    "debut": "2023/05/02",
+    "pid": "pm649.fSHOCK",
+    "src": "",
+    "group": "Genesect"
+  },
+  {
+    "index": "957",
+    "debut": "2023/01/07",
+    "pid": "pm650",
+    "src": "",
+    "group": "Chespin"
+  },
+  {
+    "index": "958",
+    "debut": "2023/01/07",
+    "pid": "pm651",
+    "src": "",
+    "group": "Chespin"
+  },
+  {
+    "index": "959",
+    "debut": "2023/01/07",
+    "pid": "pm652",
+    "src": "",
+    "group": "Chespin"
+  },
+  {
+    "index": "960",
+    "debut": "2023/05/21",
+    "pid": "pm653",
+    "src": "",
+    "group": "Fennekin"
+  },
+  {
+    "index": "961",
+    "debut": "2023/05/21",
+    "pid": "pm654",
+    "src": "",
+    "group": "Fennekin"
+  },
+  {
+    "index": "962",
+    "debut": "2023/05/21",
+    "pid": "pm655",
+    "src": "",
+    "group": "Fennekin"
+  },
+  {
+    "index": "963",
+    "debut": "",
+    "pid": "pm656",
+    "src": "",
+    "group": "Froakie"
+  },
+  {
+    "index": "964",
+    "debut": "",
+    "pid": "pm657",
+    "src": "",
+    "group": "Froakie"
+  },
+  {
+    "index": "965",
+    "debut": "",
+    "pid": "pm658",
+    "src": "",
+    "group": "Froakie"
+  },
+  {
+    "index": "966",
+    "debut": "2021/04/04",
+    "pid": "pm659",
+    "src": "",
+    "group": "Bunnelby"
+  },
+  {
+    "index": "967",
+    "debut": "2021/04/04",
+    "pid": "pm660",
+    "src": "",
+    "group": "Bunnelby"
+  },
+  {
+    "index": "968",
+    "debut": "2021/03/06",
+    "pid": "pm661",
+    "src": "",
+    "group": "Fletchling"
+  },
+  {
+    "index": "969",
+    "debut": "2021/03/06",
+    "pid": "pm662",
+    "src": "",
+    "group": "Fletchling"
+  },
+  {
+    "index": "970",
+    "debut": "2021/03/06",
+    "pid": "pm663",
+    "src": "",
+    "group": "Fletchling"
+  },
+  {
+    "index": "971",
+    "debut": "",
+    "pid": "pm664",
+    "src": "",
+    "group": "Scatterbug"
+  },
+  {
+    "index": "972",
+    "debut": "",
+    "pid": "pm665",
+    "src": "",
+    "group": "Scatterbug"
+  },
+  {
+    "index": "973",
+    "debut": "",
+    "pid": "pm666",
+    "src": "",
+    "group": "Scatterbug"
+  },
+  {
+    "index": "974",
+    "debut": "2022/02/01",
+    "pid": "pm667",
+    "src": "",
+    "group": "Litleo"
+  },
+  {
+    "index": "975",
+    "debut": "2022/02/01",
+    "pid": "pm668",
+    "src": "",
+    "group": "Litleo"
+  },
+  {
+    "index": "976",
+    "debut": "2022/02/01",
+    "pid": "pm668.fFEMALE",
+    "src": "",
+    "group": "Litleo"
+  },
+  {
+    "index": "977",
+    "debut": "",
+    "pid": "pm669",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "978",
+    "debut": "",
+    "pid": "pm670",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "979",
+    "debut": "",
+    "pid": "pm671",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "980",
+    "debut": "",
+    "pid": "pm672",
+    "src": "",
+    "group": "Skiddo"
+  },
+  {
+    "index": "981",
+    "debut": "",
+    "pid": "pm673",
+    "src": "",
+    "group": "Skiddo"
+  },
+  {
+    "index": "982",
+    "debut": "2023/06/16",
+    "pid": "pm674",
+    "src": "",
+    "group": "Pancham"
+  },
+  {
+    "index": "983",
+    "debut": "2023/06/16",
+    "pid": "pm675",
+    "src": "",
+    "group": "Pancham"
+  },
+  {
+    "index": "984",
+    "debut": "2022/09/27",
+    "pid": "pm676.fNATURAL",
+    "src": "",
+    "group": "Furfrou"
+  },
+  {
+    "index": "985",
+    "debut": "2022/09/27",
+    "pid": "pm676.fDEBUTANTE",
+    "src": "",
+    "group": "Furfrou"
+  },
+  {
+    "index": "986",
+    "debut": "2022/09/27",
+    "pid": "pm676.fSTAR",
+    "src": "",
+    "group": "Furfrou"
+  },
+  {
+    "index": "987",
+    "debut": "2022/09/27",
+    "pid": "pm676.fDANDY",
+    "src": "",
+    "group": "Furfrou"
+  },
+  {
+    "index": "988",
+    "debut": "2023/02/08",
+    "pid": "pm676.fHEART",
+    "src": "",
+    "group": "Furfrou"
+  },
+  {
+    "index": "989",
+    "debut": "2022/09/27",
+    "pid": "pm676.fKABUKI",
+    "src": "",
+    "group": "Furfrou"
+  },
+  {
+    "index": "990",
+    "debut": "2022/09/27",
+    "pid": "pm676.fMATRON",
+    "src": "",
+    "group": "Furfrou"
+  },
+  {
+    "index": "991",
+    "debut": "2022/09/27",
+    "pid": "pm676.fDIAMOND",
+    "src": "",
+    "group": "Furfrou"
+  },
+  {
+    "index": "992",
+    "debut": "2022/09/27",
+    "pid": "pm676.fPHARAOH",
+    "src": "",
+    "group": "Furfrou"
+  },
+  {
+    "index": "993",
+    "debut": "2022/09/27",
+    "pid": "pm676.fLA_REINE",
+    "src": "",
+    "group": "Furfrou"
+  },
+  {
+    "index": "994",
+    "debut": "2022/02/01",
+    "pid": "pm677",
+    "src": "",
+    "group": "Espurr"
+  },
+  {
+    "index": "995",
+    "debut": "2022/02/01",
+    "pid": "pm678",
+    "src": "",
+    "group": "Espurr"
+  },
+  {
+    "index": "996",
+    "debut": "2022/02/01",
+    "pid": "pm678.fFEMALE",
+    "src": "",
+    "group": "Espurr"
+  },
+  {
+    "index": "997",
+    "debut": "",
+    "pid": "pm679",
+    "src": "",
+    "group": "Honedge"
+  },
+  {
+    "index": "998",
+    "debut": "",
+    "pid": "pm680",
+    "src": "",
+    "group": "Honedge"
+  },
+  {
+    "index": "999",
+    "debut": "",
+    "pid": "pm681",
+    "src": "",
+    "group": "Honedge"
+  },
+  {
+    "index": "1000",
+    "debut": "2022/09/24",
+    "pid": "pm682",
+    "src": "",
+    "group": "Spritzee"
+  },
+  {
+    "index": "1001",
+    "debut": "2022/09/24",
+    "pid": "pm683",
+    "src": "",
+    "group": "Spritzee"
+  },
+  {
+    "index": "1002",
+    "debut": "2022/08/05",
+    "pid": "pm684",
+    "src": "",
+    "group": "Swirlix"
+  },
+  {
+    "index": "1003",
+    "debut": "2022/08/05",
+    "pid": "pm685",
+    "src": "",
+    "group": "Swirlix"
+  },
+  {
+    "index": "1004",
+    "debut": "2022/09/03",
+    "pid": "pm686",
+    "src": "",
+    "group": "Inkay"
+  },
+  {
+    "index": "1005",
+    "debut": "2022/09/03",
+    "pid": "pm687",
+    "src": "",
+    "group": "Inkay"
+  },
+  {
+    "index": "1006",
+    "debut": "2022/05/13",
+    "pid": "pm688",
+    "src": "",
+    "group": "Binacle"
+  },
+  {
+    "index": "1007",
+    "debut": "2022/05/13",
+    "pid": "pm689",
+    "src": "",
+    "group": "Binacle"
+  },
+  {
+    "index": "1008",
+    "debut": "2023/08/18",
+    "pid": "pm690",
+    "src": "",
+    "group": "Skrelp"
+  },
+  {
+    "index": "1009",
+    "debut": "2023/08/18",
+    "pid": "pm691",
+    "src": "",
+    "group": "Skrelp"
+  },
+  {
+    "index": "1010",
+    "debut": "2023/06/06",
+    "pid": "pm692",
+    "src": "",
+    "group": "Clauncher"
+  },
+  {
+    "index": "1011",
+    "debut": "2023/06/06",
+    "pid": "pm693",
+    "src": "",
+    "group": "Clauncher"
+  },
+  {
+    "index": "1012",
+    "debut": "2023/01/27",
+    "pid": "pm694",
+    "src": "",
+    "group": "Helioptile"
+  },
+  {
+    "index": "1013",
+    "debut": "2023/01/27",
+    "pid": "pm695",
+    "src": "",
+    "group": "Helioptile"
+  },
+  {
+    "index": "1014",
+    "debut": "2023/07/27",
+    "pid": "pm696",
+    "src": "",
+    "group": "Tyrunt"
+  },
+  {
+    "index": "1015",
+    "debut": "2023/07/27",
+    "pid": "pm697",
+    "src": "",
+    "group": "Tyrunt"
+  },
+  {
+    "index": "1016",
+    "debut": "2023/07/27",
+    "pid": "pm698",
+    "src": "",
+    "group": "Amaura"
+  },
+  {
+    "index": "1017",
+    "debut": "2023/07/27",
+    "pid": "pm699",
+    "src": "",
+    "group": "Amaura"
+  },
+  {
+    "index": "1018",
+    "debut": "2021/05/25",
+    "pid": "pm700",
+    "src": "",
+    "group": "Eevee"
+  },
+  {
+    "index": "1019",
+    "debut": "2021/05/25",
+    "pid": "pm700.cNOVEMBER_2018",
+    "src": "",
+    "group": "Eevee_07"
+  },
+  {
+    "index": "1020",
+    "debut": "2022/12/31",
+    "pid": "pm700.cHOLIDAY_2022",
+    "src": "",
+    "group": "Eevee_2022h"
+  },
+  {
+    "index": "1021",
+    "debut": "2023/04/04",
+    "pid": "pm700.cSPRING_2023",
+    "src": "",
+    "group": "Eevee_23s"
+  },
+  {
+    "index": "1022",
+    "debut": "",
+    "pid": "pm701",
+    "src": "",
+    "group": "Hawlucha"
+  },
+  {
+    "index": "1023",
+    "debut": "2023/01/10",
+    "pid": "pm702",
+    "src": "",
+    "group": "Dedenne"
+  },
+  {
+    "index": "1024",
+    "debut": "",
+    "pid": "pm703",
+    "src": "",
+    "group": "Carbink"
+  },
+  {
+    "index": "1025",
+    "debut": "2023/08/27",
+    "pid": "pm704",
+    "src": "",
+    "group": "Goomy"
+  },
+  {
+    "index": "1026",
+    "debut": "2023/08/27",
+    "pid": "pm705",
+    "src": "",
+    "group": "Goomy"
+  },
+  {
+    "index": "1027",
+    "debut": "2023/08/27",
+    "pid": "pm706",
+    "src": "",
+    "group": "Goomy"
+  },
+  {
+    "index": "1028",
+    "debut": "",
+    "pid": "pm707",
+    "src": "",
+    "group": "Klefki"
+  },
+  {
+    "index": "1029",
+    "debut": "",
+    "pid": "pm708",
+    "src": "",
+    "group": "Phantump"
+  },
+  {
+    "index": "1030",
+    "debut": "",
+    "pid": "pm709",
+    "src": "",
+    "group": "Phantump"
+  },
+  {
+    "index": "1031",
+    "debut": "",
+    "pid": "pm710",
+    "src": "",
+    "group": "Pumpkaboo"
+  },
+  {
+    "index": "1032",
+    "debut": "",
+    "pid": "pm711",
+    "src": "",
+    "group": "Pumpkaboo"
+  },
+  {
+    "index": "1033",
+    "debut": "2022/10/27",
+    "pid": "pm710.fSMALL.cFALL_2022",
+    "src": "",
+    "group": "Pumpkaboo_2022"
+  },
+  {
+    "index": "1034",
+    "debut": "2022/10/27",
+    "pid": "pm710.fAVERAGE.cFALL_2022",
+    "src": "",
+    "group": "Pumpkaboo_2022"
+  },
+  {
+    "index": "1035",
+    "debut": "2022/10/27",
+    "pid": "pm710.fLARGE.cFALL_2022",
+    "src": "",
+    "group": "Pumpkaboo_2022"
+  },
+  {
+    "index": "1036",
+    "debut": "2022/10/27",
+    "pid": "pm710.fSUPER.cFALL_2022",
+    "src": "",
+    "group": "Pumpkaboo_2022"
+  },
+  {
+    "index": "1037",
+    "debut": "2022/10/27",
+    "pid": "pm711.fSMALL.cFALL_2022",
+    "src": "",
+    "group": "Pumpkaboo_2022"
+  },
+  {
+    "index": "1038",
+    "debut": "2022/10/27",
+    "pid": "pm711.fAVERAGE.cFALL_2022",
+    "src": "",
+    "group": "Pumpkaboo_2022"
+  },
+  {
+    "index": "1039",
+    "debut": "2022/10/27",
+    "pid": "pm711.fLARGE.cFALL_2022",
+    "src": "",
+    "group": "Pumpkaboo_2022"
+  },
+  {
+    "index": "1040",
+    "debut": "2022/10/27",
+    "pid": "pm711.fSUPER.cFALL_2022",
+    "src": "",
+    "group": "Pumpkaboo_2022"
+  },
+  {
+    "index": "1041",
+    "debut": "2022/12/23",
+    "pid": "pm712",
+    "src": "",
+    "group": "Bergmite"
+  },
+  {
+    "index": "1042",
+    "debut": "2022/12/23",
+    "pid": "pm713",
+    "src": "",
+    "group": "Bergmite"
+  },
+  {
+    "index": "1043",
+    "debut": "2022/12/23",
+    "pid": "pm713.fHISUIAN",
+    "src": "",
+    "group": "Bergmite"
+  },
+  {
+    "index": "1044",
+    "debut": "2022/10/20",
+    "pid": "pm714",
+    "src": "",
+    "group": "Noibat"
+  },
+  {
+    "index": "1045",
+    "debut": "2022/10/20",
+    "pid": "pm715",
+    "src": "",
+    "group": "Noibat"
+  },
+  {
+    "index": "1046",
+    "debut": "2022/10/08",
+    "pid": "pm716",
+    "src": "",
+    "group": "Xerneas"
+  },
+  {
+    "index": "1047",
+    "debut": "2022/09/27",
+    "pid": "pm717",
+    "src": "",
+    "group": "Yveltal"
+  },
+  {
+    "index": "1048",
+    "debut": "",
+    "pid": "pm718",
+    "src": "",
+    "group": "Zygarde"
+  },
+  {
+    "index": "1049",
+    "debut": "2022/03/01",
+    "pid": "pm734",
+    "src": "",
+    "group": "Yungoos"
+  },
+  {
+    "index": "1050",
+    "debut": "2022/03/01",
+    "pid": "pm735",
+    "src": "",
+    "group": "Yungoos"
+  },
+  {
+    "index": "1051",
+    "debut": "2022/03/01",
+    "pid": "pm744",
+    "src": "",
+    "group": "Rockruff"
+  },
+  {
+    "index": "1052",
+    "debut": "2022/03/01",
+    "pid": "pm745.fMIDDAY",
+    "src": "",
+    "group": "Rockruff"
+  },
+  {
+    "index": "1053",
+    "debut": "2021/03/01",
+    "pid": "pm745.fMIDNIGHT",
+    "src": "",
+    "group": "Rockruff"
+  },
+  {
+    "index": "1054",
+    "debut": "2022/08/04",
+    "pid": "pm751",
+    "src": "",
+    "group": "Dewpider"
+  },
+  {
+    "index": "1055",
+    "debut": "2022/08/04",
+    "pid": "pm752",
+    "src": "",
+    "group": "Dewpider"
+  },
+  {
+    "index": "1056",
+    "debut": "2023/06/16",
+    "pid": "pm753",
+    "src": "",
+    "group": "Fomantis"
+  },
+  {
+    "index": "1057",
+    "debut": "2023/06/16",
+    "pid": "pm754",
+    "src": "",
+    "group": "Fomantis"
+  },
+  {
+    "index": "1058",
+    "debut": "2022/04/23",
+    "pid": "pm759",
+    "src": "",
+    "group": "Stufful"
+  },
+  {
+    "index": "1059",
+    "debut": "2022/04/23",
+    "pid": "pm760",
+    "src": "",
+    "group": "Stufful"
+  },
+  {
+    "index": "1060",
+    "debut": "",
+    "pid": "pm761",
+    "src": "",
+    "group": "bounsweet"
+  },
+  {
+    "index": "1061",
+    "debut": "",
+    "pid": "pm762",
+    "src": "",
+    "group": "bounsweet"
+  },
+  {
+    "index": "1062",
+    "debut": "",
+    "pid": "pm763",
+    "src": "",
+    "group": "bounsweet"
+  },
+  {
+    "index": "1063",
+    "debut": "",
+    "pid": "pm764",
+    "src": "",
+    "group": "comfey"
+  },
+  {
+    "index": "1064",
+    "debut": "2023/08/27",
+    "pid": "pm765",
+    "src": "",
+    "group": "oranguru"
+  },
+  {
+    "index": "1065",
+    "debut": "",
+    "pid": "pm766",
+    "src": "",
+    "group": "passimian"
+  },
+  {
+    "index": "1066",
+    "debut": "",
+    "pid": "pm767",
+    "src": "",
+    "group": "wimpod"
+  },
+  {
+    "index": "1067",
+    "debut": "",
+    "pid": "pm768",
+    "src": "",
+    "group": "wimpod"
+  },
+  {
+    "index": "1068",
+    "debut": "",
+    "pid": "pm769",
+    "src": "",
+    "group": "sandygast"
+  },
+  {
+    "index": "1069",
+    "debut": "",
+    "pid": "pm770",
+    "src": "",
+    "group": "sandygast"
+  },
+  {
+    "index": "1070",
+    "debut": "",
+    "pid": "pm771",
+    "src": "",
+    "group": "pyukumuku"
+  },
+  {
+    "index": "1071",
+    "debut": "",
+    "pid": "pm772",
+    "src": "",
+    "group": "type_null"
+  },
+  {
+    "index": "1072",
+    "debut": "",
+    "pid": "pm773",
+    "src": "",
+    "group": "type_null"
+  },
+  {
+    "index": "1073",
+    "debut": "",
+    "pid": "pm774",
+    "src": "",
+    "group": "minior"
+  },
+  {
+    "index": "1074",
+    "debut": "",
+    "pid": "pm775",
+    "src": "",
+    "group": "komala"
+  },
+  {
+    "index": "1075",
+    "debut": "2023/06/29",
+    "pid": "pm776",
+    "src": "",
+    "group": "turtonator"
+  },
+  {
+    "index": "1076",
+    "debut": "",
+    "pid": "pm777",
+    "src": "",
+    "group": "togedemaru"
+  },
+  {
+    "index": "1077",
+    "debut": "",
+    "pid": "pm778",
+    "src": "",
+    "group": "mimikyu"
+  },
+  {
+    "index": "1079",
+    "debut": "",
+    "pid": "pm779",
+    "src": "",
+    "group": "bruxish"
+  },
+  {
+    "index": "1080",
+    "debut": "",
+    "pid": "pm780",
+    "src": "",
+    "group": "drampa"
+  },
+  {
+    "index": "1081",
+    "debut": "",
+    "pid": "pm781",
+    "src": "",
+    "group": "dhelmise"
+  },
+  {
+    "index": "1082",
+    "debut": "",
+    "pid": "pm782",
+    "src": "",
+    "group": "jangmo_o"
+  },
+  {
+    "index": "1083",
+    "debut": "",
+    "pid": "pm783",
+    "src": "",
+    "group": "jangmo_o"
+  },
+  {
+    "index": "1084",
+    "debut": "",
+    "pid": "pm784",
+    "src": "",
+    "group": "jangmo_o"
+  },
+  {
+    "index": "1085",
+    "debut": "2023/01/26",
+    "pid": "pm785",
+    "src": "",
+    "group": "tapu_koko"
+  },
+  {
+    "index": "1086",
+    "debut": "2023/02/08",
+    "pid": "pm786",
+    "src": "",
+    "group": "tapu_lele"
+  },
+  {
+    "index": "1087",
+    "debut": "2023/04/17",
+    "pid": "pm787",
+    "src": "",
+    "group": "tapu_bulu"
+  },
+  {
+    "index": "1088",
+    "debut": "2023/05/11",
+    "pid": "pm788",
+    "src": "",
+    "group": "tapu_fini"
+  },
+  {
+    "index": "1089",
+    "debut": "",
+    "pid": "pm789",
+    "src": "",
+    "group": "cosmog"
+  },
+  {
+    "index": "1090",
+    "debut": "",
+    "pid": "pm790",
+    "src": "",
+    "group": "cosmog"
+  },
+  {
+    "index": "1091",
+    "debut": "",
+    "pid": "pm791",
+    "src": "",
+    "group": "cosmog"
+  },
+  {
+    "index": "1092",
+    "debut": "",
+    "pid": "pm792",
+    "src": "",
+    "group": "cosmog"
+  },
+  {
+    "index": "1093",
+    "debut": "2023/06/16",
+    "pid": "pm793",
+    "src": "",
+    "group": "nihilego"
+  },
+  {
+    "index": "1094",
+    "debut": "",
+    "pid": "pm794",
+    "src": "",
+    "group": "buzzwole"
+  },
+  {
+    "index": "1095",
+    "debut": "",
+    "pid": "pm795",
+    "src": "",
+    "group": "pheromosa"
+  },
+  {
+    "index": "1096",
+    "debut": "",
+    "pid": "pm796",
+    "src": "",
+    "group": "xurkitree"
+  },
+  {
+    "index": "1097",
+    "debut": "",
+    "pid": "pm797",
+    "src": "",
+    "group": "celesteela"
+  },
+  {
+    "index": "1098",
+    "debut": "",
+    "pid": "pm798",
+    "src": "",
+    "group": "kartana"
+  },
+  {
+    "index": "1099",
+    "debut": "",
+    "pid": "pm799",
+    "src": "",
+    "group": "guzzlord"
+  },
+  {
+    "index": "1100",
+    "debut": "",
+    "pid": "pm800",
+    "src": "",
+    "group": "necrozma"
+  },
+  {
+    "index": "1101",
+    "debut": "",
+    "pid": "pm801",
+    "src": "",
+    "group": "magearna"
+  },
+  {
+    "index": "1104",
+    "debut": "",
+    "pid": "pm802",
+    "src": "",
+    "group": "marshadow"
+  },
+  {
+    "index": "1105",
+    "debut": "",
+    "pid": "pm803",
+    "src": "",
+    "group": "poipole"
+  },
+  {
+    "index": "1106",
+    "debut": "",
+    "pid": "pm804",
+    "src": "",
+    "group": "poipole"
+  },
+  {
+    "index": "1107",
+    "debut": "",
+    "pid": "pm805",
+    "src": "",
+    "group": "stakataka"
+  },
+  {
+    "index": "1108",
+    "debut": "",
+    "pid": "pm806",
+    "src": "",
+    "group": "blacephalon"
+  },
+  {
+    "index": "1109",
+    "debut": "",
+    "pid": "pm807",
+    "src": "",
+    "group": "zeraora"
+  },
+  {
+    "index": "1110",
+    "debut": "2019/02/05",
+    "pid": "pm808",
+    "src": "",
+    "group": "Meltan"
+  },
+  {
+    "index": "1111",
+    "debut": "2019/02/05",
+    "pid": "pm809",
+    "src": "",
+    "group": "Meltan"
+  },
+  {
+    "index": "1112",
+    "debut": "",
+    "pid": "pm810",
+    "src": "",
+    "group": "grookey"
+  },
+  {
+    "index": "1113",
+    "debut": "",
+    "pid": "pm811",
+    "src": "",
+    "group": "grookey"
+  },
+  {
+    "index": "1114",
+    "debut": "",
+    "pid": "pm812",
+    "src": "",
+    "group": "grookey"
+  },
+  {
+    "index": "1115",
+    "debut": "",
+    "pid": "pm813",
+    "src": "",
+    "group": "scorbunny"
+  },
+  {
+    "index": "1116",
+    "debut": "",
+    "pid": "pm814",
+    "src": "",
+    "group": "scorbunny"
+  },
+  {
+    "index": "1117",
+    "debut": "",
+    "pid": "pm815",
+    "src": "",
+    "group": "scorbunny"
+  },
+  {
+    "index": "1118",
+    "debut": "",
+    "pid": "pm816",
+    "src": "",
+    "group": "sobble"
+  },
+  {
+    "index": "1119",
+    "debut": "",
+    "pid": "pm817",
+    "src": "",
+    "group": "sobble"
+  },
+  {
+    "index": "1120",
+    "debut": "",
+    "pid": "pm818",
+    "src": "",
+    "group": "sobble"
+  },
+  {
+    "index": "1121",
+    "debut": "",
+    "pid": "pm819",
+    "src": "",
+    "group": "skwovet"
+  },
+  {
+    "index": "1122",
+    "debut": "",
+    "pid": "pm820",
+    "src": "",
+    "group": "skwovet"
+  },
+  {
+    "index": "1123",
+    "debut": "",
+    "pid": "pm821",
+    "src": "",
+    "group": "rookidee"
+  },
+  {
+    "index": "1124",
+    "debut": "",
+    "pid": "pm822",
+    "src": "",
+    "group": "rookidee"
+  },
+  {
+    "index": "1125",
+    "debut": "",
+    "pid": "pm823",
+    "src": "",
+    "group": "rookidee"
+  },
+  {
+    "index": "1126",
+    "debut": "",
+    "pid": "pm824",
+    "src": "",
+    "group": "blipbug"
+  },
+  {
+    "index": "1127",
+    "debut": "",
+    "pid": "pm825",
+    "src": "",
+    "group": "blipbug"
+  },
+  {
+    "index": "1128",
+    "debut": "",
+    "pid": "pm826",
+    "src": "",
+    "group": "blipbug"
+  },
+  {
+    "index": "1129",
+    "debut": "",
+    "pid": "pm827",
+    "src": "",
+    "group": "nickit"
+  },
+  {
+    "index": "1130",
+    "debut": "",
+    "pid": "pm828",
+    "src": "",
+    "group": "nickit"
+  },
+  {
+    "index": "1131",
+    "debut": "",
+    "pid": "pm829",
+    "src": "",
+    "group": "gossifleur"
+  },
+  {
+    "index": "1132",
+    "debut": "",
+    "pid": "pm830",
+    "src": "",
+    "group": "gossifleur"
+  },
+  {
+    "index": "1133",
+    "debut": "",
+    "pid": "pm831",
+    "src": "",
+    "group": "wooloo"
+  },
+  {
+    "index": "1134",
+    "debut": "",
+    "pid": "pm832",
+    "src": "",
+    "group": "wooloo"
+  },
+  {
+    "index": "1135",
+    "debut": "",
+    "pid": "pm833",
+    "src": "",
+    "group": "chewtle"
+  },
+  {
+    "index": "1136",
+    "debut": "",
+    "pid": "pm834",
+    "src": "",
+    "group": "chewtle"
+  },
+  {
+    "index": "1137",
+    "debut": "",
+    "pid": "pm835",
+    "src": "",
+    "group": "yamper"
+  },
+  {
+    "index": "1138",
+    "debut": "",
+    "pid": "pm836",
+    "src": "",
+    "group": "yamper"
+  },
+  {
+    "index": "1139",
+    "debut": "",
+    "pid": "pm837",
+    "src": "",
+    "group": "rolycoly"
+  },
+  {
+    "index": "1140",
+    "debut": "",
+    "pid": "pm838",
+    "src": "",
+    "group": "rolycoly"
+  },
+  {
+    "index": "1141",
+    "debut": "",
+    "pid": "pm839",
+    "src": "",
+    "group": "rolycoly"
+  },
+  {
+    "index": "1142",
+    "debut": "",
+    "pid": "pm840",
+    "src": "",
+    "group": "applin"
+  },
+  {
+    "index": "1143",
+    "debut": "",
+    "pid": "pm841",
+    "src": "",
+    "group": "applin"
+  },
+  {
+    "index": "1144",
+    "debut": "",
+    "pid": "pm842",
+    "src": "",
+    "group": "applin"
+  },
+  {
+    "index": "1145",
+    "debut": "",
+    "pid": "pm843",
+    "src": "",
+    "group": "silicobra"
+  },
+  {
+    "index": "1146",
+    "debut": "",
+    "pid": "pm844",
+    "src": "",
+    "group": "silicobra"
+  },
+  {
+    "index": "1147",
+    "debut": "",
+    "pid": "pm845",
+    "src": "",
+    "group": "cramorant"
+  },
+  {
+    "index": "1148",
+    "debut": "",
+    "pid": "pm846",
+    "src": "",
+    "group": "arrokuda"
+  },
+  {
+    "index": "1149",
+    "debut": "",
+    "pid": "pm847",
+    "src": "",
+    "group": "arrokuda"
+  },
+  {
+    "index": "1150",
+    "debut": "",
+    "pid": "pm848",
+    "src": "",
+    "group": "toxel"
+  },
+  {
+    "index": "1151",
+    "debut": "",
+    "pid": "pm849",
+    "src": "",
+    "group": "toxel"
+  },
+  {
+    "index": "1154",
+    "debut": "",
+    "pid": "pm850",
+    "src": "",
+    "group": "sizzlipede"
+  },
+  {
+    "index": "1155",
+    "debut": "",
+    "pid": "pm851",
+    "src": "",
+    "group": "sizzlipede"
+  },
+  {
+    "index": "1156",
+    "debut": "",
+    "pid": "pm852",
+    "src": "",
+    "group": "clobbopus"
+  },
+  {
+    "index": "1157",
+    "debut": "",
+    "pid": "pm853",
+    "src": "",
+    "group": "clobbopus"
+  },
+  {
+    "index": "1158",
+    "debut": "",
+    "pid": "pm854",
+    "src": "",
+    "group": "sinistea"
+  },
+  {
+    "index": "1164",
+    "debut": "",
+    "pid": "pm856",
+    "src": "",
+    "group": "hatenna"
+  },
+  {
+    "index": "1165",
+    "debut": "",
+    "pid": "pm857",
+    "src": "",
+    "group": "hatenna"
+  },
+  {
+    "index": "1166",
+    "debut": "",
+    "pid": "pm858",
+    "src": "",
+    "group": "hatenna"
+  },
+  {
+    "index": "1167",
+    "debut": "",
+    "pid": "pm859",
+    "src": "",
+    "group": "impidimp"
+  },
+  {
+    "index": "1168",
+    "debut": "",
+    "pid": "pm860",
+    "src": "",
+    "group": "impidimp"
+  },
+  {
+    "index": "1169",
+    "debut": "",
+    "pid": "pm861",
+    "src": "",
+    "group": "impidimp"
+  },
+  {
+    "index": "1170",
+    "debut": "2020/05/25",
+    "pid": "pm862",
+    "src": "",
+    "group": "Zigzagoon_31"
+  },
+  {
+    "index": "1172",
+    "debut": "",
+    "pid": "pm864",
+    "src": "",
+    "group": "corsola"
+  },
+  {
+    "index": "1174",
+    "debut": "2022/12/01",
+    "pid": "pm866",
+    "src": "",
+    "group": "Mr_Mime_31"
+  },
+  {
+    "index": "1175",
+    "debut": "2022/10/20",
+    "pid": "pm867",
+    "src": "",
+    "group": "Yamask_31"
+  },
+  {
+    "index": "1176",
+    "debut": "",
+    "pid": "pm868",
+    "src": "",
+    "group": "Milcery"
+  },
+  {
+    "index": "1177",
+    "debut": "",
+    "pid": "pm869",
+    "src": "",
+    "group": "Milcery"
+  },
+  {
+    "index": "1178",
+    "debut": "",
+    "pid": "pm870",
+    "src": "",
+    "group": "Falinks"
+  },
+  {
+    "index": "1179",
+    "debut": "",
+    "pid": "pm871",
+    "src": "",
+    "group": "Pincurchin"
+  },
+  {
+    "index": "1180",
+    "debut": "",
+    "pid": "pm872",
+    "src": "",
+    "group": "Snom"
+  },
+  {
+    "index": "1181",
+    "debut": "",
+    "pid": "pm873",
+    "src": "",
+    "group": "Snom"
+  },
+  {
+    "index": "1182",
+    "debut": "",
+    "pid": "pm874",
+    "src": "",
+    "group": "Stonjourner"
+  },
+  {
+    "index": "1183",
+    "debut": "",
+    "pid": "pm875",
+    "src": "",
+    "group": "Eiscue"
+  },
+  {
+    "index": "1184",
+    "debut": "",
+    "pid": "pm876",
+    "src": "",
+    "group": "Indeedee"
+  },
+  {
+    "index": "1185",
+    "debut": "",
+    "pid": "pm877",
+    "src": "",
+    "group": "Morpeko"
+  },
+  {
+    "index": "1186",
+    "debut": "",
+    "pid": "pm878",
+    "src": "",
+    "group": "Cufant"
+  },
+  {
+    "index": "1187",
+    "debut": "",
+    "pid": "pm879",
+    "src": "",
+    "group": "Cufant"
+  },
+  {
+    "index": "1188",
+    "debut": "",
+    "pid": "pm880",
+    "src": "",
+    "group": "Dracozolt"
+  },
+  {
+    "index": "1189",
+    "debut": "",
+    "pid": "pm881",
+    "src": "",
+    "group": "Arctozolt"
+  },
+  {
+    "index": "1190",
+    "debut": "",
+    "pid": "pm882",
+    "src": "",
+    "group": "Dracovish"
+  },
+  {
+    "index": "1191",
+    "debut": "",
+    "pid": "pm883",
+    "src": "",
+    "group": "Arctovish"
+  },
+  {
+    "index": "1192",
+    "debut": "",
+    "pid": "pm884",
+    "src": "",
+    "group": "Duraludon"
+  },
+  {
+    "index": "1193",
+    "debut": "",
+    "pid": "pm885",
+    "src": "",
+    "group": "Dreepy"
+  },
+  {
+    "index": "1194",
+    "debut": "",
+    "pid": "pm886",
+    "src": "",
+    "group": "Dreepy"
+  },
+  {
+    "index": "1195",
+    "debut": "",
+    "pid": "pm887",
+    "src": "",
+    "group": "Dreepy"
+  },
+  {
+    "index": "1196",
+    "debut": "",
+    "pid": "pm888",
+    "src": "",
+    "group": "Zacian"
+  },
+  {
+    "index": "1197",
+    "debut": "",
+    "pid": "pm889",
+    "src": "",
+    "group": "Zamazenta"
+  },
+  {
+    "index": "1198",
+    "debut": "",
+    "pid": "pm890",
+    "src": "",
+    "group": "Eternatus"
+  },
+  {
+    "index": "1199",
+    "debut": "",
+    "pid": "pm891",
+    "src": "",
+    "group": "Kubfu"
+  },
+  {
+    "index": "1200",
+    "debut": "",
+    "pid": "pm892",
+    "src": "",
+    "group": "Kubfu"
+  },
+  {
+    "index": "1201",
+    "debut": "",
+    "pid": "pm893",
+    "src": "",
+    "group": "Zarude"
+  },
+  {
+    "index": "1202",
+    "debut": "",
+    "pid": "pm894",
+    "src": "",
+    "group": "Regieleki"
+  },
+  {
+    "index": "1203",
+    "debut": "",
+    "pid": "pm895",
+    "src": "",
+    "group": "Regidrago"
+  },
+  {
+    "index": "1204",
+    "debut": "",
+    "pid": "pm896",
+    "src": "",
+    "group": "Glastrier"
+  },
+  {
+    "index": "1205",
+    "debut": "",
+    "pid": "pm897",
+    "src": "",
+    "group": "Spectrier"
+  },
+  {
+    "index": "1206",
+    "debut": "",
+    "pid": "pm898",
+    "src": "",
+    "group": "Calyrex"
+  },
+  {
+    "index": "1208",
+    "debut": "",
+    "pid": "pm899",
+    "src": "",
+    "group": "Stantler"
+  },
+  {
+    "index": "1209",
+    "debut": "2023/05/06",
+    "pid": "pm900",
+    "src": "",
+    "group": "Kleavor"
+  },
+  {
+    "index": "1211",
+    "debut": "",
+    "pid": "pm902",
+    "src": "",
+    "group": "Basculin"
+  },
+  {
+    "index": "1212",
+    "debut": "",
+    "pid": "pm903",
+    "src": "",
+    "group": "Sneasel"
+  },
+  {
+    "index": "1213",
+    "debut": "",
+    "pid": "pm904",
+    "src": "",
+    "group": "Qwilfish"
+  },
+  {
+    "index": "1214",
+    "debut": "2023/08/23",
+    "pid": "pm25.fWCS_2023",
+    "src": "",
+    "group": "Pikachu_23fWCS"
+  },
+  {
+    "index": "1215",
+    "debut": "2024/08/16",
+    "pid": "pm25.fWCS_2024",
+    "src": "",
+    "group": "Pikachu_24fWCS"
+  },
+  {
+    "index": "1216",
+    "debut": "2024/03/02",
+    "pid": "pm25.fTSHIRT_03",
+    "src": "",
+    "group": "Pikachu_t03"
+  },
+  {
+    "index": "1217",
+    "debut": "2024/02/17",
+    "pid": "pm25.fGOTOUR_2024_A",
+    "src": "",
+    "group": "Pikachu_gotour_24"
+  },
+  {
+    "index": "1218",
+    "debut": "2024/02/17",
+    "pid": "pm25.fGOTOUR_2024_A_02",
+    "src": "",
+    "group": "Pikachu_gotour_24"
+  },
+  {
+    "index": "1219",
+    "debut": "2024/02/17",
+    "pid": "pm25.fGOTOUR_2024_B",
+    "src": "",
+    "group": "Pikachu_gotour_24"
+  },
+  {
+    "index": "1220",
+    "debut": "2024/02/17",
+    "pid": "pm25.fGOTOUR_2024_B_02",
+    "src": "",
+    "group": "Pikachu_gotour_24"
+  },
+  {
+    "index": "1221",
+    "debut": "2023/07/28",
+    "pid": "pm25.fFLYING_03",
+    "src": "",
+    "group": "Pikachu_23fly"
+  },
+  {
+    "index": "1222",
+    "debut": "2024/03/02",
+    "pid": "pm25.fFLYING_04",
+    "src": "",
+    "group": "Pikachu_24fly"
+  },
+  {
+    "index": "1223",
+    "debut": "2023/10/26",
+    "pid": "pm25.cFALL_2023_NOEVOLVE",
+    "src": "",
+    "group": "Pikachu_23H"
+  },
+  {
+    "index": "1224",
+    "debut": "2023/12/18",
+    "pid": "pm25.cHOLIDAY_2023",
+    "src": "",
+    "group": "Pikachu_23c"
+  },
+  {
+    "index": "1225",
+    "debut": "2023/12/18",
+    "pid": "pm26.cHOLIDAY_2023",
+    "src": "",
+    "group": "Pikachu_23c"
+  },
+  {
+    "index": "1226",
+    "debut": "2023/10/05",
+    "pid": "pm25.cPI",
+    "src": "",
+    "group": "Pikachu_23d"
+  },
+  {
+    "index": "1227",
+    "debut": "2023/10/05",
+    "pid": "pm26.cFEB_2019",
+    "src": "",
+    "group": "Pikachu_23d"
+  },
+  {
+    "index": "1228",
+    "debut": "2024/03/05",
+    "pid": "pm25.fHORIZONS",
+    "src": "",
+    "group": "Pikachu_fH"
+  },
+  {
+    "index": "1229",
+    "debut": "2024/05/30",
+    "pid": "pm25.fGOFEST_2024_MTIARA",
+    "src": "",
+    "group": "Pikachu_GF24"
+  },
+  {
+    "index": "1230",
+    "debut": "2024/05/30",
+    "pid": "pm25.fGOFEST_2024_STIARA",
+    "src": "",
+    "group": "Pikachu_GF24"
+  },
+  {
+    "index": "1231",
+    "debut": "2024/01/01",
+    "pid": "pm39.cJAN_2024",
+    "src": "",
+    "group": "Jigglypuff_C24"
+  },
+  {
+    "index": "1232",
+    "debut": "2024/01/01",
+    "pid": "pm40.cJAN_2024",
+    "src": "",
+    "group": "Jigglypuff_C24"
+  },
+  {
+    "index": "1233",
+    "debut": "2023/12/18",
+    "pid": "pm54.cHOLIDAY_2023",
+    "src": "",
+    "group": "Psyduck_H23"
+  },
+  {
+    "index": "1234",
+    "debut": "2023/12/18",
+    "pid": "pm55.cHOLIDAY_2023",
+    "src": "",
+    "group": "Psyduck_H23"
+  },
+  {
+    "index": "1235",
+    "debut": "2023/09/27",
+    "pid": "pm58.fHISUIAN",
+    "src": "",
+    "group": "Growlithe_Hisuian"
+  },
+  {
+    "index": "1236",
+    "debut": "2023/09/27",
+    "pid": "pm59.fHISUIAN",
+    "src": "",
+    "group": "Growlithe_Hisuian"
+  },
+  {
+    "index": "1237",
+    "debut": "2023/10/05",
+    "pid": "pm79.cPI_NOEVOLVE",
+    "src": "",
+    "group": "Slowpoke_23"
+  },
+  {
+    "index": "1238",
+    "debut": "2024/06/24",
+    "pid": "pm88.cANNIVERSARY_2024",
+    "src": "",
+    "group": "Grimer_c24"
+  },
+  {
+    "index": "1239",
+    "debut": "2024/06/24",
+    "pid": "pm89.cANNIVERSARY_2024",
+    "src": "",
+    "group": "Grimer_c24"
+  },
+  {
+    "index": "1240",
+    "debut": "2023/10/26",
+    "pid": "pm94.cFALL_2023_NOEVOLVE",
+    "src": "",
+    "group": "Gastly_2023"
+  },
+  {
+    "index": "1241",
+    "debut": "2024/02/17",
+    "pid": "pm100.fHISUIAN",
+    "src": "",
+    "group": "Voltorb_H"
+  },
+  {
+    "index": "1242",
+    "debut": "2024/02/17",
+    "pid": "pm101.fHISUIAN",
+    "src": "",
+    "group": "Voltorb_H"
+  },
+  {
+    "index": "1243",
+    "debut": "2023/11/01",
+    "pid": "pm104.cFALL_2023",
+    "src": "",
+    "group": "Cubone_f23"
+  },
+  {
+    "index": "1244",
+    "debut": "2023/11/01",
+    "pid": "pm105.cFALL_2023",
+    "src": "",
+    "group": "Cubone_f23"
+  },
+  {
+    "index": "1245",
+    "debut": "2023/10/07",
+    "pid": "pm133.cMAY_2023",
+    "src": "",
+    "group": "Eevee_23m"
+  },
+  {
+    "index": "1246",
+    "debut": "2024/05/30",
+    "pid": "pm133.fGOFEST_2024_MTIARA",
+    "src": "",
+    "group": "Eevee_GF24"
+  },
+  {
+    "index": "1247",
+    "debut": "2024/05/30",
+    "pid": "pm133.fGOFEST_2024_STIARA",
+    "src": "",
+    "group": "Eevee_GF24"
+  },
+  {
+    "index": "1248",
+    "debut": "2023/10/07",
+    "pid": "pm134.cMAY_2023",
+    "src": "",
+    "group": "Eevee_23m"
+  },
+  {
+    "index": "1249",
+    "debut": "2023/10/07",
+    "pid": "pm135.cMAY_2023",
+    "src": "",
+    "group": "Eevee_23m"
+  },
+  {
+    "index": "1250",
+    "debut": "2023/10/07",
+    "pid": "pm136.cMAY_2023",
+    "src": "",
+    "group": "Eevee_23m"
+  },
+  {
+    "index": "1251",
+    "debut": "2023/08/04",
+    "pid": "pm142.fSUMMER_2023",
+    "src": "",
+    "group": "Aerodactyl_S"
+  },
+  {
+    "index": "1252",
+    "debut": "2024/10/04",
+    "pid": "pm144.fGALARIAN",
+    "src": "",
+    "group": "Articuno"
+  },
+  {
+    "index": "1253",
+    "debut": "2024/10/04",
+    "pid": "pm145.fGALARIAN",
+    "src": "",
+    "group": "Zapdos"
+  },
+  {
+    "index": "1254",
+    "debut": "2024/10/04",
+    "pid": "pm146.fGALARIAN",
+    "src": "",
+    "group": "Moltres"
+  },
+  {
+    "index": "1255",
+    "debut": "2023/11/15",
+    "pid": "pm149.cFALL_2023",
+    "src": "",
+    "group": "Dratini_BT"
+  },
+  {
+    "index": "1256",
+    "debut": "2024/01/14",
+    "pid": "pm157.fHISUIAN",
+    "src": "",
+    "group": "Cyndaquil"
+  },
+  {
+    "index": "1257",
+    "debut": "2023/11/05",
+    "pid": "pm194.fPALDEA",
+    "src": "",
+    "group": "Wooper_P"
+  },
+  {
+    "index": "1258",
+    "debut": "2023/11/15",
+    "pid": "pm194.cFALL_2023",
+    "src": "",
+    "group": "Wooper_F"
+  },
+  {
+    "index": "1259",
+    "debut": "2023/11/15",
+    "pid": "pm195.cFALL_2023",
+    "src": "",
+    "group": "Wooper_F"
+  },
+  {
+    "index": "1260",
+    "debut": "2023/10/07",
+    "pid": "pm196.cMAY_2023",
+    "src": "",
+    "group": "Eevee_23m"
+  },
+  {
+    "index": "1261",
+    "debut": "2023/10/07",
+    "pid": "pm197.cMAY_2023",
+    "src": "",
+    "group": "Eevee_23m"
+  },
+  {
+    "index": "1262",
+    "debut": "2024/02/17",
+    "pid": "pm211.fHISUIAN",
+    "src": "",
+    "group": "Qwilfish_H"
+  },
+  {
+    "index": "1263",
+    "debut": "2024/04/13",
+    "pid": "pm214.fMEGA",
+    "src": "",
+    "group": "Heracross"
+  },
+  {
+    "index": "1264",
+    "debut": "2023/12/05",
+    "pid": "pm215.fHISUIAN",
+    "src": "",
+    "group": "Sneasel_Hisuian"
+  },
+  {
+    "index": "1265",
+    "debut": "2024/06/07",
+    "pid": "pm287.cSUMMER_2024",
+    "src": "",
+    "group": "Slakoth_v"
+  },
+  {
+    "index": "1266",
+    "debut": "2024/06/07",
+    "pid": "pm288.cSUMMER_2024",
+    "src": "",
+    "group": "Slakoth_v"
+  },
+  {
+    "index": "1267",
+    "debut": "2024/06/07",
+    "pid": "pm289.cSUMMER_2024",
+    "src": "",
+    "group": "Slakoth_v"
+  },
+  {
+    "index": "1268",
+    "debut": "2023/11/11",
+    "pid": "pm445.fMEGA",
+    "src": "",
+    "group": "Gible"
+  },
+  {
+    "index": "1269",
+    "debut": "2024/07/27",
+    "pid": "pm448.fMEGA",
+    "src": "",
+    "group": "Riolu"
+  },
+  {
+    "index": "1270",
+    "debut": "2023/10/07",
+    "pid": "pm470.cMAY_2023",
+    "src": "",
+    "group": "Eevee_23m"
+  },
+  {
+    "index": "1271",
+    "debut": "2023/10/07",
+    "pid": "pm471.cMAY_2023",
+    "src": "",
+    "group": "Eevee_23m"
+  },
+  {
+    "index": "1272",
+    "debut": "2024/02/17",
+    "pid": "pm483.fORIGIN",
+    "src": "",
+    "group": "Dialga"
+  },
+  {
+    "index": "1273",
+    "debut": "2024/02/17",
+    "pid": "pm484.fORIGIN",
+    "src": "",
+    "group": "Palkia"
+  },
+  {
+    "index": "1274",
+    "debut": "2024/02/24",
+    "pid": "pm492.fSKY",
+    "src": "",
+    "group": "Shaymin"
+  },
+  {
+    "index": "1275",
+    "debut": "2024/02/24",
+    "pid": "pm492.fLAND",
+    "src": "",
+    "group": "Shaymin"
+  },
+  {
+    "index": "1276",
+    "debut": "2023/12/03",
+    "pid": "pm503.fHISUIAN",
+    "src": "",
+    "group": "Oshawott"
+  },
+  {
+    "index": "1277",
+    "debut": "2024/03/21",
+    "pid": "pm546.cSPRING_2024",
+    "src": "",
+    "group": "Cottonee_s24"
+  },
+  {
+    "index": "1278",
+    "debut": "2022/03/22",
+    "pid": "pm547.cSPRING_2024",
+    "src": "",
+    "group": "Cottonee_s24"
+  },
+  {
+    "index": "1279",
+    "debut": "2024/02/24",
+    "pid": "pm550.fWHITE_STRIPED",
+    "src": "",
+    "group": "Basculin"
+  },
+  {
+    "index": "1280",
+    "debut": "2023/09/16",
+    "pid": "pm649.fBURN",
+    "src": "",
+    "group": "Genesect"
+  },
+  {
+    "index": "1281",
+    "debut": "",
+    "pid": "pm649.fCHILL",
+    "src": "",
+    "group": "Genesect"
+  },
+  {
+    "index": "1282",
+    "debut": "2023/11/03",
+    "pid": "pm649.fDOUSE",
+    "src": "",
+    "group": "Genesect"
+  },
+  {
+    "index": "1283",
+    "debut": "2024/03/21",
+    "pid": "pm669.fWHITE",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "1284",
+    "debut": "2024/03/21",
+    "pid": "pm669.fORANGE",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "1285",
+    "debut": "2024/03/21",
+    "pid": "pm669.fYELLOW",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "1286",
+    "debut": "2024/03/21",
+    "pid": "pm669.fRED",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "1287",
+    "debut": "2024/03/21",
+    "pid": "pm669.fBLUE",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "1288",
+    "debut": "2024/03/21",
+    "pid": "pm670.fWHITE",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "1289",
+    "debut": "2024/03/21",
+    "pid": "pm670.fORANGE",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "1290",
+    "debut": "2024/03/21",
+    "pid": "pm670.fYELLOW",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "1291",
+    "debut": "2024/03/21",
+    "pid": "pm670.fRED",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "1292",
+    "debut": "2024/03/21",
+    "pid": "pm670.fBLUE",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "1293",
+    "debut": "2024/03/21",
+    "pid": "pm671.fWHITE",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "1294",
+    "debut": "2024/03/21",
+    "pid": "pm671.fORANGE",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "1295",
+    "debut": "2024/03/21",
+    "pid": "pm671.fYELLOW",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "1296",
+    "debut": "2024/03/21",
+    "pid": "pm671.fRED",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "1297",
+    "debut": "2024/03/21",
+    "pid": "pm671.fBLUE",
+    "src": "",
+    "group": "Flabebe"
+  },
+  {
+    "index": "1298",
+    "debut": "2023/10/07",
+    "pid": "pm700.cMAY_2023",
+    "src": "",
+    "group": "Eevee_23m"
+  },
+  {
+    "index": "1299",
+    "debut": "2024/06/14",
+    "pid": "pm196.fGOFEST_2024_SSCARF",
+    "src": "",
+    "group": "Eevee_other"
+  },
+  {
+    "index": "1300",
+    "debut": "2024/06/14",
+    "pid": "pm197.fGOFEST_2024_MSCARF",
+    "src": "",
+    "group": "Eevee_other"
+  },
+  {
+    "index": "1301",
+    "debut": "2023/08/04",
+    "pid": "pm710.fSMALL",
+    "src": "",
+    "group": "Pumpkaboo"
+  },
+  {
+    "index": "1302",
+    "debut": "2023/08/04",
+    "pid": "pm710.fAVERAGE",
+    "src": "",
+    "group": "Pumpkaboo"
+  },
+  {
+    "index": "1303",
+    "debut": "2023/08/04",
+    "pid": "pm710.fLARGE",
+    "src": "",
+    "group": "Pumpkaboo"
+  },
+  {
+    "index": "1304",
+    "debut": "2023/08/04",
+    "pid": "pm710.fSUPER",
+    "src": "",
+    "group": "Pumpkaboo"
+  },
+  {
+    "index": "1305",
+    "debut": "2023/08/04",
+    "pid": "pm711.fSMALL",
+    "src": "",
+    "group": "Pumpkaboo"
+  },
+  {
+    "index": "1306",
+    "debut": "2023/08/04",
+    "pid": "pm711.fAVERAGE",
+    "src": "",
+    "group": "Pumpkaboo"
+  },
+  {
+    "index": "1307",
+    "debut": "2023/08/04",
+    "pid": "pm711.fLARGE",
+    "src": "",
+    "group": "Pumpkaboo"
+  },
+  {
+    "index": "1308",
+    "debut": "2023/08/04",
+    "pid": "pm711.fSUPER",
+    "src": "",
+    "group": "Pumpkaboo"
+  },
+  {
+    "index": "1309",
+    "debut": "2024/01/06",
+    "pid": "pm722",
+    "src": "",
+    "group": "Rowlet"
+  },
+  {
+    "index": "1310",
+    "debut": "2024/01/06",
+    "pid": "pm723",
+    "src": "",
+    "group": "Rowlet"
+  },
+  {
+    "index": "1311",
+    "debut": "2024/01/06",
+    "pid": "pm724",
+    "src": "",
+    "group": "Rowlet"
+  },
+  {
+    "index": "1312",
+    "debut": "2024/02/11",
+    "pid": "pm724.fHISUIAN",
+    "src": "",
+    "group": "Rowlet"
+  },
+  {
+    "index": "1313",
+    "debut": "2024/03/16",
+    "pid": "pm725",
+    "src": "",
+    "group": "Litten"
+  },
+  {
+    "index": "1314",
+    "debut": "2024/03/16",
+    "pid": "pm726",
+    "src": "",
+    "group": "Litten"
+  },
+  {
+    "index": "1315",
+    "debut": "2024/03/16",
+    "pid": "pm727",
+    "src": "",
+    "group": "Litten"
+  },
+  {
+    "index": "1316",
+    "debut": "2024/08/31",
+    "pid": "pm728",
+    "src": "",
+    "group": "Popplio"
+  },
+  {
+    "index": "1317",
+    "debut": "2024/08/31",
+    "pid": "pm729",
+    "src": "",
+    "group": "Popplio"
+  },
+  {
+    "index": "1318",
+    "debut": "2024/08/31",
+    "pid": "pm730",
+    "src": "",
+    "group": "Popplio"
+  },
+  {
+    "index": "1319",
+    "debut": "2023/09/23",
+    "pid": "pm736",
+    "src": "",
+    "group": "Grubbin"
+  },
+  {
+    "index": "1320",
+    "debut": "2023/09/23",
+    "pid": "pm737",
+    "src": "",
+    "group": "Grubbin"
+  },
+  {
+    "index": "1321",
+    "debut": "2023/09/23",
+    "pid": "pm738",
+    "src": "",
+    "group": "Grubbin"
+  },
+  {
+    "index": "1322",
+    "debut": "2024/06/14",
+    "pid": "pm739",
+    "src": "",
+    "group": "Crabrawler"
+  },
+  {
+    "index": "1323",
+    "debut": "2024/06/14",
+    "pid": "pm740",
+    "src": "",
+    "group": "Crabrawler"
+  },
+  {
+    "index": "1324",
+    "debut": "2024/02/13",
+    "pid": "pm741.fBAILE",
+    "src": "",
+    "group": "Oricorio"
+  },
+  {
+    "index": "1325",
+    "debut": "2024/02/13",
+    "pid": "pm741.fPAU",
+    "src": "",
+    "group": "Oricorio"
+  },
+  {
+    "index": "1326",
+    "debut": "2024/02/13",
+    "pid": "pm741.fPOMPOM",
+    "src": "",
+    "group": "Oricorio"
+  },
+  {
+    "index": "1327",
+    "debut": "2024/02/13",
+    "pid": "pm741.fSENSU",
+    "src": "",
+    "group": "Oricorio"
+  },
+  {
+    "index": "1328",
+    "debut": "2024/01/13",
+    "pid": "pm742",
+    "src": "",
+    "group": "Cutiefly"
+  },
+  {
+    "index": "1329",
+    "debut": "2024/01/13",
+    "pid": "pm743",
+    "src": "",
+    "group": "Cutiefly"
+  },
+  {
+    "index": "1330",
+    "debut": "2023/01/06",
+    "pid": "pm745.fDUSK",
+    "src": "",
+    "group": "Rockruff"
+  },
+  {
+    "index": "1331",
+    "debut": "2024/05/23",
+    "pid": "pm747",
+    "src": "",
+    "group": "Mareanie"
+  },
+  {
+    "index": "1332",
+    "debut": "2024/05/23",
+    "pid": "pm748",
+    "src": "",
+    "group": "Mareanie"
+  },
+  {
+    "index": "1333",
+    "debut": "2023/11/07",
+    "pid": "pm755",
+    "src": "",
+    "group": "Morelull"
+  },
+  {
+    "index": "1334",
+    "debut": "2023/11/07",
+    "pid": "pm756",
+    "src": "",
+    "group": "Morelull"
+  },
+  {
+    "index": "1335",
+    "debut": "2024/05/30",
+    "pid": "pm800.fDAWN_WINGS",
+    "src": "",
+    "group": "necrozma"
+  },
+  {
+    "index": "1336",
+    "debut": "2024/05/30",
+    "pid": "pm800.fDUSK_MANE",
+    "src": "",
+    "group": "necrozma"
+  },
+  {
+    "index": "1337",
+    "debut": "2024/09/26",
+    "pid": "pm888.fHERO",
+    "src": "",
+    "group": "Zacian"
+  },
+  {
+    "index": "1338",
+    "debut": "2024/09/26",
+    "pid": "pm889.fHERO",
+    "src": "",
+    "group": "Zamazenta"
+  },
+  {
+    "index": "1339",
+    "debut": "2023/09/05",
+    "pid": "pm915",
+    "src": "",
+    "group": "Lechonk"
+  },
+  {
+    "index": "1340",
+    "debut": "2023/09/05",
+    "pid": "pm916",
+    "src": "",
+    "group": "Lechonk"
+  },
+  {
+    "index": "1341",
+    "debut": "2023/09/05",
+    "pid": "pm916.fFEMALE",
+    "src": "",
+    "group": "Lechonk"
+  },
+  {
+    "index": "1342",
+    "debut": "2023/09/10",
+    "pid": "pm962",
+    "src": "",
+    "group": "Bombirdier"
+  },
+  {
+    "index": "1343",
+    "debut": "2024/01/19",
+    "pid": "pm979",
+    "src": "",
+    "group": "Mankey"
+  },
+  {
+    "index": "1344",
+    "debut": "2023/11/05",
+    "pid": "pm980",
+    "src": "",
+    "group": "Wooper_P"
+  }
+]

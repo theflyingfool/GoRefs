@@ -1,5 +1,74 @@
 # TODO
 
+## `raw_dumps/` needs a retention policy before it grows unbounded
+
+2026-08-03: `raw_dumps/` was just un-gitignored and committed (previously
+excluded) so this repo actually preserves upstream snapshots for continuity
+(GoBuddy's `pokemon-go-api` submodule vendoring served the same purpose
+elsewhere; removing that made GoRefs itself the source of truth for this).
+Currently 53MB across ~20 timestamped snapshot directories accumulated over
+a few days of dev activity (e.g. 5 separate `pokeapi/<timestamp>/` dumps).
+**Every `--fetch` run adds a new timestamped snapshot dir with no pruning** —
+left as-is, this reproduces the exact unbounded-growth problem
+`output/GoRefs_Master.duckdb` just hit (166MB, forced a history squash),
+just spread across many smaller files instead of one. Needs a policy before
+it becomes a real problem: e.g. keep only the last N snapshots per source,
+or squash/prune older ones on each `--build`. Not started.
+
+## Expose a last-updated / build timestamp for consumers
+
+2026-08-03: flagged from the GoBuddy side while designing its ingestion swap
+to pull from this project (`vendor/reference/GoRefs` submodule + `--serve`,
+see GoBuddy's `docs/superpowers/specs/2026-08-03-gorefs-ingestion-swap-design.md`
+once written). Consumers hitting `--serve`'s HTTP endpoint have no cheap way
+to check "has this database actually changed since I last read it" without
+downloading/querying the whole `GoRefs_Master.duckdb` file. Needs something
+like a small `/meta` (or similar) endpoint or a `last_built_at` value exposed
+alongside the served DB — populated by `--build` — so a downstream
+consumer's own freshness/manifest check can stay cheap. Not started; no
+endpoint or metadata table exists yet.
+
+## Add a `--publish` step: GitHub Release for `output/GoRefs_Master.duckdb`
+
+2026-08-03: this repo is now public (`github.com/theflyingfool/GoRefs`), but
+`output/GoRefs_Master.duckdb` is gitignored and **not** committed — it already
+hit GitHub's 100MB-per-blob hard limit once (grew to 166MB across build
+history) and is expected to keep growing well past that as more source
+datasets are added beyond the current 7. A full storage-options writeup
+(Git LFS quotas/pricing, Parquet-over-HTTP via `httpfs`/DuckDB-WASM, GitHub
+Releases, external object storage, DVC/git-annex/HF alternatives) was done
+2026-08-03 from the GoBuddy side — see `/tmp/gorefs_storage_strategy_report.md`
+if still present on disk (not committed anywhere, so re-derive/re-run if it's
+gone).
+
+**Recommended direction from that report:** stop treating the monolithic
+`.duckdb` as something to commit at all. Instead:
+1. Git-track only the per-table Parquet exports already produced by
+   `--build` (`output/parquet/`) as the DuckDB-WASM/`httpfs`-servable
+   artifact, served via `raw.githubusercontent.com` — **not** GitHub Pages,
+   which has a documented bug mishandling byte-range requests on binary
+   files.
+2. Add a `--publish` (or similar) step to `go_refs.py` that runs
+   `gh release create`/`gh release upload` to publish the full
+   `output/GoRefs_Master.duckdb` as a versioned Release asset (2GB/file cap,
+   outside Git LFS quota entirely) for consumers who want single-file
+   offline access, decoupled from git history size.
+3. Hold off on R2/B2/DVC/git-annex/Hugging Face — only worth revisiting if
+   the `.duckdb` itself approaches ~2GB.
+
+Not started — no `--publish` flag, no release-upload script, exists yet.
+
+## DONE (2026-08-03): pushed to GitHub — see "Before adding a git remote origin" below
+
+Repo is now public at `github.com/theflyingfool/GoRefs`. History was squashed
+(97 local commits → 1) before the first push; `output/GoRefs_Master.duckdb`
+was dropped from tracking in the same pass (see the `--publish` item above
+for why). The two open questions in "Before adding a git remote origin"
+were resolved as part of this: `docs/superpowers/*` planning docs were left
+tracked as-is (no separate decision made either way in this pass), and
+history was in fact rewritten (squashed) specifically to drop the oversized
+duckdb blobs.
+
 ## DONE (2026-08-03): reference_json_shim wholesale dump
 
 `docs/superpowers/plans/2026-08-02-reference-json-shim-source.md`'s Tasks

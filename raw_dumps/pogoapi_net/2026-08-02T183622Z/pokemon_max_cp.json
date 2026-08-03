@@ -1,0 +1,8522 @@
+[
+  {
+    "form": "Fall_2019",
+    "max_cp": 1275,
+    "pokemon_id": 1,
+    "pokemon_name": "Bulbasaur"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1275,
+    "pokemon_id": 1,
+    "pokemon_name": "Bulbasaur"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1943,
+    "pokemon_id": 2,
+    "pokemon_name": "Ivysaur"
+  },
+  {
+    "form": "Copy_2019",
+    "max_cp": 3112,
+    "pokemon_id": 3,
+    "pokemon_name": "Venusaur"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3112,
+    "pokemon_id": 3,
+    "pokemon_name": "Venusaur"
+  },
+  {
+    "form": "Fall_2019",
+    "max_cp": 1121,
+    "pokemon_id": 4,
+    "pokemon_name": "Charmander"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1121,
+    "pokemon_id": 4,
+    "pokemon_name": "Charmander"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1891,
+    "pokemon_id": 5,
+    "pokemon_name": "Charmeleon"
+  },
+  {
+    "form": "Copy_2019",
+    "max_cp": 3305,
+    "pokemon_id": 6,
+    "pokemon_name": "Charizard"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3305,
+    "pokemon_id": 6,
+    "pokemon_name": "Charizard"
+  },
+  {
+    "form": "Fall_2019",
+    "max_cp": 1082,
+    "pokemon_id": 7,
+    "pokemon_name": "Squirtle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1082,
+    "pokemon_id": 7,
+    "pokemon_name": "Squirtle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1702,
+    "pokemon_id": 8,
+    "pokemon_name": "Wartortle"
+  },
+  {
+    "form": "Copy_2019",
+    "max_cp": 2821,
+    "pokemon_id": 9,
+    "pokemon_name": "Blastoise"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2821,
+    "pokemon_id": 9,
+    "pokemon_name": "Blastoise"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 500,
+    "pokemon_id": 10,
+    "pokemon_name": "Caterpie"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 515,
+    "pokemon_id": 11,
+    "pokemon_name": "Metapod"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2090,
+    "pokemon_id": 12,
+    "pokemon_name": "Butterfree"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 522,
+    "pokemon_id": 13,
+    "pokemon_name": "Weedle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 494,
+    "pokemon_id": 14,
+    "pokemon_name": "Kakuna"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2112,
+    "pokemon_id": 15,
+    "pokemon_name": "Beedrill"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 778,
+    "pokemon_id": 16,
+    "pokemon_name": "Pidgey"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1366,
+    "pokemon_id": 17,
+    "pokemon_name": "Pidgeotto"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2436,
+    "pokemon_id": 18,
+    "pokemon_name": "Pidgeot"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 840,
+    "pokemon_id": 19,
+    "pokemon_name": "Rattata"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 840,
+    "pokemon_id": 19,
+    "pokemon_name": "Rattata"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 1950,
+    "pokemon_id": 20,
+    "pokemon_name": "Raticate"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1980,
+    "pokemon_id": 20,
+    "pokemon_name": "Raticate"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 913,
+    "pokemon_id": 21,
+    "pokemon_name": "Spearow"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2284,
+    "pokemon_id": 22,
+    "pokemon_name": "Fearow"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1061,
+    "pokemon_id": 23,
+    "pokemon_name": "Ekans"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2197,
+    "pokemon_id": 24,
+    "pokemon_name": "Arbok"
+  },
+  {
+    "form": "Adventure_hat_2020",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Copy_2019",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Costume_2020",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Diwali_2024",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Doctor",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Fall_2019",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Flying_01",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Flying_02",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Flying_03",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Flying_04",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Flying_5th_anniv",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Flying_okinawa",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Gofest_2022",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Gofest_2024_mtiara",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Gofest_2024_stiara",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Gofest_2025_goggles_blue",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Gofest_2025_goggles_red",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Gofest_2025_goggles_yellow",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Gofest_2025_monocle_blue",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Gofest_2025_monocle_red",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Gofest_2025_monocle_yellow",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Gotour_2024_a",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Gotour_2024_a_02",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Gotour_2024_b",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Gotour_2024_b_02",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Gotour_2025_a",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Gotour_2025_a_02",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Gotour_2025_b",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Gotour_2025_b_02",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Horizons",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Jeju",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Kariyushi",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Kurta",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Pop_star",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Rock_star",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Summer_2023_a",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Summer_2023_b",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Summer_2023_c",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Summer_2023_d",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Summer_2023_e",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Tshirt_01",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Tshirt_02",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Tshirt_03",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Vs_2019",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Wcs_2022",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Wcs_2023",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Wcs_2024",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Wcs_2025",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Winter_2020",
+    "max_cp": 1073,
+    "pokemon_id": 25,
+    "pokemon_name": "Pikachu"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 2616,
+    "pokemon_id": 26,
+    "pokemon_name": "Raichu"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2496,
+    "pokemon_id": 26,
+    "pokemon_name": "Raichu"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 1479,
+    "pokemon_id": 27,
+    "pokemon_name": "Sandshrew"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1443,
+    "pokemon_id": 27,
+    "pokemon_name": "Sandshrew"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 2783,
+    "pokemon_id": 28,
+    "pokemon_name": "Sandslash"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2716,
+    "pokemon_id": 28,
+    "pokemon_name": "Sandslash"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 933,
+    "pokemon_id": 29,
+    "pokemon_name": "Nidoran♀"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1498,
+    "pokemon_id": 30,
+    "pokemon_name": "Nidorina"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2846,
+    "pokemon_id": 31,
+    "pokemon_name": "Nidoqueen"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 984,
+    "pokemon_id": 32,
+    "pokemon_name": "Nidoran♂"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1594,
+    "pokemon_id": 33,
+    "pokemon_name": "Nidorino"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2936,
+    "pokemon_id": 34,
+    "pokemon_name": "Nidoking"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1322,
+    "pokemon_id": 35,
+    "pokemon_name": "Clefairy"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2788,
+    "pokemon_id": 36,
+    "pokemon_name": "Clefable"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 1010,
+    "pokemon_id": 37,
+    "pokemon_name": "Vulpix"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1010,
+    "pokemon_id": 37,
+    "pokemon_name": "Vulpix"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 2641,
+    "pokemon_id": 38,
+    "pokemon_name": "Ninetales"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2608,
+    "pokemon_id": 38,
+    "pokemon_name": "Ninetales"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 828,
+    "pokemon_id": 39,
+    "pokemon_name": "Jigglypuff"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2204,
+    "pokemon_id": 40,
+    "pokemon_name": "Wigglytuff"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 763,
+    "pokemon_id": 41,
+    "pokemon_name": "Zubat"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2261,
+    "pokemon_id": 42,
+    "pokemon_name": "Golbat"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1405,
+    "pokemon_id": 43,
+    "pokemon_name": "Oddish"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1923,
+    "pokemon_id": 44,
+    "pokemon_name": "Gloom"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2928,
+    "pokemon_id": 45,
+    "pokemon_name": "Vileplume"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1164,
+    "pokemon_id": 46,
+    "pokemon_name": "Paras"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2127,
+    "pokemon_id": 47,
+    "pokemon_name": "Parasect"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1148,
+    "pokemon_id": 48,
+    "pokemon_name": "Venonat"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2382,
+    "pokemon_id": 49,
+    "pokemon_name": "Venomoth"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 779,
+    "pokemon_id": 50,
+    "pokemon_name": "Diglett"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 773,
+    "pokemon_id": 50,
+    "pokemon_name": "Diglett"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 2170,
+    "pokemon_id": 51,
+    "pokemon_name": "Dugtrio"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1793,
+    "pokemon_id": 51,
+    "pokemon_name": "Dugtrio"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 912,
+    "pokemon_id": 52,
+    "pokemon_name": "Meowth"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 1184,
+    "pokemon_id": 52,
+    "pokemon_name": "Meowth"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 856,
+    "pokemon_id": 52,
+    "pokemon_name": "Meowth"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 2026,
+    "pokemon_id": 53,
+    "pokemon_name": "Persian"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1932,
+    "pokemon_id": 53,
+    "pokemon_name": "Persian"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1265,
+    "pokemon_id": 54,
+    "pokemon_name": "Psyduck"
+  },
+  {
+    "form": "Swim_2025",
+    "max_cp": 1265,
+    "pokemon_id": 54,
+    "pokemon_name": "Psyduck"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2803,
+    "pokemon_id": 55,
+    "pokemon_name": "Golduck"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1332,
+    "pokemon_id": 56,
+    "pokemon_name": "Mankey"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2617,
+    "pokemon_id": 57,
+    "pokemon_name": "Primeape"
+  },
+  {
+    "form": "Hisuian",
+    "max_cp": 1512,
+    "pokemon_id": 58,
+    "pokemon_name": "Growlithe"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1422,
+    "pokemon_id": 58,
+    "pokemon_name": "Growlithe"
+  },
+  {
+    "form": "Hisuian",
+    "max_cp": 3598,
+    "pokemon_id": 59,
+    "pokemon_name": "Arcanine"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3466,
+    "pokemon_id": 59,
+    "pokemon_name": "Arcanine"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 948,
+    "pokemon_id": 60,
+    "pokemon_name": "Poliwag"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1623,
+    "pokemon_id": 61,
+    "pokemon_name": "Poliwhirl"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2958,
+    "pokemon_id": 62,
+    "pokemon_name": "Poliwrath"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1535,
+    "pokemon_id": 63,
+    "pokemon_name": "Abra"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2355,
+    "pokemon_id": 64,
+    "pokemon_name": "Kadabra"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3498,
+    "pokemon_id": 65,
+    "pokemon_name": "Alakazam"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1462,
+    "pokemon_id": 66,
+    "pokemon_name": "Machop"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2324,
+    "pokemon_id": 67,
+    "pokemon_name": "Machoke"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3496,
+    "pokemon_id": 68,
+    "pokemon_name": "Machamp"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1182,
+    "pokemon_id": 69,
+    "pokemon_name": "Bellsprout"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1844,
+    "pokemon_id": 70,
+    "pokemon_name": "Weepinbell"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2781,
+    "pokemon_id": 71,
+    "pokemon_name": "Victreebel"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1190,
+    "pokemon_id": 72,
+    "pokemon_name": "Tentacool"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2771,
+    "pokemon_id": 73,
+    "pokemon_name": "Tentacruel"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 1479,
+    "pokemon_id": 74,
+    "pokemon_name": "Geodude"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1479,
+    "pokemon_id": 74,
+    "pokemon_name": "Geodude"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 2171,
+    "pokemon_id": 75,
+    "pokemon_name": "Graveler"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2171,
+    "pokemon_id": 75,
+    "pokemon_name": "Graveler"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 3374,
+    "pokemon_id": 76,
+    "pokemon_name": "Golem"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3374,
+    "pokemon_id": 76,
+    "pokemon_name": "Golem"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 1942,
+    "pokemon_id": 77,
+    "pokemon_name": "Ponyta"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1942,
+    "pokemon_id": 77,
+    "pokemon_name": "Ponyta"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 2815,
+    "pokemon_id": 78,
+    "pokemon_name": "Rapidash"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2815,
+    "pokemon_id": 78,
+    "pokemon_name": "Rapidash"
+  },
+  {
+    "form": "2020",
+    "max_cp": 1403,
+    "pokemon_id": 79,
+    "pokemon_name": "Slowpoke"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 1403,
+    "pokemon_id": 79,
+    "pokemon_name": "Slowpoke"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1403,
+    "pokemon_id": 79,
+    "pokemon_name": "Slowpoke"
+  },
+  {
+    "form": "2021",
+    "max_cp": 2911,
+    "pokemon_id": 80,
+    "pokemon_name": "Slowbro"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 2797,
+    "pokemon_id": 80,
+    "pokemon_name": "Slowbro"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2911,
+    "pokemon_id": 80,
+    "pokemon_name": "Slowbro"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1558,
+    "pokemon_id": 81,
+    "pokemon_name": "Magnemite"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2843,
+    "pokemon_id": 82,
+    "pokemon_name": "Magneton"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 1915,
+    "pokemon_id": 83,
+    "pokemon_name": "Farfetch’d"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1414,
+    "pokemon_id": 83,
+    "pokemon_name": "Farfetch’d"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1373,
+    "pokemon_id": 84,
+    "pokemon_name": "Doduo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2702,
+    "pokemon_id": 85,
+    "pokemon_name": "Dodrio"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1111,
+    "pokemon_id": 86,
+    "pokemon_name": "Seel"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2271,
+    "pokemon_id": 87,
+    "pokemon_name": "Dewgong"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 1572,
+    "pokemon_id": 88,
+    "pokemon_name": "Grimer"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1572,
+    "pokemon_id": 88,
+    "pokemon_name": "Grimer"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 3154,
+    "pokemon_id": 89,
+    "pokemon_name": "Muk"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3154,
+    "pokemon_id": 89,
+    "pokemon_name": "Muk"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1235,
+    "pokemon_id": 90,
+    "pokemon_name": "Shellder"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2914,
+    "pokemon_id": 91,
+    "pokemon_name": "Cloyster"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1406,
+    "pokemon_id": 92,
+    "pokemon_name": "Gastly"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2246,
+    "pokemon_id": 93,
+    "pokemon_name": "Haunter"
+  },
+  {
+    "form": "Costume_2020",
+    "max_cp": 3292,
+    "pokemon_id": 94,
+    "pokemon_name": "Gengar"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3292,
+    "pokemon_id": 94,
+    "pokemon_name": "Gengar"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1260,
+    "pokemon_id": 95,
+    "pokemon_name": "Onix"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1190,
+    "pokemon_id": 96,
+    "pokemon_name": "Drowzee"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2391,
+    "pokemon_id": 97,
+    "pokemon_name": "Hypno"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1785,
+    "pokemon_id": 98,
+    "pokemon_name": "Krabby"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3236,
+    "pokemon_id": 99,
+    "pokemon_name": "Kingler"
+  },
+  {
+    "form": "Hisuian",
+    "max_cp": 1155,
+    "pokemon_id": 100,
+    "pokemon_name": "Voltorb"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1155,
+    "pokemon_id": 100,
+    "pokemon_name": "Voltorb"
+  },
+  {
+    "form": "Hisuian",
+    "max_cp": 2459,
+    "pokemon_id": 101,
+    "pokemon_name": "Electrode"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2401,
+    "pokemon_id": 101,
+    "pokemon_name": "Electrode"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1344,
+    "pokemon_id": 102,
+    "pokemon_name": "Exeggcute"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 3448,
+    "pokemon_id": 103,
+    "pokemon_name": "Exeggutor"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3449,
+    "pokemon_id": 103,
+    "pokemon_name": "Exeggutor"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1166,
+    "pokemon_id": 104,
+    "pokemon_name": "Cubone"
+  },
+  {
+    "form": "Alola",
+    "max_cp": 2100,
+    "pokemon_id": 105,
+    "pokemon_name": "Marowak"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2100,
+    "pokemon_id": 105,
+    "pokemon_name": "Marowak"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2947,
+    "pokemon_id": 106,
+    "pokemon_name": "Hitmonlee"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2667,
+    "pokemon_id": 107,
+    "pokemon_name": "Hitmonchan"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1614,
+    "pokemon_id": 108,
+    "pokemon_name": "Lickitung"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1389,
+    "pokemon_id": 109,
+    "pokemon_name": "Koffing"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 2623,
+    "pokemon_id": 110,
+    "pokemon_name": "Weezing"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2623,
+    "pokemon_id": 110,
+    "pokemon_name": "Weezing"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1889,
+    "pokemon_id": 111,
+    "pokemon_name": "Rhyhorn"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3637,
+    "pokemon_id": 112,
+    "pokemon_name": "Rhydon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1435,
+    "pokemon_id": 113,
+    "pokemon_name": "Chansey"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2560,
+    "pokemon_id": 114,
+    "pokemon_name": "Tangela"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2958,
+    "pokemon_id": 115,
+    "pokemon_name": "Kangaskhan"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1208,
+    "pokemon_id": 116,
+    "pokemon_name": "Horsea"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2394,
+    "pokemon_id": 117,
+    "pokemon_name": "Seadra"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1318,
+    "pokemon_id": 118,
+    "pokemon_name": "Goldeen"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2474,
+    "pokemon_id": 119,
+    "pokemon_name": "Seaking"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1323,
+    "pokemon_id": 120,
+    "pokemon_name": "Staryu"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2957,
+    "pokemon_id": 121,
+    "pokemon_name": "Starmie"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 2366,
+    "pokemon_id": 122,
+    "pokemon_name": "Mr. Mime"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2549,
+    "pokemon_id": 122,
+    "pokemon_name": "Mr. Mime"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3096,
+    "pokemon_id": 123,
+    "pokemon_name": "Scyther"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2923,
+    "pokemon_id": 124,
+    "pokemon_name": "Jynx"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2670,
+    "pokemon_id": 125,
+    "pokemon_name": "Electabuzz"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2738,
+    "pokemon_id": 126,
+    "pokemon_name": "Magmar"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3385,
+    "pokemon_id": 127,
+    "pokemon_name": "Pinsir"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2998,
+    "pokemon_id": 128,
+    "pokemon_name": "Tauros"
+  },
+  {
+    "form": "Paldea_aqua",
+    "max_cp": 3246,
+    "pokemon_id": 128,
+    "pokemon_name": "Tauros"
+  },
+  {
+    "form": "Paldea_blaze",
+    "max_cp": 3246,
+    "pokemon_id": 128,
+    "pokemon_name": "Tauros"
+  },
+  {
+    "form": "Paldea_combat",
+    "max_cp": 3246,
+    "pokemon_id": 128,
+    "pokemon_name": "Tauros"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 314,
+    "pokemon_id": 129,
+    "pokemon_name": "Magikarp"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3879,
+    "pokemon_id": 130,
+    "pokemon_name": "Gyarados"
+  },
+  {
+    "form": "Costume_2020",
+    "max_cp": 3021,
+    "pokemon_id": 131,
+    "pokemon_name": "Lapras"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3021,
+    "pokemon_id": 131,
+    "pokemon_name": "Lapras"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 951,
+    "pokemon_id": 132,
+    "pokemon_name": "Ditto"
+  },
+  {
+    "form": "Gofest_2024_mtiara",
+    "max_cp": 1225,
+    "pokemon_id": 133,
+    "pokemon_name": "Eevee"
+  },
+  {
+    "form": "Gofest_2024_stiara",
+    "max_cp": 1225,
+    "pokemon_id": 133,
+    "pokemon_name": "Eevee"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1225,
+    "pokemon_id": 133,
+    "pokemon_name": "Eevee"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3563,
+    "pokemon_id": 134,
+    "pokemon_name": "Vaporeon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3304,
+    "pokemon_id": 135,
+    "pokemon_name": "Jolteon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3465,
+    "pokemon_id": 136,
+    "pokemon_name": "Flareon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1968,
+    "pokemon_id": 137,
+    "pokemon_name": "Porygon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1767,
+    "pokemon_id": 138,
+    "pokemon_name": "Omanyte"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3188,
+    "pokemon_id": 139,
+    "pokemon_name": "Omastar"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1568,
+    "pokemon_id": 140,
+    "pokemon_name": "Kabuto"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3103,
+    "pokemon_id": 141,
+    "pokemon_name": "Kabutops"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3184,
+    "pokemon_id": 142,
+    "pokemon_name": "Aerodactyl"
+  },
+  {
+    "form": "Summer_2023",
+    "max_cp": 3184,
+    "pokemon_id": 142,
+    "pokemon_name": "Aerodactyl"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3690,
+    "pokemon_id": 143,
+    "pokemon_name": "Snorlax"
+  },
+  {
+    "form": "Wildarea_2024",
+    "max_cp": 3690,
+    "pokemon_id": 143,
+    "pokemon_name": "Snorlax"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 4107,
+    "pokemon_id": 144,
+    "pokemon_name": "Articuno"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3491,
+    "pokemon_id": 144,
+    "pokemon_name": "Articuno"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 4059,
+    "pokemon_id": 145,
+    "pokemon_name": "Zapdos"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4035,
+    "pokemon_id": 145,
+    "pokemon_name": "Zapdos"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 3623,
+    "pokemon_id": 146,
+    "pokemon_name": "Moltres"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3964,
+    "pokemon_id": 146,
+    "pokemon_name": "Moltres"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1149,
+    "pokemon_id": 147,
+    "pokemon_name": "Dratini"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2036,
+    "pokemon_id": 148,
+    "pokemon_name": "Dragonair"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4338,
+    "pokemon_id": 149,
+    "pokemon_name": "Dragonite"
+  },
+  {
+    "form": "A",
+    "max_cp": 3646,
+    "pokemon_id": 150,
+    "pokemon_name": "Mewtwo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4780,
+    "pokemon_id": 150,
+    "pokemon_name": "Mewtwo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3735,
+    "pokemon_id": 151,
+    "pokemon_name": "Mew"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1070,
+    "pokemon_id": 152,
+    "pokemon_name": "Chikorita"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1664,
+    "pokemon_id": 153,
+    "pokemon_name": "Bayleef"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2757,
+    "pokemon_id": 154,
+    "pokemon_name": "Meganium"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1121,
+    "pokemon_id": 155,
+    "pokemon_name": "Cyndaquil"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1891,
+    "pokemon_id": 156,
+    "pokemon_name": "Quilava"
+  },
+  {
+    "form": "Hisuian",
+    "max_cp": 3425,
+    "pokemon_id": 157,
+    "pokemon_name": "Typhlosion"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3305,
+    "pokemon_id": 157,
+    "pokemon_name": "Typhlosion"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1294,
+    "pokemon_id": 158,
+    "pokemon_name": "Totodile"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1970,
+    "pokemon_id": 159,
+    "pokemon_name": "Croconaw"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3268,
+    "pokemon_id": 160,
+    "pokemon_name": "Feraligatr"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 707,
+    "pokemon_id": 161,
+    "pokemon_name": "Sentret"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2011,
+    "pokemon_id": 162,
+    "pokemon_name": "Furret"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 775,
+    "pokemon_id": 163,
+    "pokemon_name": "Hoothoot"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2316,
+    "pokemon_id": 164,
+    "pokemon_name": "Noctowl"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 832,
+    "pokemon_id": 165,
+    "pokemon_name": "Ledyba"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1540,
+    "pokemon_id": 166,
+    "pokemon_name": "Ledian"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 934,
+    "pokemon_id": 167,
+    "pokemon_name": "Spinarak"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2027,
+    "pokemon_id": 168,
+    "pokemon_name": "Ariados"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3027,
+    "pokemon_id": 169,
+    "pokemon_name": "Crobat"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1280,
+    "pokemon_id": 170,
+    "pokemon_name": "Chinchou"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2385,
+    "pokemon_id": 171,
+    "pokemon_name": "Lanturn"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 542,
+    "pokemon_id": 172,
+    "pokemon_name": "Pichu"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 768,
+    "pokemon_id": 173,
+    "pokemon_name": "Cleffa"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 613,
+    "pokemon_id": 174,
+    "pokemon_name": "Igglybuff"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 752,
+    "pokemon_id": 175,
+    "pokemon_name": "Togepi"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1954,
+    "pokemon_id": 176,
+    "pokemon_name": "Togetic"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1261,
+    "pokemon_id": 177,
+    "pokemon_name": "Natu"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2503,
+    "pokemon_id": 178,
+    "pokemon_name": "Xatu"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1133,
+    "pokemon_id": 179,
+    "pokemon_name": "Mareep"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1740,
+    "pokemon_id": 180,
+    "pokemon_name": "Flaaffy"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3263,
+    "pokemon_id": 181,
+    "pokemon_name": "Ampharos"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2609,
+    "pokemon_id": 182,
+    "pokemon_name": "Bellossom"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 528,
+    "pokemon_id": 183,
+    "pokemon_name": "Marill"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1816,
+    "pokemon_id": 184,
+    "pokemon_name": "Azumarill"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2457,
+    "pokemon_id": 185,
+    "pokemon_name": "Sudowoodo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2802,
+    "pokemon_id": 186,
+    "pokemon_name": "Politoed"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 686,
+    "pokemon_id": 187,
+    "pokemon_name": "Hoppip"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1116,
+    "pokemon_id": 188,
+    "pokemon_name": "Skiploom"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1872,
+    "pokemon_id": 189,
+    "pokemon_name": "Jumpluff"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1542,
+    "pokemon_id": 190,
+    "pokemon_name": "Aipom"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 452,
+    "pokemon_id": 191,
+    "pokemon_name": "Sunkern"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2450,
+    "pokemon_id": 192,
+    "pokemon_name": "Sunflora"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1682,
+    "pokemon_id": 193,
+    "pokemon_name": "Yanma"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 734,
+    "pokemon_id": 194,
+    "pokemon_name": "Wooper"
+  },
+  {
+    "form": "Paldea",
+    "max_cp": 734,
+    "pokemon_id": 194,
+    "pokemon_name": "Wooper"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2279,
+    "pokemon_id": 195,
+    "pokemon_name": "Quagsire"
+  },
+  {
+    "form": "Gofest_2024_sscarf",
+    "max_cp": 3626,
+    "pokemon_id": 196,
+    "pokemon_name": "Espeon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3626,
+    "pokemon_id": 196,
+    "pokemon_name": "Espeon"
+  },
+  {
+    "form": "Gofest_2024_mscarf",
+    "max_cp": 2445,
+    "pokemon_id": 197,
+    "pokemon_name": "Umbreon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2445,
+    "pokemon_id": 197,
+    "pokemon_name": "Umbreon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1787,
+    "pokemon_id": 198,
+    "pokemon_name": "Murkrow"
+  },
+  {
+    "form": "2022",
+    "max_cp": 2911,
+    "pokemon_id": 199,
+    "pokemon_name": "Slowking"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 3108,
+    "pokemon_id": 199,
+    "pokemon_name": "Slowking"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2911,
+    "pokemon_id": 199,
+    "pokemon_name": "Slowking"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2204,
+    "pokemon_id": 200,
+    "pokemon_name": "Misdreavus"
+  },
+  {
+    "form": "A",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "B",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "C",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "D",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "E",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "Exclamation_point",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "F",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "G",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "H",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "I",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "J",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "K",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "L",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "M",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "N",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "O",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "P",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "Q",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "Question_mark",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "R",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "S",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "T",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "U",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "V",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "W",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "X",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "Y",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "Z",
+    "max_cp": 1355,
+    "pokemon_id": 201,
+    "pokemon_name": "Unown"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1174,
+    "pokemon_id": 202,
+    "pokemon_name": "Wobbuffet"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2341,
+    "pokemon_id": 203,
+    "pokemon_name": "Girafarig"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1268,
+    "pokemon_id": 204,
+    "pokemon_name": "Pineco"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2611,
+    "pokemon_id": 205,
+    "pokemon_name": "Forretress"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1932,
+    "pokemon_id": 206,
+    "pokemon_name": "Dunsparce"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2124,
+    "pokemon_id": 207,
+    "pokemon_name": "Gligar"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2762,
+    "pokemon_id": 208,
+    "pokemon_name": "Steelix"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1416,
+    "pokemon_id": 209,
+    "pokemon_name": "Snubbull"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2920,
+    "pokemon_id": 210,
+    "pokemon_name": "Granbull"
+  },
+  {
+    "form": "Hisuian",
+    "max_cp": 2444,
+    "pokemon_id": 211,
+    "pokemon_name": "Qwilfish"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2346,
+    "pokemon_id": 211,
+    "pokemon_name": "Qwilfish"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3433,
+    "pokemon_id": 212,
+    "pokemon_name": "Scizor"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 463,
+    "pokemon_id": 213,
+    "pokemon_name": "Shuckle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3548,
+    "pokemon_id": 214,
+    "pokemon_name": "Heracross"
+  },
+  {
+    "form": "Hisuian",
+    "max_cp": 2346,
+    "pokemon_id": 215,
+    "pokemon_name": "Sneasel"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2346,
+    "pokemon_id": 215,
+    "pokemon_name": "Sneasel"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1520,
+    "pokemon_id": 216,
+    "pokemon_name": "Teddiursa"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3369,
+    "pokemon_id": 217,
+    "pokemon_name": "Ursaring"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1023,
+    "pokemon_id": 218,
+    "pokemon_name": "Slugma"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1947,
+    "pokemon_id": 219,
+    "pokemon_name": "Magcargo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 847,
+    "pokemon_id": 220,
+    "pokemon_name": "Swinub"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2683,
+    "pokemon_id": 221,
+    "pokemon_name": "Piloswine"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 1712,
+    "pokemon_id": 222,
+    "pokemon_name": "Corsola"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1576,
+    "pokemon_id": 222,
+    "pokemon_name": "Corsola"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1043,
+    "pokemon_id": 223,
+    "pokemon_name": "Remoraid"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2648,
+    "pokemon_id": 224,
+    "pokemon_name": "Octillery"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1252,
+    "pokemon_id": 225,
+    "pokemon_name": "Delibird"
+  },
+  {
+    "form": "Winter_2020",
+    "max_cp": 1252,
+    "pokemon_id": 225,
+    "pokemon_name": "Delibird"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2412,
+    "pokemon_id": 226,
+    "pokemon_name": "Mantine"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2412,
+    "pokemon_id": 227,
+    "pokemon_name": "Skarmory"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1412,
+    "pokemon_id": 228,
+    "pokemon_name": "Houndour"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3014,
+    "pokemon_id": 229,
+    "pokemon_name": "Houndoom"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3022,
+    "pokemon_id": 230,
+    "pokemon_name": "Kingdra"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1380,
+    "pokemon_id": 231,
+    "pokemon_name": "Phanpy"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3447,
+    "pokemon_id": 232,
+    "pokemon_name": "Donphan"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3101,
+    "pokemon_id": 233,
+    "pokemon_name": "Porygon2"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2476,
+    "pokemon_id": 234,
+    "pokemon_name": "Stantler"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 493,
+    "pokemon_id": 235,
+    "pokemon_name": "Smeargle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 563,
+    "pokemon_id": 236,
+    "pokemon_name": "Tyrogue"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2467,
+    "pokemon_id": 237,
+    "pokemon_name": "Hitmontop"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1477,
+    "pokemon_id": 238,
+    "pokemon_name": "Smoochum"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1380,
+    "pokemon_id": 239,
+    "pokemon_name": "Elekid"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1514,
+    "pokemon_id": 240,
+    "pokemon_name": "Magby"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2693,
+    "pokemon_id": 241,
+    "pokemon_name": "Miltank"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3155,
+    "pokemon_id": 242,
+    "pokemon_name": "Blissey"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3949,
+    "pokemon_id": 243,
+    "pokemon_name": "Raikou"
+  },
+  {
+    "form": "S",
+    "max_cp": 3949,
+    "pokemon_id": 243,
+    "pokemon_name": "Raikou"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3973,
+    "pokemon_id": 244,
+    "pokemon_name": "Entei"
+  },
+  {
+    "form": "S",
+    "max_cp": 3973,
+    "pokemon_id": 244,
+    "pokemon_name": "Entei"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3412,
+    "pokemon_id": 245,
+    "pokemon_name": "Suicune"
+  },
+  {
+    "form": "S",
+    "max_cp": 3412,
+    "pokemon_id": 245,
+    "pokemon_name": "Suicune"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1190,
+    "pokemon_id": 246,
+    "pokemon_name": "Larvitar"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2020,
+    "pokemon_id": 247,
+    "pokemon_name": "Pupitar"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4387,
+    "pokemon_id": 248,
+    "pokemon_name": "Tyranitar"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4236,
+    "pokemon_id": 249,
+    "pokemon_name": "Lugia"
+  },
+  {
+    "form": "S",
+    "max_cp": 4236,
+    "pokemon_id": 249,
+    "pokemon_name": "Lugia"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4420,
+    "pokemon_id": 250,
+    "pokemon_name": "Ho-Oh"
+  },
+  {
+    "form": "S",
+    "max_cp": 4420,
+    "pokemon_id": 250,
+    "pokemon_name": "Ho-Oh"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3735,
+    "pokemon_id": 251,
+    "pokemon_name": "Celebi"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1204,
+    "pokemon_id": 252,
+    "pokemon_name": "Treecko"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1914,
+    "pokemon_id": 253,
+    "pokemon_name": "Grovyle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3154,
+    "pokemon_id": 254,
+    "pokemon_name": "Sceptile"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1251,
+    "pokemon_id": 255,
+    "pokemon_name": "Torchic"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1890,
+    "pokemon_id": 256,
+    "pokemon_name": "Combusken"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3258,
+    "pokemon_id": 257,
+    "pokemon_name": "Blaziken"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1290,
+    "pokemon_id": 258,
+    "pokemon_name": "Mudkip"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2032,
+    "pokemon_id": 259,
+    "pokemon_name": "Marshtomp"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3402,
+    "pokemon_id": 260,
+    "pokemon_name": "Swampert"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 776,
+    "pokemon_id": 261,
+    "pokemon_name": "Poochyena"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2203,
+    "pokemon_id": 262,
+    "pokemon_name": "Mightyena"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 581,
+    "pokemon_id": 263,
+    "pokemon_name": "Zigzagoon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 581,
+    "pokemon_id": 263,
+    "pokemon_name": "Zigzagoon"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 1901,
+    "pokemon_id": 264,
+    "pokemon_name": "Linoone"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1901,
+    "pokemon_id": 264,
+    "pokemon_name": "Linoone"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 661,
+    "pokemon_id": 265,
+    "pokemon_name": "Wurmple"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 633,
+    "pokemon_id": 266,
+    "pokemon_name": "Silcoon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2020,
+    "pokemon_id": 267,
+    "pokemon_name": "Beautifly"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 633,
+    "pokemon_id": 268,
+    "pokemon_name": "Cascoon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1400,
+    "pokemon_id": 269,
+    "pokemon_name": "Dustox"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 684,
+    "pokemon_id": 270,
+    "pokemon_name": "Lotad"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1369,
+    "pokemon_id": 271,
+    "pokemon_name": "Lombre"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2658,
+    "pokemon_id": 272,
+    "pokemon_name": "Ludicolo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 684,
+    "pokemon_id": 273,
+    "pokemon_name": "Seedot"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1404,
+    "pokemon_id": 274,
+    "pokemon_name": "Nuzleaf"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2669,
+    "pokemon_id": 275,
+    "pokemon_name": "Shiftry"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 875,
+    "pokemon_id": 276,
+    "pokemon_name": "Taillow"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2196,
+    "pokemon_id": 277,
+    "pokemon_name": "Swellow"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 875,
+    "pokemon_id": 278,
+    "pokemon_name": "Wingull"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2433,
+    "pokemon_id": 279,
+    "pokemon_name": "Pelipper"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 616,
+    "pokemon_id": 280,
+    "pokemon_name": "Ralts"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1106,
+    "pokemon_id": 281,
+    "pokemon_name": "Kirlia"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3539,
+    "pokemon_id": 282,
+    "pokemon_name": "Gardevoir"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 905,
+    "pokemon_id": 283,
+    "pokemon_name": "Surskit"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2598,
+    "pokemon_id": 284,
+    "pokemon_name": "Masquerain"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 927,
+    "pokemon_id": 285,
+    "pokemon_name": "Shroomish"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3007,
+    "pokemon_id": 286,
+    "pokemon_name": "Breloom"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1146,
+    "pokemon_id": 287,
+    "pokemon_name": "Slakoth"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2251,
+    "pokemon_id": 288,
+    "pokemon_name": "Vigoroth"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 5069,
+    "pokemon_id": 289,
+    "pokemon_name": "Slaking"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 879,
+    "pokemon_id": 290,
+    "pokemon_name": "Nincada"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2253,
+    "pokemon_id": 291,
+    "pokemon_name": "Ninjask"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 450,
+    "pokemon_id": 292,
+    "pokemon_name": "Shedinja"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 767,
+    "pokemon_id": 293,
+    "pokemon_name": "Whismur"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1518,
+    "pokemon_id": 294,
+    "pokemon_name": "Loudred"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2685,
+    "pokemon_id": 295,
+    "pokemon_name": "Exploud"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 935,
+    "pokemon_id": 296,
+    "pokemon_name": "Makuhita"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3236,
+    "pokemon_id": 297,
+    "pokemon_name": "Hariyama"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 416,
+    "pokemon_id": 298,
+    "pokemon_name": "Azurill"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1136,
+    "pokemon_id": 299,
+    "pokemon_name": "Nosepass"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 845,
+    "pokemon_id": 300,
+    "pokemon_name": "Skitty"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1711,
+    "pokemon_id": 301,
+    "pokemon_name": "Delcatty"
+  },
+  {
+    "form": "Costume_2020",
+    "max_cp": 1688,
+    "pokemon_id": 302,
+    "pokemon_name": "Sableye"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1688,
+    "pokemon_id": 302,
+    "pokemon_name": "Sableye"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1870,
+    "pokemon_id": 303,
+    "pokemon_name": "Mawile"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1496,
+    "pokemon_id": 304,
+    "pokemon_name": "Aron"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2352,
+    "pokemon_id": 305,
+    "pokemon_name": "Lairon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3432,
+    "pokemon_id": 306,
+    "pokemon_name": "Aggron"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 793,
+    "pokemon_id": 307,
+    "pokemon_name": "Meditite"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1637,
+    "pokemon_id": 308,
+    "pokemon_name": "Medicham"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1104,
+    "pokemon_id": 309,
+    "pokemon_name": "Electrike"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2678,
+    "pokemon_id": 310,
+    "pokemon_name": "Manectric"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2034,
+    "pokemon_id": 311,
+    "pokemon_name": "Plusle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1938,
+    "pokemon_id": 312,
+    "pokemon_name": "Minun"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2026,
+    "pokemon_id": 313,
+    "pokemon_name": "Volbeat"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2026,
+    "pokemon_id": 314,
+    "pokemon_name": "Illumise"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2139,
+    "pokemon_id": 315,
+    "pokemon_name": "Roselia"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 991,
+    "pokemon_id": 316,
+    "pokemon_name": "Gulpin"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2263,
+    "pokemon_id": 317,
+    "pokemon_name": "Swalot"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1167,
+    "pokemon_id": 318,
+    "pokemon_name": "Carvanha"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2495,
+    "pokemon_id": 319,
+    "pokemon_name": "Sharpedo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1679,
+    "pokemon_id": 320,
+    "pokemon_name": "Wailmer"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2608,
+    "pokemon_id": 321,
+    "pokemon_name": "Wailord"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1210,
+    "pokemon_id": 322,
+    "pokemon_name": "Numel"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2509,
+    "pokemon_id": 323,
+    "pokemon_name": "Camerupt"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2394,
+    "pokemon_id": 324,
+    "pokemon_name": "Torkoal"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1526,
+    "pokemon_id": 325,
+    "pokemon_name": "Spoink"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2711,
+    "pokemon_id": 326,
+    "pokemon_name": "Grumpig"
+  },
+  {
+    "form": "00",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "01",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "02",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "03",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "04",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "05",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "06",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "07",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "08",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "09",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "10",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "11",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "12",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "13",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "14",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "15",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "16",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "17",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "18",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "19",
+    "max_cp": 1396,
+    "pokemon_id": 327,
+    "pokemon_name": "Spinda"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1458,
+    "pokemon_id": 328,
+    "pokemon_name": "Trapinch"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1401,
+    "pokemon_id": 329,
+    "pokemon_name": "Vibrava"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3044,
+    "pokemon_id": 330,
+    "pokemon_name": "Flygon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1421,
+    "pokemon_id": 331,
+    "pokemon_name": "Cacnea"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2629,
+    "pokemon_id": 332,
+    "pokemon_name": "Cacturne"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 942,
+    "pokemon_id": 333,
+    "pokemon_name": "Swablu"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2293,
+    "pokemon_id": 334,
+    "pokemon_name": "Altaria"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2766,
+    "pokemon_id": 335,
+    "pokemon_name": "Zangoose"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2409,
+    "pokemon_id": 336,
+    "pokemon_name": "Seviper"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2663,
+    "pokemon_id": 337,
+    "pokemon_name": "Lunatone"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2663,
+    "pokemon_id": 338,
+    "pokemon_name": "Solrock"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 937,
+    "pokemon_id": 339,
+    "pokemon_name": "Barboach"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2374,
+    "pokemon_id": 340,
+    "pokemon_name": "Whiscash"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1408,
+    "pokemon_id": 341,
+    "pokemon_name": "Corphish"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2830,
+    "pokemon_id": 342,
+    "pokemon_name": "Crawdaunt"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 900,
+    "pokemon_id": 343,
+    "pokemon_name": "Baltoy"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2255,
+    "pokemon_id": 344,
+    "pokemon_name": "Claydol"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1477,
+    "pokemon_id": 345,
+    "pokemon_name": "Lileep"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2529,
+    "pokemon_id": 346,
+    "pokemon_name": "Cradily"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1750,
+    "pokemon_id": 347,
+    "pokemon_name": "Anorith"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3259,
+    "pokemon_id": 348,
+    "pokemon_name": "Armaldo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 314,
+    "pokemon_id": 349,
+    "pokemon_name": "Feebas"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3438,
+    "pokemon_id": 350,
+    "pokemon_name": "Milotic"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1867,
+    "pokemon_id": 351,
+    "pokemon_name": "Castform"
+  },
+  {
+    "form": "Rainy",
+    "max_cp": 1867,
+    "pokemon_id": 351,
+    "pokemon_name": "Castform"
+  },
+  {
+    "form": "Snowy",
+    "max_cp": 1867,
+    "pokemon_id": 351,
+    "pokemon_name": "Castform"
+  },
+  {
+    "form": "Sunny",
+    "max_cp": 1867,
+    "pokemon_id": 351,
+    "pokemon_name": "Castform"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2341,
+    "pokemon_id": 352,
+    "pokemon_name": "Kecleon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1165,
+    "pokemon_id": 353,
+    "pokemon_name": "Shuppet"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2630,
+    "pokemon_id": 354,
+    "pokemon_name": "Banette"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 808,
+    "pokemon_id": 355,
+    "pokemon_name": "Duskull"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1820,
+    "pokemon_id": 356,
+    "pokemon_name": "Dusclops"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2220,
+    "pokemon_id": 357,
+    "pokemon_name": "Tropius"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2585,
+    "pokemon_id": 358,
+    "pokemon_name": "Chimecho"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2890,
+    "pokemon_id": 359,
+    "pokemon_name": "Absol"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 611,
+    "pokemon_id": 360,
+    "pokemon_name": "Wynaut"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1016,
+    "pokemon_id": 361,
+    "pokemon_name": "Snorunt"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2409,
+    "pokemon_id": 362,
+    "pokemon_name": "Glalie"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1101,
+    "pokemon_id": 363,
+    "pokemon_name": "Spheal"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1962,
+    "pokemon_id": 364,
+    "pokemon_name": "Sealeo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3118,
+    "pokemon_id": 365,
+    "pokemon_name": "Walrein"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1453,
+    "pokemon_id": 366,
+    "pokemon_name": "Clamperl"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2677,
+    "pokemon_id": 367,
+    "pokemon_name": "Huntail"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2853,
+    "pokemon_id": 368,
+    "pokemon_name": "Gorebyss"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2892,
+    "pokemon_id": 369,
+    "pokemon_name": "Relicanth"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 970,
+    "pokemon_id": 370,
+    "pokemon_name": "Luvdisc"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1323,
+    "pokemon_id": 371,
+    "pokemon_name": "Bagon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2324,
+    "pokemon_id": 372,
+    "pokemon_name": "Shelgon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4289,
+    "pokemon_id": 373,
+    "pokemon_name": "Salamence"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1117,
+    "pokemon_id": 374,
+    "pokemon_name": "Beldum"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1969,
+    "pokemon_id": 375,
+    "pokemon_name": "Metang"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4337,
+    "pokemon_id": 376,
+    "pokemon_name": "Metagross"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3572,
+    "pokemon_id": 377,
+    "pokemon_name": "Regirock"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3572,
+    "pokemon_id": 378,
+    "pokemon_name": "Regice"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2799,
+    "pokemon_id": 379,
+    "pokemon_name": "Registeel"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4016,
+    "pokemon_id": 380,
+    "pokemon_name": "Latias"
+  },
+  {
+    "form": "S",
+    "max_cp": 4016,
+    "pokemon_id": 380,
+    "pokemon_name": "Latias"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4362,
+    "pokemon_id": 381,
+    "pokemon_name": "Latios"
+  },
+  {
+    "form": "S",
+    "max_cp": 4362,
+    "pokemon_id": 381,
+    "pokemon_name": "Latios"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4708,
+    "pokemon_id": 382,
+    "pokemon_name": "Kyogre"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4708,
+    "pokemon_id": 383,
+    "pokemon_name": "Groudon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4387,
+    "pokemon_id": 384,
+    "pokemon_name": "Rayquaza"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3735,
+    "pokemon_id": 385,
+    "pokemon_name": "Jirachi"
+  },
+  {
+    "form": "Attack",
+    "max_cp": 2951,
+    "pokemon_id": 386,
+    "pokemon_name": "Deoxys"
+  },
+  {
+    "form": "Defense",
+    "max_cp": 2601,
+    "pokemon_id": 386,
+    "pokemon_name": "Deoxys"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3615,
+    "pokemon_id": 386,
+    "pokemon_name": "Deoxys"
+  },
+  {
+    "form": "Speed",
+    "max_cp": 3294,
+    "pokemon_id": 386,
+    "pokemon_name": "Deoxys"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1358,
+    "pokemon_id": 387,
+    "pokemon_name": "Turtwig"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2162,
+    "pokemon_id": 388,
+    "pokemon_name": "Grotle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3357,
+    "pokemon_id": 389,
+    "pokemon_name": "Torterra"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1095,
+    "pokemon_id": 390,
+    "pokemon_name": "Chimchar"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1801,
+    "pokemon_id": 391,
+    "pokemon_name": "Monferno"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3070,
+    "pokemon_id": 392,
+    "pokemon_name": "Infernape"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1229,
+    "pokemon_id": 393,
+    "pokemon_name": "Piplup"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1946,
+    "pokemon_id": 394,
+    "pokemon_name": "Prinplup"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3318,
+    "pokemon_id": 395,
+    "pokemon_name": "Empoleon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 822,
+    "pokemon_id": 396,
+    "pokemon_name": "Starly"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1486,
+    "pokemon_id": 397,
+    "pokemon_name": "Staravia"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3232,
+    "pokemon_id": 398,
+    "pokemon_name": "Staraptor"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 825,
+    "pokemon_id": 399,
+    "pokemon_name": "Bidoof"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2085,
+    "pokemon_id": 400,
+    "pokemon_name": "Bibarel"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 459,
+    "pokemon_id": 401,
+    "pokemon_name": "Kricketot"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1891,
+    "pokemon_id": 402,
+    "pokemon_name": "Kricketune"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1002,
+    "pokemon_id": 403,
+    "pokemon_name": "Shinx"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1700,
+    "pokemon_id": 404,
+    "pokemon_name": "Luxio"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3304,
+    "pokemon_id": 405,
+    "pokemon_name": "Luxray"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 979,
+    "pokemon_id": 406,
+    "pokemon_name": "Budew"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3399,
+    "pokemon_id": 407,
+    "pokemon_name": "Roserade"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2082,
+    "pokemon_id": 408,
+    "pokemon_name": "Cranidos"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3773,
+    "pokemon_id": 409,
+    "pokemon_name": "Rampardos"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1019,
+    "pokemon_id": 410,
+    "pokemon_name": "Shieldon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1761,
+    "pokemon_id": 411,
+    "pokemon_name": "Bastiodon"
+  },
+  {
+    "form": "Plant",
+    "max_cp": 558,
+    "pokemon_id": 412,
+    "pokemon_name": "Burmy"
+  },
+  {
+    "form": "Sandy",
+    "max_cp": 558,
+    "pokemon_id": 412,
+    "pokemon_name": "Burmy"
+  },
+  {
+    "form": "Trash",
+    "max_cp": 558,
+    "pokemon_id": 412,
+    "pokemon_name": "Burmy"
+  },
+  {
+    "form": "Plant",
+    "max_cp": 2029,
+    "pokemon_id": 413,
+    "pokemon_name": "Wormadam"
+  },
+  {
+    "form": "Sandy",
+    "max_cp": 2029,
+    "pokemon_id": 413,
+    "pokemon_name": "Wormadam"
+  },
+  {
+    "form": "Trash",
+    "max_cp": 1823,
+    "pokemon_id": 413,
+    "pokemon_name": "Wormadam"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2077,
+    "pokemon_id": 414,
+    "pokemon_name": "Mothim"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 566,
+    "pokemon_id": 415,
+    "pokemon_name": "Combee"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2294,
+    "pokemon_id": 416,
+    "pokemon_name": "Vespiquen"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1388,
+    "pokemon_id": 417,
+    "pokemon_name": "Pachirisu"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1206,
+    "pokemon_id": 418,
+    "pokemon_name": "Buizel"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2795,
+    "pokemon_id": 419,
+    "pokemon_name": "Floatzel"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1087,
+    "pokemon_id": 420,
+    "pokemon_name": "Cherubi"
+  },
+  {
+    "form": "Overcast",
+    "max_cp": 2342,
+    "pokemon_id": 421,
+    "pokemon_name": "Cherrim"
+  },
+  {
+    "form": "Sunny",
+    "max_cp": 2342,
+    "pokemon_id": 421,
+    "pokemon_name": "Cherrim"
+  },
+  {
+    "form": "East_sea",
+    "max_cp": 1299,
+    "pokemon_id": 422,
+    "pokemon_name": "Shellos"
+  },
+  {
+    "form": "West_sea",
+    "max_cp": 1299,
+    "pokemon_id": 422,
+    "pokemon_name": "Shellos"
+  },
+  {
+    "form": "East_sea",
+    "max_cp": 2659,
+    "pokemon_id": 423,
+    "pokemon_name": "Gastrodon"
+  },
+  {
+    "form": "West_sea",
+    "max_cp": 2659,
+    "pokemon_id": 423,
+    "pokemon_name": "Gastrodon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2766,
+    "pokemon_id": 424,
+    "pokemon_name": "Ambipom"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1369,
+    "pokemon_id": 425,
+    "pokemon_name": "Drifloon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2725,
+    "pokemon_id": 426,
+    "pokemon_name": "Drifblim"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1440,
+    "pokemon_id": 427,
+    "pokemon_name": "Buneary"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2356,
+    "pokemon_id": 428,
+    "pokemon_name": "Lopunny"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2992,
+    "pokemon_id": 429,
+    "pokemon_name": "Mismagius"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3102,
+    "pokemon_id": 430,
+    "pokemon_name": "Honchkrow"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1068,
+    "pokemon_id": 431,
+    "pokemon_name": "Glameow"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2234,
+    "pokemon_id": 432,
+    "pokemon_name": "Purugly"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1150,
+    "pokemon_id": 433,
+    "pokemon_name": "Chingling"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1317,
+    "pokemon_id": 434,
+    "pokemon_name": "Stunky"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2698,
+    "pokemon_id": 435,
+    "pokemon_name": "Skuntank"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 689,
+    "pokemon_id": 436,
+    "pokemon_name": "Bronzor"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2561,
+    "pokemon_id": 437,
+    "pokemon_name": "Bronzong"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1489,
+    "pokemon_id": 438,
+    "pokemon_name": "Bonsly"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1253,
+    "pokemon_id": 439,
+    "pokemon_name": "Mime Jr."
+  },
+  {
+    "form": "Normal",
+    "max_cp": 424,
+    "pokemon_id": 440,
+    "pokemon_name": "Happiny"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2049,
+    "pokemon_id": 441,
+    "pokemon_name": "Chatot"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2371,
+    "pokemon_id": 442,
+    "pokemon_name": "Spiritomb"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1273,
+    "pokemon_id": 443,
+    "pokemon_name": "Gible"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2144,
+    "pokemon_id": 444,
+    "pokemon_name": "Gabite"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4532,
+    "pokemon_id": 445,
+    "pokemon_name": "Garchomp"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2164,
+    "pokemon_id": 446,
+    "pokemon_name": "Munchlax"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1136,
+    "pokemon_id": 447,
+    "pokemon_name": "Riolu"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3092,
+    "pokemon_id": 448,
+    "pokemon_name": "Lucario"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1553,
+    "pokemon_id": 449,
+    "pokemon_name": "Hippopotas"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3530,
+    "pokemon_id": 450,
+    "pokemon_name": "Hippowdon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1155,
+    "pokemon_id": 451,
+    "pokemon_name": "Skorupi"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2806,
+    "pokemon_id": 452,
+    "pokemon_name": "Drapion"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1089,
+    "pokemon_id": 453,
+    "pokemon_name": "Croagunk"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2846,
+    "pokemon_id": 454,
+    "pokemon_name": "Toxicroak"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2470,
+    "pokemon_id": 455,
+    "pokemon_name": "Carnivine"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1111,
+    "pokemon_id": 456,
+    "pokemon_name": "Finneon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2075,
+    "pokemon_id": 457,
+    "pokemon_name": "Lumineon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1428,
+    "pokemon_id": 458,
+    "pokemon_name": "Mantyke"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1326,
+    "pokemon_id": 459,
+    "pokemon_name": "Snover"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2702,
+    "pokemon_id": 460,
+    "pokemon_name": "Abomasnow"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3438,
+    "pokemon_id": 461,
+    "pokemon_name": "Weavile"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3666,
+    "pokemon_id": 462,
+    "pokemon_name": "Magnezone"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2822,
+    "pokemon_id": 463,
+    "pokemon_name": "Lickilicky"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4271,
+    "pokemon_id": 464,
+    "pokemon_name": "Rhyperior"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3466,
+    "pokemon_id": 465,
+    "pokemon_name": "Tangrowth"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3523,
+    "pokemon_id": 466,
+    "pokemon_name": "Electivire"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3584,
+    "pokemon_id": 467,
+    "pokemon_name": "Magmortar"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3812,
+    "pokemon_id": 468,
+    "pokemon_name": "Togekiss"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3370,
+    "pokemon_id": 469,
+    "pokemon_name": "Yanmega"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3368,
+    "pokemon_id": 470,
+    "pokemon_name": "Leafeon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3577,
+    "pokemon_id": 471,
+    "pokemon_name": "Glaceon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3080,
+    "pokemon_id": 472,
+    "pokemon_name": "Gliscor"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3808,
+    "pokemon_id": 473,
+    "pokemon_name": "Mamoswine"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3737,
+    "pokemon_id": 474,
+    "pokemon_name": "Porygon-Z"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3539,
+    "pokemon_id": 475,
+    "pokemon_name": "Gallade"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2379,
+    "pokemon_id": 476,
+    "pokemon_name": "Probopass"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2732,
+    "pokemon_id": 477,
+    "pokemon_name": "Dusknoir"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2334,
+    "pokemon_id": 478,
+    "pokemon_name": "Froslass"
+  },
+  {
+    "form": "Fan",
+    "max_cp": 2951,
+    "pokemon_id": 479,
+    "pokemon_name": "Rotom"
+  },
+  {
+    "form": "Frost",
+    "max_cp": 2951,
+    "pokemon_id": 479,
+    "pokemon_name": "Rotom"
+  },
+  {
+    "form": "Heat",
+    "max_cp": 2951,
+    "pokemon_id": 479,
+    "pokemon_name": "Rotom"
+  },
+  {
+    "form": "Mow",
+    "max_cp": 2951,
+    "pokemon_id": 479,
+    "pokemon_name": "Rotom"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2324,
+    "pokemon_id": 479,
+    "pokemon_name": "Rotom"
+  },
+  {
+    "form": "Wash",
+    "max_cp": 2951,
+    "pokemon_id": 479,
+    "pokemon_name": "Rotom"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2887,
+    "pokemon_id": 480,
+    "pokemon_name": "Uxie"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3498,
+    "pokemon_id": 481,
+    "pokemon_name": "Mesprit"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3673,
+    "pokemon_id": 482,
+    "pokemon_name": "Azelf"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4620,
+    "pokemon_id": 483,
+    "pokemon_name": "Dialga"
+  },
+  {
+    "form": "Origin",
+    "max_cp": 4679,
+    "pokemon_id": 483,
+    "pokemon_name": "Dialga"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4565,
+    "pokemon_id": 484,
+    "pokemon_name": "Palkia"
+  },
+  {
+    "form": "Origin",
+    "max_cp": 4739,
+    "pokemon_id": 484,
+    "pokemon_name": "Palkia"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4295,
+    "pokemon_id": 485,
+    "pokemon_name": "Heatran"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4972,
+    "pokemon_id": 486,
+    "pokemon_name": "Regigigas"
+  },
+  {
+    "form": "Altered",
+    "max_cp": 3866,
+    "pokemon_id": 487,
+    "pokemon_name": "Giratina"
+  },
+  {
+    "form": "Origin",
+    "max_cp": 4214,
+    "pokemon_id": 487,
+    "pokemon_name": "Giratina"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3269,
+    "pokemon_id": 488,
+    "pokemon_name": "Cresselia"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2409,
+    "pokemon_id": 489,
+    "pokemon_name": "Phione"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3735,
+    "pokemon_id": 490,
+    "pokemon_name": "Manaphy"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4278,
+    "pokemon_id": 491,
+    "pokemon_name": "Darkrai"
+  },
+  {
+    "form": "Land",
+    "max_cp": 3735,
+    "pokemon_id": 492,
+    "pokemon_name": "Shaymin"
+  },
+  {
+    "form": "Sky",
+    "max_cp": 4110,
+    "pokemon_id": 492,
+    "pokemon_name": "Shaymin"
+  },
+  {
+    "form": "Bug",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Dark",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Dragon",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Electric",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Fairy",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Fighting",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Fire",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Flying",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Ghost",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Grass",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Ground",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Ice",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Poison",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Psychic",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Rock",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Steel",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Water",
+    "max_cp": 4564,
+    "pokemon_id": 493,
+    "pokemon_name": "Arceus"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3735,
+    "pokemon_id": 494,
+    "pokemon_name": "Victini"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 972,
+    "pokemon_id": 495,
+    "pokemon_name": "Snivy"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1649,
+    "pokemon_id": 496,
+    "pokemon_name": "Servine"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2605,
+    "pokemon_id": 497,
+    "pokemon_name": "Serperior"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1239,
+    "pokemon_id": 498,
+    "pokemon_name": "Tepig"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2201,
+    "pokemon_id": 499,
+    "pokemon_name": "Pignite"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3412,
+    "pokemon_id": 500,
+    "pokemon_name": "Emboar"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1196,
+    "pokemon_id": 501,
+    "pokemon_name": "Oshawott"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1992,
+    "pokemon_id": 502,
+    "pokemon_name": "Dewott"
+  },
+  {
+    "form": "Hisuian",
+    "max_cp": 3205,
+    "pokemon_id": 503,
+    "pokemon_name": "Samurott"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3233,
+    "pokemon_id": 503,
+    "pokemon_name": "Samurott"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 905,
+    "pokemon_id": 504,
+    "pokemon_name": "Patrat"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2081,
+    "pokemon_id": 505,
+    "pokemon_name": "Watchog"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1047,
+    "pokemon_id": 506,
+    "pokemon_name": "Lillipup"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1811,
+    "pokemon_id": 507,
+    "pokemon_name": "Herdier"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3234,
+    "pokemon_id": 508,
+    "pokemon_name": "Stoutland"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 883,
+    "pokemon_id": 509,
+    "pokemon_name": "Purrloin"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2112,
+    "pokemon_id": 510,
+    "pokemon_name": "Liepard"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1094,
+    "pokemon_id": 511,
+    "pokemon_name": "Pansage"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2689,
+    "pokemon_id": 512,
+    "pokemon_name": "Simisage"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1094,
+    "pokemon_id": 513,
+    "pokemon_name": "Pansear"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2689,
+    "pokemon_id": 514,
+    "pokemon_name": "Simisear"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1094,
+    "pokemon_id": 515,
+    "pokemon_name": "Panpour"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2689,
+    "pokemon_id": 516,
+    "pokemon_name": "Simipour"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1310,
+    "pokemon_id": 517,
+    "pokemon_name": "Munna"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3115,
+    "pokemon_id": 518,
+    "pokemon_name": "Musharna"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 970,
+    "pokemon_id": 519,
+    "pokemon_name": "Pidove"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1650,
+    "pokemon_id": 520,
+    "pokemon_name": "Tranquill"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3128,
+    "pokemon_id": 521,
+    "pokemon_name": "Unfezant"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1010,
+    "pokemon_id": 522,
+    "pokemon_name": "Blitzle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2778,
+    "pokemon_id": 523,
+    "pokemon_name": "Zebstrika"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1378,
+    "pokemon_id": 524,
+    "pokemon_name": "Roggenrola"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2321,
+    "pokemon_id": 525,
+    "pokemon_name": "Boldore"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3693,
+    "pokemon_id": 526,
+    "pokemon_name": "Gigalith"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1163,
+    "pokemon_id": 527,
+    "pokemon_name": "Woobat"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1963,
+    "pokemon_id": 528,
+    "pokemon_name": "Swoobat"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1574,
+    "pokemon_id": 529,
+    "pokemon_name": "Drilbur"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3711,
+    "pokemon_id": 530,
+    "pokemon_name": "Excadrill"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1924,
+    "pokemon_id": 531,
+    "pokemon_name": "Audino"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1505,
+    "pokemon_id": 532,
+    "pokemon_name": "Timburr"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2482,
+    "pokemon_id": 533,
+    "pokemon_name": "Gurdurr"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3818,
+    "pokemon_id": 534,
+    "pokemon_name": "Conkeldurr"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 959,
+    "pokemon_id": 535,
+    "pokemon_name": "Tympole"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1592,
+    "pokemon_id": 536,
+    "pokemon_name": "Palpitoad"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2934,
+    "pokemon_id": 537,
+    "pokemon_name": "Seismitoad"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2931,
+    "pokemon_id": 538,
+    "pokemon_name": "Throh"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3189,
+    "pokemon_id": 539,
+    "pokemon_name": "Sawk"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1118,
+    "pokemon_id": 540,
+    "pokemon_name": "Sewaddle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1568,
+    "pokemon_id": 541,
+    "pokemon_name": "Swadloon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2952,
+    "pokemon_id": 542,
+    "pokemon_name": "Leavanny"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 808,
+    "pokemon_id": 543,
+    "pokemon_name": "Venipede"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1309,
+    "pokemon_id": 544,
+    "pokemon_name": "Whirlipede"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2799,
+    "pokemon_id": 545,
+    "pokemon_name": "Scolipede"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 801,
+    "pokemon_id": 546,
+    "pokemon_name": "Cottonee"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2304,
+    "pokemon_id": 547,
+    "pokemon_name": "Whimsicott"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1178,
+    "pokemon_id": 548,
+    "pokemon_name": "Petilil"
+  },
+  {
+    "form": "Hisuian",
+    "max_cp": 2874,
+    "pokemon_id": 549,
+    "pokemon_name": "Lilligant"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2917,
+    "pokemon_id": 549,
+    "pokemon_name": "Lilligant"
+  },
+  {
+    "form": "Blue_striped",
+    "max_cp": 2391,
+    "pokemon_id": 550,
+    "pokemon_name": "Basculin"
+  },
+  {
+    "form": "Red_striped",
+    "max_cp": 2391,
+    "pokemon_id": 550,
+    "pokemon_name": "Basculin"
+  },
+  {
+    "form": "White_striped",
+    "max_cp": 2391,
+    "pokemon_id": 550,
+    "pokemon_name": "Basculin"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1186,
+    "pokemon_id": 551,
+    "pokemon_name": "Sandile"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1622,
+    "pokemon_id": 552,
+    "pokemon_name": "Krokorok"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3485,
+    "pokemon_id": 553,
+    "pokemon_name": "Krookodile"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 1649,
+    "pokemon_id": 554,
+    "pokemon_name": "Darumaka"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1649,
+    "pokemon_id": 554,
+    "pokemon_name": "Darumaka"
+  },
+  {
+    "form": "Galarian_standard",
+    "max_cp": 3552,
+    "pokemon_id": 555,
+    "pokemon_name": "Darmanitan"
+  },
+  {
+    "form": "Galarian_zen",
+    "max_cp": 4467,
+    "pokemon_id": 555,
+    "pokemon_name": "Darmanitan"
+  },
+  {
+    "form": "Standard",
+    "max_cp": 3552,
+    "pokemon_id": 555,
+    "pokemon_name": "Darmanitan"
+  },
+  {
+    "form": "Zen",
+    "max_cp": 4276,
+    "pokemon_id": 555,
+    "pokemon_name": "Darmanitan"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2601,
+    "pokemon_id": 556,
+    "pokemon_name": "Maractus"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1401,
+    "pokemon_id": 557,
+    "pokemon_name": "Dwebble"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2908,
+    "pokemon_id": 558,
+    "pokemon_name": "Crustle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1570,
+    "pokemon_id": 559,
+    "pokemon_name": "Scraggy"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2612,
+    "pokemon_id": 560,
+    "pokemon_name": "Scrafty"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2917,
+    "pokemon_id": 561,
+    "pokemon_name": "Sigilyph"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 1123,
+    "pokemon_id": 562,
+    "pokemon_name": "Yamask"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1123,
+    "pokemon_id": 562,
+    "pokemon_name": "Yamask"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2601,
+    "pokemon_id": 563,
+    "pokemon_name": "Cofagrigus"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1703,
+    "pokemon_id": 564,
+    "pokemon_name": "Tirtouga"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2999,
+    "pokemon_id": 565,
+    "pokemon_name": "Carracosta"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2108,
+    "pokemon_id": 566,
+    "pokemon_name": "Archen"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3811,
+    "pokemon_id": 567,
+    "pokemon_name": "Archeops"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1144,
+    "pokemon_id": 568,
+    "pokemon_name": "Trubbish"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2682,
+    "pokemon_id": 569,
+    "pokemon_name": "Garbodor"
+  },
+  {
+    "form": "Hisuian",
+    "max_cp": 1376,
+    "pokemon_id": 570,
+    "pokemon_name": "Zorua"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1345,
+    "pokemon_id": 570,
+    "pokemon_name": "Zorua"
+  },
+  {
+    "form": "Hisuian",
+    "max_cp": 2992,
+    "pokemon_id": 571,
+    "pokemon_name": "Zoroark"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2941,
+    "pokemon_id": 571,
+    "pokemon_name": "Zoroark"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 998,
+    "pokemon_id": 572,
+    "pokemon_name": "Minccino"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2565,
+    "pokemon_id": 573,
+    "pokemon_name": "Cinccino"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1088,
+    "pokemon_id": 574,
+    "pokemon_name": "Gothita"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1835,
+    "pokemon_id": 575,
+    "pokemon_name": "Gothorita"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2768,
+    "pokemon_id": 576,
+    "pokemon_name": "Gothitelle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1564,
+    "pokemon_id": 577,
+    "pokemon_name": "Solosis"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2309,
+    "pokemon_id": 578,
+    "pokemon_name": "Duosion"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3349,
+    "pokemon_id": 579,
+    "pokemon_name": "Reuniclus"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 980,
+    "pokemon_id": 580,
+    "pokemon_name": "Ducklett"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2389,
+    "pokemon_id": 581,
+    "pokemon_name": "Swanna"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1182,
+    "pokemon_id": 582,
+    "pokemon_name": "Vanillite"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1820,
+    "pokemon_id": 583,
+    "pokemon_name": "Vanillish"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3228,
+    "pokemon_id": 584,
+    "pokemon_name": "Vanilluxe"
+  },
+  {
+    "form": "Autumn",
+    "max_cp": 1298,
+    "pokemon_id": 585,
+    "pokemon_name": "Deerling"
+  },
+  {
+    "form": "Spring",
+    "max_cp": 1298,
+    "pokemon_id": 585,
+    "pokemon_name": "Deerling"
+  },
+  {
+    "form": "Summer",
+    "max_cp": 1298,
+    "pokemon_id": 585,
+    "pokemon_name": "Deerling"
+  },
+  {
+    "form": "Winter",
+    "max_cp": 1298,
+    "pokemon_id": 585,
+    "pokemon_name": "Deerling"
+  },
+  {
+    "form": "Autumn",
+    "max_cp": 2764,
+    "pokemon_id": 586,
+    "pokemon_name": "Sawsbuck"
+  },
+  {
+    "form": "Spring",
+    "max_cp": 2764,
+    "pokemon_id": 586,
+    "pokemon_name": "Sawsbuck"
+  },
+  {
+    "form": "Summer",
+    "max_cp": 2764,
+    "pokemon_id": 586,
+    "pokemon_name": "Sawsbuck"
+  },
+  {
+    "form": "Winter",
+    "max_cp": 2764,
+    "pokemon_id": 586,
+    "pokemon_name": "Sawsbuck"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1869,
+    "pokemon_id": 587,
+    "pokemon_name": "Emolga"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1352,
+    "pokemon_id": 588,
+    "pokemon_name": "Karrablast"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3305,
+    "pokemon_id": 589,
+    "pokemon_name": "Escavalier"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1120,
+    "pokemon_id": 590,
+    "pokemon_name": "Foongus"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2449,
+    "pokemon_id": 591,
+    "pokemon_name": "Amoonguss"
+  },
+  {
+    "form": "Female",
+    "max_cp": 1438,
+    "pokemon_id": 592,
+    "pokemon_name": "Frillish"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1438,
+    "pokemon_id": 592,
+    "pokemon_name": "Frillish"
+  },
+  {
+    "form": "Female",
+    "max_cp": 2675,
+    "pokemon_id": 593,
+    "pokemon_name": "Jellicent"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2675,
+    "pokemon_id": 593,
+    "pokemon_name": "Jellicent"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2481,
+    "pokemon_id": 594,
+    "pokemon_name": "Alomomola"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1170,
+    "pokemon_id": 595,
+    "pokemon_name": "Joltik"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2523,
+    "pokemon_id": 596,
+    "pokemon_name": "Galvantula"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1076,
+    "pokemon_id": 597,
+    "pokemon_name": "Ferroseed"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2656,
+    "pokemon_id": 598,
+    "pokemon_name": "Ferrothorn"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1094,
+    "pokemon_id": 599,
+    "pokemon_name": "Klink"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2113,
+    "pokemon_id": 600,
+    "pokemon_name": "Klang"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3017,
+    "pokemon_id": 601,
+    "pokemon_name": "Klinklang"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 928,
+    "pokemon_id": 602,
+    "pokemon_name": "Tynamo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1962,
+    "pokemon_id": 603,
+    "pokemon_name": "Eelektrik"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3126,
+    "pokemon_id": 604,
+    "pokemon_name": "Eelektross"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1584,
+    "pokemon_id": 605,
+    "pokemon_name": "Elgyem"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3149,
+    "pokemon_id": 606,
+    "pokemon_name": "Beheeyem"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1151,
+    "pokemon_id": 607,
+    "pokemon_name": "Litwick"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1954,
+    "pokemon_id": 608,
+    "pokemon_name": "Lampent"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3739,
+    "pokemon_id": 609,
+    "pokemon_name": "Chandelure"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1566,
+    "pokemon_id": 610,
+    "pokemon_name": "Axew"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2556,
+    "pokemon_id": 611,
+    "pokemon_name": "Fraxure"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4110,
+    "pokemon_id": 612,
+    "pokemon_name": "Haxorus"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1223,
+    "pokemon_id": 613,
+    "pokemon_name": "Cubchoo"
+  },
+  {
+    "form": "Winter_2020",
+    "max_cp": 1223,
+    "pokemon_id": 613,
+    "pokemon_name": "Cubchoo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3480,
+    "pokemon_id": 614,
+    "pokemon_name": "Beartic"
+  },
+  {
+    "form": "Winter_2020",
+    "max_cp": 3480,
+    "pokemon_id": 614,
+    "pokemon_name": "Beartic"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3201,
+    "pokemon_id": 615,
+    "pokemon_name": "Cryogonal"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 954,
+    "pokemon_id": 616,
+    "pokemon_name": "Shelmet"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2793,
+    "pokemon_id": 617,
+    "pokemon_name": "Accelgor"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 2474,
+    "pokemon_id": 618,
+    "pokemon_name": "Stunfisk"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2474,
+    "pokemon_id": 618,
+    "pokemon_name": "Stunfisk"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1589,
+    "pokemon_id": 619,
+    "pokemon_name": "Mienfoo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3101,
+    "pokemon_id": 620,
+    "pokemon_name": "Mienshao"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3125,
+    "pokemon_id": 621,
+    "pokemon_name": "Druddigon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1360,
+    "pokemon_id": 622,
+    "pokemon_name": "Golett"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3265,
+    "pokemon_id": 623,
+    "pokemon_name": "Golurk"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1640,
+    "pokemon_id": 624,
+    "pokemon_name": "Pawniard"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3254,
+    "pokemon_id": 625,
+    "pokemon_name": "Bisharp"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3200,
+    "pokemon_id": 626,
+    "pokemon_name": "Bouffalant"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1706,
+    "pokemon_id": 627,
+    "pokemon_name": "Rufflet"
+  },
+  {
+    "form": "Hisuian",
+    "max_cp": 3219,
+    "pokemon_id": 628,
+    "pokemon_name": "Braviary"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3533,
+    "pokemon_id": 628,
+    "pokemon_name": "Braviary"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1455,
+    "pokemon_id": 629,
+    "pokemon_name": "Vullaby"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2446,
+    "pokemon_id": 630,
+    "pokemon_name": "Mandibuzz"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2740,
+    "pokemon_id": 631,
+    "pokemon_name": "Heatmor"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3043,
+    "pokemon_id": 632,
+    "pokemon_name": "Durant"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1214,
+    "pokemon_id": 633,
+    "pokemon_name": "Deino"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2104,
+    "pokemon_id": 634,
+    "pokemon_name": "Zweilous"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4147,
+    "pokemon_id": 635,
+    "pokemon_name": "Hydreigon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1712,
+    "pokemon_id": 636,
+    "pokemon_name": "Larvesta"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4155,
+    "pokemon_id": 637,
+    "pokemon_name": "Volcarona"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3457,
+    "pokemon_id": 638,
+    "pokemon_name": "Cobalion"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4231,
+    "pokemon_id": 639,
+    "pokemon_name": "Terrakion"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3457,
+    "pokemon_id": 640,
+    "pokemon_name": "Virizion"
+  },
+  {
+    "form": "Incarnate",
+    "max_cp": 3827,
+    "pokemon_id": 641,
+    "pokemon_name": "Tornadus"
+  },
+  {
+    "form": "Therian",
+    "max_cp": 3678,
+    "pokemon_id": 641,
+    "pokemon_name": "Tornadus"
+  },
+  {
+    "form": "Incarnate",
+    "max_cp": 3827,
+    "pokemon_id": 642,
+    "pokemon_name": "Thundurus"
+  },
+  {
+    "form": "Therian",
+    "max_cp": 4186,
+    "pokemon_id": 642,
+    "pokemon_name": "Thundurus"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4620,
+    "pokemon_id": 643,
+    "pokemon_name": "Reshiram"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4620,
+    "pokemon_id": 644,
+    "pokemon_name": "Zekrom"
+  },
+  {
+    "form": "Incarnate",
+    "max_cp": 4105,
+    "pokemon_id": 645,
+    "pokemon_name": "Landorus"
+  },
+  {
+    "form": "Therian",
+    "max_cp": 4487,
+    "pokemon_id": 645,
+    "pokemon_name": "Landorus"
+  },
+  {
+    "form": "Black",
+    "max_cp": 5268,
+    "pokemon_id": 646,
+    "pokemon_name": "Kyurem"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4090,
+    "pokemon_id": 646,
+    "pokemon_name": "Kyurem"
+  },
+  {
+    "form": "White",
+    "max_cp": 5268,
+    "pokemon_id": 646,
+    "pokemon_name": "Kyurem"
+  },
+  {
+    "form": "Ordinary",
+    "max_cp": 4231,
+    "pokemon_id": 647,
+    "pokemon_name": "Keldeo"
+  },
+  {
+    "form": "Resolute",
+    "max_cp": 4231,
+    "pokemon_id": 647,
+    "pokemon_name": "Keldeo"
+  },
+  {
+    "form": "Aria",
+    "max_cp": 4544,
+    "pokemon_id": 648,
+    "pokemon_name": "Meloetta"
+  },
+  {
+    "form": "Pirouette",
+    "max_cp": 4479,
+    "pokemon_id": 648,
+    "pokemon_name": "Meloetta"
+  },
+  {
+    "form": "Burn",
+    "max_cp": 3836,
+    "pokemon_id": 649,
+    "pokemon_name": "Genesect"
+  },
+  {
+    "form": "Chill",
+    "max_cp": 3836,
+    "pokemon_id": 649,
+    "pokemon_name": "Genesect"
+  },
+  {
+    "form": "Douse",
+    "max_cp": 3836,
+    "pokemon_id": 649,
+    "pokemon_name": "Genesect"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3836,
+    "pokemon_id": 649,
+    "pokemon_name": "Genesect"
+  },
+  {
+    "form": "Shock",
+    "max_cp": 3836,
+    "pokemon_id": 649,
+    "pokemon_name": "Genesect"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1254,
+    "pokemon_id": 650,
+    "pokemon_name": "Chespin"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1967,
+    "pokemon_id": 651,
+    "pokemon_name": "Quilladin"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3380,
+    "pokemon_id": 652,
+    "pokemon_name": "Chesnaught"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1176,
+    "pokemon_id": 653,
+    "pokemon_name": "Fennekin"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2074,
+    "pokemon_id": 654,
+    "pokemon_name": "Braixen"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3500,
+    "pokemon_id": 655,
+    "pokemon_name": "Delphox"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1135,
+    "pokemon_id": 656,
+    "pokemon_name": "Froakie"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1872,
+    "pokemon_id": 657,
+    "pokemon_name": "Frogadier"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3037,
+    "pokemon_id": 658,
+    "pokemon_name": "Greninja"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 633,
+    "pokemon_id": 659,
+    "pokemon_name": "Bunnelby"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1726,
+    "pokemon_id": 660,
+    "pokemon_name": "Diggersby"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 916,
+    "pokemon_id": 661,
+    "pokemon_name": "Fletchling"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1681,
+    "pokemon_id": 662,
+    "pokemon_name": "Fletchinder"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2522,
+    "pokemon_id": 663,
+    "pokemon_name": "Talonflame"
+  },
+  {
+    "form": "Archipelago",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Continental",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Elegant",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Fancy",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Garden",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "High_plains",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Icy_snow",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Jungle",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Marine",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Meadow",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Modern",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Monsoon",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Ocean",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Pokeball",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Polar",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "River",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Sandstorm",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Savanna",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Sun",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Tundra",
+    "max_cp": 563,
+    "pokemon_id": 664,
+    "pokemon_name": "Scatterbug"
+  },
+  {
+    "form": "Archipelago",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Continental",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Elegant",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Fancy",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Garden",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "High_plains",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Icy_snow",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Jungle",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Marine",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Meadow",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Modern",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Monsoon",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Ocean",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Pokeball",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Polar",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "River",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Sandstorm",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Savanna",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Sun",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Tundra",
+    "max_cp": 548,
+    "pokemon_id": 665,
+    "pokemon_name": "Spewpa"
+  },
+  {
+    "form": "Archipelago",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Continental",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Elegant",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Fancy",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Garden",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "High_plains",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Icy_snow",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Jungle",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Marine",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Meadow",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Modern",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Monsoon",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Ocean",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Pokeball",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Polar",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "River",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Sandstorm",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Savanna",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Sun",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Tundra",
+    "max_cp": 2122,
+    "pokemon_id": 666,
+    "pokemon_name": "Vivillon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1631,
+    "pokemon_id": 667,
+    "pokemon_name": "Litleo"
+  },
+  {
+    "form": "Female",
+    "max_cp": 3166,
+    "pokemon_id": 668,
+    "pokemon_name": "Pyroar"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3166,
+    "pokemon_id": 668,
+    "pokemon_name": "Pyroar"
+  },
+  {
+    "form": "Blue",
+    "max_cp": 1216,
+    "pokemon_id": 669,
+    "pokemon_name": "Flabebe"
+  },
+  {
+    "form": "Orange",
+    "max_cp": 1216,
+    "pokemon_id": 669,
+    "pokemon_name": "Flabebe"
+  },
+  {
+    "form": "Red",
+    "max_cp": 1216,
+    "pokemon_id": 669,
+    "pokemon_name": "Flabebe"
+  },
+  {
+    "form": "White",
+    "max_cp": 1216,
+    "pokemon_id": 669,
+    "pokemon_name": "Flabebe"
+  },
+  {
+    "form": "Yellow",
+    "max_cp": 1216,
+    "pokemon_id": 669,
+    "pokemon_name": "Flabebe"
+  },
+  {
+    "form": "Blue",
+    "max_cp": 1752,
+    "pokemon_id": 670,
+    "pokemon_name": "Floette"
+  },
+  {
+    "form": "Orange",
+    "max_cp": 1752,
+    "pokemon_id": 670,
+    "pokemon_name": "Floette"
+  },
+  {
+    "form": "Red",
+    "max_cp": 1752,
+    "pokemon_id": 670,
+    "pokemon_name": "Floette"
+  },
+  {
+    "form": "White",
+    "max_cp": 1752,
+    "pokemon_id": 670,
+    "pokemon_name": "Floette"
+  },
+  {
+    "form": "Yellow",
+    "max_cp": 1752,
+    "pokemon_id": 670,
+    "pokemon_name": "Floette"
+  },
+  {
+    "form": "Blue",
+    "max_cp": 3700,
+    "pokemon_id": 671,
+    "pokemon_name": "Florges"
+  },
+  {
+    "form": "Orange",
+    "max_cp": 3700,
+    "pokemon_id": 671,
+    "pokemon_name": "Florges"
+  },
+  {
+    "form": "Red",
+    "max_cp": 3700,
+    "pokemon_id": 671,
+    "pokemon_name": "Florges"
+  },
+  {
+    "form": "White",
+    "max_cp": 3700,
+    "pokemon_id": 671,
+    "pokemon_name": "Florges"
+  },
+  {
+    "form": "Yellow",
+    "max_cp": 3700,
+    "pokemon_id": 671,
+    "pokemon_name": "Florges"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1430,
+    "pokemon_id": 672,
+    "pokemon_name": "Skiddo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3201,
+    "pokemon_id": 673,
+    "pokemon_name": "Gogoat"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1703,
+    "pokemon_id": 674,
+    "pokemon_name": "Pancham"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3320,
+    "pokemon_id": 675,
+    "pokemon_name": "Pangoro"
+  },
+  {
+    "form": "Dandy",
+    "max_cp": 2415,
+    "pokemon_id": 676,
+    "pokemon_name": "Furfrou"
+  },
+  {
+    "form": "Debutante",
+    "max_cp": 2415,
+    "pokemon_id": 676,
+    "pokemon_name": "Furfrou"
+  },
+  {
+    "form": "Diamond",
+    "max_cp": 2415,
+    "pokemon_id": 676,
+    "pokemon_name": "Furfrou"
+  },
+  {
+    "form": "Heart",
+    "max_cp": 2415,
+    "pokemon_id": 676,
+    "pokemon_name": "Furfrou"
+  },
+  {
+    "form": "Kabuki",
+    "max_cp": 2415,
+    "pokemon_id": 676,
+    "pokemon_name": "Furfrou"
+  },
+  {
+    "form": "La_reine",
+    "max_cp": 2415,
+    "pokemon_id": 676,
+    "pokemon_name": "Furfrou"
+  },
+  {
+    "form": "Matron",
+    "max_cp": 2415,
+    "pokemon_id": 676,
+    "pokemon_name": "Furfrou"
+  },
+  {
+    "form": "Natural",
+    "max_cp": 2415,
+    "pokemon_id": 676,
+    "pokemon_name": "Furfrou"
+  },
+  {
+    "form": "Pharaoh",
+    "max_cp": 2415,
+    "pokemon_id": 676,
+    "pokemon_name": "Furfrou"
+  },
+  {
+    "form": "Star",
+    "max_cp": 2415,
+    "pokemon_id": 676,
+    "pokemon_name": "Furfrou"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1441,
+    "pokemon_id": 677,
+    "pokemon_name": "Espurr"
+  },
+  {
+    "form": "Female",
+    "max_cp": 2430,
+    "pokemon_id": 678,
+    "pokemon_name": "Meowstic"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2430,
+    "pokemon_id": 678,
+    "pokemon_name": "Meowstic"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1590,
+    "pokemon_id": 679,
+    "pokemon_name": "Honedge"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2794,
+    "pokemon_id": 680,
+    "pokemon_name": "Doublade"
+  },
+  {
+    "form": "Blade",
+    "max_cp": 2829,
+    "pokemon_id": 681,
+    "pokemon_name": "Aegislash"
+  },
+  {
+    "form": "Shield",
+    "max_cp": 1767,
+    "pokemon_id": 681,
+    "pokemon_name": "Aegislash"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1432,
+    "pokemon_id": 682,
+    "pokemon_name": "Spritzee"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2678,
+    "pokemon_id": 683,
+    "pokemon_name": "Aromatisse"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1349,
+    "pokemon_id": 684,
+    "pokemon_name": "Swirlix"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2516,
+    "pokemon_id": 685,
+    "pokemon_name": "Slurpuff"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1061,
+    "pokemon_id": 686,
+    "pokemon_name": "Inkay"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2698,
+    "pokemon_id": 687,
+    "pokemon_name": "Malamar"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1082,
+    "pokemon_id": 688,
+    "pokemon_name": "Binacle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3061,
+    "pokemon_id": 689,
+    "pokemon_name": "Barbaracle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1216,
+    "pokemon_id": 690,
+    "pokemon_name": "Skrelp"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2727,
+    "pokemon_id": 691,
+    "pokemon_name": "Dragalge"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1244,
+    "pokemon_id": 692,
+    "pokemon_name": "Clauncher"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3161,
+    "pokemon_id": 693,
+    "pokemon_name": "Clawitzer"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1067,
+    "pokemon_id": 694,
+    "pokemon_name": "Helioptile"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2974,
+    "pokemon_id": 695,
+    "pokemon_name": "Heliolisk"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1870,
+    "pokemon_id": 696,
+    "pokemon_name": "Tyrunt"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3579,
+    "pokemon_id": 697,
+    "pokemon_name": "Tyrantrum"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1560,
+    "pokemon_id": 698,
+    "pokemon_name": "Amaura"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3206,
+    "pokemon_id": 699,
+    "pokemon_name": "Aurorus"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3511,
+    "pokemon_id": 700,
+    "pokemon_name": "Sylveon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2757,
+    "pokemon_id": 701,
+    "pokemon_name": "Hawlucha"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2106,
+    "pokemon_id": 702,
+    "pokemon_name": "Dedenne"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1678,
+    "pokemon_id": 703,
+    "pokemon_name": "Carbink"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1116,
+    "pokemon_id": 704,
+    "pokemon_name": "Goomy"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2330,
+    "pokemon_id": 705,
+    "pokemon_name": "Sliggoo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4010,
+    "pokemon_id": 706,
+    "pokemon_name": "Goodra"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2230,
+    "pokemon_id": 707,
+    "pokemon_name": "Klefki"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1285,
+    "pokemon_id": 708,
+    "pokemon_name": "Phantump"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2928,
+    "pokemon_id": 709,
+    "pokemon_name": "Trevenant"
+  },
+  {
+    "form": "Average",
+    "max_cp": 1398,
+    "pokemon_id": 710,
+    "pokemon_name": "Pumpkaboo"
+  },
+  {
+    "form": "Large",
+    "max_cp": 1423,
+    "pokemon_id": 710,
+    "pokemon_name": "Pumpkaboo"
+  },
+  {
+    "form": "Small",
+    "max_cp": 1375,
+    "pokemon_id": 710,
+    "pokemon_name": "Pumpkaboo"
+  },
+  {
+    "form": "Super",
+    "max_cp": 1431,
+    "pokemon_id": 710,
+    "pokemon_name": "Pumpkaboo"
+  },
+  {
+    "form": "Average",
+    "max_cp": 2734,
+    "pokemon_id": 711,
+    "pokemon_name": "Gourgeist"
+  },
+  {
+    "form": "Large",
+    "max_cp": 2885,
+    "pokemon_id": 711,
+    "pokemon_name": "Gourgeist"
+  },
+  {
+    "form": "Small",
+    "max_cp": 2579,
+    "pokemon_id": 711,
+    "pokemon_name": "Gourgeist"
+  },
+  {
+    "form": "Super",
+    "max_cp": 3012,
+    "pokemon_id": 711,
+    "pokemon_name": "Gourgeist"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1390,
+    "pokemon_id": 712,
+    "pokemon_name": "Bergmite"
+  },
+  {
+    "form": "Hisuian",
+    "max_cp": 3955,
+    "pokemon_id": 713,
+    "pokemon_name": "Avalugg"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3659,
+    "pokemon_id": 713,
+    "pokemon_name": "Avalugg"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 763,
+    "pokemon_id": 714,
+    "pokemon_name": "Noibat"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3162,
+    "pokemon_id": 715,
+    "pokemon_name": "Noivern"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4326,
+    "pokemon_id": 716,
+    "pokemon_name": "Xerneas"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4326,
+    "pokemon_id": 717,
+    "pokemon_name": "Yveltal"
+  },
+  {
+    "form": "Complete",
+    "max_cp": 4258,
+    "pokemon_id": 718,
+    "pokemon_name": "Zygarde"
+  },
+  {
+    "form": "Complete_fifty_percent",
+    "max_cp": 3901,
+    "pokemon_id": 718,
+    "pokemon_name": "Zygarde"
+  },
+  {
+    "form": "Complete_ten_percent",
+    "max_cp": 2717,
+    "pokemon_id": 718,
+    "pokemon_name": "Zygarde"
+  },
+  {
+    "form": "Fifty_percent",
+    "max_cp": 3901,
+    "pokemon_id": 718,
+    "pokemon_name": "Zygarde"
+  },
+  {
+    "form": "Ten_percent",
+    "max_cp": 2717,
+    "pokemon_id": 718,
+    "pokemon_name": "Zygarde"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3127,
+    "pokemon_id": 719,
+    "pokemon_name": "Diancie"
+  },
+  {
+    "form": "Confined",
+    "max_cp": 3843,
+    "pokemon_id": 720,
+    "pokemon_name": "Hoopa"
+  },
+  {
+    "form": "Unbound",
+    "max_cp": 4584,
+    "pokemon_id": 720,
+    "pokemon_name": "Hoopa"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4151,
+    "pokemon_id": 721,
+    "pokemon_name": "Volcanion"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1210,
+    "pokemon_id": 722,
+    "pokemon_name": "Rowlet"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1973,
+    "pokemon_id": 723,
+    "pokemon_name": "Dartrix"
+  },
+  {
+    "form": "Hisuian",
+    "max_cp": 3314,
+    "pokemon_id": 724,
+    "pokemon_name": "Decidueye"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3174,
+    "pokemon_id": 724,
+    "pokemon_name": "Decidueye"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1184,
+    "pokemon_id": 725,
+    "pokemon_name": "Litten"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1957,
+    "pokemon_id": 726,
+    "pokemon_name": "Torracat"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3427,
+    "pokemon_id": 727,
+    "pokemon_name": "Incineroar"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1291,
+    "pokemon_id": 728,
+    "pokemon_name": "Popplio"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2156,
+    "pokemon_id": 729,
+    "pokemon_name": "Brionne"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3661,
+    "pokemon_id": 730,
+    "pokemon_name": "Primarina"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1041,
+    "pokemon_id": 731,
+    "pokemon_name": "Pikipek"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1691,
+    "pokemon_id": 732,
+    "pokemon_name": "Trumbeak"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3076,
+    "pokemon_id": 733,
+    "pokemon_name": "Toucannon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1006,
+    "pokemon_id": 734,
+    "pokemon_name": "Yungoos"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2500,
+    "pokemon_id": 735,
+    "pokemon_name": "Gumshoos"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1126,
+    "pokemon_id": 736,
+    "pokemon_name": "Grubbin"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1942,
+    "pokemon_id": 737,
+    "pokemon_name": "Charjabug"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3566,
+    "pokemon_id": 738,
+    "pokemon_name": "Vikavolt"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1559,
+    "pokemon_id": 739,
+    "pokemon_name": "Crabrawler"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3325,
+    "pokemon_id": 740,
+    "pokemon_name": "Crabominable"
+  },
+  {
+    "form": "Baile",
+    "max_cp": 2669,
+    "pokemon_id": 741,
+    "pokemon_name": "Oricorio"
+  },
+  {
+    "form": "Pau",
+    "max_cp": 2669,
+    "pokemon_id": 741,
+    "pokemon_name": "Oricorio"
+  },
+  {
+    "form": "Pompom",
+    "max_cp": 2669,
+    "pokemon_id": 741,
+    "pokemon_name": "Oricorio"
+  },
+  {
+    "form": "Sensu",
+    "max_cp": 2669,
+    "pokemon_id": 741,
+    "pokemon_name": "Oricorio"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1016,
+    "pokemon_id": 742,
+    "pokemon_name": "Cutiefly"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2517,
+    "pokemon_id": 743,
+    "pokemon_name": "Ribombee"
+  },
+  {
+    "form": "Dusk",
+    "max_cp": 1087,
+    "pokemon_id": 744,
+    "pokemon_name": "Rockruff"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1087,
+    "pokemon_id": 744,
+    "pokemon_name": "Rockruff"
+  },
+  {
+    "form": "Dusk",
+    "max_cp": 3091,
+    "pokemon_id": 745,
+    "pokemon_name": "Lycanroc"
+  },
+  {
+    "form": "Midday",
+    "max_cp": 3063,
+    "pokemon_id": 745,
+    "pokemon_name": "Lycanroc"
+  },
+  {
+    "form": "Midnight",
+    "max_cp": 3139,
+    "pokemon_id": 745,
+    "pokemon_name": "Lycanroc"
+  },
+  {
+    "form": "School",
+    "max_cp": 3698,
+    "pokemon_id": 746,
+    "pokemon_name": "Wishiwashi"
+  },
+  {
+    "form": "Solo",
+    "max_cp": 396,
+    "pokemon_id": 746,
+    "pokemon_name": "Wishiwashi"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1112,
+    "pokemon_id": 747,
+    "pokemon_name": "Mareanie"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1928,
+    "pokemon_id": 748,
+    "pokemon_name": "Toxapex"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2165,
+    "pokemon_id": 749,
+    "pokemon_name": "Mudbray"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3484,
+    "pokemon_id": 750,
+    "pokemon_name": "Mudsdale"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 817,
+    "pokemon_id": 751,
+    "pokemon_name": "Dewpider"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2090,
+    "pokemon_id": 752,
+    "pokemon_name": "Araquanid"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 848,
+    "pokemon_id": 753,
+    "pokemon_name": "Fomantis"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2743,
+    "pokemon_id": 754,
+    "pokemon_name": "Lurantis"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1182,
+    "pokemon_id": 755,
+    "pokemon_name": "Morelull"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2129,
+    "pokemon_id": 756,
+    "pokemon_name": "Shiinotic"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1283,
+    "pokemon_id": 757,
+    "pokemon_name": "Salandit"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2836,
+    "pokemon_id": 758,
+    "pokemon_name": "Salazzle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1547,
+    "pokemon_id": 759,
+    "pokemon_name": "Stufful"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3566,
+    "pokemon_id": 760,
+    "pokemon_name": "Bewear"
+  },
+  {
+    "form": "Wildarea_2025",
+    "max_cp": 3566,
+    "pokemon_id": 760,
+    "pokemon_name": "Bewear"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 538,
+    "pokemon_id": 761,
+    "pokemon_name": "Bounsweet"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 866,
+    "pokemon_id": 762,
+    "pokemon_name": "Steenee"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3391,
+    "pokemon_id": 763,
+    "pokemon_name": "Tsareena"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2420,
+    "pokemon_id": 764,
+    "pokemon_name": "Comfey"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2803,
+    "pokemon_id": 765,
+    "pokemon_name": "Oranguru"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3470,
+    "pokemon_id": 766,
+    "pokemon_name": "Passimian"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 574,
+    "pokemon_id": 767,
+    "pokemon_name": "Wimpod"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3618,
+    "pokemon_id": 768,
+    "pokemon_name": "Golisopod"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1411,
+    "pokemon_id": 769,
+    "pokemon_name": "Sandygast"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2796,
+    "pokemon_id": 770,
+    "pokemon_name": "Palossand"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1569,
+    "pokemon_id": 771,
+    "pokemon_name": "Pyukumuku"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3048,
+    "pokemon_id": 772,
+    "pokemon_name": "Type: Null"
+  },
+  {
+    "form": "Bug",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Dark",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Dragon",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Electric",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Fairy",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Fighting",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Fire",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Flying",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Ghost",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Grass",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Ground",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Ice",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Poison",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Psychic",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Rock",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Steel",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Water",
+    "max_cp": 3375,
+    "pokemon_id": 773,
+    "pokemon_name": "Silvally"
+  },
+  {
+    "form": "Blue",
+    "max_cp": 2622,
+    "pokemon_id": 774,
+    "pokemon_name": "Minior"
+  },
+  {
+    "form": "Green",
+    "max_cp": 2622,
+    "pokemon_id": 774,
+    "pokemon_name": "Minior"
+  },
+  {
+    "form": "Indigo",
+    "max_cp": 2622,
+    "pokemon_id": 774,
+    "pokemon_name": "Minior"
+  },
+  {
+    "form": "Orange",
+    "max_cp": 2622,
+    "pokemon_id": 774,
+    "pokemon_name": "Minior"
+  },
+  {
+    "form": "Red",
+    "max_cp": 2622,
+    "pokemon_id": 774,
+    "pokemon_name": "Minior"
+  },
+  {
+    "form": "Violet",
+    "max_cp": 2622,
+    "pokemon_id": 774,
+    "pokemon_name": "Minior"
+  },
+  {
+    "form": "Yellow",
+    "max_cp": 2622,
+    "pokemon_id": 774,
+    "pokemon_name": "Minior"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2954,
+    "pokemon_id": 775,
+    "pokemon_name": "Komala"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2543,
+    "pokemon_id": 776,
+    "pokemon_name": "Turtonator"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2471,
+    "pokemon_id": 777,
+    "pokemon_name": "Togedemaru"
+  },
+  {
+    "form": "Busted",
+    "max_cp": 2546,
+    "pokemon_id": 778,
+    "pokemon_name": "Mimikyu"
+  },
+  {
+    "form": "Disguised",
+    "max_cp": 2546,
+    "pokemon_id": 778,
+    "pokemon_name": "Mimikyu"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2733,
+    "pokemon_id": 779,
+    "pokemon_name": "Bruxish"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3334,
+    "pokemon_id": 780,
+    "pokemon_name": "Drampa"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3375,
+    "pokemon_id": 781,
+    "pokemon_name": "Dhelmise"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1108,
+    "pokemon_id": 782,
+    "pokemon_name": "Jangmo-o"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1929,
+    "pokemon_id": 783,
+    "pokemon_name": "Hakamo-o"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3785,
+    "pokemon_id": 784,
+    "pokemon_name": "Kommo-o"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3625,
+    "pokemon_id": 785,
+    "pokemon_name": "Tapu Koko"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3998,
+    "pokemon_id": 786,
+    "pokemon_name": "Tapu Lele"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3912,
+    "pokemon_id": 787,
+    "pokemon_name": "Tapu Bulu"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3269,
+    "pokemon_id": 788,
+    "pokemon_name": "Tapu Fini"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 494,
+    "pokemon_id": 789,
+    "pokemon_name": "Cosmog"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 935,
+    "pokemon_id": 790,
+    "pokemon_name": "Cosmoem"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4625,
+    "pokemon_id": 791,
+    "pokemon_name": "Solgaleo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4625,
+    "pokemon_id": 792,
+    "pokemon_name": "Lunala"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4518,
+    "pokemon_id": 793,
+    "pokemon_name": "Nihilego"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3959,
+    "pokemon_id": 794,
+    "pokemon_name": "Buzzwole"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3251,
+    "pokemon_id": 795,
+    "pokemon_name": "Pheromosa"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4504,
+    "pokemon_id": 796,
+    "pokemon_name": "Xurkitree"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3549,
+    "pokemon_id": 797,
+    "pokemon_name": "Celesteela"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4206,
+    "pokemon_id": 798,
+    "pokemon_name": "Kartana"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3303,
+    "pokemon_id": 799,
+    "pokemon_name": "Guzzlord"
+  },
+  {
+    "form": "Dawn_wings",
+    "max_cp": 4689,
+    "pokemon_id": 800,
+    "pokemon_name": "Necrozma"
+  },
+  {
+    "form": "Dusk_mane",
+    "max_cp": 4689,
+    "pokemon_id": 800,
+    "pokemon_name": "Necrozma"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4213,
+    "pokemon_id": 800,
+    "pokemon_name": "Necrozma"
+  },
+  {
+    "form": "Ultra",
+    "max_cp": 5357,
+    "pokemon_id": 800,
+    "pokemon_name": "Necrozma"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4136,
+    "pokemon_id": 801,
+    "pokemon_name": "Magearna"
+  },
+  {
+    "form": "Original_color",
+    "max_cp": 4136,
+    "pokemon_id": 801,
+    "pokemon_name": "Magearna"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4268,
+    "pokemon_id": 802,
+    "pokemon_name": "Marshadow"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1876,
+    "pokemon_id": 803,
+    "pokemon_name": "Poipole"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3630,
+    "pokemon_id": 804,
+    "pokemon_name": "Naganadel"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3769,
+    "pokemon_id": 805,
+    "pokemon_name": "Stakataka"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3772,
+    "pokemon_id": 806,
+    "pokemon_name": "Blacephalon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3912,
+    "pokemon_id": 807,
+    "pokemon_name": "Zeraora"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1221,
+    "pokemon_id": 808,
+    "pokemon_name": "Meltan"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4118,
+    "pokemon_id": 809,
+    "pokemon_name": "Melmetal"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1242,
+    "pokemon_id": 810,
+    "pokemon_name": "Grookey"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2146,
+    "pokemon_id": 811,
+    "pokemon_name": "Thwackey"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3803,
+    "pokemon_id": 812,
+    "pokemon_name": "Rillaboom"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1255,
+    "pokemon_id": 813,
+    "pokemon_name": "Scorbunny"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2086,
+    "pokemon_id": 814,
+    "pokemon_name": "Raboot"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3453,
+    "pokemon_id": 815,
+    "pokemon_name": "Cinderace"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1255,
+    "pokemon_id": 816,
+    "pokemon_name": "Sobble"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2167,
+    "pokemon_id": 817,
+    "pokemon_name": "Drizzile"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3391,
+    "pokemon_id": 818,
+    "pokemon_name": "Inteleon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1080,
+    "pokemon_id": 819,
+    "pokemon_name": "Skwovet"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2711,
+    "pokemon_id": 820,
+    "pokemon_name": "Greedent"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 762,
+    "pokemon_id": 821,
+    "pokemon_name": "Rookidee"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1560,
+    "pokemon_id": 822,
+    "pokemon_name": "Corvisquire"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2811,
+    "pokemon_id": 823,
+    "pokemon_name": "Corviknight"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 410,
+    "pokemon_id": 824,
+    "pokemon_name": "Blipbug"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1178,
+    "pokemon_id": 825,
+    "pokemon_name": "Dottler"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2543,
+    "pokemon_id": 826,
+    "pokemon_name": "Orbeetle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 817,
+    "pokemon_id": 827,
+    "pokemon_name": "Nickit"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2444,
+    "pokemon_id": 828,
+    "pokemon_name": "Thievul"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 769,
+    "pokemon_id": 829,
+    "pokemon_name": "Gossifleur"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2282,
+    "pokemon_id": 830,
+    "pokemon_name": "Eldegoss"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 808,
+    "pokemon_id": 831,
+    "pokemon_name": "Wooloo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2507,
+    "pokemon_id": 832,
+    "pokemon_name": "Dubwool"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1136,
+    "pokemon_id": 833,
+    "pokemon_name": "Chewtle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3247,
+    "pokemon_id": 834,
+    "pokemon_name": "Drednaw"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 901,
+    "pokemon_id": 835,
+    "pokemon_name": "Yamper"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2489,
+    "pokemon_id": 836,
+    "pokemon_name": "Boltund"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 700,
+    "pokemon_id": 837,
+    "pokemon_name": "Rolycoly"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1730,
+    "pokemon_id": 838,
+    "pokemon_name": "Carkol"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2691,
+    "pokemon_id": 839,
+    "pokemon_name": "Coalossal"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 817,
+    "pokemon_id": 840,
+    "pokemon_name": "Applin"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2821,
+    "pokemon_id": 841,
+    "pokemon_name": "Flapple"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2805,
+    "pokemon_id": 842,
+    "pokemon_name": "Appletun"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1237,
+    "pokemon_id": 843,
+    "pokemon_name": "Silicobra"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3192,
+    "pokemon_id": 844,
+    "pokemon_name": "Sandaconda"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2450,
+    "pokemon_id": 845,
+    "pokemon_name": "Cramorant"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1033,
+    "pokemon_id": 846,
+    "pokemon_name": "Arrokuda"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3039,
+    "pokemon_id": 847,
+    "pokemon_name": "Barraskewda"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 831,
+    "pokemon_id": 848,
+    "pokemon_name": "Toxel"
+  },
+  {
+    "form": "Amped",
+    "max_cp": 2976,
+    "pokemon_id": 849,
+    "pokemon_name": "Toxtricity"
+  },
+  {
+    "form": "Low_key",
+    "max_cp": 2976,
+    "pokemon_id": 849,
+    "pokemon_name": "Toxtricity"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1200,
+    "pokemon_id": 850,
+    "pokemon_name": "Sizzlipede"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3421,
+    "pokemon_id": 851,
+    "pokemon_name": "Centiskorch"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1301,
+    "pokemon_id": 852,
+    "pokemon_name": "Clobbopus"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3048,
+    "pokemon_id": 853,
+    "pokemon_name": "Grapploct"
+  },
+  {
+    "form": "Antique",
+    "max_cp": 1303,
+    "pokemon_id": 854,
+    "pokemon_name": "Sinistea"
+  },
+  {
+    "form": "Phony",
+    "max_cp": 1303,
+    "pokemon_id": 854,
+    "pokemon_name": "Sinistea"
+  },
+  {
+    "form": "Antique",
+    "max_cp": 3499,
+    "pokemon_id": 855,
+    "pokemon_name": "Polteageist"
+  },
+  {
+    "form": "Phony",
+    "max_cp": 3499,
+    "pokemon_id": 855,
+    "pokemon_name": "Polteageist"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 985,
+    "pokemon_id": 856,
+    "pokemon_name": "Hatenna"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1870,
+    "pokemon_id": 857,
+    "pokemon_name": "Hattrem"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3236,
+    "pokemon_id": 858,
+    "pokemon_name": "Hatterene"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 924,
+    "pokemon_id": 859,
+    "pokemon_name": "Impidimp"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1649,
+    "pokemon_id": 860,
+    "pokemon_name": "Morgrem"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3261,
+    "pokemon_id": 861,
+    "pokemon_name": "Grimmsnarl"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 3034,
+    "pokemon_id": 862,
+    "pokemon_name": "Obstagoon"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 2729,
+    "pokemon_id": 863,
+    "pokemon_name": "Perrserker"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3504,
+    "pokemon_id": 864,
+    "pokemon_name": "Cursola"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 3415,
+    "pokemon_id": 865,
+    "pokemon_name": "Sirfetch’d"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 3234,
+    "pokemon_id": 866,
+    "pokemon_name": "Mr. Rime"
+  },
+  {
+    "form": "Galarian",
+    "max_cp": 2601,
+    "pokemon_id": 867,
+    "pokemon_name": "Runerigus"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 949,
+    "pokemon_id": 868,
+    "pokemon_name": "Milcery"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3068,
+    "pokemon_id": 869,
+    "pokemon_name": "Alcremie"
+  },
+  {
+    "form": "Gofest_2025_train_conductor",
+    "max_cp": 2696,
+    "pokemon_id": 870,
+    "pokemon_name": "Falinks"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2696,
+    "pokemon_id": 870,
+    "pokemon_name": "Falinks"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2210,
+    "pokemon_id": 871,
+    "pokemon_name": "Pincurchin"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 605,
+    "pokemon_id": 872,
+    "pokemon_name": "Snom"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3121,
+    "pokemon_id": 873,
+    "pokemon_name": "Frosmoth"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3682,
+    "pokemon_id": 874,
+    "pokemon_name": "Stonjourner"
+  },
+  {
+    "form": "Ice",
+    "max_cp": 2362,
+    "pokemon_id": 875,
+    "pokemon_name": "Eiscue"
+  },
+  {
+    "form": "Noice",
+    "max_cp": 2333,
+    "pokemon_id": 875,
+    "pokemon_name": "Eiscue"
+  },
+  {
+    "form": "Female",
+    "max_cp": 2742,
+    "pokemon_id": 876,
+    "pokemon_name": "Indeedee"
+  },
+  {
+    "form": "Male",
+    "max_cp": 2795,
+    "pokemon_id": 876,
+    "pokemon_name": "Indeedee"
+  },
+  {
+    "form": "Full_belly",
+    "max_cp": 2222,
+    "pokemon_id": 877,
+    "pokemon_name": "Morpeko"
+  },
+  {
+    "form": "Hangry",
+    "max_cp": 2222,
+    "pokemon_id": 877,
+    "pokemon_name": "Morpeko"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1575,
+    "pokemon_id": 878,
+    "pokemon_name": "Cufant"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3409,
+    "pokemon_id": 879,
+    "pokemon_name": "Copperajah"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2999,
+    "pokemon_id": 880,
+    "pokemon_name": "Dracozolt"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2936,
+    "pokemon_id": 881,
+    "pokemon_name": "Arctozolt"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2860,
+    "pokemon_id": 882,
+    "pokemon_name": "Dracovish"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2800,
+    "pokemon_id": 883,
+    "pokemon_name": "Arctovish"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3509,
+    "pokemon_id": 884,
+    "pokemon_name": "Duraludon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 877,
+    "pokemon_id": 885,
+    "pokemon_name": "Dreepy"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1889,
+    "pokemon_id": 886,
+    "pokemon_name": "Drakloak"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4041,
+    "pokemon_id": 887,
+    "pokemon_name": "Dragapult"
+  },
+  {
+    "form": "Crowned_sword",
+    "max_cp": 5696,
+    "pokemon_id": 888,
+    "pokemon_name": "Zacian"
+  },
+  {
+    "form": "Hero",
+    "max_cp": 4381,
+    "pokemon_id": 888,
+    "pokemon_name": "Zacian"
+  },
+  {
+    "form": "Crowned_shield",
+    "max_cp": 4773,
+    "pokemon_id": 889,
+    "pokemon_name": "Zamazenta"
+  },
+  {
+    "form": "Hero",
+    "max_cp": 4381,
+    "pokemon_id": 889,
+    "pokemon_name": "Zamazenta"
+  },
+  {
+    "form": "Eternamax",
+    "max_cp": 9366,
+    "pokemon_id": 890,
+    "pokemon_name": "Eternatus"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 5067,
+    "pokemon_id": 890,
+    "pokemon_name": "Eternatus"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1942,
+    "pokemon_id": 891,
+    "pokemon_name": "Kubfu"
+  },
+  {
+    "form": "Rapid_strike",
+    "max_cp": 4126,
+    "pokemon_id": 892,
+    "pokemon_name": "Urshifu"
+  },
+  {
+    "form": "Single_strike",
+    "max_cp": 4126,
+    "pokemon_id": 892,
+    "pokemon_name": "Urshifu"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4385,
+    "pokemon_id": 893,
+    "pokemon_name": "Zarude"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3207,
+    "pokemon_id": 894,
+    "pokemon_name": "Regieleki"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3402,
+    "pokemon_id": 895,
+    "pokemon_name": "Regidrago"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4457,
+    "pokemon_id": 896,
+    "pokemon_name": "Glastrier"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3872,
+    "pokemon_id": 897,
+    "pokemon_name": "Spectrier"
+  },
+  {
+    "form": "Ice_rider",
+    "max_cp": 4845,
+    "pokemon_id": 898,
+    "pokemon_name": "Calyrex"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2606,
+    "pokemon_id": 898,
+    "pokemon_name": "Calyrex"
+  },
+  {
+    "form": "Shadow_rider",
+    "max_cp": 5194,
+    "pokemon_id": 898,
+    "pokemon_name": "Calyrex"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3126,
+    "pokemon_id": 899,
+    "pokemon_name": "Wyrdeer"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3600,
+    "pokemon_id": 900,
+    "pokemon_name": "Kleavor"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4410,
+    "pokemon_id": 901,
+    "pokemon_name": "Ursaluna"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3686,
+    "pokemon_id": 903,
+    "pokemon_name": "Sneasler"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3370,
+    "pokemon_id": 904,
+    "pokemon_name": "Overqwil"
+  },
+  {
+    "form": "Incarnate",
+    "max_cp": 3919,
+    "pokemon_id": 905,
+    "pokemon_name": "Enamorus"
+  },
+  {
+    "form": "Therian",
+    "max_cp": 3876,
+    "pokemon_id": 905,
+    "pokemon_name": "Enamorus"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1161,
+    "pokemon_id": 906,
+    "pokemon_name": "Sprigatito"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1921,
+    "pokemon_id": 907,
+    "pokemon_name": "Floragato"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3231,
+    "pokemon_id": 908,
+    "pokemon_name": "Meowscarada"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1289,
+    "pokemon_id": 909,
+    "pokemon_name": "Fuecoco"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2215,
+    "pokemon_id": 910,
+    "pokemon_name": "Crocalor"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3463,
+    "pokemon_id": 911,
+    "pokemon_name": "Skeledirge"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1230,
+    "pokemon_id": 912,
+    "pokemon_name": "Quaxly"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2031,
+    "pokemon_id": 913,
+    "pokemon_name": "Quaxwell"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3452,
+    "pokemon_id": 914,
+    "pokemon_name": "Quaquaval"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 838,
+    "pokemon_id": 915,
+    "pokemon_name": "Lechonk"
+  },
+  {
+    "form": "Female",
+    "max_cp": 2852,
+    "pokemon_id": 916,
+    "pokemon_name": "Oinkologne"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2984,
+    "pokemon_id": 916,
+    "pokemon_name": "Oinkologne"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 653,
+    "pokemon_id": 917,
+    "pokemon_name": "Tarountula"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1930,
+    "pokemon_id": 918,
+    "pokemon_name": "Spidops"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 677,
+    "pokemon_id": 919,
+    "pokemon_name": "Nymble"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2650,
+    "pokemon_id": 920,
+    "pokemon_name": "Lokix"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 728,
+    "pokemon_id": 921,
+    "pokemon_name": "Pawmi"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1486,
+    "pokemon_id": 922,
+    "pokemon_name": "Pawmo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3014,
+    "pokemon_id": 923,
+    "pokemon_name": "Pawmot"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1020,
+    "pokemon_id": 924,
+    "pokemon_name": "Tandemaus"
+  },
+  {
+    "form": "Family_of_four",
+    "max_cp": 2271,
+    "pokemon_id": 925,
+    "pokemon_name": "Maushold"
+  },
+  {
+    "form": "Family_of_three",
+    "max_cp": 2271,
+    "pokemon_id": 925,
+    "pokemon_name": "Maushold"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1127,
+    "pokemon_id": 926,
+    "pokemon_name": "Fidough"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2398,
+    "pokemon_id": 927,
+    "pokemon_name": "Dachsbun"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 977,
+    "pokemon_id": 928,
+    "pokemon_name": "Smoliv"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1639,
+    "pokemon_id": 929,
+    "pokemon_name": "Dolliv"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3385,
+    "pokemon_id": 930,
+    "pokemon_name": "Arboliva"
+  },
+  {
+    "form": "Blue",
+    "max_cp": 2257,
+    "pokemon_id": 931,
+    "pokemon_name": "Squawkabilly"
+  },
+  {
+    "form": "Green",
+    "max_cp": 2257,
+    "pokemon_id": 931,
+    "pokemon_name": "Squawkabilly"
+  },
+  {
+    "form": "White",
+    "max_cp": 2257,
+    "pokemon_id": 931,
+    "pokemon_name": "Squawkabilly"
+  },
+  {
+    "form": "Yellow",
+    "max_cp": 2257,
+    "pokemon_id": 931,
+    "pokemon_name": "Squawkabilly"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1106,
+    "pokemon_id": 932,
+    "pokemon_name": "Nacli"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1478,
+    "pokemon_id": 933,
+    "pokemon_name": "Naclstack"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3102,
+    "pokemon_id": 934,
+    "pokemon_name": "Garganacl"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 838,
+    "pokemon_id": 935,
+    "pokemon_name": "Charcadet"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3672,
+    "pokemon_id": 936,
+    "pokemon_name": "Armarouge"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3629,
+    "pokemon_id": 937,
+    "pokemon_name": "Ceruledge"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1043,
+    "pokemon_id": 938,
+    "pokemon_name": "Tadbulb"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3046,
+    "pokemon_id": 939,
+    "pokemon_name": "Bellibolt"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 945,
+    "pokemon_id": 940,
+    "pokemon_name": "Wattrel"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2795,
+    "pokemon_id": 941,
+    "pokemon_name": "Kilowattrel"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1601,
+    "pokemon_id": 942,
+    "pokemon_name": "Maschiff"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3390,
+    "pokemon_id": 943,
+    "pokemon_name": "Mabosstiff"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1063,
+    "pokemon_id": 944,
+    "pokemon_name": "Shroodle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2590,
+    "pokemon_id": 945,
+    "pokemon_name": "Grafaiai"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1003,
+    "pokemon_id": 946,
+    "pokemon_name": "Bramblin"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2778,
+    "pokemon_id": 947,
+    "pokemon_name": "Brambleghast"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1190,
+    "pokemon_id": 948,
+    "pokemon_name": "Toedscool"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2771,
+    "pokemon_id": 949,
+    "pokemon_name": "Toedscruel"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2749,
+    "pokemon_id": 950,
+    "pokemon_name": "Klawf"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1117,
+    "pokemon_id": 951,
+    "pokemon_name": "Capsakid"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2651,
+    "pokemon_id": 952,
+    "pokemon_name": "Scovillain"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 933,
+    "pokemon_id": 953,
+    "pokemon_name": "Rellor"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3001,
+    "pokemon_id": 954,
+    "pokemon_name": "Rabsca"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 803,
+    "pokemon_id": 955,
+    "pokemon_name": "Flittle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2834,
+    "pokemon_id": 956,
+    "pokemon_name": "Espathra"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 984,
+    "pokemon_id": 957,
+    "pokemon_name": "Tinkatink"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1495,
+    "pokemon_id": 958,
+    "pokemon_name": "Tinkatuff"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2575,
+    "pokemon_id": 959,
+    "pokemon_name": "Tinkaton"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 656,
+    "pokemon_id": 960,
+    "pokemon_name": "Wiglett"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2168,
+    "pokemon_id": 961,
+    "pokemon_name": "Wugtrio"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2846,
+    "pokemon_id": 962,
+    "pokemon_name": "Bombirdier"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 999,
+    "pokemon_id": 963,
+    "pokemon_name": "Finizen"
+  },
+  {
+    "form": "Hero",
+    "max_cp": 5418,
+    "pokemon_id": 964,
+    "pokemon_name": "Palafin"
+  },
+  {
+    "form": "Zero",
+    "max_cp": 2205,
+    "pokemon_id": 964,
+    "pokemon_name": "Palafin"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1302,
+    "pokemon_id": 965,
+    "pokemon_name": "Varoom"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3376,
+    "pokemon_id": 966,
+    "pokemon_name": "Revavroom"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2693,
+    "pokemon_id": 967,
+    "pokemon_name": "Cyclizar"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2630,
+    "pokemon_id": 968,
+    "pokemon_name": "Orthworm"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1921,
+    "pokemon_id": 969,
+    "pokemon_name": "Glimmet"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3744,
+    "pokemon_id": 970,
+    "pokemon_name": "Glimmora"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1162,
+    "pokemon_id": 971,
+    "pokemon_name": "Greavard"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2876,
+    "pokemon_id": 972,
+    "pokemon_name": "Houndstone"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3154,
+    "pokemon_id": 973,
+    "pokemon_name": "Flamigo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1487,
+    "pokemon_id": 974,
+    "pokemon_name": "Cetoddle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3561,
+    "pokemon_id": 975,
+    "pokemon_name": "Cetitan"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2787,
+    "pokemon_id": 976,
+    "pokemon_name": "Veluza"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3428,
+    "pokemon_id": 977,
+    "pokemon_name": "Dondozo"
+  },
+  {
+    "form": "Curly",
+    "max_cp": 3142,
+    "pokemon_id": 978,
+    "pokemon_name": "Tatsugiri"
+  },
+  {
+    "form": "Droopy",
+    "max_cp": 3142,
+    "pokemon_id": 978,
+    "pokemon_name": "Tatsugiri"
+  },
+  {
+    "form": "Stretchy",
+    "max_cp": 3142,
+    "pokemon_id": 978,
+    "pokemon_name": "Tatsugiri"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3739,
+    "pokemon_id": 979,
+    "pokemon_name": "Annihilape"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2233,
+    "pokemon_id": 980,
+    "pokemon_name": "Clodsire"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3261,
+    "pokemon_id": 981,
+    "pokemon_name": "Farigiraf"
+  },
+  {
+    "form": "Three",
+    "max_cp": 3134,
+    "pokemon_id": 982,
+    "pokemon_name": "Dudunsparce"
+  },
+  {
+    "form": "Two",
+    "max_cp": 3134,
+    "pokemon_id": 982,
+    "pokemon_name": "Dudunsparce"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4135,
+    "pokemon_id": 983,
+    "pokemon_name": "Kingambit"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4604,
+    "pokemon_id": 984,
+    "pokemon_name": "Great Tusk"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2831,
+    "pokemon_id": 985,
+    "pokemon_name": "Scream Tail"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4066,
+    "pokemon_id": 986,
+    "pokemon_name": "Brute Bonnet"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4228,
+    "pokemon_id": 987,
+    "pokemon_name": "Flutter Mane"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4150,
+    "pokemon_id": 988,
+    "pokemon_name": "Slither Wing"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3914,
+    "pokemon_id": 989,
+    "pokemon_name": "Sandy Shocks"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3915,
+    "pokemon_id": 990,
+    "pokemon_name": "Iron Treads"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3853,
+    "pokemon_id": 991,
+    "pokemon_name": "Iron Bundle"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4704,
+    "pokemon_id": 992,
+    "pokemon_name": "Iron Hands"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3975,
+    "pokemon_id": 993,
+    "pokemon_name": "Iron Jugulis"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4398,
+    "pokemon_id": 994,
+    "pokemon_name": "Iron Moth"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4301,
+    "pokemon_id": 995,
+    "pokemon_name": "Iron Thorns"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1427,
+    "pokemon_id": 996,
+    "pokemon_name": "Frigibax"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2393,
+    "pokemon_id": 997,
+    "pokemon_name": "Arctibax"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4061,
+    "pokemon_id": 998,
+    "pokemon_name": "Baxcalibur"
+  },
+  {
+    "form": "Coin_a1",
+    "max_cp": 1263,
+    "pokemon_id": 999,
+    "pokemon_name": "Gimmighoul"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 1263,
+    "pokemon_id": 999,
+    "pokemon_name": "Gimmighoul"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4023,
+    "pokemon_id": 1000,
+    "pokemon_name": "Gholdengo"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3360,
+    "pokemon_id": 1001,
+    "pokemon_name": "Wo-Chien"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3809,
+    "pokemon_id": 1002,
+    "pokemon_name": "Chien-Pao"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4041,
+    "pokemon_id": 1003,
+    "pokemon_name": "Ting-Lu"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3955,
+    "pokemon_id": 1004,
+    "pokemon_name": "Chi-Yu"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4821,
+    "pokemon_id": 1005,
+    "pokemon_name": "Roaring Moon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3990,
+    "pokemon_id": 1006,
+    "pokemon_name": "Iron Valiant"
+  },
+  {
+    "form": "Apex",
+    "max_cp": 4545,
+    "pokemon_id": 1007,
+    "pokemon_name": "Koraidon"
+  },
+  {
+    "form": "Ultimate",
+    "max_cp": 4545,
+    "pokemon_id": 1008,
+    "pokemon_name": "Miraidon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3568,
+    "pokemon_id": 1009,
+    "pokemon_name": "Walking Wake"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3703,
+    "pokemon_id": 1010,
+    "pokemon_name": "Iron Leaves"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2713,
+    "pokemon_id": 1011,
+    "pokemon_name": "Dipplin"
+  },
+  {
+    "form": "Artisan",
+    "max_cp": 1303,
+    "pokemon_id": 1012,
+    "pokemon_name": "Poltchageist"
+  },
+  {
+    "form": "Counterfeit",
+    "max_cp": 1303,
+    "pokemon_id": 1012,
+    "pokemon_name": "Poltchageist"
+  },
+  {
+    "form": "Masterpiece",
+    "max_cp": 3383,
+    "pokemon_id": 1013,
+    "pokemon_name": "Sinistcha"
+  },
+  {
+    "form": "Unremarkable",
+    "max_cp": 3383,
+    "pokemon_id": 1013,
+    "pokemon_name": "Sinistcha"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3416,
+    "pokemon_id": 1014,
+    "pokemon_name": "Okidogi"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3361,
+    "pokemon_id": 1015,
+    "pokemon_name": "Munkidori"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2783,
+    "pokemon_id": 1016,
+    "pokemon_name": "Fezandipiti"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3184,
+    "pokemon_id": 1017,
+    "pokemon_name": "Ogerpon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 4278,
+    "pokemon_id": 1018,
+    "pokemon_name": "Archaludon"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3700,
+    "pokemon_id": 1019,
+    "pokemon_name": "Hydrapple"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3544,
+    "pokemon_id": 1020,
+    "pokemon_name": "Gouging Fire"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3864,
+    "pokemon_id": 1021,
+    "pokemon_name": "Raging Bolt"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3579,
+    "pokemon_id": 1022,
+    "pokemon_name": "Iron Boulder"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 3531,
+    "pokemon_id": 1023,
+    "pokemon_name": "Iron Crown"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2013,
+    "pokemon_id": 1024,
+    "pokemon_name": "Terapagos"
+  },
+  {
+    "form": "Normal",
+    "max_cp": 2940,
+    "pokemon_id": 1025,
+    "pokemon_name": "Pecharunt"
+  }
+]

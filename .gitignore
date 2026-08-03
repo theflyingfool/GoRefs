@@ -12,10 +12,8 @@ __pycache__/
 # Large temporary build databases
 *.duckdb.wal
 
-# Raw upstream snapshots and regenerated export artifacts -- never meant to
-# be committed (output/source_coverage_report.md IS committed by convention;
-# these subdirectories/files are excluded)
-raw_dumps/
+# Regenerated export artifacts -- never meant to be committed
+# (output/source_coverage_report.md IS committed by convention)
 output/parquet/
 
 # Master DB build output -- too large to push to GitHub (grows past the
