@@ -1,0 +1,53 @@
+source_key: alexelgt_game_masters
+endpoint: GAME_MASTER
+record_extraction:
+  unwrap_path: [data, friendshipMilestoneSettings]
+  iterate_mode: list_of_dicts_with_subkey
+identity_field: milestone_level
+field_mappings:
+  milestone_level:
+    source_field: minPointsToReach
+    transform: direct
+  xp_reward:
+    source_field: milestoneXpReward
+    transform: direct
+  unlocked_trading:
+    source_field: unlockedTrading
+    transform: direct
+  unlocked_lucky_friend_applicator:
+    source_field: unlockedLuckyFriendApplicator
+    transform: boolean
+gender_signals: []
+overrides: {}
+needs_review: []
+# Single-source domain (Task 20 pattern -- extract_transformed_records(), no
+# ledger). Legacy milestone_level was `friendshipMilestoneSettings.get(
+# "milestoneLevel") or .get("minPointsToReach")` -- verified against the real
+# dump that milestoneLevel is NEVER present on any of the 6 real records, so
+# this reduces to minPointsToReach alone; FRIENDSHIP_LEVEL_0 has neither
+# field at all, so its milestone_level is None both before and after this
+# cutover (this is a PRE-EXISTING gap, not introduced here -- level 0's row
+# still appears in the canonical friendship_levels table, just with a null
+# milestone_level, exactly matching legacy since the raw record is still
+# appended unconditionally either way).
+#
+# unlocked_features (legacy: a JSON array of every raw key on the record
+# whose name starts with "unlocked" and whose value is truthy) is a derived
+# field no single field_mappings entry can express -- verified exhaustively
+# against the real dump that exactly two such keys ever appear across all 6
+# records (unlockedTrading, unlockedLuckyFriendApplicator), both mapped
+# above individually; builder.py recombines them into the exact same
+# ["unlockedTrading", "unlockedLuckyFriendApplicator"]-shaped JSON array
+# legacy produced (same key order, same truthy-inclusion rule).
+#
+# KNOWN COLLISION in the raw data (not a template bug): FRIENDSHIP_LEVEL_4
+# and FRIENDSHIP_LEVEL_5 both have minPointsToReach == 90 (a genuine
+# upstream GAME_MASTER quirk, not a parsing artifact). Legacy's
+# friendship_levels_list was a plain LIST (unconditional .append() per raw
+# record, never deduped by milestone_level), so both rows survive
+# unchanged in the canonical table -- builder.py's replacement
+# (extract_transformed_records(), also unconditional per-record) preserves
+# this exactly; there is no entity-id-based collapsing of this domain's
+# canonical rows (only emit_claim()'s audit-trail claims share an
+# entity_id for these two records, which is fine since nothing reads them
+# back into the canonical list).

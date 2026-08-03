@@ -1,0 +1,19 @@
+source_key: fixture_source
+endpoint: data
+record_extraction:
+  unwrap_path: []
+  iterate_mode: top_level_list
+identity_field: id
+field_mappings:
+  name:
+    source_field: name
+    transform: direct
+  power:
+    source_field: power
+    transform: direct
+gender_signals: []
+overrides:
+  power:
+    source_field: name
+    transform: direct
+needs_review: []

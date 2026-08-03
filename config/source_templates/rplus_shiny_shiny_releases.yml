@@ -1,0 +1,30 @@
+source_key: rplus_shiny
+endpoint: shiny_releases
+# Hand-curated from the profiler's auto-generated draft (Task 21). The profiler
+# picked identity_field: index (a plain 0..1330 row counter) -- overridden to
+# pid, which is unique across all 1331 records in the raw snapshot and is what
+# builder.py needs to filter/remap into "pokemon_dex_<int dex_number>" (see
+# entity_id_prefix below and the builder.py cutover comment for the filtering
+# this template alone cannot do: run_source()'s identity_field lookup is a
+# plain record.get(), with no regex/extraction on the value itself, so it
+# cannot turn "pm1" into "1" or drop suffixed variants like "pm1.fFALL_2019").
+#
+# --deep-dive field-sparsity check (Task 21, Step 1): the raw snapshot only
+# ever contains "index", "debut", "pid", "src", "group" -- the legacy code's
+# messy fallback chains (row.get("pid") or row.get("_dex") or row.get("dex"),
+# row.get("debut") or row.get("shiny_date") or row.get("date")) never actually
+# see "_dex"/"dex"/"shiny_date"/"date" fire in this data (0/1331 present for
+# all four). No first_present transform is needed; "pid" and "debut" alone
+# cover every record that has an identity/date at all.
+record_extraction:
+  unwrap_path: []
+  iterate_mode: top_level_list
+identity_field: pid
+entity_id_prefix: pokemon_dex
+field_mappings:
+  shiny_release_date:
+    source_field: debut
+    transform: direct
+gender_signals: []
+overrides: {}
+needs_review: []
