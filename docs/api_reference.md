@@ -1135,3 +1135,44 @@ Finds fields whose example value is a 2-element numeric list (e.g. a min/max pai
 Hashes the sorted set of field paths (not values) -- used to detect upstream drift.
 
 ---
+
+## Module `src/reference_shim.py`
+
+```text
+Wholesale loader for the reference_json_shim: a raw, unmodeled dump of
+GoBuddy's reference.json into output/GoRefs_Master.duckdb, prefixed
+refjson_* so it never collides with GoRefs' own canonical tables.
+
+Deliberately not integrated with the fetcher/template/claims-ledger
+machinery every other source uses -- this is a short-term stopgap, not a
+new permanent source. See data-authoring/reference_json_shim/SOURCE.md.
+```
+
+### Functions
+
+#### `def camel_to_snake(name: str) -> str`
+
+*Converts a camelCase key (e.g. "formMoves") to snake_case ("form_moves").*
+
+Converts a camelCase key (e.g. "formMoves") to snake_case ("form_moves").
+
+#### `def load_reference_json_shim(json_path: Path = Path('data-authoring/reference_json_shim/reference.json'), db_path: Path = Path('output/GoRefs_Master.duckdb')) -> Dict[str, int]`
+
+*Loads every top-level array in reference.json into its own*
+
+Loads every top-level array in reference.json into its own
+refjson_<snake_case_domain> table in output/GoRefs_Master.duckdb.
+
+Each table is dropped and recreated fresh, so re-running this after
+refreshing the copied reference.json is always safe. Table names never
+collide with GoRefs' own canonical tables (all prefixed refjson_), so
+this can be run before or after --build with no ordering dependency.
+
+Args:
+    json_path: Path to the copied reference.json snapshot.
+    db_path: Path to the master DuckDB database to load tables into.
+
+Returns:
+    Dict mapping each created table name to its row count.
+
+---

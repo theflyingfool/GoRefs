@@ -1,6 +1,6 @@
 source_key: pogoapi_net
 endpoint: baby_pokemon
-generated_at: '2026-08-01T23:03:21.905675+00:00'
+generated_at: '2026-08-03T08:23:25.951020+00:00'
 source_fingerprint: sha256:3c0bf0b6a0a8bd0a
 record_extraction:
   unwrap_path: []

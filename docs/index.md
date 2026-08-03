@@ -26,6 +26,7 @@
 | [src/models.py](api_reference.md#srcmodelspy) | Pydantic data models for canonical entity schemas in Pokémon GO reference dataset. | 4 | 0 |
 | [src/paranoid_check.py](api_reference.md#srcparanoidcheckpy) | Rebuilt --test-paranoid: an engine-bypassing, dual-method field-coverage | 0 | 13 |
 | [src/profiler.py](api_reference.md#srcprofilerpy) | Source profiler: inspects raw JSON and proposes config/source_templates/*.yml templates. | 1 | 6 |
+| [src/reference_shim.py](api_reference.md#srcreferenceshimpy) | Wholesale loader for the reference_json_shim: a raw, unmodeled dump of | 0 | 2 |
 
 ## 🔗 Quick Links
 - [Full Monolithic API Reference (Markdown)](api_reference.md)

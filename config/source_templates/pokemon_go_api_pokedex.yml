@@ -1,110 +1,76 @@
 source_key: pokemon_go_api
 endpoint: pokedex
-# Hand-curated from the profiler's auto-generated draft (Task 20). The profiler
-# picked identity_field: id ("FRILLISH", a string) -- overridden to dexNr, a
-# plain int, unique across all 1024 records (verified against the raw snapshot),
-# which matches builder.py's existing "pokemon_dex_<int dex_number>" entity_id
-# scheme exactly (see engine.run_source()'s entity_id_prefix caveat comment).
+generated_at: '2026-08-03T08:23:25.783542+00:00'
+source_fingerprint: sha256:2286577be4a9ebf5
 record_extraction:
   unwrap_path: []
   iterate_mode: top_level_list
-identity_field: dexNr
-entity_id_prefix: pokemon_dex
+identity_field: id
 field_mappings:
-  name:
-    source_field: names.English
-    transform: nested_path
+  id:
+    source_field: id
+    transform: direct
+  formId:
+    source_field: formId
+    transform: direct
+  dexNr:
+    source_field: dexNr
+    transform: direct
   generation:
     source_field: generation
     transform: direct
-  can_mega_evolve:
+  names:
+    source_field: names
+    transform: direct
+  stats:
+    source_field: stats
+    transform: direct
+  primaryType:
+    source_field: primaryType
+    transform: direct
+  secondaryType:
+    source_field: secondaryType
+    transform: direct
+  pokemonClass:
+    source_field: pokemonClass
+    transform: direct
+  quickMoves:
+    source_field: quickMoves
+    transform: direct
+  cinematicMoves:
+    source_field: cinematicMoves
+    transform: direct
+  eliteQuickMoves:
+    source_field: eliteQuickMoves
+    transform: direct
+  eliteCinematicMoves:
+    source_field: eliteCinematicMoves
+    transform: direct
+  assets:
+    source_field: assets
+    transform: direct
+  regionForms:
+    source_field: regionForms
+    transform: direct
+  evolutions:
+    source_field: evolutions
+    transform: direct
+  hasMegaEvolution:
     source_field: hasMegaEvolution
-    transform: boolean
-  can_gigantamax:
+    transform: direct
+  megaEvolutions:
+    source_field: megaEvolutions
+    transform: direct
+  hasGigantamaxEvolution:
     source_field: hasGigantamaxEvolution
-    transform: boolean
-  # primaryType/secondaryType are nested {"type": "POKEMON_TYPE_WATER", ...}
-  # dicts; combining the two into the canonical `types` display list
-  # (stripping the "POKEMON_TYPE_" prefix and capitalizing) needs two source
-  # fields at once, which the current transform library (direct/nested_path/
-  # boolean/list_index/slugify) has no single transform for. Extracted here as
-  # raw values via the existing library; builder.py's species read-back
-  # (the only consumer) combines the two into `types` post-resolve -- see the
-  # comment at that call site for why this is a deliberate, scoped choice
-  # rather than a dead-claim (the pogoapi cutover's cautionary pattern).
-  primary_type_raw:
-    source_field: primaryType.type
-    transform: nested_path
-  secondary_type_raw:
-    source_field: secondaryType.type
-    transform: nested_path
-gender_signals: []
-# sub_records: assetForms/regionForms describe the SAME real-world gender/
-# costume variants inconsistently (the Frillish bug in KNOWN_ISSUES.md #1):
-# assetForms's `isFemale` boolean is unreliable (false on the entry that IS the
-# female form), while regionForms's dict key text ("FRILLISH_FEMALE") is
-# reliable. Both are normalized via normalize_form_identity() before becoming
-# an entity_id, so the same real variant collapses onto one entity regardless
-# of which field described it.
-#
-# Order matters here: when both sub-lists describe the same variant, BOTH
-# claim-sets land on the same entity_id at the same source/priority, so
-# resolve_attribute_claim's stable sort preserves append order as the
-# tie-break for image_url/shiny_image_url on a collapsed entity. regionForms
-# is listed FIRST. (form_name is NOT subject to this tie-break: regionForms
-# deliberately has no form_name mapping at all -- see the comment on its
-# config below -- so assetForms's mapped `form` value, or the dict-key-derived
-# text for a pure-regionForms-only variant, is what actually reaches the
-# claim.) This also means `discrepancies` will show an image_url/
-# shiny_image_url disagreement for every species that has both a regionForms
-# and an assetForms entry for the same variant -- expected and informative
-# (KNOWN_ISSUES.md #2 already flags that discrepancy coverage outside base
-# stats was previously nonexistent for this exact class of field), not a bug.
-sub_records:
-  - list_field: regionForms
-    container_type: dict
-    # No `form_name` mapping here on purpose: regionForms's own names.English is
-    # USELESS for identity/display on some species -- every one of Unown's 28
-    # regionForms entries (dict keys "UNOWN_A".."UNOWN_Z"/"!"/"?") has
-    # names.English == "Unown", the species' own name, with the real per-letter
-    # identity living only in the dict key. engine.apply_sub_records() always
-    # prefers the dict key itself as identity/display text for dict-keyed
-    # sub-lists (see its comment) -- mapping form_name here would silently
-    # override that with the useless generic name and reintroduce a
-    # duplicate-row bug of the same shape as the gender one this task fixes.
-    field_mappings:
-      image_url:
-        source_field: assets.image
-        transform: nested_path
-      shiny_image_url:
-        source_field: assets.shinyImage
-        transform: nested_path
-    gender_signals:
-      - signal_type: key_pattern
-        key_pattern: "(?i)_female$"
-        value: female
-  - list_field: assetForms
-    container_type: list
-    field_mappings:
-      form_name:
-        source_field: form
-        transform: direct
-      costume_name:
-        source_field: costume
-        transform: direct
-      image_url:
-        source_field: image
-        transform: direct
-      shiny_image_url:
-        source_field: shinyImage
-        transform: direct
-    gender_signals:
-      - signal_type: boolean_field
-        source_field: isFemale
-        when_true: female
-      - signal_type: value_pattern
-        source_field: form
-        pattern: "(?i)female"
-        value: female
+    transform: direct
+  assetForms:
+    source_field: assetForms
+    transform: direct
+gender_signals:
+- signal_type: value_pattern
+  source_field: id
+  pattern: (?i)female
+  value: female
 overrides: {}
 needs_review: []

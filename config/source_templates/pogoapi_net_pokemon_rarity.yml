@@ -1,23 +1,23 @@
 source_key: pogoapi_net
-endpoint: pokemon_max_cp
-generated_at: '2026-08-03T08:23:25.856290+00:00'
-source_fingerprint: sha256:48642caaaa76bbe7
+endpoint: pokemon_rarity
+generated_at: '2026-08-03T08:23:25.867391+00:00'
+source_fingerprint: sha256:25840724ff9a5219
 record_extraction:
   unwrap_path: []
-  iterate_mode: top_level_list
-identity_field: max_cp
+  iterate_mode: dict_of_lists
+identity_field: pokemon_id
 field_mappings:
   form:
     source_field: form
-    transform: direct
-  max_cp:
-    source_field: max_cp
     transform: direct
   pokemon_id:
     source_field: pokemon_id
     transform: direct
   pokemon_name:
     source_field: pokemon_name
+    transform: direct
+  rarity:
+    source_field: rarity
     transform: direct
 gender_signals: []
 overrides: {}

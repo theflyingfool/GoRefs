@@ -1,0 +1,30 @@
+source_key: pokemon_go_api
+endpoint: types
+generated_at: '2026-08-03T08:23:25.805873+00:00'
+source_fingerprint: sha256:53fabd1faecb24dc
+record_extraction:
+  unwrap_path: []
+  iterate_mode: top_level_list
+identity_field: type
+field_mappings:
+  type:
+    source_field: type
+    transform: direct
+  names:
+    source_field: names
+    transform: direct
+  doubleDamageFrom:
+    source_field: doubleDamageFrom
+    transform: direct
+  halfDamageFrom:
+    source_field: halfDamageFrom
+    transform: direct
+  noDamageFrom:
+    source_field: noDamageFrom
+    transform: direct
+  weatherBoost:
+    source_field: weatherBoost
+    transform: direct
+gender_signals: []
+overrides: {}
+needs_review: []

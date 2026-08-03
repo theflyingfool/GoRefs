@@ -1,11 +1,11 @@
 source_key: pogoapi_net
 endpoint: cp_multiplier
-generated_at: '2026-08-01T23:03:21.832157+00:00'
+generated_at: '2026-08-03T08:23:25.811694+00:00'
 source_fingerprint: sha256:50aa45363b0f12dc
 record_extraction:
   unwrap_path: []
   iterate_mode: top_level_list
-identity_field: level
+identity_field: id
 field_mappings:
   level:
     source_field: level
