@@ -2,7 +2,3 @@
 	path = vendor/reference/pokemon-go-api
 	url = https://github.com/pokemon-go-api/pokemon-go-api.git
 	branch = main
-[submodule "vendor/reference/GoRefs"]
-	path = vendor/reference/GoRefs
-	url = https://github.com/theflyingfool/GoRefs.git
-	branch = main
