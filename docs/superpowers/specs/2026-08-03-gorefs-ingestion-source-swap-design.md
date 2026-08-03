@@ -144,6 +144,18 @@ implementation plan. Flagged separately in GoRefs' own `TODO.md`: GoRefs
 should expose a last-built/updated timestamp so a freshness check doesn't
 need to pull or query the whole database just to know "has this changed."
 
+## Unverified assumption (verify first in implementation)
+
+This design assumes a Node DuckDB client's `httpfs` extension can `ATTACH`
+a remote `.duckdb` file over plain HTTP against `go_refs.py --serve`'s
+custom range-request handler, the same way DuckDB-WASM does in a browser.
+This has not been empirically tested. First implementation step should be a
+throwaway spike confirming this actually works end-to-end (spawn `--serve`,
+attach from Node, run one real query) before any script code is written
+against it — if it doesn't work as expected, the architecture above needs
+revisiting (e.g. falling back to reading Parquet exports instead of the
+monolithic file, or a different client library).
+
 ## Error handling
 
 - GoRefs server unreachable (neither already running nor able to be
