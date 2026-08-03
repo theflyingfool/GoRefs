@@ -1,0 +1,65 @@
+{
+  "pokeapi": {
+    "source": "pokeapi",
+    "priority": 7,
+    "total_claims": 9,
+    "matched": 9,
+    "valid_overrides": 0,
+    "coverage_gaps": 0,
+    "coverage_pct": 100.0
+  },
+  "pogoapi_net": {
+    "source": "pogoapi_net",
+    "priority": 6,
+    "total_claims": 41332,
+    "matched": 41332,
+    "valid_overrides": 0,
+    "coverage_gaps": 0,
+    "coverage_pct": 100.0
+  },
+  "pvpoke": {
+    "source": "pvpoke",
+    "priority": 5,
+    "total_claims": 16,
+    "matched": 16,
+    "valid_overrides": 0,
+    "coverage_gaps": 0,
+    "coverage_pct": 100.0
+  },
+  "pokemon_go_api": {
+    "source": "pokemon_go_api",
+    "priority": 4,
+    "total_claims": 19296,
+    "matched": 19296,
+    "valid_overrides": 0,
+    "coverage_gaps": 0,
+    "coverage_pct": 100.0
+  },
+  "rplus_shiny": {
+    "source": "rplus_shiny",
+    "priority": 3,
+    "total_claims": 6655,
+    "matched": 6655,
+    "valid_overrides": 0,
+    "coverage_gaps": 0,
+    "coverage_pct": 100.0
+  },
+  "alexelgt_game_masters": {
+    "source": "alexelgt_game_masters",
+    "priority": 2,
+    "total_claims": 142676,
+    "matched": 142676,
+    "valid_overrides": 0,
+    "coverage_gaps": 0,
+    "coverage_pct": 100.0
+  },
+  "local_authoring": {
+    "source": "local_authoring",
+    "priority": 1,
+    "total_claims": 62,
+    "matched": 62,
+    "valid_overrides": 0,
+    "coverage_gaps": 0,
+    "coverage_pct": 100.0
+  }
+}

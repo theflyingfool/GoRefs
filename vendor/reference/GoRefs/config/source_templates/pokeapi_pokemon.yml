@@ -1,0 +1,19 @@
+source_key: pokeapi
+endpoint: pokemon
+generated_at: '2026-08-01T22:45:07.862456+00:00'
+source_fingerprint: sha256:942da3ab63cd6b9c
+record_extraction:
+  unwrap_path:
+  - results
+  iterate_mode: top_level_list
+identity_field: name
+field_mappings:
+  name:
+    source_field: name
+    transform: direct
+  url:
+    source_field: url
+    transform: direct
+gender_signals: []
+overrides: {}
+needs_review: []

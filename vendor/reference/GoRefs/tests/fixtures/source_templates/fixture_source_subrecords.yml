@@ -1,0 +1,39 @@
+source_key: fixture_source_subrecords
+endpoint: data
+record_extraction:
+  unwrap_path: []
+  iterate_mode: top_level_list
+identity_field: id
+entity_id_prefix: fixture_dex
+field_mappings:
+  name:
+    source_field: name
+    transform: direct
+gender_signals: []
+sub_records:
+  - list_field: assetForms
+    container_type: list
+    field_mappings:
+      form_name:
+        source_field: form
+        transform: direct
+    gender_signals:
+      - signal_type: boolean_field
+        source_field: isFemale
+        when_true: female
+      - signal_type: value_pattern
+        source_field: form
+        pattern: "(?i)female"
+        value: female
+  - list_field: regionForms
+    container_type: dict
+    field_mappings:
+      form_name:
+        source_field: names.English
+        transform: nested_path
+    gender_signals:
+      - signal_type: key_pattern
+        key_pattern: "(?i)_female$"
+        value: female
+overrides: {}
+needs_review: []

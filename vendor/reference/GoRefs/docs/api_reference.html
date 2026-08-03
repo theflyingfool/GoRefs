@@ -1,0 +1,2121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokémon GO Reference Knowledge Base - API Reference</title>
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --bg-hover: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-gold: #fbbf24;
+      --accent-purple: #c084fc;
+      --accent-green: #34d399;
+      --border: #334155;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: rgba(30, 41, 59, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      font-size: 1.3rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    header nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 1rem;
+      padding: 0.4rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      transition: all 0.2s ease;
+    }
+    header nav a:hover {
+      background: var(--accent);
+      color: #0f172a;
+    }
+    .docs-layout {
+      display: flex;
+      flex: 1;
+      max-width: 1600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .sidebar {
+      width: 320px;
+      background: #111827;
+      border-right: 1px solid var(--border);
+      padding: 1.5rem 1rem;
+      position: sticky;
+      top: 60px;
+      height: calc(100vh - 60px);
+      overflow-y: auto;
+    }
+    .search-box {
+      width: 100%;
+      padding: 0.6rem 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    .search-box:focus {
+      outline: 2px solid var(--accent);
+    }
+    .nav-group {
+      margin-bottom: 1rem;
+    }
+    .nav-main-item {
+      display: block;
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.4rem 0.6rem;
+      border-radius: 0.4rem;
+      font-size: 0.95rem;
+    }
+    .nav-main-item:hover {
+      background: var(--bg-hover);
+    }
+    .sub-nav {
+      margin-left: 1rem;
+      border-left: 2px solid var(--border);
+      padding-left: 0.5rem;
+    }
+    .nav-sub-item {
+      display: block;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 0.2rem 0.4rem;
+      font-family: monospace;
+    }
+    .nav-sub-item:hover {
+      color: var(--text-main);
+    }
+    .main-content {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+    .doc-module-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .module-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .module-summary {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+    }
+    .docstring-block {
+      background: #090d16;
+      border: 1px solid #1e293b;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      color: #cbd5e1;
+      font-family: monospace;
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: 1.2rem;
+      color: var(--accent-gold);
+      margin: 1.5rem 0 1rem 0;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.3rem;
+    }
+    .class-card, .func-card {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 0.6rem;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .card-header h3, .card-header h4 {
+      font-family: monospace;
+      color: var(--text-main);
+    }
+    .bases {
+      color: var(--text-muted);
+      font-weight: normal;
+      font-size: 0.9rem;
+    }
+    .badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .badge-module { background: #0284c7; color: white; }
+    .badge-class { background: #8b5cf6; color: white; }
+    .badge-func { background: #10b981; color: white; }
+    .badge-method { background: #f59e0b; color: white; }
+    .signature {
+      background: #1e293b;
+      color: var(--accent);
+      padding: 0.6rem 0.8rem;
+      border-radius: 0.4rem;
+      font-family: monospace;
+      font-size: 0.9rem;
+      margin: 0.5rem 0 1rem 0;
+      overflow-x: auto;
+    }
+    .args-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.75rem 0;
+      font-size: 0.9rem;
+    }
+    .args-table th, .args-table td {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    .args-table th {
+      background: #1e293b;
+      color: var(--accent-gold);
+    }
+    .type-tag {
+      color: var(--accent-purple);
+      font-family: monospace;
+    }
+    .returns-box {
+      background: rgba(52, 211, 153, 0.1);
+      border-left: 3px solid var(--accent-green);
+      padding: 0.5rem 0.8rem;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      border-radius: 0 0.4rem 0.4rem 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Pokémon GO Master Reference - Code API Documentation</h1>
+    <nav>
+      <a href="/">← Back to Web Explorer</a>
+      <a href="index.md">View Markdown (index.md)</a>
+    </nav>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="sidebar">
+      <input type="text" id="doc-search" class="search-box" placeholder="Filter modules & symbols..." onkeyup="filterDocs()">
+      <div id="sidebar-nav">
+        <div class="nav-group"><a href="#go_refs_py" class="nav-main-item">📄 go_refs.py</a><div class="sub-nav"><a href="#go_refs_py_GoRefsHTTPRequestHandler" class="nav-sub-item">class GoRefsHTTPRequestHandler</a><a href="#go_refs_py_load_config" class="nav-sub-item">def load_config</a><a href="#go_refs_py_run_fetching" class="nav-sub-item">def run_fetching</a><a href="#go_refs_py_run_freshness_check" class="nav-sub-item">def run_freshness_check</a><a href="#go_refs_py_run_doc_generation" class="nav-sub-item">def run_doc_generation</a><a href="#go_refs_py_run_deep_dive" class="nav-sub-item">def run_deep_dive</a><a href="#go_refs_py_run_source_coverage_test" class="nav-sub-item">def run_source_coverage_test</a><a href="#go_refs_py_run_paranoid_check_cli" class="nav-sub-item">def run_paranoid_check_cli</a><a href="#go_refs_py_run_web_server" class="nav-sub-item">def run_web_server</a><a href="#go_refs_py_main" class="nav-sub-item">def main</a></div></div><div class="nav-group"><a href="#scripts_user_source_coverage_test_py" class="nav-main-item">📄 scripts/user_source_coverage_test.py</a><div class="sub-nav"><a href="#scripts_user_source_coverage_test_py__TypesListMatch" class="nav-sub-item">class _TypesListMatch</a><a href="#scripts_user_source_coverage_test_py_LedgerReplayTester" class="nav-sub-item">class LedgerReplayTester</a></div></div><div class="nav-group"><a href="#src___init___py" class="nav-main-item">📄 src/__init__.py</a></div><div class="nav-group"><a href="#src_build_tables_py" class="nav-main-item">📄 src/build_tables.py</a><div class="sub-nav"><a href="#src_build_tables_py_sanitize_table_name" class="nav-sub-item">def sanitize_table_name</a><a href="#src_build_tables_py_build_exploration_tables" class="nav-sub-item">def build_exploration_tables</a><a href="#src_build_tables_py_register_custom_domain_table" class="nav-sub-item">def register_custom_domain_table</a></div></div><div class="nav-group"><a href="#src_builder_py" class="nav-main-item">📄 src/builder.py</a><div class="sub-nav"><a href="#src_builder_py_GoRefsMasterEngine" class="nav-sub-item">class GoRefsMasterEngine</a><a href="#src_builder_py_update_readme_counts" class="nav-sub-item">def update_readme_counts</a><a href="#src_builder_py_build_canonical_dataset" class="nav-sub-item">def build_canonical_dataset</a></div></div><div class="nav-group"><a href="#src_engine_py" class="nav-main-item">📄 src/engine.py</a><div class="sub-nav"><a href="#src_engine_py_unwrap_to_records" class="nav-sub-item">def unwrap_to_records</a><a href="#src_engine_py__get_nested" class="nav-sub-item">def _get_nested</a><a href="#src_engine_py_apply_transform" class="nav-sub-item">def apply_transform</a><a href="#src_engine_py_resolve_gender" class="nav-sub-item">def resolve_gender</a><a href="#src_engine_py_normalize_form_identity" class="nav-sub-item">def normalize_form_identity</a><a href="#src_engine_py__slugify_name" class="nav-sub-item">def _slugify_name</a><a href="#src_engine_py__build_form_entity_id" class="nav-sub-item">def _build_form_entity_id</a><a href="#src_engine_py_apply_sub_records" class="nav-sub-item">def apply_sub_records</a><a href="#src_engine_py__get_latest_snapshot_dir" class="nav-sub-item">def _get_latest_snapshot_dir</a><a href="#src_engine_py__load_template_and_records" class="nav-sub-item">def _load_template_and_records</a><a href="#src_engine_py_extract_transformed_records" class="nav-sub-item">def extract_transformed_records</a><a href="#src_engine_py_run_source" class="nav-sub-item">def run_source</a></div></div><div class="nav-group"><a href="#src_fetchers___init___py" class="nav-main-item">📄 src/fetchers/__init__.py</a></div><div class="nav-group"><a href="#src_fetchers_base_py" class="nav-main-item">📄 src/fetchers/base.py</a><div class="sub-nav"><a href="#src_fetchers_base_py_BaseFetcher" class="nav-sub-item">class BaseFetcher</a><a href="#src_fetchers_base_py_FetcherRegistry" class="nav-sub-item">class FetcherRegistry</a></div></div><div class="nav-group"><a href="#src_fetchers_game_master_py" class="nav-main-item">📄 src/fetchers/game_master.py</a><div class="sub-nav"><a href="#src_fetchers_game_master_py_GameMasterFetcher" class="nav-sub-item">class GameMasterFetcher</a></div></div><div class="nav-group"><a href="#src_fetchers_local_authoring_py" class="nav-main-item">📄 src/fetchers/local_authoring.py</a><div class="sub-nav"><a href="#src_fetchers_local_authoring_py_LocalAuthoringFetcher" class="nav-sub-item">class LocalAuthoringFetcher</a></div></div><div class="nav-group"><a href="#src_fetchers_pogoapi_net_py" class="nav-main-item">📄 src/fetchers/pogoapi_net.py</a><div class="sub-nav"><a href="#src_fetchers_pogoapi_net_py_PogoApiFetcher" class="nav-sub-item">class PogoApiFetcher</a></div></div><div class="nav-group"><a href="#src_fetchers_pokeapi_py" class="nav-main-item">📄 src/fetchers/pokeapi.py</a><div class="sub-nav"><a href="#src_fetchers_pokeapi_py_PokeApiFetcher" class="nav-sub-item">class PokeApiFetcher</a></div></div><div class="nav-group"><a href="#src_fetchers_pokemon_go_api_py" class="nav-main-item">📄 src/fetchers/pokemon_go_api.py</a><div class="sub-nav"><a href="#src_fetchers_pokemon_go_api_py_PokemonGoApiFetcher" class="nav-sub-item">class PokemonGoApiFetcher</a></div></div><div class="nav-group"><a href="#src_fetchers_pvpoke_py" class="nav-main-item">📄 src/fetchers/pvpoke.py</a><div class="sub-nav"><a href="#src_fetchers_pvpoke_py_PvPokeFetcher" class="nav-sub-item">class PvPokeFetcher</a></div></div><div class="nav-group"><a href="#src_fetchers_rplus_shiny_py" class="nav-main-item">📄 src/fetchers/rplus_shiny.py</a><div class="sub-nav"><a href="#src_fetchers_rplus_shiny_py_RplusShinyFetcher" class="nav-sub-item">class RplusShinyFetcher</a></div></div><div class="nav-group"><a href="#src_ingest_community_submissions_py" class="nav-main-item">📄 src/ingest_community_submissions.py</a><div class="sub-nav"><a href="#src_ingest_community_submissions_py_ingest_submission_csv" class="nav-sub-item">def ingest_submission_csv</a><a href="#src_ingest_community_submissions_py_main" class="nav-sub-item">def main</a></div></div><div class="nav-group"><a href="#src_inventory_analysis_py" class="nav-main-item">📄 src/inventory_analysis.py</a><div class="sub-nav"><a href="#src_inventory_analysis_py_analyze_exploration_inventory" class="nav-sub-item">def analyze_exploration_inventory</a></div></div><div class="nav-group"><a href="#src_models_py" class="nav-main-item">📄 src/models.py</a><div class="sub-nav"><a href="#src_models_py_SpeciesModel" class="nav-sub-item">class SpeciesModel</a><a href="#src_models_py_FormModel" class="nav-sub-item">class FormModel</a><a href="#src_models_py_MoveModel" class="nav-sub-item">class MoveModel</a><a href="#src_models_py_DiscrepancyModel" class="nav-sub-item">class DiscrepancyModel</a></div></div><div class="nav-group"><a href="#src_paranoid_check_py" class="nav-main-item">📄 src/paranoid_check.py</a><div class="sub-nav"><a href="#src_paranoid_check_py_flatten_json_fields" class="nav-sub-item">def flatten_json_fields</a><a href="#src_paranoid_check_py_extract_fields_python_walk" class="nav-sub-item">def extract_fields_python_walk</a><a href="#src_paranoid_check_py_extract_fields_duckdb_auto" class="nav-sub-item">def extract_fields_duckdb_auto</a><a href="#src_paranoid_check_py__split_top_level_commas" class="nav-sub-item">def _split_top_level_commas</a><a href="#src_paranoid_check_py_find_templates_for_source" class="nav-sub-item">def find_templates_for_source</a><a href="#src_paranoid_check_py_find_raw_files_for_source" class="nav-sub-item">def find_raw_files_for_source</a><a href="#src_paranoid_check_py_mapped_source_fields" class="nav-sub-item">def mapped_source_fields</a><a href="#src_paranoid_check_py_canonical_attribute_names" class="nav-sub-item">def canonical_attribute_names</a><a href="#src_paranoid_check_py_claims_ledger_attributes" class="nav-sub-item">def claims_ledger_attributes</a><a href="#src_paranoid_check_py_classify_endpoint_fields" class="nav-sub-item">def classify_endpoint_fields</a><a href="#src_paranoid_check_py_find_method_mismatches" class="nav-sub-item">def find_method_mismatches</a><a href="#src_paranoid_check_py_run_paranoid_check" class="nav-sub-item">def run_paranoid_check</a><a href="#src_paranoid_check_py_render_paranoid_report_markdown" class="nav-sub-item">def render_paranoid_report_markdown</a></div></div><div class="nav-group"><a href="#src_profiler_py" class="nav-main-item">📄 src/profiler.py</a><div class="sub-nav"><a href="#src_profiler_py_SourceProfiler" class="nav-sub-item">class SourceProfiler</a><a href="#src_profiler_py_detect_shape" class="nav-sub-item">def detect_shape</a><a href="#src_profiler_py_rank_identity_candidates" class="nav-sub-item">def rank_identity_candidates</a><a href="#src_profiler_py_catalog_fields" class="nav-sub-item">def catalog_fields</a><a href="#src_profiler_py_detect_gender_signals" class="nav-sub-item">def detect_gender_signals</a><a href="#src_profiler_py_detect_range_pairs" class="nav-sub-item">def detect_range_pairs</a><a href="#src_profiler_py_compute_shape_fingerprint" class="nav-sub-item">def compute_shape_fingerprint</a></div></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <section id="go_refs_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>go_refs.py</h2>
+</div>
+<p class="module-summary">Master CLI &amp; Pipeline Runner for Pokémon GO Unified Reference Knowledge Base (`go_refs`).</p>
+<pre class="docstring-block">Provides streamlined commands to fetch raw snapshots, execute the GoRefsMasterEngine build
+pipeline producing `output/GoRefs_Master.duckdb`, and host the local web explorer server.</pre>
+<h3 class="section-title">Classes</h3>
+<div id="go_refs_py_GoRefsHTTPRequestHandler" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>GoRefsHTTPRequestHandler<span class="bases">(http.server.SimpleHTTPRequestHandler)</span></h3>
+</div>
+<p class="item-summary">Custom HTTP request handler for the GoRefs web application.</p>
+<pre class="docstring-block">Routes root requests and asset paths to the `web/` directory, serves the single
+master database from `output/GoRefs_Master.duckdb`, auto-generated API docs, and
+Parquet exports -- with real HTTP Range support so remote clients (DuckDB&#x27;s
+httpfs, DuckDB-WASM reading Parquet) can read partial content without
+downloading the whole file.</pre>
+<div class="methods-container">
+<h4>Methods</h4>
+<div id="go_refs_py_GoRefsHTTPRequestHandler_do_GET" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def do_GET</h4>
+</div>
+<div class="signature">def do_GET(self) -&gt; None</div>
+</div>
+<div id="go_refs_py_GoRefsHTTPRequestHandler__serve_range" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def _serve_range</h4>
+</div>
+<div class="signature">def _serve_range(self, range_header: str) -&gt; None</div>
+<p class="item-summary">Serves a single-range byte request as 206 Partial Content.</p>
+</div>
+<div id="go_refs_py_GoRefsHTTPRequestHandler_end_headers" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def end_headers</h4>
+</div>
+<div class="signature">def end_headers(self) -&gt; None</div>
+</div>
+<div id="go_refs_py_GoRefsHTTPRequestHandler_do_OPTIONS" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def do_OPTIONS</h4>
+</div>
+<div class="signature">def do_OPTIONS(self) -&gt; None</div>
+</div>
+</div>
+</div>
+<h3 class="section-title">Functions</h3>
+<div id="go_refs_py_load_config" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def load_config</h4>
+</div>
+<div class="signature">def load_config(config_path: Path = Path(&#x27;config/sources.yml&#x27;)) -&gt; dict</div>
+<p class="item-summary">Loads and parses the YAML configuration file defining upstream data sources.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>config_path</code></td><td><span class="type-tag">Path</span></td><td>Path to the YAML configuration file. Default is config/sources.yml.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns <code>(dict)</code>:</strong> Parsed configuration dictionary containing source definitions. </div>
+</div>
+<div id="go_refs_py_run_fetching" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def run_fetching</h4>
+</div>
+<div class="signature">def run_fetching(config: dict, force: bool = False) -&gt; None</div>
+<p class="item-summary">Executes raw snapshot fetching across all enabled upstream data sources.</p>
+<pre class="docstring-block">Iterates over registered fetcher classes, downloads immutable timestamped snapshots,
+and caches visual sprite assets into `raw_dumps/`.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>config</code></td><td><span class="type-tag">dict</span></td><td>Configuration dictionary containing source definitions.</td></tr><tr><td><code>force</code></td><td><span class="type-tag">bool</span></td><td>If True, re-fetches snapshots regardless of existing local caches.</td></tr>
+          </tbody>
+        </table>
+        
+</div>
+<div id="go_refs_py_run_freshness_check" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def run_freshness_check</h4>
+</div>
+<div class="signature">def run_freshness_check(config: dict) -&gt; None</div>
+<p class="item-summary">Runs each enabled source&#x27;s pre-flight freshness check without a full fetch.</p>
+<pre class="docstring-block">Unlike run_fetching(), this always executes as part of --build, regardless of
+whether --fetch was also passed -- so a build never silently uses raw data that&#x27;s
+gone stale against its remote source without at least checking.</pre>
+</div>
+<div id="go_refs_py_run_doc_generation" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def run_doc_generation</h4>
+</div>
+<div class="signature">def run_doc_generation() -&gt; None</div>
+<p class="item-summary">Executes automated docstring documentation generator scripts/generate_docs.py.</p>
+</div>
+<div id="go_refs_py_run_deep_dive" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def run_deep_dive</h4>
+</div>
+<div class="signature">def run_deep_dive(target: str = &#x27;all&#x27;) -&gt; None</div>
+<p class="item-summary">Runs the schema profiler (src.profiler.SourceProfiler) to generate or</p>
+<pre class="docstring-block">update config/source_templates/*.yml from the latest raw snapshot(s).</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>target</code></td><td>-</td><td>&quot;all&quot; to profile every source in config/sources.yml, or a single source_key to profile just that source (endpoint name is assumed to match the source_key).</td></tr>
+          </tbody>
+        </table>
+        
+</div>
+<div id="go_refs_py_run_source_coverage_test" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def run_source_coverage_test</h4>
+</div>
+<div class="signature">def run_source_coverage_test() -&gt; None</div>
+<p class="item-summary">Executes the claims-ledger replay coverage suite against the last built</p>
+<pre class="docstring-block">output/GoRefs_Master.duckdb.</pre>
+</div>
+<div id="go_refs_py_run_paranoid_check_cli" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def run_paranoid_check_cli</h4>
+</div>
+<div class="signature">def run_paranoid_check_cli(source: &#x27;Optional[str]&#x27; = None) -&gt; None</div>
+<p class="item-summary">CLI entrypoint for --test-paranoid. Writes output/paranoid_check_report.md</p>
+<pre class="docstring-block">and prints a one-line summary per source.</pre>
+</div>
+<div id="go_refs_py_run_web_server" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def run_web_server</h4>
+</div>
+<div class="signature">def run_web_server(port: int = 8000) -&gt; None</div>
+<p class="item-summary">Starts the local web server hosting the single-page explorer UI and WASM SQL Console.</p>
+<pre class="docstring-block">Serves static assets from `web/`, API documentation from `docs/`, and the master DuckDB database.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>port</code></td><td><span class="type-tag">int</span></td><td>Port number on which to bind the HTTP server. Default is 8000.</td></tr>
+          </tbody>
+        </table>
+        
+</div>
+<div id="go_refs_py_main" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def main</h4>
+</div>
+<div class="signature">def main() -&gt; None</div>
+<p class="item-summary">Master CLI entrypoint for Pokémon GO Reference Knowledge Base (`go_refs.py`).</p>
+<pre class="docstring-block">Parses command-line arguments (--fetch, --build, --serve, --docs, --all, --port, --config)
+and dispatches pipeline stages sequentially.</pre>
+</div>
+</section><section id="scripts_user_source_coverage_test_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>scripts/user_source_coverage_test.py</h2>
+</div>
+<p class="module-summary">Ledger-replay coverage suite for GoRefs.</p>
+<pre class="docstring-block">Reads the _claims_ledger table the last --build produced, re-derives each
+(entity_id, attribute)&#x27;s expected winner using the same trust-tier priority
+the resolver used, and asserts the canonical table actually holds that value.
+Does not independently re-parse raw JSON -- that duplication is what degraded
+the previous version of this suite into a tautology.
+
+Usage:
+    PYTHONPATH=. uv run python scripts/user_source_coverage_test.py</pre>
+<h3 class="section-title">Classes</h3>
+<div id="scripts_user_source_coverage_test_py__TypesListMatch" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>_TypesListMatch<span class="bases"></span></h3>
+</div>
+<p class="item-summary">Sentinel canonical value for primary_type_raw/secondary_type_raw claims:</p>
+<pre class="docstring-block">the canonical `types` column is a list combining both claims, not a single
+scalar equal to either one on its own. Wraps that list so comparisons can
+check membership (after applying the same prefix-strip + capitalize
+transform builder.py applies) instead of doing whole-value equality.</pre>
+<div class="methods-container">
+<h4>Methods</h4>
+<div id="scripts_user_source_coverage_test_py__TypesListMatch___init__" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def __init__</h4>
+</div>
+<div class="signature">def __init__(self, types_list: Any)</div>
+</div>
+</div>
+</div>
+<div id="scripts_user_source_coverage_test_py_LedgerReplayTester" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>LedgerReplayTester<span class="bases"></span></h3>
+</div>
+<div class="methods-container">
+<h4>Methods</h4>
+<div id="scripts_user_source_coverage_test_py_LedgerReplayTester___init__" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def __init__</h4>
+</div>
+<div class="signature">def __init__(self, db_path: Path = Path(&#x27;output/GoRefs_Master.duckdb&#x27;))</div>
+</div>
+<div id="scripts_user_source_coverage_test_py_LedgerReplayTester__find_canonical_value" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def _find_canonical_value</h4>
+</div>
+<div class="signature">def _find_canonical_value(self, entity_id: str, attribute: str) -&gt; Any</div>
+<p class="item-summary">Best-effort lookup: entity_id encodes the domain as its prefix</p>
+<pre class="docstring-block">(e.g. &quot;pokemon_dex_1&quot; -&gt; species/forms tables keyed by dex_number).
+
+Returns `_UNMAPPED` when the entity_id&#x27;s prefix isn&#x27;t one this suite
+knows how to resolve yet (claim-tracked domains grow incrementally as
+later tasks cut over more sources). Returns None when the prefix IS
+mapped but no matching canonical row/column was actually found --
+that&#x27;s a real gap, not an unmapped domain.</pre>
+</div>
+<div id="scripts_user_source_coverage_test_py_LedgerReplayTester__values_match" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4><span class="type-tag">staticmethod</span> def _values_match</h4>
+</div>
+<div class="signature">def _values_match(claim_value: Any, canonical_value: Any) -&gt; bool</div>
+<p class="item-summary">Compares a raw claim value to a resolved canonical value.</p>
+<pre class="docstring-block">Normally a straight stringified equality check. When canonical_value
+is a `_TypesListMatch` (primary_type_raw/secondary_type_raw), applies
+the same &quot;POKEMON_TYPE_&quot; prefix-strip + capitalize transform builder.py
+applies before checking whether the result is one of the two values
+combined into the canonical `types` list, since no single claim equals
+the whole list on its own.</pre>
+</div>
+<div id="scripts_user_source_coverage_test_py_LedgerReplayTester__normalize" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4><span class="type-tag">staticmethod</span> def _normalize</h4>
+</div>
+<div class="signature">def _normalize(value: Any) -&gt; Any</div>
+<p class="item-summary">Coerces numpy/pandas array-likes (e.g. a VARCHAR[] column value) into</p>
+<pre class="docstring-block">plain Python lists before str() comparison, so a canonical list column
+compares equal to the ledger&#x27;s stringified Python list rather than to
+numpy&#x27;s repr of the same data.</pre>
+</div>
+<div id="scripts_user_source_coverage_test_py_LedgerReplayTester__load" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def _load</h4>
+</div>
+<div class="signature">def _load(self, table: str) -&gt; pd.DataFrame</div>
+</div>
+<div id="scripts_user_source_coverage_test_py_LedgerReplayTester_run_suite" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def run_suite</h4>
+</div>
+<div class="signature">def run_suite(self) -&gt; Dict[str, Any]</div>
+</div>
+<div id="scripts_user_source_coverage_test_py_LedgerReplayTester_close" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def close</h4>
+</div>
+<div class="signature">def close(self) -&gt; None</div>
+</div>
+</div>
+</div>
+</section><section id="src___init___py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/__init__.py</h2>
+</div>
+</section><section id="src_build_tables_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/build_tables.py</h2>
+</div>
+<p class="module-summary">DuckDB table building and dynamic schema exploration engine for Pokémon GO reference data.</p>
+<pre class="docstring-block">Provides utilities for exploding raw client data snapshots, building exploration tables,
+tracking schema inventories, and dynamically registering custom domain tables into the
+unified Master DuckDB database (`output/GoRefs_Master.duckdb`).</pre>
+<h3 class="section-title">Functions</h3>
+<div id="src_build_tables_py_sanitize_table_name" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def sanitize_table_name</h4>
+</div>
+<div class="signature">def sanitize_table_name(name: str) -&gt; str</div>
+<p class="item-summary">Sanitizes an arbitrary string into a valid DuckDB table name.</p>
+<pre class="docstring-block">Replaces non-alphanumeric characters with underscores, merges consecutive underscores,
+strips leading/trailing underscores, and converts the string to lowercase.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>name</code></td><td>-</td><td>The raw table name or file stem to sanitize.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> A sanitized, lower-cased SQL-safe table name string. </div>
+</div>
+<div id="src_build_tables_py_build_exploration_tables" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def build_exploration_tables</h4>
+</div>
+<div class="signature">def build_exploration_tables(db_file: str = &#x27;output/GoRefs_Master.duckdb&#x27;, raw_dumps_dir: Path = Path(&#x27;raw_dumps&#x27;)) -&gt; int</div>
+<p class="item-summary">Dynamically builds raw exploration tables across all upstream data sources into DuckDB.</p>
+<pre class="docstring-block">Scans the `raw_dumps/` directory for all source folders (e.g., `alexelgt_game_masters`,
+`pokemon_go_api`, `pogoapi_net`, `pvpoke`, `pokeapi`, `rplus_shiny`, `local_authoring`, or any
+new raw directories). Explodes complex nested JSON payloads (such as `GAME_MASTER.json` into
+`gm_*` tables) and loads flat raw JSON files into source-prefixed tables.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>db_file</code></td><td>-</td><td>Path to the target DuckDB database file. Defaults to `output/GoRefs_Master.duckdb`.</td></tr><tr><td><code>raw_dumps_dir</code></td><td>-</td><td>Path to the root raw dumps directory containing source folders. Defaults to `Path(&quot;raw_dumps&quot;)`.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Total number of raw exploration tables created or updated in the database. </div>
+</div>
+<div id="src_build_tables_py_register_custom_domain_table" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def register_custom_domain_table</h4>
+</div>
+<div class="signature">def register_custom_domain_table(db_file: Union[str, Path] = &#x27;output/GoRefs_Master.duckdb&#x27;, table_name: str = &#x27;&#x27;, data: Union[pd.DataFrame, List[Dict[str, Any]], str] = None, source_key: str = &#x27;custom_domain&#x27;) -&gt; bool</div>
+<p class="item-summary">Dynamically registers a custom domain table or new source dataset into DuckDB.</p>
+<pre class="docstring-block">Ensures extension support without breaking or altering pre-existing canonical
+or raw schemas. Updates `schema_inventory` automatically.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>db_file</code></td><td>-</td><td>Path to the target DuckDB database file. Defaults to `output/GoRefs_Master.duckdb`.</td></tr><tr><td><code>table_name</code></td><td>-</td><td>Raw or formatted table name to create/replace in the database.</td></tr><tr><td><code>data</code></td><td>-</td><td>Data to ingest. Can be a `pandas.DataFrame`, a list of dictionaries, or a SQL SELECT statement string.</td></tr><tr><td><code>source_key</code></td><td>-</td><td>Optional identifier tag for the source registering this table. Defaults to `&quot;custom_domain&quot;`.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> True if registration succeeded, False otherwise. </div>
+</div>
+</section><section id="src_builder_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/builder.py</h2>
+</div>
+<p class="module-summary">Master build engine and DuckDB database creator for Pokémon GO reference knowledge base.</p>
+<pre class="docstring-block">Orchestrates raw dataset ingestion across 7 data sources, applies trust hierarchy precedence,
+resolves claims, logs field discrepancies, compares snapshot changes in a change history engine,
+and generates the single Master DuckDB database (`output/GoRefs_Master.duckdb`) containing ONLY
+clean normalized domain tables with ZERO source-prefixed table names and ZERO data dropped.</pre>
+<h3 class="section-title">Classes</h3>
+<div id="src_builder_py_GoRefsMasterEngine" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>GoRefsMasterEngine<span class="bases"></span></h3>
+</div>
+<p class="item-summary">Unified Master Build Engine for the Pokémon GO Reference Knowledge Base.</p>
+<pre class="docstring-block">Orchestrates the ingestion of 7 data sources, resolves canonical attributes via source
+precedence (1 &gt; 2 &gt; 3 &gt; 4 &gt; 5 &gt; 6 &gt; 7), logs field discrepancies, tracks snapshot diffs in
+`change_history`, and writes to `output/GoRefs_Master.duckdb` with clean normalized tables.</pre>
+<div class="methods-container">
+<h4>Methods</h4>
+<div id="src_builder_py_GoRefsMasterEngine___init__" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def __init__</h4>
+</div>
+<div class="signature">def __init__(self, raw_dumps_dir: Path = Path(&#x27;raw_dumps&#x27;), output_dir: Path = Path(&#x27;output&#x27;), db_path: Optional[Path] = None)</div>
+<p class="item-summary">Initializes the GoRefsMasterEngine with workspace directories and source priorities.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>raw_dumps_dir</code></td><td>-</td><td>Directory containing timestamped source snapshots.</td></tr><tr><td><code>output_dir</code></td><td>-</td><td>Target directory for database and JSON outputs.</td></tr><tr><td><code>db_path</code></td><td>-</td><td>Absolute or relative path to target Master DuckDB file. Defaults to `output_dir / &quot;GoRefs_Master.duckdb&quot;`.</td></tr>
+          </tbody>
+        </table>
+        
+</div>
+<div id="src_builder_py_GoRefsMasterEngine_emit_claim" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def emit_claim</h4>
+</div>
+<div class="signature">def emit_claim(self, entity_id: str, attribute: str, source: str, value: Any) -&gt; None</div>
+<p class="item-summary">Appends one claim to the in-memory claims ledger, if the value is present.</p>
+<pre class="docstring-block">This is the single path every domain uses to record &quot;source X claims
+attribute Y of entity Z is value V&quot; -- both cut-over sources (via
+engine.run_source()) and not-yet-cut-over legacy code emit through this
+same method, so discrepancy coverage and --test&#x27;s ledger-replay work
+identically regardless of migration progress.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>entity_id</code></td><td>-</td><td>Stable entity key, e.g. &quot;pokemon_dex_1&quot; or &quot;badge_Triathlete&quot;.</td></tr><tr><td><code>attribute</code></td><td>-</td><td>Canonical field name, e.g. &quot;base_attack&quot;.</td></tr><tr><td><code>source</code></td><td>-</td><td>Source key, must be a key in TRUST_HIERARCHY (unknown sources default to priority 99, effectively never winning).</td></tr><tr><td><code>value</code></td><td>-</td><td>The claimed value. None is silently ignored -- a source with no opinion on a field doesn&#x27;t get a claim at all.</td></tr>
+          </tbody>
+        </table>
+        
+</div>
+<div id="src_builder_py_GoRefsMasterEngine_register_custom_domain_table" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def register_custom_domain_table</h4>
+</div>
+<div class="signature">def register_custom_domain_table(self, table_name: str, data: Union[pd.DataFrame, List[Dict[str, Any]], str], source_key: str = &#x27;custom_domain&#x27;) -&gt; bool</div>
+<p class="item-summary">Dynamically registers a custom domain table into output/GoRefs_Master.duckdb.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>table_name</code></td><td>-</td><td>Name of the table to create.</td></tr><tr><td><code>data</code></td><td>-</td><td>Dataframe, list of dicts, or SQL select string.</td></tr><tr><td><code>source_key</code></td><td>-</td><td>Source classification label.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> True if registration succeeded, False otherwise.</div>
+</div>
+<div id="src_builder_py_GoRefsMasterEngine_resolve_attribute_claim" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def resolve_attribute_claim</h4>
+</div>
+<div class="signature">def resolve_attribute_claim(self, entity_id: str, attribute: str, claims: List[Dict[str, Any]]) -&gt; Tuple[Any, str]</div>
+<p class="item-summary">Resolves a canonical attribute value from competing source claims.</p>
+<pre class="docstring-block">Evaluates claims against source priority (lower priority number wins: 1 &gt; 2 &gt; 3 &gt; ...).
+If multiple non-null claims exist and disagree, logs an entry in `discrepancies`.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>entity_id</code></td><td>-</td><td>Unique entity key (e.g. &quot;pokemon_dex_150&quot;).</td></tr><tr><td><code>attribute</code></td><td>-</td><td>Attribute name (e.g. &quot;base_attack&quot;).</td></tr><tr><td><code>claims</code></td><td>-</td><td>List of claim dicts with keys &quot;source&quot;, &quot;value&quot;, and optional &quot;trust_tier&quot;.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Tuple of (resolved_value, winning_source_name).</div>
+</div>
+<div id="src_builder_py_GoRefsMasterEngine_resolve_all_claims" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def resolve_all_claims</h4>
+</div>
+<div class="signature">def resolve_all_claims(self) -&gt; Dict[Tuple[str, str], Any]</div>
+<p class="item-summary">Groups the claims ledger by (entity_id, attribute) and resolves each group.</p>
+<pre class="docstring-block">This is the universal replacement for the old pattern of manually building a
+`claims` list and calling resolve_attribute_claim() at one hardcoded call site
+per field -- every field emitted via emit_claim() (Tasks 6-7) gets the same
+trust-tier resolution and discrepancy logging automatically.</pre>
+<div class="returns-box"><strong>Returns:</strong> Dict mapping (entity_id, attribute) to its resolved value. Attributes with no claims at all simply aren&#x27;t keys in this dict -- callers should use .get((entity_id, attribute)) and treat a missing key as None.</div>
+</div>
+<div id="src_builder_py_GoRefsMasterEngine_collect_and_resolve_claims" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def collect_and_resolve_claims</h4>
+</div>
+<div class="signature">def collect_and_resolve_claims(self) -&gt; Dict[str, Any]</div>
+<p class="item-summary">Loads raw snapshots across all 7 sources and builds deduplicated canonical datasets.</p>
+<div class="returns-box"><strong>Returns:</strong> Dictionary containing canonical domain lists and metadata.</div>
+</div>
+<div id="src_builder_py_GoRefsMasterEngine_compute_and_record_diffs" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def compute_and_record_diffs</h4>
+</div>
+<div class="signature">def compute_and_record_diffs(self, con: duckdb.DuckDBPyConnection, canonical_data: Dict[str, Any]) -&gt; int</div>
+<p class="item-summary">Snapshot Change / Diff Engine: Compares new canonical claims against Master DB state.</p>
+<pre class="docstring-block">Detects attribute modifications and records historical changes into `change_history`.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>con</code></td><td>-</td><td>Open DuckDB connection to Master DB.</td></tr><tr><td><code>canonical_data</code></td><td>-</td><td>Newly resolved canonical datasets dictionary.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Number of change records appended to `change_history`.</div>
+</div>
+<div id="src_builder_py_GoRefsMasterEngine_write_master_duckdb" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def write_master_duckdb</h4>
+</div>
+<div class="signature">def write_master_duckdb(self, canonical_data: Dict[str, Any]) -&gt; int</div>
+<p class="item-summary">Writes canonical domain datasets into `output/GoRefs_Master.duckdb`.</p>
+<pre class="docstring-block">Purges all source-prefixed raw exploration tables so that `GoRefs_Master.duckdb`
+contains ONLY clean normalized tables named by what the data IS.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>canonical_data</code></td><td>-</td><td>Resolved canonical dataset dictionary.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Total canonical table rows written.</div>
+</div>
+<div id="src_builder_py_GoRefsMasterEngine_build_all" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def build_all</h4>
+</div>
+<div class="signature">def build_all(self) -&gt; Dict[str, int]</div>
+<p class="item-summary">Runs the complete GoRefs build pipeline.</p>
+<pre class="docstring-block">1. Collects raw claims across all 7 sources and resolves canonical datasets.
+2. Compares changes against existing state and updates `change_history` table.
+3. Writes normalized domain tables to `output/GoRefs_Master.duckdb` (purging source prefixes).
+4. Dynamically updates `README.md` statistics.</pre>
+<div class="returns-box"><strong>Returns:</strong> Summary count statistics dictionary.</div>
+</div>
+<div id="src_builder_py_GoRefsMasterEngine_export_parquet" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def export_parquet</h4>
+</div>
+<div class="signature">def export_parquet(self, db_path: Path, output_dir: Path) -&gt; List[str]</div>
+<p class="item-summary">Exports every canonical (non-internal) table to Parquet for remote/WASM consumption.</p>
+<pre class="docstring-block">Skips internal tables (prefixed with &quot;_&quot;, e.g. &quot;_claims_ledger&quot;) -- only the
+stable canonical domain tables need a browser-remote-read path.
+
+Clears any stale .parquet files from prior builds to ensure full rebuild semantics.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>db_path</code></td><td>-</td><td>Path to the built GoRefs_Master.duckdb file.</td></tr><tr><td><code>output_dir</code></td><td>-</td><td>Directory under which &quot;parquet/&quot; is created.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> List of table names exported. </div>
+</div>
+<div id="src_builder_py_GoRefsMasterEngine_build" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def build</h4>
+</div>
+<div class="signature">def build(self) -&gt; Dict[str, int]</div>
+<p class="item-summary">Alias for build_all to run the full build pipeline.</p>
+<div class="returns-box"><strong>Returns:</strong> Summary count statistics dictionary.</div>
+</div>
+</div>
+</div>
+<h3 class="section-title">Functions</h3>
+<div id="src_builder_py_update_readme_counts" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def update_readme_counts</h4>
+</div>
+<div class="signature">def update_readme_counts(counts: Dict[str, int], readme_path: Path = Path(&#x27;README.md&#x27;)) -&gt; None</div>
+<p class="item-summary">Dynamically updates domain statistics and table counts in README.md when building.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>counts</code></td><td>-</td><td>Dictionary containing count statistics per domain.</td></tr><tr><td><code>readme_path</code></td><td>-</td><td>Path to README.md file. Defaults to `Path(&quot;README.md&quot;)`.</td></tr>
+          </tbody>
+        </table>
+        
+</div>
+<div id="src_builder_py_build_canonical_dataset" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def build_canonical_dataset</h4>
+</div>
+<div class="signature">def build_canonical_dataset(raw_dumps_dir: Path = Path(&#x27;raw_dumps&#x27;), output_dir: Path = Path(&#x27;output&#x27;))</div>
+<p class="item-summary">Wrapper function entry point for building the Master dataset.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>raw_dumps_dir</code></td><td>-</td><td>Raw dumps directory path.</td></tr><tr><td><code>output_dir</code></td><td>-</td><td>Output directory path.</td></tr>
+          </tbody>
+        </table>
+        
+</div>
+</section><section id="src_engine_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/engine.py</h2>
+</div>
+<p class="module-summary">Generic, template-driven extraction engine for GoRefs sources.</p>
+<pre class="docstring-block">The only code path that reads a config/source_templates/*.yml file at build
+time. Everything here is source-agnostic -- source-specific knowledge lives
+entirely in the template, not in this module.</pre>
+<h3 class="section-title">Functions</h3>
+<div id="src_engine_py_unwrap_to_records" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def unwrap_to_records</h4>
+</div>
+<div class="signature">def unwrap_to_records(payload: Any, unwrap_path: List[str], iterate_mode: str, key_becomes_field: Optional[str] = None, dict_key_field: str = &#x27;key&#x27;, dict_value_field: str = &#x27;value&#x27;) -&gt; List[Dict[str, Any]]</div>
+<p class="item-summary">Descends through unwrap_path, then yields records per iterate_mode.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>payload</code></td><td>-</td><td>The raw, already-json.load()-ed source payload.</td></tr><tr><td><code>unwrap_path</code></td><td>-</td><td>Dict keys to descend through before iterating, e.g. [&quot;currentList&quot;].</td></tr><tr><td><code>iterate_mode</code></td><td>-</td><td>One of &quot;top_level_list&quot;, &quot;dict_of_lists&quot;, &quot;list_of_dicts_with_subkey&quot;, &quot;single_object&quot;, &quot;dict_of_scalars&quot;.</td></tr><tr><td><code>key_becomes_field</code></td><td>-</td><td>For &quot;dict_of_lists&quot;, the dict key at the final unwrap level is injected onto each of its records under this field name (e.g. a raid tier name becomes each boss record&#x27;s &quot;tier&quot; field).</td></tr><tr><td><code>dict_key_field</code></td><td>-</td><td>For &quot;dict_of_scalars&quot; only -- the field name each dict key is injected under in its one-field record (e.g. &quot;costume_token&quot;). Defaults to &quot;key&quot; so a minimal template still works.</td></tr><tr><td><code>dict_value_field</code></td><td>-</td><td>For &quot;dict_of_scalars&quot; only -- the field name each dict&#x27;s scalar value is injected under (e.g. &quot;display_name&quot;). Defaults to &quot;value&quot;.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> List of record dicts.</div>
+</div>
+<div id="src_engine_py__get_nested" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def _get_nested</h4>
+</div>
+<div class="signature">def _get_nested(record: Dict[str, Any], dotted_path: str) -&gt; Any</div>
+<p class="item-summary">Navigate through nested dict using dot-separated path.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>record</code></td><td>-</td><td>Dict to navigate through</td></tr><tr><td><code>dotted_path</code></td><td>-</td><td>Dot-separated path, e.g. &quot;names.English&quot;</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> The value at the path, or None if path doesn&#x27;t exist.</div>
+</div>
+<div id="src_engine_py_apply_transform" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def apply_transform</h4>
+</div>
+<div class="signature">def apply_transform(record: Dict[str, Any], mapping: Dict[str, Any]) -&gt; Any</div>
+<p class="item-summary">Applies one template field_mappings entry&#x27;s transform to a record.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>record</code></td><td>-</td><td>A single extracted record (from unwrap_to_records).</td></tr><tr><td><code>mapping</code></td><td>-</td><td>One field_mappings value, e.g. {&quot;source_field&quot;: &quot;names.English&quot;, &quot;transform&quot;: &quot;nested_path&quot;, &quot;fallback_field&quot;: &quot;id&quot;}.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> The transformed value, or None if the source field is absent.</div>
+</div>
+<div id="src_engine_py_resolve_gender" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def resolve_gender</h4>
+</div>
+<div class="signature">def resolve_gender(record: Dict[str, Any], gender_signals: List[Dict[str, Any]], context: Optional[Dict[str, Any]] = None) -&gt; str</div>
+<p class="item-summary">Evaluates every gender signal against a record; any one firing means &quot;female&quot;.</p>
+<pre class="docstring-block">This is the generalized fix for a source encoding &quot;this is the female variant&quot;
+inconsistently across fields (a boolean flag, a form-name string, or a dict key
+name) -- rather than trusting one hardcoded field, every declared signal is checked.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>record</code></td><td>-</td><td>The extracted record.</td></tr><tr><td><code>gender_signals</code></td><td>-</td><td>List of signal dicts from a template&#x27;s `gender_signals`.</td></tr><tr><td><code>context</code></td><td>-</td><td>Optional extra values not on the record itself, e.g. {&quot;record_key&quot;: &quot;FRILLISH_FEMALE&quot;} for key_pattern signals sourced from a dict key rather than a record field.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> &quot;female&quot; if any signal fires, else &quot;unknown&quot;.</div>
+</div>
+<div id="src_engine_py_normalize_form_identity" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def normalize_form_identity</h4>
+</div>
+<div class="signature">def normalize_form_identity(species_dex: int, species_slug: str, form_name: Optional[str], costume_name: Optional[str], gender: str) -&gt; tuple</div>
+<p class="item-summary">Builds a normalized identity tuple for deduplicating form records.</p>
+<pre class="docstring-block">Strips a leading repeat of the species&#x27; own name from form_name (this is what
+caused &quot;592-frillish-frillish-female&quot;-style duplicate slugs), and folds any
+form_name that&#x27;s purely a gender label (e.g. &quot;Female&quot;) into the gender field
+rather than treating it as a distinct form -- so the same real-world variant,
+however it&#x27;s spelled across different upstream fields, collapses to one tuple.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>species_dex</code></td><td>-</td><td>Species dex number.</td></tr><tr><td><code>species_slug</code></td><td>-</td><td>e.g. &quot;592-frillish&quot;.</td></tr><tr><td><code>form_name</code></td><td>-</td><td>Raw form name, e.g. &quot;Frillish (Female)&quot; or &quot;Female&quot; or None.</td></tr><tr><td><code>costume_name</code></td><td>-</td><td>Raw costume name, or None.</td></tr><tr><td><code>gender</code></td><td>-</td><td>Already-resolved gender (&quot;female&quot; or &quot;unknown&quot;).</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> (species_dex, normalized_form_token, normalized_costume_token, gender)</div>
+</div>
+<div id="src_engine_py__slugify_name" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def _slugify_name</h4>
+</div>
+<div class="signature">def _slugify_name(name: Optional[str]) -&gt; str</div>
+<p class="item-summary">Lowercases and hyphenates a display name for identity-stripping purposes only.</p>
+<pre class="docstring-block">Not a display slug (that&#x27;s builder.py&#x27;s job) -- just enough normalization for
+normalize_form_identity() to reliably strip a repeated species-name token from
+a form/costume string, regardless of exact punctuation/casing.</pre>
+</div>
+<div id="src_engine_py__build_form_entity_id" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def _build_form_entity_id</h4>
+</div>
+<div class="signature">def _build_form_entity_id(entity_prefix: str, raw_id: Any, norm_identity: tuple) -&gt; str</div>
+<p class="item-summary">Builds a deterministic form entity_id from a normalized identity tuple.</p>
+<pre class="docstring-block">Two different upstream fields describing the SAME real-world variant (e.g.
+assetForms&#x27;s unreliable `isFemale` boolean vs. regionForms&#x27;s `..._FEMALE` key
+text) normalize to the same tuple via normalize_form_identity(), and therefore
+land on this same entity_id -- this is what makes the dedup automatic rather
+than requiring an explicit dedup pass over raw strings.</pre>
+</div>
+<div id="src_engine_py_apply_sub_records" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def apply_sub_records</h4>
+</div>
+<div class="signature">def apply_sub_records(parent_record: Dict[str, Any], parent_raw_id: Any, species_dex: int, species_name: Optional[str], entity_prefix: str, sub_record_configs: List[Dict[str, Any]], source: str, priority: int) -&gt; List[Dict[str, Any]]</div>
+<p class="item-summary">Extracts claims from a parent record&#x27;s nested sub-lists (e.g. assetForms,</p>
+<pre class="docstring-block">regionForms), one additional claim-set per sub-record.
+
+This is the fix for a source describing the same real-world form/gender/costume
+variant inconsistently across two different nested fields (pokemon_go_api&#x27;s
+Frillish: once via `regionForms[&quot;FRILLISH_FEMALE&quot;]`, once via `assetForms`&#x27;s
+`{&quot;form&quot;: &quot;FEMALE&quot;, &quot;isFemale&quot;: false}` -- isFemale is false on the entry that
+IS the female variant). Every sub-record&#x27;s identity is normalized via
+normalize_form_identity() before being turned into an entity_id, so both
+representations collapse onto the same entity rather than producing two
+separate, inconsistently-tagged rows.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>parent_record</code></td><td>-</td><td>The top-level extracted record (e.g. one pokedex species).</td></tr><tr><td><code>parent_raw_id</code></td><td>-</td><td>The parent&#x27;s identity_field value (e.g. dexNr).</td></tr><tr><td><code>species_dex</code></td><td>-</td><td>Numeric species dex number (passed separately from parent_raw_id since callers may one day key parents by something else).</td></tr><tr><td><code>species_name</code></td><td>-</td><td>The parent&#x27;s own display name, used only to strip a repeated species-name token out of form/costume text.</td></tr><tr><td><code>entity_prefix</code></td><td>-</td><td>Same entity_id_prefix run_source() resolved for the parent.</td></tr><tr><td><code>sub_record_configs</code></td><td>-</td><td>The template&#x27;s `sub_records` list.</td></tr><tr><td><code>source</code></td><td>-</td><td>Actual source key (for claim provenance).</td></tr><tr><td><code>priority</code></td><td>-</td><td>Trust-hierarchy priority for this source.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> List of claim dicts, same shape as run_source()&#x27;s top-level claims.</div>
+</div>
+<div id="src_engine_py__get_latest_snapshot_dir" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def _get_latest_snapshot_dir</h4>
+</div>
+<div class="signature">def _get_latest_snapshot_dir(source_dir: Path) -&gt; Optional[Path]</div>
+<p class="item-summary">Returns the lexicographically-latest timestamped snapshot subdirectory, if any.</p>
+</div>
+<div id="src_engine_py__load_template_and_records" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def _load_template_and_records</h4>
+</div>
+<div class="signature">def _load_template_and_records(source_key: str, raw_dumps_dir: Path, templates_dir: Path) -&gt; Optional[Dict[str, Any]]</div>
+<p class="item-summary">Shared loader for run_source() and extract_transformed_records(): reads a</p>
+<pre class="docstring-block">template, resolves its latest raw snapshot, and extracts records via
+unwrap_to_records(). These two functions are the only code that reads
+config/source_templates/*.yml -- everything else in this module operates on
+already-extracted records or claims, and no other module reads templates at all.</pre>
+<div class="returns-box"><strong>Returns:</strong> None if the template or its raw snapshot is missing, else a dict with keys: template, records, actual_source_key, field_mappings, gender_signals, identity_field, priority, snapshot_dir.</div>
+</div>
+<div id="src_engine_py_extract_transformed_records" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def extract_transformed_records</h4>
+</div>
+<div class="signature">def extract_transformed_records(source_key: str, raw_dumps_dir: Path = Path(&#x27;raw_dumps&#x27;), templates_dir: Path = Path(&#x27;config/source_templates&#x27;)) -&gt; List[Dict[str, Any]]</div>
+<p class="item-summary">Extracts one plain, field_mappings-transformed dict per record -- no entity_id,</p>
+<pre class="docstring-block">no claims ledger, no priority-based resolution.
+
+For single-source domains with no cross-source arbitration (e.g. pokemon_go_api&#x27;s
+raid_bosses/max_battles/quests, whose only source is pokemon_go_api itself): there
+is nothing to resolve claims AGAINST, so routing these through run_source()&#x27;s
+entity_id/claims/ledger machinery buys nothing and actively loses information --
+that machinery builds one entity_id per identity_field value, which collides for
+domains needing a composite key run_source() cannot express (e.g. a raid boss&#x27;s
+real identity is (tier, id), not id alone -- two different raid tiers can feature
+the same Pokemon id). Callers needing a composite key should build it themselves
+from whatever field_mappings captured (e.g. a `key_becomes_field` value) plus this
+function&#x27;s returned dicts, entirely in caller-owned code -- no ledger involved.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>source_key</code></td><td>-</td><td>Template name (without .yml), same convention as run_source().</td></tr><tr><td><code>raw_dumps_dir</code></td><td>-</td><td>Base directory containing raw_dumps/&lt;source&gt;/&lt;timestamp&gt;/*.json.</td></tr><tr><td><code>templates_dir</code></td><td>-</td><td>Base directory containing config/source_templates/*.yml.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns <code>(List of plain dicts)</code>:</strong> {attribute: transformed_value, ...} per extracted record, plus a &quot;gender&quot; key when the template declares gender_signals. Records whose every field_mappings value transforms to None still appear (as an empty dict), since there&#x27;s no identity_field requirement to filter on unlike run_source().</div>
+</div>
+<div id="src_engine_py_run_source" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def run_source</h4>
+</div>
+<div class="signature">def run_source(source_key: str, raw_dumps_dir: Path = Path(&#x27;raw_dumps&#x27;), templates_dir: Path = Path(&#x27;config/source_templates&#x27;), parsed_dumps_dir: Optional[Path] = None) -&gt; List[Dict[str, Any]]</div>
+<p class="item-summary">Extracts claims from a source&#x27;s latest raw snapshot, driven entirely by its template.</p>
+<pre class="docstring-block">See _load_template_and_records()&#x27;s docstring for the &quot;only two functions that read
+templates&quot; note. This function never writes to canonical tables -- callers
+(GoRefsMasterEngine, --test-paranoid) are responsible for feeding the returned
+claims into the ledger/resolver.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>source_key</code></td><td>-</td><td>e.g. &quot;pokemon_go_api&quot;. Looks for a template named exactly &quot;{source_key}.yml&quot;, or, for multi-endpoint sources, the caller should pass the specific &quot;{source_key}_{endpoint}.yml&quot; template name as source_key.</td></tr><tr><td><code>raw_dumps_dir</code></td><td>-</td><td>Base directory containing raw_dumps/&lt;source&gt;/&lt;timestamp&gt;/*.json.</td></tr><tr><td><code>templates_dir</code></td><td>-</td><td>Base directory containing config/source_templates/*.yml.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns <code>(List of claim dicts)</code>:</strong> {&quot;entity_id&quot;, &quot;attribute&quot;, &quot;source&quot;, &quot;value&quot;, &quot;priority&quot;}.</div>
+</div>
+</section><section id="src_fetchers___init___py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/fetchers/__init__.py</h2>
+</div>
+</section><section id="src_fetchers_base_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/fetchers/base.py</h2>
+</div>
+<p class="module-summary">Base fetcher module for Pokémon GO reference data source fetchers.</p>
+<pre class="docstring-block">Defines the abstract `BaseFetcher` base class and `FetcherRegistry` class for registering
+and executing upstream data source fetchers with pre-flight check support, snapshot caching,
+and raw payload storage.</pre>
+<h3 class="section-title">Classes</h3>
+<div id="src_fetchers_base_py_BaseFetcher" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>BaseFetcher<span class="bases"></span></h3>
+</div>
+<p class="item-summary">Abstract Base Fetcher for all Pokémon GO reference data sources.</p>
+<pre class="docstring-block">Handles timestamped snapshot storage, pre-flight commit/ETag checks, raw data loading,
+and local snapshot deduplication.</pre>
+<div class="methods-container">
+<h4>Methods</h4>
+<div id="src_fetchers_base_py_BaseFetcher___init__" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def __init__</h4>
+</div>
+<div class="signature">def __init__(self, source_key: str, config: Dict[str, Any], base_dump_dir: Path = Path(&#x27;raw_dumps&#x27;))</div>
+<p class="item-summary">Initializes the BaseFetcher with source configuration and dump directory.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>source_key</code></td><td>-</td><td>Unique identifier key for the source (e.g. &quot;pokemon_go_api&quot;).</td></tr><tr><td><code>config</code></td><td>-</td><td>Configuration dictionary loaded from sources.yml.</td></tr><tr><td><code>base_dump_dir</code></td><td>-</td><td>Base directory for storing timestamped raw dumps. Defaults to `Path(&quot;raw_dumps&quot;)`.</td></tr>
+          </tbody>
+        </table>
+        
+</div>
+<div id="src_fetchers_base_py_BaseFetcher_create_snapshot_dir" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def create_snapshot_dir</h4>
+</div>
+<div class="signature">def create_snapshot_dir(self) -&gt; Path</div>
+<p class="item-summary">Creates a timestamped snapshot directory (e.g. raw_dumps/pogoapi_net/2026-07-29T185300Z).</p>
+<div class="returns-box"><strong>Returns:</strong> Path to the created timestamped snapshot directory.</div>
+</div>
+<div id="src_fetchers_base_py_BaseFetcher_get_latest_snapshot_dir" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def get_latest_snapshot_dir</h4>
+</div>
+<div class="signature">def get_latest_snapshot_dir(self, exclude_dir: Optional[Path] = None) -&gt; Optional[Path]</div>
+<p class="item-summary">Returns the path to the most recent timestamped snapshot directory.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>exclude_dir</code></td><td>-</td><td>Optional directory path to exclude from calculation (useful when building a new snapshot).</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Path to the latest snapshot directory, or None if no snapshots exist.</div>
+</div>
+<div id="src_fetchers_base_py_BaseFetcher_get_remote_head_meta" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def get_remote_head_meta</h4>
+</div>
+<div class="signature">def get_remote_head_meta(self, url: str) -&gt; Dict[str, str]</div>
+<p class="item-summary">Performs a lightweight HTTP HEAD request to fetch remote ETag or Last-Modified header.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>url</code></td><td>-</td><td>Target HTTP endpoint URL.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Dictionary containing &quot;etag&quot; string and HTTP &quot;status&quot; string if successful.</div>
+</div>
+<div id="src_fetchers_base_py_BaseFetcher_is_remote_unchanged" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def is_remote_unchanged</h4>
+</div>
+<div class="signature">def is_remote_unchanged(self, url: str, force: bool = False) -&gt; Optional[Path]</div>
+<p class="item-summary">Pre-flight check to determine if the remote resource is unchanged.</p>
+<pre class="docstring-block">Performs an HTTP HEAD check on the target URL. If the returned ETag matches the
+saved `.meta.json` from the latest snapshot, network downloading is skipped.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>url</code></td><td>-</td><td>Remote resource URL to check.</td></tr><tr><td><code>force</code></td><td>-</td><td>If True, forces download regardless of pre-flight check.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Path to latest snapshot directory if remote is unchanged, otherwise None.</div>
+</div>
+<div id="src_fetchers_base_py_BaseFetcher_save_meta" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def save_meta</h4>
+</div>
+<div class="signature">def save_meta(self, snapshot_dir: Path, etag: Optional[str] = None) -&gt; None</div>
+<p class="item-summary">Saves metadata (etag, timestamp, source key) to the snapshot directory.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>snapshot_dir</code></td><td>-</td><td>Snapshot directory where `.meta.json` should be saved.</td></tr><tr><td><code>etag</code></td><td>-</td><td>Optional ETag or header hash string.</td></tr>
+          </tbody>
+        </table>
+        
+</div>
+<div id="src_fetchers_base_py_BaseFetcher_save_raw" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def save_raw</h4>
+</div>
+<div class="signature">def save_raw(self, snapshot_dir: Path, name: str, data: Any, is_json: bool = True) -&gt; Path</div>
+<p class="item-summary">Saves raw fetched data to the snapshot directory.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>snapshot_dir</code></td><td>-</td><td>Snapshot directory to save the file into.</td></tr><tr><td><code>name</code></td><td>-</td><td>Filename stem without extension.</td></tr><tr><td><code>data</code></td><td>-</td><td>Data payload (dict/list for JSON, str for plain text).</td></tr><tr><td><code>is_json</code></td><td>-</td><td>If True, serializes data as JSON format. Defaults to True.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Path to the saved file.</div>
+</div>
+<div id="src_fetchers_base_py_BaseFetcher_compute_directory_hash" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def compute_directory_hash</h4>
+</div>
+<div class="signature">def compute_directory_hash(self, target_dir: Path) -&gt; str</div>
+<p class="item-summary">Computes a unified SHA256 hash across all content files in a snapshot directory.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>target_dir</code></td><td>-</td><td>Snapshot directory path.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Hexadecimal SHA256 string digest.</div>
+</div>
+<div id="src_fetchers_base_py_BaseFetcher_finalize_snapshot" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def finalize_snapshot</h4>
+</div>
+<div class="signature">def finalize_snapshot(self, new_snapshot_dir: Path, etag: Optional[str] = None, force: bool = False) -&gt; Path</div>
+<p class="item-summary">Finalizes a snapshot directory and deduplicates content against previous snapshot.</p>
+<pre class="docstring-block">If the newly fetched directory content matches the previous snapshot hash, deletes
+`new_snapshot_dir` to prevent redundant disk usage and reuses previous snapshot.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>new_snapshot_dir</code></td><td>-</td><td>Directory containing newly fetched files.</td></tr><tr><td><code>etag</code></td><td>-</td><td>Optional HTTP ETag header string.</td></tr><tr><td><code>force</code></td><td>-</td><td>If True, bypasses deduplication check.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Path to the finalized (or reused) snapshot directory.</div>
+</div>
+<div id="src_fetchers_base_py_BaseFetcher_load_latest_raw" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def load_latest_raw</h4>
+</div>
+<div class="signature">def load_latest_raw(self, name: str) -&gt; Optional[Any]</div>
+<p class="item-summary">Loads raw data from the latest saved snapshot directory for offline processing.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>name</code></td><td>-</td><td>Filename stem without extension (e.g. &quot;pokedex&quot;).</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Parsed JSON object or text string, or None if snapshot file does not exist.</div>
+</div>
+<div id="src_fetchers_base_py_BaseFetcher_fetch" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def fetch</h4>
+</div>
+<div class="signature">def fetch(self, force: bool = False) -&gt; Path</div>
+<p class="item-summary">Abstract fetch method to be implemented by subclass fetchers.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>force</code></td><td>-</td><td>If True, forces network download bypassing pre-flight checks.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Path to snapshot directory containing fetched raw files. </div>
+</div>
+</div>
+</div>
+<div id="src_fetchers_base_py_FetcherRegistry" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>FetcherRegistry<span class="bases"></span></h3>
+</div>
+<p class="item-summary">Global registry mapping data source keys to BaseFetcher subclass implementations.</p>
+<div class="methods-container">
+<h4>Methods</h4>
+<div id="src_fetchers_base_py_FetcherRegistry_register" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4><span class="type-tag">classmethod</span> def register</h4>
+</div>
+<div class="signature">def register(cls, source_key: str)</div>
+<p class="item-summary">Decorator to register a BaseFetcher subclass under a source key.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>source_key</code></td><td>-</td><td>Unique source identifier string (e.g. &quot;alexelgt_game_masters&quot;).</td></tr>
+          </tbody>
+        </table>
+        
+</div>
+<div id="src_fetchers_base_py_FetcherRegistry_get_fetcher_class" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4><span class="type-tag">classmethod</span> def get_fetcher_class</h4>
+</div>
+<div class="signature">def get_fetcher_class(cls, source_key: str) -&gt; Optional[Type[BaseFetcher]]</div>
+<p class="item-summary">Retrieves a registered BaseFetcher class by its source key.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>source_key</code></td><td>-</td><td>Registered source identifier key.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> BaseFetcher subclass or None if not found.</div>
+</div>
+<div id="src_fetchers_base_py_FetcherRegistry_list_registered" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4><span class="type-tag">classmethod</span> def list_registered</h4>
+</div>
+<div class="signature">def list_registered(cls) -&gt; Dict[str, Type[BaseFetcher]]</div>
+<p class="item-summary">Returns a copy of all registered fetcher classes mapped by source key.</p>
+<div class="returns-box"><strong>Returns:</strong> Dictionary mapping source keys to BaseFetcher subclasses.</div>
+</div>
+</div>
+</div>
+</section><section id="src_fetchers_game_master_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/fetchers/game_master.py</h2>
+</div>
+<p class="module-summary">Fetcher module for raw Niantic client GAME_MASTER.json dumps.</p>
+<pre class="docstring-block">Fetches latest `GAME_MASTER.json` dumps from the `alexelgt/game_masters` repository. Structured
+extraction (species stats, combat moves, CP multipliers, items, stickers, avatar items, friendship
+milestones, and the raw template archive) is no longer done here -- see the game_master_*.yml
+templates under config/source_templates/ and src/builder.py&#x27;s collect_and_resolve_claims() (Task
+22 cut this fetcher&#x27;s former extract_structured_claims() hand-parser over to the generic
+template-driven engine; only raw snapshot retrieval remains fetcher-owned).</pre>
+<h3 class="section-title">Classes</h3>
+<div id="src_fetchers_game_master_py_GameMasterFetcher" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>GameMasterFetcher<span class="bases">(BaseFetcher)</span></h3>
+</div>
+<p class="item-summary">Fetcher for raw Niantic client GAME_MASTER.json via alexelgt/game_masters repository.</p>
+<div class="methods-container">
+<h4>Methods</h4>
+<div id="src_fetchers_game_master_py_GameMasterFetcher_fetch" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def fetch</h4>
+</div>
+<div class="signature">def fetch(self, force: bool = False) -&gt; Path</div>
+<p class="item-summary">Fetches raw `GAME_MASTER.json` payload from the configured remote URL.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>force</code></td><td>-</td><td>If True, bypasses pre-flight ETag check and forces fresh download.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Path to the snapshot directory where `GAME_MASTER.json` was saved. </div>
+</div>
+</div>
+</div>
+</section><section id="src_fetchers_local_authoring_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/fetchers/local_authoring.py</h2>
+</div>
+<p class="module-summary">Fetcher/archiver module for in-repo local authoring overrides.</p>
+<h3 class="section-title">Classes</h3>
+<div id="src_fetchers_local_authoring_py_LocalAuthoringFetcher" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>LocalAuthoringFetcher<span class="bases">(BaseFetcher)</span></h3>
+</div>
+<p class="item-summary">Fetcher/archiver for local hand-maintained authoring spreadsheets and costume lookups.</p>
+<div class="methods-container">
+<h4>Methods</h4>
+<div id="src_fetchers_local_authoring_py_LocalAuthoringFetcher_fetch" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def fetch</h4>
+</div>
+<div class="signature">def fetch(self, force: bool = False) -&gt; Path</div>
+<p class="item-summary">Archives configured local authoring JSON files into a timestamped snapshot.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>force</code></td><td>-</td><td>If True, forces snapshot creation.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Path to saved snapshot directory.</div>
+</div>
+</div>
+</div>
+</section><section id="src_fetchers_pogoapi_net_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/fetchers/pogoapi_net.py</h2>
+</div>
+<p class="module-summary">Fetcher module for pogoapi.net static endpoints.</p>
+<h3 class="section-title">Classes</h3>
+<div id="src_fetchers_pogoapi_net_py_PogoApiFetcher" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>PogoApiFetcher<span class="bases">(BaseFetcher)</span></h3>
+</div>
+<p class="item-summary">Fetcher for all static reference endpoints from pogoapi.net.</p>
+<div class="methods-container">
+<h4>Methods</h4>
+<div id="src_fetchers_pogoapi_net_py_PogoApiFetcher_fetch" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def fetch</h4>
+</div>
+<div class="signature">def fetch(self, force: bool = False) -&gt; Path</div>
+<p class="item-summary">Fetches all configured static reference JSON endpoints from pogoapi.net.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>force</code></td><td>-</td><td>If True, bypasses deduplication checks and forces fresh download.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Path to the saved snapshot directory.</div>
+</div>
+</div>
+</div>
+</section><section id="src_fetchers_pokeapi_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/fetchers/pokeapi.py</h2>
+</div>
+<p class="module-summary">Fetcher module for pokeapi.co endpoints.</p>
+<h3 class="section-title">Classes</h3>
+<div id="src_fetchers_pokeapi_py_PokeApiFetcher" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>PokeApiFetcher<span class="bases">(BaseFetcher)</span></h3>
+</div>
+<p class="item-summary">Fetcher for base taxonomy endpoints from pokeapi.co.</p>
+<div class="methods-container">
+<h4>Methods</h4>
+<div id="src_fetchers_pokeapi_py_PokeApiFetcher_fetch" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def fetch</h4>
+</div>
+<div class="signature">def fetch(self, force: bool = False) -&gt; Path</div>
+<p class="item-summary">Fetches species, pokemon, type, and move limit endpoints from pokeapi.co.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>force</code></td><td>-</td><td>If True, forces download ignoring deduplication checks.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Path to saved snapshot directory.</div>
+</div>
+</div>
+</div>
+</section><section id="src_fetchers_pokemon_go_api_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/fetchers/pokemon_go_api.py</h2>
+</div>
+<p class="module-summary">Fetcher module for pokemon-go-api data endpoints and sprite asset icons.</p>
+<h3 class="section-title">Classes</h3>
+<div id="src_fetchers_pokemon_go_api_py_PokemonGoApiFetcher" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>PokemonGoApiFetcher<span class="bases">(BaseFetcher)</span></h3>
+</div>
+<p class="item-summary">Fetcher for pokemon-go-api endpoints and sprite icon assets.</p>
+<div class="methods-container">
+<h4>Methods</h4>
+<div id="src_fetchers_pokemon_go_api_py_PokemonGoApiFetcher_fetch" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def fetch</h4>
+</div>
+<div class="signature">def fetch(self, force: bool = False) -&gt; Path</div>
+<p class="item-summary">Fetches pokedex, raidboss, maxbattles, quests, and types endpoints.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>force</code></td><td>-</td><td>If True, bypasses pre-flight check and forces fresh download.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Path to the saved snapshot directory.</div>
+</div>
+<div id="src_fetchers_pokemon_go_api_py_PokemonGoApiFetcher_download_assets" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def download_assets</h4>
+</div>
+<div class="signature">def download_assets(self, max_sprites: int = 50) -&gt; Path</div>
+<p class="item-summary">Downloads sprite icons from pokemon-go-api/assets into raw_dumps/assets/.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>max_sprites</code></td><td>-</td><td>Maximum number of sprite files to download. Defaults to 50.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Path to the asset output directory.</div>
+</div>
+</div>
+</div>
+</section><section id="src_fetchers_pvpoke_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/fetchers/pvpoke.py</h2>
+</div>
+<p class="module-summary">Fetcher module for PvPoke open-source GameMaster data.</p>
+<h3 class="section-title">Classes</h3>
+<div id="src_fetchers_pvpoke_py_PvPokeFetcher" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>PvPokeFetcher<span class="bases">(BaseFetcher)</span></h3>
+</div>
+<p class="item-summary">Fetcher for PvPoke open-source PvP data master.</p>
+<div class="methods-container">
+<h4>Methods</h4>
+<div id="src_fetchers_pvpoke_py_PvPokeFetcher_fetch" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def fetch</h4>
+</div>
+<div class="signature">def fetch(self, force: bool = False) -&gt; Path</div>
+<p class="item-summary">Fetches latest PvPoke gamemaster.json dataset.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>force</code></td><td>-</td><td>If True, forces download ignoring pre-flight check.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Path to saved snapshot directory. </div>
+</div>
+</div>
+</div>
+</section><section id="src_fetchers_rplus_shiny_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/fetchers/rplus_shiny.py</h2>
+</div>
+<p class="module-summary">Fetcher module for Rplus shiny releases sheet.</p>
+<h3 class="section-title">Classes</h3>
+<div id="src_fetchers_rplus_shiny_py_RplusShinyFetcher" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>RplusShinyFetcher<span class="bases">(BaseFetcher)</span></h3>
+</div>
+<p class="item-summary">Fetcher for per-form shiny release dates spreadsheet via opensheet.</p>
+<div class="methods-container">
+<h4>Methods</h4>
+<div id="src_fetchers_rplus_shiny_py_RplusShinyFetcher_fetch" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def fetch</h4>
+</div>
+<div class="signature">def fetch(self, force: bool = False) -&gt; Path</div>
+<p class="item-summary">Fetches latest Rplus shiny release dates spreadsheet payload.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>force</code></td><td>-</td><td>If True, forces download ignoring pre-flight check.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Path to saved snapshot directory. </div>
+</div>
+</div>
+</div>
+</section><section id="src_ingest_community_submissions_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/ingest_community_submissions.py</h2>
+</div>
+<p class="module-summary">Ingestion script for community submissions.</p>
+<pre class="docstring-block">Parses submitted CSV or JSON files (from Google Forms / GitHub Issue Forms)
+and converts them into confirmed owner submission claim overrides.</pre>
+<h3 class="section-title">Functions</h3>
+<div id="src_ingest_community_submissions_py_ingest_submission_csv" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def ingest_submission_csv</h4>
+</div>
+<div class="signature">def ingest_submission_csv(csv_path: Path)</div>
+</div>
+<div id="src_ingest_community_submissions_py_main" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def main</h4>
+</div>
+<div class="signature">def main()</div>
+</div>
+</section><section id="src_inventory_analysis_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/inventory_analysis.py</h2>
+</div>
+<p class="module-summary">Schema inventory analysis tool for Master DuckDB database.</p>
+<h3 class="section-title">Functions</h3>
+<div id="src_inventory_analysis_py_analyze_exploration_inventory" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def analyze_exploration_inventory</h4>
+</div>
+<div class="signature">def analyze_exploration_inventory(db_path: str = &#x27;output/GoRefs_Master.duckdb&#x27;) -&gt; List[Dict[str, Any]]</div>
+<p class="item-summary">Analyzes the `schema_inventory` table across raw and canonical tables in DuckDB.</p>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>db_path</code></td><td>-</td><td>Path to the target DuckDB database file. Defaults to `output/GoRefs_Master.duckdb`.</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> List of inventory record dictionaries containing source, table_name, row_count, field_count, and sample_fields.</div>
+</div>
+</section><section id="src_models_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/models.py</h2>
+</div>
+<p class="module-summary">Pydantic data models for canonical entity schemas in Pokémon GO reference dataset.</p>
+<h3 class="section-title">Classes</h3>
+<div id="src_models_py_SpeciesModel" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>SpeciesModel<span class="bases">(BaseModel)</span></h3>
+</div>
+<p class="item-summary">Canonical schema model for a Pokémon species.</p>
+</div>
+<div id="src_models_py_FormModel" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>FormModel<span class="bases">(BaseModel)</span></h3>
+</div>
+<p class="item-summary">Canonical schema model for a Pokémon form or variant.</p>
+</div>
+<div id="src_models_py_MoveModel" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>MoveModel<span class="bases">(BaseModel)</span></h3>
+</div>
+<p class="item-summary">Canonical schema model for a combat move.</p>
+</div>
+<div id="src_models_py_DiscrepancyModel" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>DiscrepancyModel<span class="bases">(BaseModel)</span></h3>
+</div>
+<p class="item-summary">Schema model for cross-source attribute discrepancies.</p>
+</div>
+</section><section id="src_paranoid_check_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/paranoid_check.py</h2>
+</div>
+<p class="module-summary">Rebuilt --test-paranoid: an engine-bypassing, dual-method field-coverage</p>
+<pre class="docstring-block">completeness check. Determines, for every raw field of every in-scope source,
+whether it reaches a canonical table column (CANONICAL), reaches only
+_claims_ledger or a raw-passthrough table (CLAIMS_ONLY), or appears nowhere in
+the built database at all (MISSING). Makes no relevance judgments -- reports
+facts for a human to triage afterward.
+
+Deliberately does not import anything from src/engine.py: a bug in that
+module&#x27;s own extraction logic must not be able to hide from this check by
+also being present in this check&#x27;s own code path.</pre>
+<h3 class="section-title">Functions</h3>
+<div id="src_paranoid_check_py_flatten_json_fields" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def flatten_json_fields</h4>
+</div>
+<div class="signature">def flatten_json_fields(node: Any, prefix: str = &#x27;&#x27;) -&gt; Set[str]</div>
+<p class="item-summary">Recursively flattens a JSON-shaped value into a set of dotted field paths.</p>
+<pre class="docstring-block">Descends into dicts (each key becomes prefix.key) and into every item of a
+list-of-dicts (unioning fields across ALL items, not just the first, since
+real sources like GAME_MASTER&#x27;s assetForms have heterogeneous item shapes).
+A list of non-dict scalars is reported as its own path but not descended
+into further -- there&#x27;s nothing to flatten inside a plain string/number.</pre>
+
+        <table class="args-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>node</code></td><td>-</td><td>A dict, list, or scalar value to flatten.</td></tr><tr><td><code>prefix</code></td><td>-</td><td>The dotted path accumulated so far (empty string at the root).</td></tr>
+          </tbody>
+        </table>
+        
+<div class="returns-box"><strong>Returns:</strong> Set of every dotted field path found, including intermediate container paths (e.g. both &quot;names&quot; and &quot;names.English&quot;).</div>
+</div>
+<div id="src_paranoid_check_py_extract_fields_python_walk" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def extract_fields_python_walk</h4>
+</div>
+<div class="signature">def extract_fields_python_walk(data_file: Path) -&gt; Set[str]</div>
+<p class="item-summary">Method B: plain json.load + flatten_json_fields over EVERY record,</p>
+<pre class="docstring-block">unconditionally -- no sampling. Handles any top-level shape (list, dict,
+or a dict-of-lists container) by flattening the whole payload as one tree;
+flatten_json_fields already unions across every list item at every level,
+so this naturally covers records nested inside a dict-of-lists container
+too, without needing to know the source&#x27;s specific unwrap/iterate shape.</pre>
+</div>
+<div id="src_paranoid_check_py_extract_fields_duckdb_auto" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def extract_fields_duckdb_auto</h4>
+</div>
+<div class="signature">def extract_fields_duckdb_auto(data_file: Path) -&gt; &#x27;Tuple[Optional[Set[str]], List[str]]&#x27;</div>
+<p class="item-summary">Method A: DuckDB&#x27;s read_json_auto. Two real failure modes, both</p>
+<pre class="docstring-block">handled here rather than left to crash or silently under-report:
+
+1. A field appearing only after DuckDB&#x27;s schema-inference sample window
+   makes read_json_auto RAISE (it strictly validates every record
+   against the schema it inferred from sampling) -- not silently omit
+   the field, as an earlier draft of this design assumed. Caught here;
+   signaled to the caller as fields=None so a single bad file can&#x27;t
+   crash the whole multi-source run.
+2. Heterogeneous nested content (e.g. real GAME_MASTER.json&#x27;s &quot;data&quot;
+   field, which holds a different shape per templateType) gets typed
+   MAP(VARCHAR, JSON) rather than a descendable STRUCT -- not a crash,
+   but everything beneath that path is invisible to this method. Each
+   such path is returned in collapsed_paths so callers can report ONE
+   &quot;cross-check unavailable below this path&quot; line instead of treating
+   every field Python&#x27;s walk finds beneath it as a spurious mismatch.</pre>
+<div class="returns-box"><strong>Returns:</strong> (fields, collapsed_paths). fields is None on total parse failure (collapsed_paths is [] in that case); otherwise a Set[str] as before, with collapsed_paths listing any MAP(...)/bare-JSON leaf paths where further descent wasn&#x27;t possible.</div>
+</div>
+<div id="src_paranoid_check_py__split_top_level_commas" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def _split_top_level_commas</h4>
+</div>
+<div class="signature">def _split_top_level_commas(s: str) -&gt; List[str]</div>
+<p class="item-summary">Splits a STRUCT(...) body on commas that aren&#x27;t nested inside another</p>
+<pre class="docstring-block">STRUCT(...)/LIST[...]&#x27;s own parens -- a plain str.split(&quot;,&quot;) would
+incorrectly split &quot;a STRUCT(x INT, y INT), b VARCHAR&quot; in the middle of
+the nested struct.</pre>
+</div>
+<div id="src_paranoid_check_py_find_templates_for_source" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def find_templates_for_source</h4>
+</div>
+<div class="signature">def find_templates_for_source(source_key: str, templates_dir: Path) -&gt; List[Dict[str, Any]]</div>
+<p class="item-summary">Finds every template belonging to source_key by reading each YAML</p>
+<pre class="docstring-block">file&#x27;s own source_key field -- NEVER by matching on filename, since
+filenames don&#x27;t reliably reflect source_key (e.g. game_master_*.yml
+files declare source_key: alexelgt_game_masters internally).</pre>
+</div>
+<div id="src_paranoid_check_py_find_raw_files_for_source" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def find_raw_files_for_source</h4>
+</div>
+<div class="signature">def find_raw_files_for_source(source_key: str, raw_dumps_dir: Path) -&gt; List[Path]</div>
+<p class="item-summary">Lists every raw data file (excluding .meta.json) in a source&#x27;s latest</p>
+<pre class="docstring-block">timestamped snapshot directory.</pre>
+</div>
+<div id="src_paranoid_check_py_mapped_source_fields" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def mapped_source_fields</h4>
+</div>
+<div class="signature">def mapped_source_fields(templates: List[Dict[str, Any]]) -&gt; Dict[str, Set[str]]</div>
+<p class="item-summary">For each template, collects every source_field path declared in its</p>
+<pre class="docstring-block">field_mappings + overrides (overrides included since both represent a
+conscious mapping decision -- this function doesn&#x27;t care which one wins
+at claim-resolution time, only whether the raw field was decided about
+at all). Keyed by endpoint name so a source with multiple endpoint
+templates (e.g. pogoapi_net) gets a separate mapped-field set per file.</pre>
+</div>
+<div id="src_paranoid_check_py_canonical_attribute_names" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def canonical_attribute_names</h4>
+</div>
+<div class="signature">def canonical_attribute_names(db_path: Path) -&gt; Set[str]</div>
+<p class="item-summary">Every column name across every canonical domain table -- deliberately</p>
+<pre class="docstring-block">excludes meta/passthrough tables (_claims_ledger, discrepancies,
+change_history, game_master_templates) since a field merely existing in
+one of those doesn&#x27;t mean it was promoted into a real, modeled domain
+column. This is a name-based heuristic (matching attribute names, not
+tracing individual values end-to-end) -- sufficient for triage, not a
+guaranteed-precise value trace. A human reviewing MISSING/CLAIMS_ONLY
+findings is expected to verify the specific case, same as this project&#x27;s
+existing --test suite&#x27;s own documented &quot;unmapped is not verified&quot;
+caveat (see KNOWN_ISSUES.md).</pre>
+</div>
+<div id="src_paranoid_check_py_claims_ledger_attributes" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def claims_ledger_attributes</h4>
+</div>
+<div class="signature">def claims_ledger_attributes(db_path: Path, source_key: str) -&gt; Set[str]</div>
+<p class="item-summary">Every distinct attribute name _claims_ledger holds a claim for, from</p>
+<pre class="docstring-block">the given source.</pre>
+</div>
+<div id="src_paranoid_check_py_classify_endpoint_fields" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def classify_endpoint_fields</h4>
+</div>
+<div class="signature">def classify_endpoint_fields(endpoint: str, python_fields: Set[str], mapped_fields: Set[str], canonical_attrs: Set[str], claims_attrs: Set[str]) -&gt; Dict[str, List[str]]</div>
+<p class="item-summary">Classifies every raw field found by the (unsampled) Python walk into</p>
+<pre class="docstring-block">exactly one tier. A field is CANONICAL only if it&#x27;s both mapped AND its
+attribute name reaches a real domain-table column; CLAIMS_ONLY if mapped
+and reaches _claims_ledger but not a domain column; MISSING otherwise --
+including a field that IS in mapped_fields but never actually reached
+either _claims_ledger or canonical (a real, if rarer, failure mode: the
+mapping is declared but the data never made it through, e.g. a typo&#x27;d
+source_field or a record where the field was always absent).</pre>
+</div>
+<div id="src_paranoid_check_py_find_method_mismatches" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def find_method_mismatches</h4>
+</div>
+<div class="signature">def find_method_mismatches(python_fields: Set[str], duckdb_fields: Set[str]) -&gt; List[str]</div>
+<p class="item-summary">Fields the unsampled Python walk found that DuckDB&#x27;s sampled</p>
+<pre class="docstring-block">read_json_auto missed -- the direction that matters, since Python&#x27;s walk
+processes every record unconditionally and is the ground truth here.</pre>
+</div>
+<div id="src_paranoid_check_py_run_paranoid_check" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def run_paranoid_check</h4>
+</div>
+<div class="signature">def run_paranoid_check(db_path: Path, raw_dumps_dir: Path, templates_dir: Path, sources: &#x27;Optional[List[str]]&#x27; = None) -&gt; Dict[str, Any]</div>
+<p class="item-summary">Runs the full dual-method field-coverage check across the given</p>
+<pre class="docstring-block">sources (defaults to every in-scope source, never local_authoring).
+
+Returns a dict:
+    {
+      &quot;sources&quot;: {
+        source_key: {
+          &quot;endpoints&quot;: {endpoint: {&quot;CANONICAL&quot;: [...], &quot;CLAIMS_ONLY&quot;: [...], &quot;MISSING&quot;: [...]}},
+          &quot;untemplated_endpoints&quot;: [endpoint_names_with_no_template_at_all],
+          &quot;method_mismatches&quot;: {endpoint: [field, ...]},
+          &quot;duckdb_parse_failures&quot;: [endpoint_names_duckdb_could_not_parse],
+          &quot;collapsed_type_paths&quot;: {endpoint: [field_path_collapsed_to_MAP_or_JSON, ...]},
+        },
+      },
+      &quot;summary&quot;: {source_key: {&quot;CANONICAL&quot;: n, &quot;CLAIMS_ONLY&quot;: n, &quot;MISSING&quot;: n}},
+    }</pre>
+</div>
+<div id="src_paranoid_check_py_render_paranoid_report_markdown" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def render_paranoid_report_markdown</h4>
+</div>
+<div class="signature">def render_paranoid_report_markdown(report: Dict[str, Any]) -&gt; str</div>
+<p class="item-summary">Renders run_paranoid_check()&#x27;s dict into a markdown report. Only</p>
+<pre class="docstring-block">MISSING and CLAIMS_ONLY fields are listed per endpoint -- CANONICAL
+fields are working as intended and would just be noise; the summary
+table still shows their count for context.</pre>
+</div>
+</section><section id="src_profiler_py" class="doc-module-card">
+<div class="module-header">
+<span class="badge badge-module">MODULE</span>
+<h2>src/profiler.py</h2>
+</div>
+<p class="module-summary">Source profiler: inspects raw JSON and proposes config/source_templates/*.yml templates.</p>
+<pre class="docstring-block">Ranks identity-field candidates by uniqueness rather than checking a hardcoded
+shortlist of field names -- a fixed shortlist was tried during design review and
+missed pvpoke&#x27;s real identity field (speciesId) entirely (see the spec&#x27;s
+&quot;Profiler dry-run findings&quot; section), which is exactly the kind of hardcoding
+this whole project exists to move away from.</pre>
+<h3 class="section-title">Classes</h3>
+<div id="src_profiler_py_SourceProfiler" class="class-card">
+<div class="card-header">
+<span class="badge badge-class">CLASS</span>
+<h3>SourceProfiler<span class="bases"></span></h3>
+</div>
+<p class="item-summary">Inspects a source&#x27;s latest raw JSON snapshot and writes/updates its source template.</p>
+<pre class="docstring-block">Templates live at config/source_templates/&lt;source_key&gt;.yml for single-endpoint
+sources, or config/source_templates/&lt;source_key&gt;_&lt;endpoint&gt;.yml per endpoint for
+multi-endpoint sources -- matching engine.run_source()&#x27;s documented template-name
+lookup convention (Task 13). They drive the generic ingestion engine
+(src/engine.py). Re-running the profiler after
+upstream schema drift regenerates auto-detected fields (field_mappings,
+gender_signals, identity_field, source_fingerprint) while preserving any
+human-authored `overrides` verbatim -- overrides that reference a field
+which no longer exists are flagged in `needs_review` rather than silently
+dropped or silently kept broken.</pre>
+<div class="methods-container">
+<h4>Methods</h4>
+<div id="src_profiler_py_SourceProfiler___init__" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def __init__</h4>
+</div>
+<div class="signature">def __init__(self, raw_dumps_dir: Path = Path(&#x27;raw_dumps&#x27;), templates_dir: Path = Path(&#x27;config/source_templates&#x27;))</div>
+</div>
+<div id="src_profiler_py_SourceProfiler__resolve_path" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def _resolve_path</h4>
+</div>
+<div class="signature">def _resolve_path(self, record: Dict[str, Any], path: str) -&gt; Any</div>
+</div>
+<div id="src_profiler_py_SourceProfiler_profile_source" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def profile_source</h4>
+</div>
+<div class="signature">def profile_source(self, source_key: str, endpoint: str) -&gt; Optional[Path]</div>
+</div>
+<div id="src_profiler_py_SourceProfiler_profile_all_sources" class="func-card">
+<div class="card-header">
+<span class="badge badge-method">METHOD</span>
+<h4>def profile_all_sources</h4>
+</div>
+<div class="signature">def profile_all_sources(self) -&gt; None</div>
+</div>
+</div>
+</div>
+<h3 class="section-title">Functions</h3>
+<div id="src_profiler_py_detect_shape" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def detect_shape</h4>
+</div>
+<div class="signature">def detect_shape(payload: Any, max_depth: int = 4) -&gt; List[Tuple[List[str], List[Dict[str, Any]]]]</div>
+<p class="item-summary">Finds every point in payload where a list of record-shaped dicts appears.</p>
+<pre class="docstring-block">Two shapes are recognized:
+  - a bare list of dicts (top-level or nested), recorded at its own path.
+  - a &quot;dict of lists&quot; container -- a dict whose values are themselves lists
+    of dicts (e.g. {&quot;lvl1&quot;: [...], &quot;lvl5&quot;: [...]}) -- recorded at the path of
+    the container itself, with records being the concatenation of its list
+    values. This mirrors engine.unwrap_to_records&#x27;s iterate_mode=&quot;dict_of_lists&quot;,
+    which resolves unwrap_path to this same container and iterates its values,
+    rather than to any single one of its list-valued keys.</pre>
+<div class="returns-box"><strong>Returns:</strong> List of (path, records) tuples, in discovery order. Callers typically pick the shallowest-path, most-populous candidate as primary.</div>
+</div>
+<div id="src_profiler_py_rank_identity_candidates" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def rank_identity_candidates</h4>
+</div>
+<div class="signature">def rank_identity_candidates(records: List[Dict[str, Any]], sample_n: int = 200) -&gt; List[Tuple[str, int, int]]</div>
+<p class="item-summary">Ranks every field by uniqueness-within-sample, not a hardcoded name shortlist.</p>
+<div class="returns-box"><strong>Returns:</strong> List of (field_name, unique_count, sampled_n) sorted by unique_count descending.</div>
+</div>
+<div id="src_profiler_py_catalog_fields" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def catalog_fields</h4>
+</div>
+<div class="signature">def catalog_fields(records: List[Dict[str, Any]], sample_n: int = 200) -&gt; Tuple[Counter, Dict[str, Counter], Dict[str, Any], int]</div>
+<p class="item-summary">Catalogs every field&#x27;s presence count, observed type(s), and one example value.</p>
+<pre class="docstring-block">Includes one level of nested-dict flattening (e.g. &quot;names.English&quot;).</pre>
+<div class="returns-box"><strong>Returns:</strong> (field_presence, field_types, examples, sampled_n)</div>
+</div>
+<div id="src_profiler_py_detect_gender_signals" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def detect_gender_signals</h4>
+</div>
+<div class="signature">def detect_gender_signals(records: List[Dict[str, Any]], sample_n: int = 200) -&gt; List[Dict[str, Any]]</div>
+<p class="item-summary">Scans records for fields that plausibly encode gender.</p>
+<pre class="docstring-block">Two signal types:
+  - boolean_field: a field whose name mentions &quot;female&quot; and holds a bool
+    (e.g. isFemale=True).
+  - value_pattern: a field whose string values mention &quot;female&quot;
+    (e.g. form=&quot;FEMALE&quot;).</pre>
+<div class="returns-box"><strong>Returns:</strong> List of signal dicts, sorted by field name within each signal type.</div>
+</div>
+<div id="src_profiler_py_detect_range_pairs" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def detect_range_pairs</h4>
+</div>
+<div class="signature">def detect_range_pairs(examples: Dict[str, Any]) -&gt; List[Tuple[str, List[Any]]]</div>
+<p class="item-summary">Finds fields whose example value is a 2-element numeric list (e.g. a min/max pair).</p>
+</div>
+<div id="src_profiler_py_compute_shape_fingerprint" class="func-card">
+<div class="card-header">
+<span class="badge badge-func">FUNCTION</span>
+<h4>def compute_shape_fingerprint</h4>
+</div>
+<div class="signature">def compute_shape_fingerprint(field_presence: Counter) -&gt; str</div>
+<p class="item-summary">Hashes the sorted set of field paths (not values) -- used to detect upstream drift.</p>
+</div>
+</section>
+    </main>
+  </div>
+
+  <script>
+    function filterDocs() {
+      const query = document.getElementById('doc-search').value.toLowerCase();
+      const groups = document.querySelectorAll('.nav-group');
+      const modules = document.querySelectorAll('.doc-module-card');
+
+      groups.forEach(g => {
+        const text = g.textContent.toLowerCase();
+        g.style.display = text.includes(query) ? 'block' : 'none';
+      });
+
+      modules.forEach(m => {
+        const text = m.textContent.toLowerCase();
+        m.style.display = text.includes(query) ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

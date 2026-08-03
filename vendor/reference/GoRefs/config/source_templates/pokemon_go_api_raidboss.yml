@@ -1,0 +1,72 @@
+source_key: pokemon_go_api
+endpoint: raidboss
+# Hand-curated from the profiler's auto-generated draft (Task 20): added
+# key_becomes_field (needed to reconstruct raid_bosses' composite
+# tier+pokemon_id identity -- see below), renamed mappings to the canonical
+# raid_bosses column names, and dropped fields the canonical table doesn't
+# carry (assets/names are consumed via nested_path instead; types/counter/
+# weather/battleResult/level are not part of raid_bosses' schema).
+#
+# raid_bosses has no cross-source arbitration to do (pokemon_go_api is its
+# only source) and its real identity is a COMPOSITE key (tier, id) -- the same
+# Pokemon id can appear in more than one tier at once (e.g. as both a mega
+# and a tier-5 boss), which entity_id_prefix (a single static string) cannot
+# express. Per Task 20's design decision, this template is read via
+# engine.extract_transformed_records() (not run_source()), and builder.py
+# builds the composite entity_id used for emit_claim()/discrepancy-logging
+# itself from each returned record's own `tier` field (injected by
+# key_becomes_field) and `pokemon_id` field -- no ledger arbitration needed
+# for a single-source domain, matching the pvp_league precedent's spirit but
+# skipping run_source() entirely rather than forcing a composite id through
+# entity_id_prefix.
+record_extraction:
+  unwrap_path:
+  - currentList
+  iterate_mode: dict_of_lists
+  key_becomes_field: tier
+identity_field: id
+field_mappings:
+  tier:
+    source_field: tier
+    transform: direct
+  pokemon_id:
+    source_field: id
+    transform: direct
+  name:
+    source_field: names.English
+    transform: nested_path
+    fallback_field: id
+  form:
+    source_field: form
+    transform: direct
+  costume:
+    source_field: costume
+    transform: direct
+  min_cp:
+    source_field: cpRange
+    transform: list_index
+    index: 0
+  max_cp:
+    source_field: cpRange
+    transform: list_index
+    index: 1
+  min_boosted_cp:
+    source_field: cpRangeBoost
+    transform: list_index
+    index: 0
+  max_boosted_cp:
+    source_field: cpRangeBoost
+    transform: list_index
+    index: 1
+  shiny_available:
+    source_field: shiny
+    transform: boolean
+  image_url:
+    source_field: assets.image
+    transform: nested_path
+  shiny_image_url:
+    source_field: assets.shinyImage
+    transform: nested_path
+gender_signals: []
+overrides: {}
+needs_review: []

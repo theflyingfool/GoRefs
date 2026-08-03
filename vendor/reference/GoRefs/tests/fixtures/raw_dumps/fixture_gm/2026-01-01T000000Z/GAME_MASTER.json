@@ -1,0 +1,6 @@
+[
+  {"templateId": "V0001_POKEMON_BULBASAUR", "data": {"pokemonSettings": {"pokemonId": "BULBASAUR", "stats": {"baseAttack": 118, "baseDefense": 111, "baseStamina": 128}}}},
+  {"templateId": "COMBAT_V0013_MOVE_WRAP", "data": {"combatMove": {"uniqueId": "WRAP", "power": 70.0}}},
+  {"templateId": "V0222_POKEMON_CORSOLA", "data": {"pokemonSettings": {"pokemonId": "CORSOLA", "stats": {"baseAttack": 118, "baseDefense": 156, "baseStamina": 146}}}},
+  {"templateId": "V0222_POKEMON_CORSOLA_GALARIAN", "data": {"pokemonSettings": {"pokemonId": "CORSOLA", "stats": {"baseAttack": 116, "baseDefense": 182, "baseStamina": 155}}}}
+]
