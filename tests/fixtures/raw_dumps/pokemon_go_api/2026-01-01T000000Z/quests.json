@@ -1,0 +1,3 @@
+[
+  {"quest_id": "Q1", "type": "catch", "text": "Catch 5 Pokemon", "target": 5, "reward_type": "stardust", "reward_detail": {"amount": 500}}
+]

@@ -1,0 +1,4 @@
+[
+  {"id": "1", "name": "Nidoran-F", "is_female": true},
+  {"id": "2", "name": "Nidoran-M", "is_female": false}
+]

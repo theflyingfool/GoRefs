@@ -1,0 +1,40 @@
+source_key: local_authoring
+endpoint: costume-lookup
+# costume-lookup.json is NOT a per-entity source like every other cutover so
+# far (a species, a move, a badge) -- it's a flat dict-of-scalars lookup
+# mapping a shared costume TOKEN (the exact same raw string
+# pokemon_go_api_pokedex.yml's sub_records already write verbatim into
+# forms.costume_name, e.g. "FASHION_2021_NOEVOLVE") to a curated
+# human-readable display name, or "" where nobody has curated one yet (5 of
+# 62 entries in the verified raw snapshot). One costume token can apply to
+# many different forms across the whole table, so this can't produce
+# per-species/per-form entity_ids the way other sources do -- instead each
+# TOKEN itself becomes the entity, via entity_id_prefix: costume_token, and
+# builder.py's forms-assembly step re-joins each form's own costume_name
+# token back against this ledger (Task 23).
+#
+# dict_of_scalars (Task 23's new iterate_mode) turns each {token: display_name}
+# pair into a one-field record {"costume_token": token, "display_name": name}
+# so identity_field/field_mappings work exactly like any other template.
+#
+# NOTE: community-submissions.json (also listed in config/sources.yml's
+# local_authoring.files) has no corresponding template -- the file does not
+# exist anywhere (not in data-authoring/, not in any raw_dumps snapshot);
+# src/fetchers/local_authoring.py's fetch loop already has a defensive
+# `if file_path.exists()` check specifically for this and just warns/skips.
+# This is a known, pre-existing, aspirational/unpopulated source -- not a bug
+# this task creates data to fix.
+record_extraction:
+  unwrap_path: []
+  iterate_mode: dict_of_scalars
+  dict_key_field: costume_token
+  dict_value_field: display_name
+identity_field: costume_token
+entity_id_prefix: costume_token
+field_mappings:
+  costume_token:
+    source_field: costume_token
+    transform: direct
+  display_name:
+    source_field: display_name
+    transform: direct

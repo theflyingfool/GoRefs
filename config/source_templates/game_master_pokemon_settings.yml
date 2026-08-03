@@ -1,0 +1,69 @@
+source_key: alexelgt_game_masters
+endpoint: GAME_MASTER
+entity_id_prefix: pokemon_dex
+record_extraction:
+  unwrap_path: [data, pokemonSettings]
+  iterate_mode: list_of_dicts_with_subkey
+  # key_becomes_field: raw GAME_MASTER pokemonSettings sub-records carry no
+  # dex-number field of their own -- it only exists embedded in the PARENT
+  # item's templateId (e.g. "V0001_POKEMON_BULBASAUR"). Injecting it here
+  # (Task 22's list_of_dicts_with_subkey extension) is what makes the
+  # dex_number override below possible at all.
+  key_becomes_field: templateId
+identity_field: dex_number
+field_mappings:
+  base_attack:
+    source_field: stats.baseAttack
+    transform: nested_path
+  base_defense:
+    source_field: stats.baseDefense
+    transform: nested_path
+  base_stamina:
+    source_field: stats.baseStamina
+    transform: nested_path
+  buddy_distance_km:
+    source_field: kmBuddyDistance
+    transform: direct
+gender_signals: []
+overrides:
+  dex_number:
+    source_field: templateId
+    transform: regex_extract
+    pattern: "^V(\\d{4})_POKEMON_"
+    group: 1
+needs_review: []
+# DELIBERATELY NOT templated here: primary_type_raw/secondary_type_raw (the
+  # "type"/"type2" fields). pokemon_go_api's pokedex template already emits
+  # primary_type_raw/secondary_type_raw at the SAME attribute names on the
+  # SAME pokemon_dex_<n> entities, and builder.py's readback combines those
+  # two claims into the canonical `types` column (builder.py:968-980). Since
+  # alexelgt_game_masters outranks pokemon_go_api in TRUST_HIERARCHY,
+  # emitting type claims here would silently flip every species' canonical
+  # `types` value to whichever of the MANY colliding pokemonSettings records
+  # for that dex (base/regional/costume/event variants, see the collision
+  # note below) happens to win under the last-wins collapse builder.py
+  # applies to this template's claims -- a real behavior change well outside
+  # this task's scope (only base_attack/base_defense/base_stamina/
+  # buddy_distance_km were ever consumed from GAME_MASTER's species stats,
+  # see the legacy GameMasterFetcher.extract_structured_claims()'s
+  # species_stats dict and its 4 actual downstream reads in builder.py).
+  #
+  # KNOWN COLLISION (not a bug in this template, a real property of the raw
+  # data): GAME_MASTER carries MULTIPLE pokemonSettings records per dex
+  # number -- one per regional/costume/event variant (e.g. dex 222 Corsola
+  # has CORSOLA, CORSOLA_GALARIAN, CORSOLA_NORMAL, CORSOLA_SPRING_2026, all
+  # matching the same "^V0222_POKEMON_" regex and therefore the same
+  # pokemon_dex_222 entity_id). The legacy hand-parser built species_stats as
+  # a plain dict keyed by dex number, so each subsequent raw record's
+  # assignment silently overwrote the previous one -- i.e. "the LAST record
+  # for a dex, in raw file order, wins" (verified directly against the real
+  # dump: dex 222's legacy base_attack/base_defense/base_stamina of
+  # 116/182/155, per KNOWN_ISSUES.md, come from CORSOLA_SPRING_2026, the
+  # LAST of its 4 variant records, not the base CORSOLA record). This is NOT
+  # the generic ledger resolver's own tie-break rule (a stable sort keeps
+  # the FIRST same-priority claim), so builder.py collapses this template's
+  # claims to last-claim-per-(entity_id, attribute) before merging into the
+  # shared ledger, replicating the legacy dict-overwrite semantics exactly
+  # rather than silently changing which variant's stats each species
+  # resolves to. See collect_and_resolve_claims()'s comment at the
+  # game_master_pokemon_settings call site for the actual collapse code.

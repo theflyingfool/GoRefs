@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "name": "Bloop",
+    "assetForms": [
+      {"form": "FEMALE", "isFemale": false},
+      {"form": null, "isFemale": false}
+    ],
+    "regionForms": {
+      "BLOOP_FEMALE": {"names": {"English": "Bloop (Female)"}}
+    }
+  },
+  {
+    "id": 2,
+    "name": "Squigglet",
+    "assetForms": [
+      {"form": "PARTY_HAT", "isFemale": false}
+    ],
+    "regionForms": {}
+  }
+]

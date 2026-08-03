@@ -1,0 +1,33 @@
+source_key: pogoapi_net
+endpoint: fast_moves
+generated_at: '2026-08-01T23:03:21.860271+00:00'
+source_fingerprint: sha256:a4fd08ee25a741f9
+record_extraction:
+  unwrap_path: []
+  iterate_mode: top_level_list
+identity_field: move_id
+field_mappings:
+  duration:
+    source_field: duration
+    transform: direct
+  energy_delta:
+    source_field: energy_delta
+    transform: direct
+  move_id:
+    source_field: move_id
+    transform: direct
+  name:
+    source_field: name
+    transform: direct
+  power:
+    source_field: power
+    transform: direct
+  stamina_loss_scaler:
+    source_field: stamina_loss_scaler
+    transform: direct
+  type:
+    source_field: type
+    transform: direct
+gender_signals: []
+overrides: {}
+needs_review: []
