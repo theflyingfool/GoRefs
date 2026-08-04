@@ -70,7 +70,7 @@ just spread across many smaller files instead of one. Needs a policy before
 it becomes a real problem: e.g. keep only the last N snapshots per source,
 or squash/prune older ones on each `--build`. Not started.
 
-## Add a `_meta` table: last-pulled-per-source + last-built-at
+## DONE (2026-08-03): `_meta` table: last-pulled-per-source + last-built-at
 
 2026-08-03: flagged from the GoBuddy side while designing its ingestion swap
 to pull from this project (`vendor/reference/GoRefs`, vendored as a git
@@ -89,10 +89,10 @@ persisting data that's already computed:
   `{source, etag, timestamp}` per fetch.
 - `builder.py` already computes a build timestamp (`src/builder.py:1380`).
 
-Add a `_meta` table to `output/GoRefs_Master.duckdb`: one row per source with
-its most recent `last_pulled_at` (sourced from the `.meta.json` files above),
-plus a single row (or separate scalar) for `last_built_at`. Populated by
-`--build`. Not started; no table exists yet.
+Added a `_meta` table to `output/GoRefs_Master.duckdb`: one row per source
+with its most recent `last_pulled_at` (sourced from the `.meta.json` files
+above), plus a `__build__` row for `last_built_at`. Written by
+`write_master_duckdb()` on every `--build`. See `tests/test_meta_table.py`.
 
 ## Add a `--publish` step: GitHub Release for `output/GoRefs_Master.duckdb`
 

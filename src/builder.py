@@ -1449,6 +1449,28 @@ class GoRefsMasterEngine:
 
         return len(diff_records)
 
+    def _write_meta_table(self, con: duckdb.DuckDBPyConnection, raw_dumps_dir: Path, build_timestamp: str) -> None:
+        """Writes the _meta table: one row per source with its most recent
+        raw_dumps/<source>/<timestamp>/.meta.json timestamp, plus one row
+        ('__build__') for this build's own timestamp. Lets downstream
+        consumers (e.g. GoBuddy's ingest:check) answer "has this changed"
+        without querying the whole database."""
+        con.execute("CREATE OR REPLACE TABLE _meta (source VARCHAR, last_pulled_at VARCHAR)")
+        rows = [("__build__", build_timestamp)]
+        if raw_dumps_dir.is_dir():
+            for source_dir in sorted(raw_dumps_dir.iterdir()):
+                if not source_dir.is_dir():
+                    continue
+                timestamps = sorted(p.name for p in source_dir.iterdir() if p.is_dir())
+                if not timestamps:
+                    continue
+                latest = timestamps[-1]
+                meta_path = source_dir / latest / ".meta.json"
+                if meta_path.exists():
+                    meta = json.loads(meta_path.read_text())
+                    rows.append((source_dir.name, meta.get("timestamp", "")))
+        con.executemany("INSERT INTO _meta VALUES (?, ?)", rows)
+
     def write_master_duckdb(self, canonical_data: Dict[str, Any]) -> int:
         """Writes canonical domain datasets into `output/GoRefs_Master.duckdb`.
 
@@ -1529,6 +1551,9 @@ class GoRefsMasterEngine:
             else:
                 schema_def = default_schemas.get(tbl_name, "id VARCHAR")
                 con.execute(f'CREATE TABLE "{tbl_name}" ({schema_def})')
+
+        build_timestamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        self._write_meta_table(con, self.raw_dumps_dir, build_timestamp)
 
         con.close()
         return total_rows
